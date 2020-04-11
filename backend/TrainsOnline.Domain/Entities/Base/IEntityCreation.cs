@@ -1,0 +1,10 @@
+﻿namespace TrainsOnline.Domain.Entities.Base
+{
+    using System;
+
+    public interface IEntityCreation
+    {
+        public DateTime CreatedOn { get; set; }
+        public Guid? CreatedBy { get; set; }
+    }
+}
