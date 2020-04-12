@@ -31,12 +31,12 @@ stages:
     - script: dotnet publish --configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)
       displayName: 'dotnet publish'
 
-    - script: dotnet test ./Brassinosteroids.Test/Brassinosteroids.Test.csproj /p:Exclude="[xunit*]*"
-      displayName: 'Run unit tests'
+    # - script: dotnet test ./GenericApi.Test/GenericApi.Test.csproj /p:Exclude="[xunit*]*"
+    #   displayName: 'Run unit tests'
 
     - task: PublishBuildArtifacts@1
       inputs:
         PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-        ArtifactName: 'BrassinosteroidsAPIDeployArtifact'
+        ArtifactName: 'GenericAPIDeployArtifact'
         publishLocation: 'Container'
 
