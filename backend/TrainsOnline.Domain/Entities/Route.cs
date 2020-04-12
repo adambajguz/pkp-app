@@ -13,6 +13,9 @@
         public DateTime LastSavedOn { get; set; }
         public Guid? LastSavedBy { get; set; }
 
+        public Guid FromId { get; set; }
+        public Guid ToId { get; set; }
+
         public virtual Station From { get; set; } = default!;
         public virtual Station To { get; set; } = default!;
 
