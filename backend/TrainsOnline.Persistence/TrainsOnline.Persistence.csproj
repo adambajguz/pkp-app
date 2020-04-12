@@ -8,6 +8,7 @@
   </PropertyGroup>
   <PropertyGroup>
     <Nullable>enable</Nullable>
+    <GenerateRuntimeConfigurationFiles>True</GenerateRuntimeConfigurationFiles>
   </PropertyGroup>
 
   <ItemGroup>

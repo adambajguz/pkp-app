@@ -38,7 +38,7 @@
             }
         }
 
-        public static string MAIN_DB_CONNECTION_STRING_NAME => "MainDb";
+        public static string PKPAPP_DB_CONNECTION_STRING_NAME => "PKPAppDb";
 
         public static int MIN_PASSWORD_LENGTH => 8;
         public static int MIN_USERNAME_LENGTH => 3;

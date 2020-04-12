@@ -13,7 +13,7 @@
         public static IServiceCollection AddPersistenceContent(this IServiceCollection services, IConfiguration configuration, IWebHostEnvironment environment)
         {
             services.AddDbContext<IPKPAppDbContext, PKPAppDbContext>(options =>
-                    options.UseSqlServer(configuration.GetConnectionString(GlobalAppConfig.MAIN_DB_CONNECTION_STRING_NAME)));
+                    options.UseSqlServer(configuration.GetConnectionString(GlobalAppConfig.PKPAPP_DB_CONNECTION_STRING_NAME)));
 
             return services;
         }
