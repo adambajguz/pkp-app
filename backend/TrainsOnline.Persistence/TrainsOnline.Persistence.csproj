@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
 	<LangVersion>latest</LangVersion>
-    <ProjectGuid>{AED4971D-86A5-47E5-AEF0-501FFCCFFC2E}</ProjectGuid>
+    <ProjectGuid>{512348C8-A95B-4D7F-BD35-525A09192E25}</ProjectGuid>
     <Platforms>AnyCPU;x64;x86</Platforms>
   </PropertyGroup>
   <PropertyGroup>
