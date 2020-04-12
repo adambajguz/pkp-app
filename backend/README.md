@@ -36,3 +36,9 @@ Follow these steps to get your development environment set up:
 ## License
 
 This project is licensed under the MIT License
+
+## JWT Key Generation
+
+```
+node -e "console.log(require('crypto').randomBytes(256).toString('base64'));"
+```
