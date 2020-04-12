@@ -5,7 +5,9 @@
 
     public interface IPKPAppDbUnitOfWork : IGenericUnitOfWork
     {
+        IRoutesRepository RoutesRepository { get; }
+        IStationsRepository StationsRepository { get; }
+        ITicketsRepository TicketsRepository { get; }
         IUsersRepository UsersRepository { get; }
     }
 }
-
