@@ -2,11 +2,11 @@
 {
     using System;
     using System.Net;
-    using TrainsOnline.Api.Models;
     using Application.Exceptions;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Filters;
+    using TrainsOnline.Api.Models;
 
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
     public class CustomExceptionFilterAttribute : ExceptionFilterAttribute

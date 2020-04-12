@@ -1,9 +1,7 @@
-﻿using TrainsOnline.Domain.Enums;
-
-namespace TrainsOnline.Domain.Entities.Audit
+﻿namespace TrainsOnline.Domain.Abstractions.Audit
 {
     using System;
-    using Domain.Enums;
+    using TrainsOnline.Domain.Abstractions.Enums;
 
     public interface IAuditLog
     {

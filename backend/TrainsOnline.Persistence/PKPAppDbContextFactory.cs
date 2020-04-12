@@ -1,9 +1,7 @@
-﻿using TrainsOnline.Persistence.Infrastructure;
-
-namespace TrainsOnline.Persistence
+﻿namespace TrainsOnline.Persistence
 {
-    using Persistence.Infrastructure;
     using Microsoft.EntityFrameworkCore;
+    using Persistence.Infrastructure;
 
     public class PKPAppDbContextFactory : DesignTimeDbContextFactoryBase<PKPAppDbContext>
     {

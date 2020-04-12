@@ -1,14 +1,13 @@
-﻿namespace TrainsOnline.Application.GenericCRUD.Queries
+﻿namespace TrainsOnline.Application.User.Queries.GetUsersList
 {
     using System.Threading;
     using System.Threading.Tasks;
     using Application.Common.Interfaces.UoW;
     using MediatR;
-    using TrainsOnline.Application.User.Queries.GetUsersList;
 
-    public class GetListQuery : IRequest<GetUsersListResponse>
+    public class GetUsersListQuery : IRequest<GetUsersListResponse>
     {
-        public GetListQuery()
+        public GetUsersListQuery()
         {
 
         }

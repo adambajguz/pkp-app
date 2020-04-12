@@ -1,6 +1,4 @@
-﻿using TrainsOnline.Application.Interfaces;
-
-namespace TrainsOnline.Application.Common.Interfaces
+﻿namespace TrainsOnline.Application.Common.Interfaces
 {
     using Application.Interfaces;
     using Domain.Entities;

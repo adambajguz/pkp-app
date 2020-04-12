@@ -1,14 +1,14 @@
-﻿namespace TrainsOnline.Application.Main.User.Commands.UpdateUser
+﻿namespace TrainsOnline.Application.User.Commands.UpdateUser
 {
     using Application.Common.Interfaces.UoW;
     using Application.Constants;
-    using TrainsOnline.Common;
     using Domain.Entities;
     using FluentValidation;
+    using TrainsOnline.Common;
 
     public class UpdateUserCommandValidator : AbstractValidator<UpdateUserCommandValidator.Model>
     {
-        public UpdateUserCommandValidator(IMainDbUnitOfWork uow)
+        public UpdateUserCommandValidator(IPKPAppDbUnitOfWork uow)
         {
             RuleFor(x => x.Data.Id).NotEmpty().Must((request, val, token) =>
             {
@@ -17,21 +17,17 @@
                     return false;
 
                 return true;
-            }).WithMessage(ValidationMessages.Id.IsIncorrectUser).WithErrorCode(ValidationErrorCodes.Id.IsIncorrectUser);
+            }).WithMessage(ValidationMessages.Id.IsIncorrectUser);
 
             RuleFor(x => x.Data.Username).NotEmpty()
-                                         .WithMessage(ValidationMessages.Username.IsEmpty)
-                                         .WithErrorCode(ValidationErrorCodes.Username.IsEmpty);
+                                         .WithMessage(ValidationMessages.Username.IsEmpty);
             RuleFor(x => x.Data.Username).MinimumLength(GlobalAppConfig.MIN_USERNAME_LENGTH)
-                                         .WithMessage(string.Format(ValidationMessages.Username.IsTooShort, GlobalAppConfig.MIN_USERNAME_LENGTH))
-                                         .WithErrorCode(ValidationErrorCodes.Username.IsTooShort);
+                                         .WithMessage(string.Format(ValidationMessages.Username.IsTooShort, GlobalAppConfig.MIN_USERNAME_LENGTH));
 
             RuleFor(x => x.Data.Email).NotEmpty()
-                                      .WithMessage(ValidationMessages.Email.IsEmpty)
-                                      .WithErrorCode(ValidationErrorCodes.Email.IsEmpty);
+                                      .WithMessage(ValidationMessages.Email.IsEmpty);
             RuleFor(x => x.Data.Email).EmailAddress()
-                                      .WithMessage(ValidationMessages.Email.HasWrongFormat)
-                                      .WithErrorCode(ValidationErrorCodes.Email.HasWrongFormat);
+                                      .WithMessage(ValidationMessages.Email.HasWrongFormat);
 
             When(x => x.User != null, () =>
             {
@@ -45,7 +41,7 @@
                     bool checkInUse = await uow.UsersRepository.IsUserNameInUseAsync(val);
 
                     return !checkInUse;
-                }).WithMessage(ValidationMessages.Username.IsInUse).WithErrorCode(ValidationErrorCodes.Username.IsInUse);
+                }).WithMessage(ValidationMessages.Username.IsInUse);
 
                 RuleFor(x => x.Data.Email).MustAsync(async (request, val, token) =>
                 {
@@ -58,7 +54,7 @@
 
                     return !checkInUse;
 
-                }).WithMessage(ValidationMessages.Email.IsInUse).WithErrorCode(ValidationErrorCodes.Email.IsInUse);
+                }).WithMessage(ValidationMessages.Email.IsInUse);
             });
         }
 

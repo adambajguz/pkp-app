@@ -6,7 +6,7 @@
     using System.Linq.Expressions;
     using System.Threading;
     using System.Threading.Tasks;
-    using Domain.Entities.Base;
+    using TrainsOnline.Domain.Abstractions.Base;
 
     public interface IGenericReadOnlyRepository
     {

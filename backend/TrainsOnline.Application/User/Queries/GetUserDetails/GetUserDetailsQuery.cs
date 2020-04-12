@@ -1,14 +1,14 @@
-namespace TrainsOnline.Application.Main.User.Queries.GetUserDetails
+namespace TrainsOnline.Application.User.Queries.GetUserDetails
 {
     using System.Threading;
     using System.Threading.Tasks;
-    using AutoMapper;
     using Application.Common.Interfaces.UoW;
-    using Application.CommonDTO;
     using Application.Interfaces;
+    using AutoMapper;
     using Domain.Entities;
     using FluentValidation;
     using MediatR;
+    using TrainsOnline.Application.Common.DTO;
 
     public class GetUserDetailsQuery : IRequest<GetUserDetailResponse>
     {
@@ -21,11 +21,11 @@ namespace TrainsOnline.Application.Main.User.Queries.GetUserDetails
 
         public class Handler : IRequestHandler<GetUserDetailsQuery, GetUserDetailResponse>
         {
-            private readonly IMainDbUnitOfWork _uow;
+            private readonly IPKPAppDbUnitOfWork _uow;
             private readonly IMapper _mapper;
             private readonly IDataRightsService _drs;
 
-            public Handler(IMainDbUnitOfWork uow, IMapper mapper, IDataRightsService drs)
+            public Handler(IPKPAppDbUnitOfWork uow, IMapper mapper, IDataRightsService drs)
             {
                 _uow = uow;
                 _mapper = mapper;

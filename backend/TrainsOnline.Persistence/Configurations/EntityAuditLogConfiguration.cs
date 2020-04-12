@@ -1,8 +1,8 @@
 ﻿namespace TrainsOnline.Persistence.Configurations
 {
-    using TrainsOnline.Domain.Content.Entities.Audit;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Metadata.Builders;
+    using TrainsOnline.Domain.Entities.Audit;
 
     public class EntityAuditLogConfiguration : IEntityTypeConfiguration<EntityAuditLog>
     {

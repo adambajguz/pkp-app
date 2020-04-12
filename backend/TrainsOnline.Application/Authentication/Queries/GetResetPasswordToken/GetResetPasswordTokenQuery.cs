@@ -1,19 +1,16 @@
-﻿using TrainsOnline.Application.Common.Interfaces;
-using TrainsOnline.Application.Common.Interfaces.UoW;
-
-namespace TrainsOnline.Application.Authentication.Queries.GetResetPasswordToken
+﻿namespace TrainsOnline.Application.Authentication.Queries.GetResetPasswordToken
 {
     using System;
     using System.Threading;
     using System.Threading.Tasks;
     using Application.Common.Interfaces;
     using Application.Common.Interfaces.UoW;
-    using TrainsOnline.Common;
     using Domain.Entities;
     using Domain.Jwt;
     using FluentValidation;
     using MediatR;
     using Microsoft.AspNetCore.Http;
+    using TrainsOnline.Common;
 
     public class GetResetPasswordTokenQuery : IRequest<string>
     {
@@ -26,12 +23,12 @@ namespace TrainsOnline.Application.Authentication.Queries.GetResetPasswordToken
 
         public class Handler : IRequestHandler<GetResetPasswordTokenQuery, string>
         {
-            private readonly IMainDbUnitOfWork _uow;
+            private readonly IPKPAppDbUnitOfWork _uow;
             private readonly IHttpContextAccessor _context;
             private readonly IJwtService _jwt;
             private readonly IEmailService _email;
 
-            public Handler(IMainDbUnitOfWork uow, IHttpContextAccessor context, IJwtService jwt, IEmailService email)
+            public Handler(IPKPAppDbUnitOfWork uow, IHttpContextAccessor context, IJwtService jwt, IEmailService email)
             {
                 _context = context;
                 _uow = uow;

@@ -1,7 +1,7 @@
 ﻿namespace TrainsOnline.Application.Common.Interfaces
 {
     using System;
-    using TrainsOnline.Application.Main.Authentication.Queries.GetValidToken;
+    using TrainsOnline.Application.Authentication.Queries.GetValidToken;
 
     public interface IJwtService
     {

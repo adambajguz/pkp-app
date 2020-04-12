@@ -1,14 +1,14 @@
-﻿namespace TrainsOnline.Application.Main.User.Queries.GetUserDetails
+﻿namespace TrainsOnline.Application.User.Queries.GetUserDetails
 {
     using Application.Common.Interfaces.UoW;
-    using Application.CommonDTO;
     using Application.Constants;
     using Domain.Entities;
     using FluentValidation;
+    using TrainsOnline.Application.Common.DTO;
 
     public class GetUserDetailsQueryValidator : AbstractValidator<IdRequest>
     {
-        public GetUserDetailsQueryValidator(IMainDbUnitOfWork uow)
+        public GetUserDetailsQueryValidator(IPKPAppDbUnitOfWork uow)
         {
             RuleFor(x => x.Id).NotEmpty().MustAsync(async (request, val, token) =>
             {
@@ -17,7 +17,7 @@
                     return false;
 
                 return true;
-            }).WithMessage(ValidationMessages.Id.IsIncorrectUser).WithErrorCode(ValidationErrorCodes.Id.IsIncorrectUser);
+            }).WithMessage(ValidationMessages.Id.IsIncorrectUser);
         }
     }
 }

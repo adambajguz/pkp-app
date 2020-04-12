@@ -2,17 +2,17 @@
 {
     using System;
     using System.Threading.Tasks;
-    using Application.CommonDTO;
-    using TrainsOnline.Application.Main.User.Commands.ChangePassword;
-    using TrainsOnline.Application.Main.User.Commands.CreateUser;
-    using TrainsOnline.Application.Main.User.Commands.DeleteUser;
-    using TrainsOnline.Application.Main.User.Commands.UpdateUser;
-    using TrainsOnline.Application.Main.User.Queries.GetUserDetails;
-    using TrainsOnline.Application.Main.User.Queries.GetUsers;
-    using TrainsOnline.Domain.Content.Jwt;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using Swashbuckle.AspNetCore.Annotations;
+    using TrainsOnline.Application.Common.DTO;
+    using TrainsOnline.Application.User.Commands.ChangePassword;
+    using TrainsOnline.Application.User.Commands.CreateUser;
+    using TrainsOnline.Application.User.Commands.DeleteUser;
+    using TrainsOnline.Application.User.Commands.UpdateUser;
+    using TrainsOnline.Application.User.Queries.GetUserDetails;
+    using TrainsOnline.Application.User.Queries.GetUsersList;
+    using TrainsOnline.Domain.Jwt;
 
     [SwaggerTag("Create, update and get user.")]
     public class UserController : BaseController
@@ -103,7 +103,7 @@
         [SwaggerResponse(401)]
         public async Task<IActionResult> GetUsersList()
         {
-            return Ok(await Mediator.Send(new GetUsersQuery()));
+            return Ok(await Mediator.Send(new GetUsersListQuery()));
         }
     }
 }

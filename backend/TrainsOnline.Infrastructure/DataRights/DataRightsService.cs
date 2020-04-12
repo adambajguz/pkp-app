@@ -6,8 +6,8 @@
     using System.Security.Claims;
     using Application.Exceptions;
     using Application.Interfaces;
-    using TrainsOnline.Domain.Content.Jwt;
     using Microsoft.AspNetCore.Http;
+    using TrainsOnline.Domain.Jwt;
 
     //TODO use expressions to validate datarights
     public class DataRightsService : IDataRightsService

@@ -1,20 +1,17 @@
-﻿using TrainsOnline.Infrastructure.DataRights;
-using TrainsOnline.Infrastructure.UoW;
-
-namespace TrainsOnline.Infrastructure
+﻿namespace TrainsOnline.Infrastructure
 {
     using Application.Common.Interfaces;
     using Application.Common.Interfaces.UoW;
     using Application.Interfaces;
     using Infrastructure.DataRights;
     using Infrastructure.UoW;
-    using TrainsOnline.Infrastructure.Main.Email;
-    using TrainsOnline.Infrastructure.Main.Jwt;
     using Microsoft.AspNetCore.Authentication.JwtBearer;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.IdentityModel.Tokens;
+    using TrainsOnline.Infrastructure.Jwt;
+    using TrainsOnline.Infrastructure.Main.Email;
     using IConfiguration = Microsoft.Extensions.Configuration.IConfiguration;
 
     public static class DependencyInjection
@@ -29,7 +26,7 @@ namespace TrainsOnline.Infrastructure
             services.AddSingleton<IJwtService, JwtService>();
             services.AddSingleton<IEmailService, EmailService>();
 
-            services.AddScoped<IMainDbUnitOfWork, MainDbUnitOfWork>();
+            services.AddScoped<IPKPAppDbUnitOfWork, PKPAppDbUnitOfWork>();
 
             //email configruation
             {

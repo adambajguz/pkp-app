@@ -6,12 +6,12 @@
     using System.Linq.Expressions;
     using System.Threading;
     using System.Threading.Tasks;
-    using AutoMapper;
-    using AutoMapper.QueryableExtensions;
     using Application.Interfaces;
     using Application.Interfaces.Repository.Generic;
-    using TrainsOnline.Domain.Content.Entities.Base;
+    using AutoMapper;
+    using AutoMapper.QueryableExtensions;
     using Microsoft.EntityFrameworkCore;
+    using TrainsOnline.Domain.Abstractions.Base;
 
     public class GenericReadOnlyRepository<TEntity> : IGenericReadOnlyRepository<TEntity>
         where TEntity : class, IBaseEntity

@@ -1,4 +1,4 @@
-﻿namespace TrainsOnline.Application.Main.Authentication.Queries.GetValidToken
+﻿namespace TrainsOnline.Application.Authentication.Queries.GetValidToken
 {
     using System.Threading;
     using System.Threading.Tasks;
@@ -20,10 +20,10 @@
 
         public class Handler : IRequestHandler<GetValidTokenQuery, JwtTokenModel>
         {
-            private readonly IMainDbUnitOfWork _uow;
+            private readonly IPKPAppDbUnitOfWork _uow;
             private readonly IJwtService _jwt;
 
-            public Handler(IMainDbUnitOfWork uow, IJwtService jwt)
+            public Handler(IPKPAppDbUnitOfWork uow, IJwtService jwt)
             {
                 _uow = uow;
                 _jwt = jwt;

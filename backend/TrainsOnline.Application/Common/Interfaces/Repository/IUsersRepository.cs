@@ -1,6 +1,4 @@
-﻿using TrainsOnline.Application.Interfaces.Repository.Generic;
-
-namespace TrainsOnline.Application.Common.Interfaces.Repository
+﻿namespace TrainsOnline.Application.Common.Interfaces.Repository
 {
     using System.Threading.Tasks;
     using Application.Interfaces.Repository.Generic;

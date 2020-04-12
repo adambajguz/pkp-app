@@ -11,6 +11,7 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\TrainsOnline.Common\TrainsOnline.Common.csproj" />
+    <ProjectReference Include="..\TrainsOnline.Domain.Abstractions\TrainsOnline.Domain.Abstractions.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,11 +1,9 @@
-﻿using TrainsOnline.Application.Interfaces.Repository.Generic;
-
-namespace TrainsOnline.Application.Interfaces.UoW
+﻿namespace TrainsOnline.Application.Interfaces.UoW
 {
     using System.Threading;
     using System.Threading.Tasks;
     using Application.Interfaces.Repository.Generic;
-    using Domain.Entities.Base;
+    using TrainsOnline.Domain.Abstractions.Base;
 
     public interface IGenericUnitOfWork
     {

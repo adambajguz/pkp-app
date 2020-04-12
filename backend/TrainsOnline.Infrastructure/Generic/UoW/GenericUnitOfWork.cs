@@ -1,17 +1,15 @@
-﻿using TrainsOnline.Infrastructure.Repository;
-
-namespace TrainsOnline.Infrastructure.UoW
+﻿namespace TrainsOnline.Infrastructure.UoW
 {
     using System;
     using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
-    using AutoMapper;
     using Application.Interfaces;
     using Application.Interfaces.Repository.Generic;
     using Application.Interfaces.UoW;
-    using TrainsOnline.Domain.Content.Entities.Base;
+    using AutoMapper;
     using Infrastructure.Repository;
+    using TrainsOnline.Domain.Abstractions.Base;
 
     public abstract class GenericUnitOfWork : IGenericUnitOfWork, IDisposable
     {

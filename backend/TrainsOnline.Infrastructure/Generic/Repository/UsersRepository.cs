@@ -1,9 +1,9 @@
 ﻿namespace TrainsOnline.Infrastructure.Repository
 {
-    using AutoMapper;
     using Application.Interfaces;
     using Application.Interfaces.Repository;
-    using TrainsOnline.Domain.Content.Entities.Audit;
+    using AutoMapper;
+    using TrainsOnline.Domain.Entities.Audit;
 
     public class EntityAuditLogRepository : GenericRepository<EntityAuditLog>, IEntityAuditLogRepository
     {

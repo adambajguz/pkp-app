@@ -1,28 +1,24 @@
-﻿namespace TrainsOnline.Application.Main.Authentication.Queries.GetValidToken
+﻿namespace TrainsOnline.Application.Authentication.Queries.GetValidToken
 {
     using Application.Common.Helpers;
     using Application.Constants;
-    using TrainsOnline.Common;
     using Domain.Entities;
     using FluentValidation;
+    using TrainsOnline.Common;
 
     public class GetValidTokenQueryValidator : AbstractValidator<GetValidTokenQueryValidator.Model>
     {
         public GetValidTokenQueryValidator()
         {
             RuleFor(x => x.Data.Email).NotEmpty()
-                                      .WithMessage(ValidationMessages.Email.IsEmpty)
-                                      .WithErrorCode(ValidationErrorCodes.Email.IsEmpty);
+                                      .WithMessage(ValidationMessages.Email.IsEmpty);
             RuleFor(x => x.Data.Email).EmailAddress()
-                                      .WithMessage(ValidationMessages.Email.HasWrongFormat)
-                                      .WithErrorCode(ValidationErrorCodes.Email.HasWrongFormat);
+                                      .WithMessage(ValidationMessages.Email.HasWrongFormat);
 
             RuleFor(x => x.Data.Password).NotEmpty()
-                                         .WithMessage(ValidationMessages.Password.IsEmpty)
-                                         .WithErrorCode(ValidationErrorCodes.Password.IsEmpty);
+                                         .WithMessage(ValidationMessages.Password.IsEmpty);
             RuleFor(x => x.Data.Password).MinimumLength(GlobalAppConfig.MIN_PASSWORD_LENGTH)
-                                         .WithMessage(string.Format(ValidationMessages.Password.IsTooShort, GlobalAppConfig.MIN_PASSWORD_LENGTH))
-                                         .WithErrorCode(ValidationErrorCodes.Password.IsTooShort);
+                                         .WithMessage(string.Format(ValidationMessages.Password.IsTooShort, GlobalAppConfig.MIN_PASSWORD_LENGTH));
 
             RuleFor(x => x.User).Must((request, val, token) =>
             {
@@ -33,7 +29,7 @@
 
                 return false;
 
-            }).WithMessage(ValidationMessages.Auth.EmailOrPasswordIsIncorrect).WithErrorCode(ValidationErrorCodes.Auth.EmailOrPasswordIsIncorrect);
+            }).WithMessage(ValidationMessages.Auth.EmailOrPasswordIsIncorrect);
         }
 
         public class Model

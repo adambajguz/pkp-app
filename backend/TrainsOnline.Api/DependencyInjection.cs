@@ -1,7 +1,6 @@
 ﻿namespace TrainsOnline.Api
 {
     using System.Collections.Generic;
-    using TrainsOnline.Api.Filters;
     using Microsoft.AspNetCore.Authentication.JwtBearer;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
@@ -9,6 +8,7 @@
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.OpenApi.Models;
     using Serilog;
+    using TrainsOnline.Api.Filters;
     using IConfiguration = Microsoft.Extensions.Configuration.IConfiguration;
 
     public static class DependencyInjection

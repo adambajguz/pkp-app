@@ -1,14 +1,14 @@
-﻿namespace TrainsOnline.Infrastructure.Main.Jwt
+﻿namespace TrainsOnline.Infrastructure.Jwt
 {
     using System;
     using System.IdentityModel.Tokens.Jwt;
     using System.Linq;
     using System.Security.Claims;
-    using Application.Common.Interfaces;
-    using TrainsOnline.Application.Main.Authentication.Queries.GetValidToken;
-    using TrainsOnline.Domain.Content.Jwt;
     using Microsoft.Extensions.Options;
     using Microsoft.IdentityModel.Tokens;
+    using TrainsOnline.Application.Authentication.Queries.GetValidToken;
+    using TrainsOnline.Application.Common.Interfaces;
+    using TrainsOnline.Domain.Jwt;
 
     public class JwtService : IJwtService
     {

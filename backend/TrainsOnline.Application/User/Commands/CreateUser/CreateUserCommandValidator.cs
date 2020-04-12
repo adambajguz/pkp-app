@@ -1,47 +1,41 @@
-﻿namespace TrainsOnline.Application.Main.User.Commands.CreateUser
+﻿namespace TrainsOnline.Application.User.Commands.CreateUser
 {
     using Application.Common.Interfaces.UoW;
     using Application.Constants;
-    using TrainsOnline.Common;
     using FluentValidation;
+    using TrainsOnline.Common;
 
     public class CreateUserCommandValidator : AbstractValidator<CreateUserRequest>
     {
-        public CreateUserCommandValidator(IMainDbUnitOfWork uow)
+        public CreateUserCommandValidator(IPKPAppDbUnitOfWork uow)
         {
             RuleFor(x => x.Username).NotEmpty()
-                                    .WithMessage(ValidationMessages.Username.IsEmpty)
-                                    .WithErrorCode(ValidationErrorCodes.Username.IsEmpty);
+                                    .WithMessage(ValidationMessages.Username.IsEmpty);
             RuleFor(x => x.Username).MinimumLength(GlobalAppConfig.MIN_USERNAME_LENGTH)
-                                    .WithMessage(string.Format(ValidationMessages.Username.IsTooShort, GlobalAppConfig.MIN_USERNAME_LENGTH))
-                                    .WithErrorCode(ValidationErrorCodes.Username.IsTooShort);
+                                    .WithMessage(string.Format(ValidationMessages.Username.IsTooShort, GlobalAppConfig.MIN_USERNAME_LENGTH));
             RuleFor(x => x.Username).MustAsync(async (request, val, token) =>
             {
                 bool checkInUse = await uow.UsersRepository.IsUserNameInUseAsync(val);
 
                 return !checkInUse;
-            }).WithMessage(ValidationMessages.Username.IsInUse).WithErrorCode(ValidationErrorCodes.Username.IsInUse);
+            }).WithMessage(ValidationMessages.Username.IsInUse);
 
             RuleFor(x => x.Email).NotEmpty()
-                                 .WithMessage(ValidationMessages.Email.IsEmpty)
-                                 .WithErrorCode(ValidationErrorCodes.Email.IsEmpty);
+                                 .WithMessage(ValidationMessages.Email.IsEmpty);
             RuleFor(x => x.Email).EmailAddress()
-                                 .WithMessage(ValidationMessages.Email.HasWrongFormat)
-                                 .WithErrorCode(ValidationErrorCodes.Email.HasWrongFormat);
+                                 .WithMessage(ValidationMessages.Email.HasWrongFormat);
             RuleFor(x => x.Email).MustAsync(async (request, val, token) =>
             {
                 bool checkInUse = await uow.UsersRepository.IsEmailInUseAsync(val);
 
                 return !checkInUse;
 
-            }).WithMessage(ValidationMessages.Email.IsInUse).WithErrorCode(ValidationErrorCodes.Email.IsInUse);
+            }).WithMessage(ValidationMessages.Email.IsInUse);
 
             RuleFor(x => x.Password).NotEmpty()
-                                    .WithMessage(ValidationMessages.Password.IsEmpty)
-                                    .WithErrorCode(ValidationErrorCodes.Password.IsEmpty);
+                                    .WithMessage(ValidationMessages.Password.IsEmpty);
             RuleFor(x => x.Password).MinimumLength(GlobalAppConfig.MIN_PASSWORD_LENGTH)
-                                    .WithMessage(string.Format(ValidationMessages.Password.IsTooShort, GlobalAppConfig.MIN_PASSWORD_LENGTH))
-                                    .WithErrorCode(ValidationErrorCodes.Password.IsTooShort);
+                                    .WithMessage(string.Format(ValidationMessages.Password.IsTooShort, GlobalAppConfig.MIN_PASSWORD_LENGTH));
         }
     }
 }

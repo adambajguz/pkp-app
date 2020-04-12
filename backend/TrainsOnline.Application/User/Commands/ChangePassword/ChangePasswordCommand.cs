@@ -1,4 +1,4 @@
-namespace TrainsOnline.Application.Main.User.Commands.ChangePassword
+namespace TrainsOnline.Application.User.Commands.ChangePassword
 {
     using System.Threading;
     using System.Threading.Tasks;
@@ -20,10 +20,10 @@ namespace TrainsOnline.Application.Main.User.Commands.ChangePassword
 
         public class Handler : IRequestHandler<ChangePasswordCommand, Unit>
         {
-            private readonly IMainDbUnitOfWork _uow;
+            private readonly IPKPAppDbUnitOfWork _uow;
             private readonly IDataRightsService _drs;
 
-            public Handler(IMainDbUnitOfWork uow, IDataRightsService drs)
+            public Handler(IPKPAppDbUnitOfWork uow, IDataRightsService drs)
             {
                 _uow = uow;
                 _drs = drs;

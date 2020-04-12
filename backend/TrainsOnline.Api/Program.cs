@@ -6,7 +6,6 @@ namespace TrainsOnline.Api
     using System.Linq;
     using Application.Common.Interfaces;
     using Application.Interfaces;
-    using TrainsOnline.Common;
     using FluentValidation;
     using Microsoft.AspNetCore;
     using Microsoft.AspNetCore.Hosting;
@@ -19,6 +18,7 @@ namespace TrainsOnline.Api
     using Serilog.Events;
     using Serilog.Exceptions;
     using Serilog.Sinks.SystemConsole.Themes;
+    using TrainsOnline.Common;
 
     internal static class Program
     {

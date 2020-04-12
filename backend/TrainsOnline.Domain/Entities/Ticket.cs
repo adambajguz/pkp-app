@@ -4,7 +4,7 @@
     using TrainsOnline.Domain.Abstractions.Audit;
     using TrainsOnline.Domain.Abstractions.Base;
 
-    public class User : IBaseEntity, IEntityInfo, IAuditableEntitiy
+    public class Ticket : IBaseEntity, IEntityInfo, IAuditableEntitiy
     {
         public Guid Id { get; set; }
 
@@ -13,11 +13,10 @@
         public DateTime LastSavedOn { get; set; }
         public Guid? LastSavedBy { get; set; }
 
-        [AuditIgnore]
-        public string Password { get; set; } = default!;
+        public virtual Route Route { get; set; } = default!;
+        public virtual User User { get; set; } = default!;
 
-        public string Username { get; set; } = default!;
-        public string Email { get; set; } = default!;
-        public bool IsAdmin { get; set; }
+        public double Distance { get; set; } = default!;
+        public TimeSpan Duration { get; set; } = default!;
     }
 }

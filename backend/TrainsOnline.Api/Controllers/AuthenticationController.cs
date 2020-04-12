@@ -3,9 +3,9 @@
     using System.Threading.Tasks;
     using Application.Authentication.Commands.ResetPassword;
     using Application.Authentication.Queries.GetResetPasswordToken;
-    using TrainsOnline.Application.Main.Authentication.Queries.GetValidToken;
     using Microsoft.AspNetCore.Mvc;
     using Swashbuckle.AspNetCore.Annotations;
+    using TrainsOnline.Application.Authentication.Queries.GetValidToken;
 
     [SwaggerTag("User authentication and password reset")]
     public class AuthenticationController : BaseController

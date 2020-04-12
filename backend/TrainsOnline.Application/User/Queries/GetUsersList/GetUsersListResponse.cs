@@ -1,11 +1,11 @@
-﻿namespace TrainsOnline.Application.Main.User.Queries.GetUsers
+﻿namespace TrainsOnline.Application.User.Queries.GetUsersList
 {
     using System;
     using System.Collections.Generic;
-    using AutoMapper;
-    using Application.CommonDTO;
     using Application.Interfaces.Mapping;
+    using AutoMapper;
     using Domain.Entities;
+    using TrainsOnline.Application.Common.DTO;
 
     public class GetUsersListResponse : IDataTransferObject
     {

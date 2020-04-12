@@ -1,19 +1,19 @@
 namespace TrainsOnline.Api
 {
-    using TrainsOnline.Api.Common;
-    using TrainsOnline.Api.Configuration;
-    using TrainsOnline.Api.Configuration.SpecialPages;
     using Application;
-    using TrainsOnline.Common;
     using Infrastructure;
-    using Persistence;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.HttpOverrides;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
+    using Persistence;
     using Serilog;
+    using TrainsOnline.Api.Common;
+    using TrainsOnline.Api.Configuration;
+    using TrainsOnline.Api.Configuration.SpecialPages;
+    using TrainsOnline.Common;
 
     //TODO add api key
     public class Startup

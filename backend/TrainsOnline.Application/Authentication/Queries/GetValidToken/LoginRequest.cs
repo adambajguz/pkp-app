@@ -1,6 +1,6 @@
-﻿namespace TrainsOnline.Application.Main.Authentication.Queries.GetValidToken
+﻿namespace TrainsOnline.Application.Authentication.Queries.GetValidToken
 {
-    using Application.CommonDTO;
+    using TrainsOnline.Application.Common.DTO;
 
     public class LoginRequest : IDataTransferObject
     {

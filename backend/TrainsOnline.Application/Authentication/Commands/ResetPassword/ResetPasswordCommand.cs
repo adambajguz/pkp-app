@@ -1,9 +1,4 @@
-﻿using TrainsOnline.Application.Common.Helpers;
-using TrainsOnline.Application.Common.Interfaces;
-using TrainsOnline.Application.Common.Interfaces.UoW;
-using TrainsOnline.Application.Exceptions;
-
-namespace TrainsOnline.Application.Authentication.Commands.ResetPassword
+﻿namespace TrainsOnline.Application.Authentication.Commands.ResetPassword
 {
     using System;
     using System.Threading;
@@ -28,10 +23,10 @@ namespace TrainsOnline.Application.Authentication.Commands.ResetPassword
 
         public class Handler : IRequestHandler<ResetPasswordCommand>
         {
-            private readonly IMainDbUnitOfWork _uow;
+            private readonly IPKPAppDbUnitOfWork _uow;
             private readonly IJwtService _jwt;
 
-            public Handler(IMainDbUnitOfWork uow, IJwtService jwt)
+            public Handler(IPKPAppDbUnitOfWork uow, IJwtService jwt)
             {
                 _uow = uow;
                 _jwt = jwt;

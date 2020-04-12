@@ -1,9 +1,9 @@
 ﻿namespace TrainsOnline.Persistence
 {
     using Application.Common.Interfaces;
-    using TrainsOnline.Domain.Content.Entities;
-    using TrainsOnline.Domain.Content.Entities.Audit;
     using Microsoft.EntityFrameworkCore;
+    using TrainsOnline.Domain.Entities;
+    using TrainsOnline.Domain.Entities.Audit;
 
     public class PKPAppDbContext : DbContext, IPKPAppDbContext
     {

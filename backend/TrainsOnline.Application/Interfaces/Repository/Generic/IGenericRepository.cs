@@ -2,7 +2,7 @@
 {
     using System;
     using System.Threading.Tasks;
-    using Domain.Entities.Base;
+    using TrainsOnline.Domain.Abstractions.Base;
 
     public interface IGenericRepository<TEntity> : IGenericReadOnlyRepository<TEntity>
         where TEntity : class, IBaseEntity

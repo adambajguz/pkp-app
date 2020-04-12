@@ -1,4 +1,4 @@
-﻿namespace TrainsOnline.Infrastructure.Main.Jwt
+﻿namespace TrainsOnline.Infrastructure.Jwt
 {
     using System;
 

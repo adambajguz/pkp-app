@@ -1,9 +1,9 @@
-namespace TrainsOnline.Application.Main.User.Commands.DeleteUser
+namespace TrainsOnline.Application.User.Commands.DeleteUser
 {
-    using Application.CommonDTO;
     using Application.Constants;
     using Domain.Entities;
     using FluentValidation;
+    using TrainsOnline.Application.Common.DTO;
 
     public class DeleteUserCommandValidator : AbstractValidator<DeleteUserCommandValidator.Model>
     {
@@ -16,7 +16,7 @@ namespace TrainsOnline.Application.Main.User.Commands.DeleteUser
                     return false;
 
                 return true;
-            }).WithMessage(ValidationMessages.Id.IsIncorrectUser).WithErrorCode(ValidationErrorCodes.Id.IsIncorrectUser);
+            }).WithMessage(ValidationMessages.Id.IsIncorrectUser);
         }
 
         public class Model

@@ -1,52 +1,54 @@
-//namespace TrainsOnline.Application.Crosscutting.GenericCRUD.Commands
-//{
-//    using System.Threading;
-//    using System.Threading.Tasks;
-//    using AutoMapper;
-//    using TrainsOnline.Application.Crosscutting.CommonDTO;
-//    using TrainsOnline.Application.Crosscutting.Interfaces;
-//    using TrainsOnline.Application.Crosscutting.Interfaces.UoW;
-//    using TrainsOnline.Domain.Main.Entities;
-//    using FluentValidation;
-//    using MediatR;
+namespace TrainsOnline.Application.GenericCRUD.Commands
+{
+    using System.Threading;
+    using System.Threading.Tasks;
+    using Application.Common.Helpers;
+    using Application.Common.Interfaces.UoW;
+    using Application.Interfaces;
+    using AutoMapper;
+    using Domain.Entities;
+    using FluentValidation;
+    using MediatR;
+    using TrainsOnline.Application.Common.DTO;
+    using TrainsOnline.Application.User.Commands.CreateUser;
 
-//    public class CreateCommand<TUoW, TCreateRequest> : IRequest<IdResponse>
-//        where TUoW : IGenericUnitOfWork
-//    {
-//        public TCreateRequest Data { get; }
+    public class CreateCommand : IRequest<IdResponse>
+    {
+        public CreateUserRequest Data { get; }
 
-//        public CreateCommand(TCreateRequest data)
-//        {
-//            Data = data;
-//        }
+        public CreateCommand(CreateUserRequest data)
+        {
+            Data = data;
+        }
 
-//        public class Handler : IRequestHandler<CreateCommand<TUoW, TCreateRequest>, IdResponse>
-//        {
-//            private readonly TUoW _uow;
-//            private readonly IMapper _mapper;
-//            private readonly IDataRightsService _drs;
+        public class Handler : IRequestHandler<CreateUserCommand, IdResponse>
+        {
+            private readonly IPKPAppDbUnitOfWork _uow;
+            private readonly IMapper _mapper;
+            private readonly IDataRightsService _drs;
 
-//            public Handler(TUoW uow, IMapper mapper, IDataRightsService drs)
-//            {
-//                _uow = uow;
-//                _mapper = mapper;
-//                _drs = drs;
-//            }
+            public Handler(IPKPAppDbUnitOfWork uow, IMapper mapper, IDataRightsService drs)
+            {
+                _uow = uow;
+                _mapper = mapper;
+                _drs = drs;
+            }
 
-//            public async Task<IdResponse> Handle(CreateCommand<TUoW, TCreateRequest> request, CancellationToken cancellationToken)
-//            {
-//                TCreateRequest data = request.Data;
+            public async Task<IdResponse> Handle(CreateUserCommand request, CancellationToken cancellationToken)
+            {
+                CreateUserRequest data = request.Data;
 
-//                await new CreateUserCommandValidator(_uow).ValidateAndThrowAsync(data, cancellationToken: cancellationToken);
+                await new CreateUserCommandValidator(_uow).ValidateAndThrowAsync(data, cancellationToken: cancellationToken);
 
-//                User entity = _mapper.Map<User>(data);
+                User entity = _mapper.Map<User>(data);
+                entity.Password = PasswordHelper.CreateHash(data.Password);
 
-//                _uow.UsersRepository.Add(entity);
+                _uow.UsersRepository.Add(entity);
 
-//                await _uow.SaveChangesAsync(cancellationToken);
+                await _uow.SaveChangesAsync(cancellationToken);
 
-//                return new IdResponse(entity.Id);
-//            }
-//        }
-//    }
-//}
+                return new IdResponse(entity.Id);
+            }
+        }
+    }
+}

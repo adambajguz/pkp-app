@@ -1,13 +1,11 @@
-﻿using TrainsOnline.Application.Interfaces.Mapping;
-
-namespace TrainsOnline.Application.Mappings
+﻿namespace TrainsOnline.Application.Mappings
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Reflection;
-    using AutoMapper;
     using Application.Interfaces.Mapping;
+    using AutoMapper;
 
     public class AutoMapperProfile : Profile
     {

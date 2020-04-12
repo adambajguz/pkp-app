@@ -1,4 +1,4 @@
-﻿namespace TrainsOnline.Domain.Entities.Base
+﻿namespace TrainsOnline.Domain.Abstractions.Base
 {
     public interface IEntityInfo : IEntityCreation, IEntityLastSaved
     {

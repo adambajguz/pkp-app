@@ -1,4 +1,4 @@
-﻿namespace TrainsOnline.Domain.Entities.Audit
+﻿namespace TrainsOnline.Domain.Abstractions.Audit
 {
     public interface IAuditableEntitiy
     {

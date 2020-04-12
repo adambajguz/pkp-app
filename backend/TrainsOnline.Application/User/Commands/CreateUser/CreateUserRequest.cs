@@ -1,9 +1,9 @@
-﻿namespace TrainsOnline.Application.Main.User.Commands.CreateUser
+﻿namespace TrainsOnline.Application.User.Commands.CreateUser
 {
-    using AutoMapper;
-    using Application.CommonDTO;
     using Application.Interfaces.Mapping;
+    using AutoMapper;
     using Domain.Entities;
+    using TrainsOnline.Application.Common.DTO;
 
     public class CreateUserRequest : IDataTransferObject, ICustomMapping
     {

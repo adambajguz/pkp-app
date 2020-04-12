@@ -1,23 +1,21 @@
-﻿using TrainsOnline.Infrastructure.Repository;
-
-namespace TrainsOnline.Infrastructure.UoW
+﻿namespace TrainsOnline.Infrastructure.UoW
 {
     using System;
     using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
-    using AutoMapper;
     using Application.Interfaces;
     using Application.Interfaces.Repository;
     using Application.Interfaces.UoW;
-    using TrainsOnline.Domain.Content.Entities.Audit;
-    using TrainsOnline.Domain.Content.Enums;
+    using AutoMapper;
     using Infrastructure.Repository;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.ChangeTracking;
     using Microsoft.EntityFrameworkCore.Metadata;
     using Newtonsoft.Json;
-    using TrainsOnline.Domain.Content.Entities.Base;
+    using TrainsOnline.Domain.Abstractions.Audit;
+    using TrainsOnline.Domain.Abstractions.Enums;
+    using TrainsOnline.Domain.Entities.Audit;
 
     public abstract class GenericAuditableUnitOfWork : GenericUnitOfWork, IGenericAuditableUnitOfWork
     {

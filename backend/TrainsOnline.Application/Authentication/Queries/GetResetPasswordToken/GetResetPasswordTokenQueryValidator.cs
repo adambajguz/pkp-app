@@ -1,6 +1,4 @@
-﻿using TrainsOnline.Application.Constants;
-
-namespace TrainsOnline.Application.Authentication.Queries.GetResetPasswordToken
+﻿namespace TrainsOnline.Application.Authentication.Queries.GetResetPasswordToken
 {
     using Application.Constants;
     using FluentValidation;
@@ -10,11 +8,9 @@ namespace TrainsOnline.Application.Authentication.Queries.GetResetPasswordToken
         public GetResetPasswordTokenQueryValidator()
         {
             RuleFor(x => x.Email).NotEmpty()
-                                 .WithMessage(ValidationMessages.Email.IsEmpty)
-                                 .WithErrorCode(ValidationErrorCodes.Email.IsEmpty);
+                                 .WithMessage(ValidationMessages.Email.IsEmpty);
             RuleFor(x => x.Email).EmailAddress()
-                                 .WithMessage(ValidationMessages.Email.HasWrongFormat)
-                                 .WithErrorCode(ValidationErrorCodes.Email.HasWrongFormat);
+                                 .WithMessage(ValidationMessages.Email.HasWrongFormat);
         }
     }
 }

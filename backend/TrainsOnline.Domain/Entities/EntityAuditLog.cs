@@ -1,11 +1,9 @@
-﻿using TrainsOnline.Domain.Entities.Base;
-using TrainsOnline.Domain.Enums;
-
-namespace TrainsOnline.Domain.Entities.Audit
+﻿namespace TrainsOnline.Domain.Entities.Audit
 {
     using System;
-    using Domain.Entities.Base;
-    using Domain.Enums;
+    using TrainsOnline.Domain.Abstractions.Audit;
+    using TrainsOnline.Domain.Abstractions.Base;
+    using TrainsOnline.Domain.Abstractions.Enums;
 
     public class EntityAuditLog : IBaseEntity, IEntityCreation, IAuditLog
     {

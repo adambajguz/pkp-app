@@ -41,6 +41,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TrainsOnline.Persistence", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TrainsOnline.Api", "TrainsOnline.Api\TrainsOnline.Api.csproj", "{847F5F5A-C23C-48D9-AF60-E5C33BC2584D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrainsOnline.Domain.Abstractions", "TrainsOnline.Domain.Abstractions\TrainsOnline.Domain.Abstractions.csproj", "{5AD9FF81-2602-49EE-8721-6674C8DB73F3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -123,6 +125,18 @@ Global
 		{847F5F5A-C23C-48D9-AF60-E5C33BC2584D}.Release|x64.Build.0 = Release|x64
 		{847F5F5A-C23C-48D9-AF60-E5C33BC2584D}.Release|x86.ActiveCfg = Release|x86
 		{847F5F5A-C23C-48D9-AF60-E5C33BC2584D}.Release|x86.Build.0 = Release|x86
+		{5AD9FF81-2602-49EE-8721-6674C8DB73F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5AD9FF81-2602-49EE-8721-6674C8DB73F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5AD9FF81-2602-49EE-8721-6674C8DB73F3}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{5AD9FF81-2602-49EE-8721-6674C8DB73F3}.Debug|x64.Build.0 = Debug|Any CPU
+		{5AD9FF81-2602-49EE-8721-6674C8DB73F3}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{5AD9FF81-2602-49EE-8721-6674C8DB73F3}.Debug|x86.Build.0 = Debug|Any CPU
+		{5AD9FF81-2602-49EE-8721-6674C8DB73F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5AD9FF81-2602-49EE-8721-6674C8DB73F3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5AD9FF81-2602-49EE-8721-6674C8DB73F3}.Release|x64.ActiveCfg = Release|x64
+		{5AD9FF81-2602-49EE-8721-6674C8DB73F3}.Release|x64.Build.0 = Release|x64
+		{5AD9FF81-2602-49EE-8721-6674C8DB73F3}.Release|x86.ActiveCfg = Release|x86
+		{5AD9FF81-2602-49EE-8721-6674C8DB73F3}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -140,6 +154,7 @@ Global
 		{1A0C0EDC-E672-421F-83E0-BAD02CD35CF1} = {EEEEF0AB-4CB8-4767-9204-E6AB71481FFF}
 		{AED4971D-86A5-47E5-AEF0-501FFCCFFC2E} = {EEEEF0AB-4CB8-4767-9204-E6AB71481FFF}
 		{847F5F5A-C23C-48D9-AF60-E5C33BC2584D} = {50ECBFBC-DE20-44C5-8F9A-78BE60BD73D4}
+		{5AD9FF81-2602-49EE-8721-6674C8DB73F3} = {952CEA84-CAA9-41EF-A657-F2E04B983D8B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FEE34079-159B-49A1-87E6-C94969EE6487}

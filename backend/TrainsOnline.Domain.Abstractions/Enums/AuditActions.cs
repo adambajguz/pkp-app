@@ -1,4 +1,4 @@
-﻿namespace TrainsOnline.Domain.Enums
+﻿namespace TrainsOnline.Domain.Abstractions.Enums
 {
     public enum AuditActions
     {

@@ -1,10 +1,10 @@
-﻿namespace TrainsOnline.Application.Main.User.Commands.UpdateUser
+﻿namespace TrainsOnline.Application.User.Commands.UpdateUser
 {
     using System;
-    using AutoMapper;
-    using Application.CommonDTO;
     using Application.Interfaces.Mapping;
+    using AutoMapper;
     using Domain.Entities;
+    using TrainsOnline.Application.Common.DTO;
 
     public class UpdateUserRequest : IDataTransferObject, ICustomMapping
     {

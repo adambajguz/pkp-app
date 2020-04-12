@@ -1,11 +1,9 @@
-using TrainsOnline.Application.Constants;
-
 namespace TrainsOnline.Application.Authentication.Commands.ResetPassword
 {
     using Application.Constants;
-    using TrainsOnline.Common;
     using Domain.Entities;
     using FluentValidation;
+    using TrainsOnline.Common;
 
     public class ResetPasswordCommandValidator : AbstractValidator<ResetPasswordCommandValidator.Model>
     {
@@ -18,14 +16,12 @@ namespace TrainsOnline.Application.Authentication.Commands.ResetPassword
                     return false;
 
                 return true;
-            }).WithMessage(ValidationMessages.Id.IsIncorrectUser).WithErrorCode(ValidationErrorCodes.Id.IsIncorrectUser);
+            }).WithMessage(ValidationMessages.Id.IsIncorrectUser);
 
             RuleFor(x => x.Data.Password).NotEmpty()
-                                         .WithMessage(ValidationMessages.Password.IsEmpty)
-                                         .WithErrorCode(ValidationErrorCodes.Password.IsEmpty);
+                                         .WithMessage(ValidationMessages.Password.IsEmpty);
             RuleFor(x => x.Data.Password).MinimumLength(GlobalAppConfig.MIN_PASSWORD_LENGTH)
-                                         .WithMessage(string.Format(ValidationMessages.Password.IsTooShort, GlobalAppConfig.MIN_PASSWORD_LENGTH))
-                                         .WithErrorCode(ValidationErrorCodes.Password.IsTooShort);
+                                         .WithMessage(string.Format(ValidationMessages.Password.IsTooShort, GlobalAppConfig.MIN_PASSWORD_LENGTH));
         }
 
         public class Model

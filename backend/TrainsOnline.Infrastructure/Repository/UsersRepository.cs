@@ -1,14 +1,13 @@
-﻿namespace TrainsOnline.Infrastructure.Main.Repository
+﻿namespace TrainsOnline.Infrastructure.Repository
 {
     using System.Linq;
     using System.Threading.Tasks;
-    using AutoMapper;
     using Application.Common.Interfaces;
     using Application.Common.Interfaces.Repository;
     using Application.Interfaces;
-    using TrainsOnline.Domain.Content.Entities;
-    using Infrastructure.Repository;
+    using AutoMapper;
     using Microsoft.EntityFrameworkCore;
+    using TrainsOnline.Domain.Entities;
 
     public class UsersRepository : GenericRepository<User>, IUsersRepository
     {

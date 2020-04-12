@@ -1,10 +1,10 @@
-﻿namespace TrainsOnline.Application.Main.User.Queries.GetUserDetails
+﻿namespace TrainsOnline.Application.User.Queries.GetUserDetails
 {
     using System;
-    using AutoMapper;
-    using Application.CommonDTO;
     using Application.Interfaces.Mapping;
+    using AutoMapper;
     using Domain.Entities;
+    using TrainsOnline.Application.Common.DTO;
 
     public class GetUserDetailResponse : IDataTransferObject, ICustomMapping
     {
