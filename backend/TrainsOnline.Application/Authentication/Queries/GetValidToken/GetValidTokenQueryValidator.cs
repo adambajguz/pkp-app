@@ -3,12 +3,12 @@
     using Application.Constants;
     using Domain.Entities;
     using FluentValidation;
-    using TrainsOnline.Application.Helpers;
+    using TrainsOnline.Application.Interfaces;
     using TrainsOnline.Common;
 
     public class GetValidTokenQueryValidator : AbstractValidator<GetValidTokenQueryValidator.Model>
     {
-        public GetValidTokenQueryValidator()
+        public GetValidTokenQueryValidator(IUserManagerService _userManager)
         {
             RuleFor(x => x.Data.Email).NotEmpty()
                                       .WithMessage(ValidationMessages.Email.IsEmpty);
@@ -20,15 +20,12 @@
             RuleFor(x => x.Data.Password).MinimumLength(GlobalAppConfig.MIN_PASSWORD_LENGTH)
                                          .WithMessage(string.Format(ValidationMessages.Password.IsTooShort, GlobalAppConfig.MIN_PASSWORD_LENGTH));
 
-            RuleFor(x => x.User).Must((request, val, token) =>
+            RuleFor(x => x.User).MustAsync(async (request, val, token) =>
             {
                 if (val == null)
                     return false;
-                else if (PasswordHelper.ValidatePassword(request.Data.Password, val.Password))
-                    return true;
 
-                return false;
-
+                return await _userManager.ValidatePassword(val, request.Data.Password);
             }).WithMessage(ValidationMessages.Auth.EmailOrPasswordIsIncorrect);
         }
 

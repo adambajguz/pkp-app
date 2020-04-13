@@ -22,11 +22,13 @@
         {
             private readonly IPKPAppDbUnitOfWork _uow;
             private readonly IJwtService _jwt;
+            private readonly IUserManagerService _userManager;
 
-            public Handler(IPKPAppDbUnitOfWork uow, IJwtService jwt)
+            public Handler(IPKPAppDbUnitOfWork uow, IJwtService jwt, IUserManagerService userManager)
             {
                 _uow = uow;
                 _jwt = jwt;
+                _userManager = userManager;
             }
 
             public async Task<JwtTokenModel> Handle(GetValidTokenQuery request, CancellationToken cancellationToken)
@@ -36,7 +38,7 @@
                 User user = await _uow.UsersRepository.FirstOrDefaultAsync(x => x.Email.Equals(data.Email));
                 GetValidTokenQueryValidator.Model validationModel = new GetValidTokenQueryValidator.Model(data, user);
 
-                await new GetValidTokenQueryValidator().ValidateAndThrowAsync(validationModel, cancellationToken: cancellationToken);
+                await new GetValidTokenQueryValidator(_userManager).ValidateAndThrowAsync(validationModel, cancellationToken: cancellationToken);
 
                 string[] roles = Roles.BuildArray(Roles.User);
                 if (user.IsAdmin)

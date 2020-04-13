@@ -8,7 +8,6 @@
     using Domain.Jwt;
     using FluentValidation;
     using MediatR;
-    using TrainsOnline.Application.Helpers;
     using TrainsOnline.Application.Interfaces;
     using TrainsOnline.Application.Interfaces.UoW.Generic;
 
@@ -25,11 +24,13 @@
         {
             private readonly IPKPAppDbUnitOfWork _uow;
             private readonly IJwtService _jwt;
+            private readonly IUserManagerService _userManager;
 
-            public Handler(IPKPAppDbUnitOfWork uow, IJwtService jwt)
+            public Handler(IPKPAppDbUnitOfWork uow, IJwtService jwt, IUserManagerService userManager)
             {
                 _uow = uow;
                 _jwt = jwt;
+                _userManager = userManager;
             }
 
             public async Task<Unit> Handle(ResetPasswordCommand request, CancellationToken cancellationToken)
@@ -44,8 +45,8 @@
 
                 ResetPasswordCommandValidator.Model validationData = new ResetPasswordCommandValidator.Model(data, user);
                 await new ResetPasswordCommandValidator().ValidateAndThrowAsync(validationData, cancellationToken: cancellationToken);
+                await _userManager.SetPassword(user, data.Password, cancellationToken);
 
-                user.Password = PasswordHelper.CreateHash(data.Password);
                 _uow.UsersRepository.Update(user);
                 await _uow.SaveChangesAsync();
 

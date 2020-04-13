@@ -11,6 +11,7 @@
     using TrainsOnline.Application.Interfaces.UoW.Generic;
     using TrainsOnline.Infrastructure.Jwt;
     using TrainsOnline.Infrastructure.Main.Email;
+    using TrainsOnline.Infrastructure.UserManager;
     using IConfiguration = Microsoft.Extensions.Configuration.IConfiguration;
 
     public static class DependencyInjection
@@ -18,6 +19,7 @@
         public static IServiceCollection AddInfrastructureContent(this IServiceCollection services, IConfiguration configuration, IWebHostEnvironment environment)
         {
             services.AddScoped<IDataRightsService, DataRightsService>();
+            services.AddSingleton<IUserManagerService, UserManagerService>();
 
             //services.AddTransient<IMachineDateTimeService, MachineDateTimeService>();
             //services.AddTransient<ICsvFileBuilderService, CsvFileBuilderService>();

@@ -8,7 +8,6 @@ namespace TrainsOnline.Application.User.Commands.CreateUser
     using FluentValidation;
     using MediatR;
     using TrainsOnline.Application.DTO;
-    using TrainsOnline.Application.Helpers;
     using TrainsOnline.Application.Interfaces.UoW.Generic;
 
     public class CreateUserCommand : IRequest<IdResponse>
@@ -25,12 +24,14 @@ namespace TrainsOnline.Application.User.Commands.CreateUser
             private readonly IPKPAppDbUnitOfWork _uow;
             private readonly IMapper _mapper;
             private readonly IDataRightsService _drs;
+            private readonly IUserManagerService _userManager;
 
-            public Handler(IPKPAppDbUnitOfWork uow, IMapper mapper, IDataRightsService drs)
+            public Handler(IPKPAppDbUnitOfWork uow, IMapper mapper, IDataRightsService drs, IUserManagerService userManager)
             {
                 _uow = uow;
                 _mapper = mapper;
                 _drs = drs;
+                _userManager = userManager;
             }
 
             public async Task<IdResponse> Handle(CreateUserCommand request, CancellationToken cancellationToken)
@@ -40,7 +41,7 @@ namespace TrainsOnline.Application.User.Commands.CreateUser
                 await new CreateUserCommandValidator(_uow).ValidateAndThrowAsync(data, cancellationToken: cancellationToken);
 
                 User entity = _mapper.Map<User>(data);
-                entity.Password = PasswordHelper.CreateHash(data.Password);
+                await _userManager.SetPassword(entity, data.Password, cancellationToken);
 
                 _uow.UsersRepository.Add(entity);
 

@@ -2,7 +2,7 @@
 {
     using System;
 
-    public class HashedPassword
+    internal class HashedPassword
     {
         public int SaltByteSize { get; }
         public int SaltIndex { get; }

@@ -31,11 +31,6 @@
                 return !checkInUse;
 
             }).WithMessage(ValidationMessages.Email.IsInUse);
-
-            RuleFor(x => x.Password).NotEmpty()
-                                    .WithMessage(ValidationMessages.Password.IsEmpty);
-            RuleFor(x => x.Password).MinimumLength(GlobalAppConfig.MIN_PASSWORD_LENGTH)
-                                    .WithMessage(string.Format(ValidationMessages.Password.IsTooShort, GlobalAppConfig.MIN_PASSWORD_LENGTH));
         }
     }
 }
