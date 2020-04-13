@@ -1,6 +1,6 @@
 ﻿namespace TrainsOnline.Infrastructure.UserManager
 {
-    using Application.Common.Interfaces;
+    using TrainsOnline.Application.Interfaces;
 
     public class UserManagerService : IUserManagerService
     {

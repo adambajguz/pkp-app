@@ -1,10 +1,10 @@
 ﻿namespace TrainsOnline.Application.User.Queries.GetUserDetails
 {
-    using Application.Common.Interfaces.UoW;
     using Application.Constants;
     using Domain.Entities;
     using FluentValidation;
-    using TrainsOnline.Application.Common.DTO;
+    using TrainsOnline.Application.DTO;
+    using TrainsOnline.Application.Interfaces.UoW.Generic;
 
     public class GetUserDetailsQueryValidator : AbstractValidator<IdRequest>
     {

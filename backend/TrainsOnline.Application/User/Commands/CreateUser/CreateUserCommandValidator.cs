@@ -1,8 +1,8 @@
 ﻿namespace TrainsOnline.Application.User.Commands.CreateUser
 {
-    using Application.Common.Interfaces.UoW;
     using Application.Constants;
     using FluentValidation;
+    using TrainsOnline.Application.Interfaces.UoW.Generic;
     using TrainsOnline.Common;
 
     public class CreateUserCommandValidator : AbstractValidator<CreateUserRequest>

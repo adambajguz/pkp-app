@@ -1,10 +1,10 @@
 ﻿namespace TrainsOnline.Persistence
 {
-    using Application.Common.Interfaces;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
+    using TrainsOnline.Application.Interfaces;
     using TrainsOnline.Common;
     using IConfiguration = Microsoft.Extensions.Configuration.IConfiguration;
 

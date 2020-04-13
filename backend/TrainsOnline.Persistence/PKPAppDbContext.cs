@@ -1,7 +1,7 @@
 ﻿namespace TrainsOnline.Persistence
 {
-    using Application.Common.Interfaces;
     using Microsoft.EntityFrameworkCore;
+    using TrainsOnline.Application.Interfaces;
     using TrainsOnline.Domain.Entities;
     using TrainsOnline.Domain.Entities.Audit;
 

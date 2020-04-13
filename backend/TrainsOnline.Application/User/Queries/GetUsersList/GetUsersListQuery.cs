@@ -2,8 +2,8 @@
 {
     using System.Threading;
     using System.Threading.Tasks;
-    using Application.Common.Interfaces.UoW;
     using MediatR;
+    using TrainsOnline.Application.Interfaces.UoW.Generic;
 
     public class GetUsersListQuery : IRequest<GetUsersListResponse>
     {

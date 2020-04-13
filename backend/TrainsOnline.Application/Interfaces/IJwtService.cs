@@ -1,4 +1,4 @@
-﻿namespace TrainsOnline.Application.Common.Interfaces
+﻿namespace TrainsOnline.Application.Interfaces
 {
     using System;
     using TrainsOnline.Application.Authentication.Queries.GetValidToken;

@@ -1,4 +1,4 @@
-﻿namespace TrainsOnline.Application.Common.Helpers
+﻿namespace TrainsOnline.Application.Helpers
 {
     using System;
 

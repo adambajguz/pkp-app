@@ -1,9 +1,9 @@
 ﻿namespace TrainsOnline.Application.User.Commands.UpdateUser
 {
-    using Application.Common.Interfaces.UoW;
     using Application.Constants;
     using Domain.Entities;
     using FluentValidation;
+    using TrainsOnline.Application.Interfaces.UoW.Generic;
     using TrainsOnline.Common;
 
     public class UpdateUserCommandValidator : AbstractValidator<UpdateUserCommandValidator.Model>

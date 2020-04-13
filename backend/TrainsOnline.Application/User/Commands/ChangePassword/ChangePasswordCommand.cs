@@ -2,12 +2,12 @@ namespace TrainsOnline.Application.User.Commands.ChangePassword
 {
     using System.Threading;
     using System.Threading.Tasks;
-    using Application.Common.Helpers;
-    using Application.Common.Interfaces.UoW;
     using Application.Interfaces;
     using Domain.Entities;
     using FluentValidation;
     using MediatR;
+    using TrainsOnline.Application.Helpers;
+    using TrainsOnline.Application.Interfaces.UoW.Generic;
 
     public class ChangePasswordCommand : IRequest
     {

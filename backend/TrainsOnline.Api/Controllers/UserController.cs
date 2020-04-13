@@ -5,7 +5,7 @@
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using Swashbuckle.AspNetCore.Annotations;
-    using TrainsOnline.Application.Common.DTO;
+    using TrainsOnline.Application.DTO;
     using TrainsOnline.Application.User.Commands.ChangePassword;
     using TrainsOnline.Application.User.Commands.CreateUser;
     using TrainsOnline.Application.User.Commands.DeleteUser;

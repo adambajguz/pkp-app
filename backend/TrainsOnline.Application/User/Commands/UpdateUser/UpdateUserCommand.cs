@@ -2,12 +2,12 @@ namespace TrainsOnline.Application.User.Commands.UpdateUser
 {
     using System.Threading;
     using System.Threading.Tasks;
-    using Application.Common.Interfaces.UoW;
     using Application.Interfaces;
     using AutoMapper;
     using Domain.Entities;
     using FluentValidation;
     using MediatR;
+    using TrainsOnline.Application.Interfaces.UoW.Generic;
 
     public class UpdateUserCommand : IRequest
     {

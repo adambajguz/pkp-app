@@ -3,8 +3,8 @@
     using System.Net;
     using System.Net.Mail;
     using System.Threading.Tasks;
-    using Application.Common.Interfaces;
     using Microsoft.Extensions.Options;
+    using TrainsOnline.Application.Interfaces;
 
     public class EmailService : IEmailService
     {

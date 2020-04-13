@@ -7,7 +7,7 @@
     using Microsoft.Extensions.Options;
     using Microsoft.IdentityModel.Tokens;
     using TrainsOnline.Application.Authentication.Queries.GetValidToken;
-    using TrainsOnline.Application.Common.Interfaces;
+    using TrainsOnline.Application.Interfaces;
     using TrainsOnline.Domain.Jwt;
 
     public class JwtService : IJwtService

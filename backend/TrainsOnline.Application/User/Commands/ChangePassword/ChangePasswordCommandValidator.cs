@@ -1,9 +1,9 @@
 namespace TrainsOnline.Application.User.Commands.ChangePassword
 {
-    using Application.Common.Helpers;
     using Application.Constants;
     using Domain.Entities;
     using FluentValidation;
+    using TrainsOnline.Application.Helpers;
     using TrainsOnline.Common;
 
     public class ChangePasswordCommandValidator : AbstractValidator<ChangePasswordCommandValidator.Model>

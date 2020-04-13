@@ -1,7 +1,5 @@
 ﻿namespace TrainsOnline.Infrastructure
 {
-    using Application.Common.Interfaces;
-    using Application.Common.Interfaces.UoW;
     using Application.Interfaces;
     using Infrastructure.DataRights;
     using Infrastructure.UoW;
@@ -10,6 +8,7 @@
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.IdentityModel.Tokens;
+    using TrainsOnline.Application.Interfaces.UoW.Generic;
     using TrainsOnline.Infrastructure.Jwt;
     using TrainsOnline.Infrastructure.Main.Email;
     using IConfiguration = Microsoft.Extensions.Configuration.IConfiguration;
