@@ -16,7 +16,7 @@
 
     public static class DependencyInjection
     {
-        public static IServiceCollection AddInfrastructureContent(this IServiceCollection services, IConfiguration configuration, IWebHostEnvironment environment)
+        public static IServiceCollection AddInfrastructureContent(this IServiceCollection services, IConfiguration configuration, IWebHostEnvironment _)
         {
             services.AddScoped<IDataRightsService, DataRightsService>();
             services.AddSingleton<IUserManagerService, UserManagerService>();

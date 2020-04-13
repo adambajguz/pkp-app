@@ -15,29 +15,9 @@
 
         }
 
-        public async Task<bool> IsEmailInUseAsync(string email)
+        public async Task<bool> IsEmailInUseAsync(string? email)
         {
             User? user = await _dbSet.Where(x => x.Email.Equals(email)).SingleOrDefaultAsync();
-
-            if (user == null)
-                return false;
-
-            return true;
-        }
-
-        public async Task<bool> IsUserNameInUseAsync(string userName)
-        {
-            User? user = await _dbSet.Where(x => x.Username.Equals(userName)).SingleOrDefaultAsync();
-
-            if (user == null)
-                return false;
-
-            return true;
-        }
-
-        public async Task<bool> IsEmailOrUserNameInUseAsync(string email, string userName)
-        {
-            User? user = await _dbSet.Where(x => x.Username.Equals(userName) || x.Username.Equals(userName)).SingleOrDefaultAsync();
 
             if (user == null)
                 return false;

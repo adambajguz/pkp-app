@@ -6,8 +6,6 @@
 
     public interface IUsersRepository : IGenericRepository<User>
     {
-        Task<bool> IsEmailInUseAsync(string email);
-        Task<bool> IsUserNameInUseAsync(string userName);
-        Task<bool> IsEmailOrUserNameInUseAsync(string email, string userName);
+        Task<bool> IsEmailInUseAsync(string? email);
     }
 }

@@ -5,7 +5,7 @@
 
     public interface IJwtService
     {
-        JwtTokenModel? GenerateJwtToken(string email, Guid id, string[] roles);
+        JwtTokenModel GenerateJwtToken(string email, Guid id, string[] roles);
 
         void ValidateStringToken(string? token);
         bool IsTokenStringValid(string? token);

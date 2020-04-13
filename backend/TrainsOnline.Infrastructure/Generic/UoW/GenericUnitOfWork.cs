@@ -13,9 +13,9 @@
 
     public abstract class GenericUnitOfWork : IGenericUnitOfWork, IDisposable
     {
-        protected IDataRightsService _DataRights { get; private set; }
-        protected IGenericDatabaseContext _Context { get; private set; }
-        protected IMapper _Mapper { get; private set; }
+        protected IDataRightsService DataRights { get; private set; }
+        protected IGenericDatabaseContext Context { get; private set; }
+        protected IMapper Mapper { get; private set; }
 
         public bool IsDisposed { get; private set; }
 
@@ -23,9 +23,9 @@
 
         public GenericUnitOfWork(IDataRightsService dataRightsService, IGenericDatabaseContext context, IMapper mapper)
         {
-            _DataRights = dataRightsService;
-            _Context = context;
-            _Mapper = mapper;
+            DataRights = dataRightsService;
+            Context = context;
+            Mapper = mapper;
         }
 
         public void Dispose()
@@ -38,7 +38,7 @@
         {
             if (!IsDisposed && disposing)
             {
-                _Context.Dispose();
+                Context.Dispose();
                 Repositories.Clear();
             }
 
@@ -54,7 +54,7 @@
                 return (value as IGenericRepository<TEntity>)!;
             }
 
-            IGenericRepository<TEntity> repository = (Activator.CreateInstance(typeof(GenericRepository<TEntity>), _DataRights, _Context, _Mapper) as IGenericRepository<TEntity>)!;
+            IGenericRepository<TEntity> repository = (Activator.CreateInstance(typeof(GenericRepository<TEntity>), DataRights, Context, Mapper) as IGenericRepository<TEntity>)!;
             Repositories.Add(type, repository);
             return repository;
         }
@@ -68,7 +68,7 @@
                 return (value as IGenericReadOnlyRepository<TEntity>)!;
             }
 
-            IGenericReadOnlyRepository<TEntity> repository = (Activator.CreateInstance(typeof(GenericReadOnlyRepository<TEntity>), _DataRights, _Context, _Mapper) as IGenericReadOnlyRepository<TEntity>)!;
+            IGenericReadOnlyRepository<TEntity> repository = (Activator.CreateInstance(typeof(GenericReadOnlyRepository<TEntity>), DataRights, Context, Mapper) as IGenericReadOnlyRepository<TEntity>)!;
             Repositories.Add(type, repository);
             return repository;
         }
@@ -83,19 +83,19 @@
                 return (TSpecificRepositoryInterface)Repositories[type];
             }
 
-            TSpecificRepositoryInterface repository = (TSpecificRepositoryInterface)Activator.CreateInstance(typeof(TSpecificRepository), _DataRights, _Context, _Mapper)!;
+            TSpecificRepositoryInterface repository = (TSpecificRepositoryInterface)Activator.CreateInstance(typeof(TSpecificRepository), DataRights, Context, Mapper)!;
             Repositories.Add(type, repository);
             return repository;
         }
 
         public virtual int SaveChanges()
         {
-            return _Context.SaveChanges();
+            return Context.SaveChanges();
         }
 
         public virtual async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
-            return await _Context.SaveChangesAsync(cancellationToken);
+            return await Context.SaveChangesAsync(cancellationToken);
         }
     }
 }

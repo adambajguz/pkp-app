@@ -23,14 +23,12 @@ namespace TrainsOnline.Application.User.Commands.CreateUser
         {
             private readonly IPKPAppDbUnitOfWork _uow;
             private readonly IMapper _mapper;
-            private readonly IDataRightsService _drs;
             private readonly IUserManagerService _userManager;
 
-            public Handler(IPKPAppDbUnitOfWork uow, IMapper mapper, IDataRightsService drs, IUserManagerService userManager)
+            public Handler(IPKPAppDbUnitOfWork uow, IMapper mapper, IUserManagerService userManager)
             {
                 _uow = uow;
                 _mapper = mapper;
-                _drs = drs;
                 _userManager = userManager;
             }
 

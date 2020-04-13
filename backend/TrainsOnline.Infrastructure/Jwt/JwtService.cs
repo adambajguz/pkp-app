@@ -23,7 +23,7 @@
             _handler = new JwtSecurityTokenHandler();
         }
 
-        public JwtTokenModel? GenerateJwtToken(string email, Guid id, string[] roles)
+        public JwtTokenModel GenerateJwtToken(string email, Guid id, string[] roles)
         {
             ClaimsIdentity claims = new ClaimsIdentity(new Claim[]
                 {
@@ -32,11 +32,11 @@
                 });
 
             if (roles.Length == 0)
-                return null;
+                throw new InvalidOperationException("Roles contains no elements");
 
             for (int i = 0; i < roles.Length; ++i)
                 if (!Roles.IsValidRole(roles[i]))
-                    return null;
+                    throw new InvalidOperationException("Invalid role");
                 else
                     claims.AddClaim(new Claim(ClaimTypes.Role, roles[i]));
 

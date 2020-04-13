@@ -34,31 +34,31 @@
         {
             OnBeforeSaveChanges();
 
-            return _Context.SaveChanges();
+            return Context.SaveChanges();
         }
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
             OnBeforeSaveChanges();
 
-            return await _Context.SaveChangesAsync(cancellationToken);
+            return await Context.SaveChangesAsync(cancellationToken);
         }   
         
         public int SaveChangesWithoutAudit()
         {
-            return _Context.SaveChanges();
+            return Context.SaveChanges();
         }
 
         public async Task<int> SaveChangesWithoutAuditAsync(CancellationToken cancellationToken = default)
         {
-            return await _Context.SaveChangesAsync(cancellationToken);
+            return await Context.SaveChangesAsync(cancellationToken);
         }
 
         //https://www.meziantou.net/entity-framework-core-history-audit-table.htm
         private void OnBeforeSaveChanges()
         {
-            _Context.ChangeTracker.DetectChanges();
-            IEnumerable<EntityEntry> entries = _Context.ChangeTracker.Entries();
+            Context.ChangeTracker.DetectChanges();
+            IEnumerable<EntityEntry> entries = Context.ChangeTracker.Entries();
 
             List<EntityAuditLog> auditLogsToAdd = ProcessChanges(entries);
 
