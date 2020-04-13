@@ -38,7 +38,7 @@
                     if (userResult.Username.Equals(val))
                         return true;
 
-                    bool checkInUse = await uow.UsersRepository.IsUserNameInUseAsync(val);
+                    bool checkInUse = await uow.UsersRepository.IsUserNameInUseAsync(val!);
 
                     return !checkInUse;
                 }).WithMessage(ValidationMessages.Username.IsInUse);
@@ -50,7 +50,7 @@
                     if (userResult.Email.Equals(val))
                         return true;
 
-                    bool checkInUse = await uow.UsersRepository.IsEmailInUseAsync(val);
+                    bool checkInUse = await uow.UsersRepository.IsEmailInUseAsync(val!);
 
                     return !checkInUse;
 

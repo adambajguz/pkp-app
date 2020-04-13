@@ -40,7 +40,7 @@
                 if (!_jwt.IsTokenStringValid(data.Token) || !_jwt.IsRoleInToken(data.Token, Roles.ResetPassword))
                     throw new ForbiddenException();
 
-                Guid userId = _jwt.GetUserIdFromToken(data.Token);
+                Guid userId = _jwt.GetUserIdFromToken(data.Token!);
                 User user = await _uow.UsersRepository.FirstOrDefaultAsync(x => x.Id.Equals(userId));
 
                 ResetPasswordCommandValidator.Model validationData = new ResetPasswordCommandValidator.Model(data, user);

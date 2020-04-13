@@ -7,10 +7,10 @@
     {
         JwtTokenModel? GenerateJwtToken(string email, Guid id, string[] roles);
 
-        void ValidateStringToken(string token);
-        bool IsTokenStringValid(string token);
+        void ValidateStringToken(string? token);
+        bool IsTokenStringValid(string? token);
 
         Guid GetUserIdFromToken(string token);
-        bool IsRoleInToken(string token, string role);
+        bool IsRoleInToken(string? token, string role);
     }
 }

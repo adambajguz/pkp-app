@@ -57,7 +57,7 @@
             };
         }
 
-        public void ValidateStringToken(string token)
+        public void ValidateStringToken(string? token)
         {
             _handler.ValidateToken(token, GetValidationParameters(_key), out _);
         }
@@ -79,8 +79,11 @@
             };
         }
 
-        public bool IsTokenStringValid(string token)
+        public bool IsTokenStringValid(string? token)
         {
+            if (token is null)
+                return false;
+
             try
             {
                 ValidateStringToken(token);
@@ -103,8 +106,11 @@
             return userId;
         }
 
-        public bool IsRoleInToken(string token, string role)
+        public bool IsRoleInToken(string? token, string role)
         {
+            if (token is null)
+                return false;
+
             if (!Roles.IsValidRole(role))
                 return false;
 
