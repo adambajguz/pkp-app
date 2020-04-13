@@ -17,7 +17,7 @@
     [SwaggerTag("Create, update and get user.")]
     public class UserController : BaseController
     {
-        [HttpPost("/api/register")]
+        [HttpPost("/api/user/register")]
         [SwaggerOperation(
             Summary = "Create (register) new user",
             Description = "Creates a new user")]
@@ -44,7 +44,7 @@
         }
 
         [Authorize(Roles = Roles.User)]
-        [HttpPost("/api/user/details")]
+        [HttpPost("/api/user/get")]
         [SwaggerOperation(
             Summary = "Get user details",
             Description = "Gets user details")]
@@ -82,7 +82,7 @@
         }
 
         [Authorize(Roles = Roles.User)]
-        [HttpPost("/api/user/changePassword")]
+        [HttpPost("/api/user/change-password")]
         [SwaggerOperation(
             Summary = "Change user password",
             Description = "Changes password of an user")]
@@ -95,7 +95,7 @@
         }
 
         [Authorize(Roles = Roles.User)]
-        [HttpGet("/api/users")]
+        [HttpGet("/api/user/get-all")]
         [SwaggerOperation(
             Summary = "Get all users",
             Description = "Gets a list of all users")]
