@@ -10,7 +10,7 @@
     [SwaggerTag("User authentication and password reset")]
     public class AuthenticationController : BaseController
     {
-        [HttpPost("/api/login")]
+        [HttpPost("/api/user/login")]
         [SwaggerOperation(
             Summary = "Login a user",
             Description = "Authenticates a user")]
@@ -21,7 +21,7 @@
             return Ok(await Mediator.Send(new GetValidTokenQuery(model)));
         }
 
-        [HttpPost("/api/resetPassword")]
+        [HttpPost("/api/user/reset-password")]
         [SwaggerOperation(
             Summary = "Send password reset link",
             Description = "Sends e-mail with password reset link")]
@@ -32,7 +32,7 @@
             return Ok(await Mediator.Send(new GetResetPasswordTokenQuery(request)));
         }
 
-        [HttpPost("/api/resetPassword/change")]
+        [HttpPost("/api/user/reset-password/change")]
         [SwaggerOperation(
             Summary = "Reset user password",
             Description = "Resets user's password using password reset token")]

@@ -1,6 +1,6 @@
 ﻿namespace TrainsOnline.Application.Authentication.Queries.GetResetPasswordToken
 {
-    using TrainsOnline.Application.Common.DTO;
+    using TrainsOnline.Application.DTO;
 
     public class SendResetPasswordRequest : IDataTransferObject
     {

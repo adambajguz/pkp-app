@@ -5,7 +5,7 @@
     using Application.Interfaces.Mapping;
     using AutoMapper;
     using Domain.Entities;
-    using TrainsOnline.Application.Common.DTO;
+    using TrainsOnline.Application.DTO;
 
     public class GetUsersListResponse : IDataTransferObject
     {

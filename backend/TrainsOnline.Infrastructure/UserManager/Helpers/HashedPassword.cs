@@ -1,8 +1,8 @@
-﻿namespace TrainsOnline.Application.Common.Helpers
+﻿namespace TrainsOnline.Application.Helpers
 {
     using System;
 
-    public class HashedPassword
+    internal class HashedPassword
     {
         public int SaltByteSize { get; }
         public int SaltIndex { get; }

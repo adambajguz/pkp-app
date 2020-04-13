@@ -1,4 +1,4 @@
-﻿namespace TrainsOnline.Application.Common.DTO
+﻿namespace TrainsOnline.Application.DTO
 {
     using System;
 

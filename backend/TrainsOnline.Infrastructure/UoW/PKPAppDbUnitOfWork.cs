@@ -1,10 +1,9 @@
 ﻿namespace TrainsOnline.Infrastructure.UoW
 {
-    using Application.Common.Interfaces;
-    using Application.Common.Interfaces.Repository;
-    using Application.Common.Interfaces.UoW;
     using Application.Interfaces;
     using AutoMapper;
+    using TrainsOnline.Application.Interfaces.Repository;
+    using TrainsOnline.Application.Interfaces.UoW.Generic;
     using TrainsOnline.Infrastructure.Repository;
 
     public class PKPAppDbUnitOfWork : GenericAuditableUnitOfWork, IPKPAppDbUnitOfWork

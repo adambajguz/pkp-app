@@ -3,7 +3,7 @@ namespace TrainsOnline.Application.User.Commands.DeleteUser
     using Application.Constants;
     using Domain.Entities;
     using FluentValidation;
-    using TrainsOnline.Application.Common.DTO;
+    using TrainsOnline.Application.DTO;
 
     public class DeleteUserCommandValidator : AbstractValidator<DeleteUserCommandValidator.Model>
     {

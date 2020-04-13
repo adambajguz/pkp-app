@@ -17,11 +17,6 @@ namespace TrainsOnline.Application.Authentication.Commands.ResetPassword
 
                 return true;
             }).WithMessage(ValidationMessages.Id.IsIncorrectUser);
-
-            RuleFor(x => x.Data.Password).NotEmpty()
-                                         .WithMessage(ValidationMessages.Password.IsEmpty);
-            RuleFor(x => x.Data.Password).MinimumLength(GlobalAppConfig.MIN_PASSWORD_LENGTH)
-                                         .WithMessage(string.Format(ValidationMessages.Password.IsTooShort, GlobalAppConfig.MIN_PASSWORD_LENGTH));
         }
 
         public class Model

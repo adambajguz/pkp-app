@@ -1,7 +1,7 @@
-﻿namespace TrainsOnline.Application.Common.Interfaces.UoW
+﻿namespace TrainsOnline.Application.Interfaces.UoW.Generic
 {
-    using Application.Common.Interfaces.Repository;
     using Application.Interfaces.UoW;
+    using TrainsOnline.Application.Interfaces.Repository;
 
     public interface IPKPAppDbUnitOfWork : IGenericUnitOfWork
     {

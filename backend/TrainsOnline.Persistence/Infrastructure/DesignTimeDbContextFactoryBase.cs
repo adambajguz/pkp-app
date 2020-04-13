@@ -20,7 +20,7 @@
 
         protected abstract TContext CreateNewInstance(DbContextOptions<TContext> options);
 
-        private TContext Create(string basePath, string environmentName)
+        private TContext Create(string basePath, string? environmentName)
         {
             IConfigurationBuilder configurationBuilder = new ConfigurationBuilder().SetBasePath(basePath);
             configurationBuilder.AddJsonFile(GlobalAppConfig.AppSettingsFileName);

@@ -7,7 +7,7 @@
     using Microsoft.Extensions.Options;
     using Microsoft.IdentityModel.Tokens;
     using TrainsOnline.Application.Authentication.Queries.GetValidToken;
-    using TrainsOnline.Application.Common.Interfaces;
+    using TrainsOnline.Application.Interfaces;
     using TrainsOnline.Domain.Jwt;
 
     public class JwtService : IJwtService
@@ -23,7 +23,7 @@
             _handler = new JwtSecurityTokenHandler();
         }
 
-        public JwtTokenModel? GenerateJwtToken(string email, Guid id, string[] roles)
+        public JwtTokenModel GenerateJwtToken(string email, Guid id, string[] roles)
         {
             ClaimsIdentity claims = new ClaimsIdentity(new Claim[]
                 {
@@ -32,11 +32,11 @@
                 });
 
             if (roles.Length == 0)
-                return null;
+                throw new InvalidOperationException("Roles contains no elements");
 
             for (int i = 0; i < roles.Length; ++i)
                 if (!Roles.IsValidRole(roles[i]))
-                    return null;
+                    throw new InvalidOperationException("Invalid role");
                 else
                     claims.AddClaim(new Claim(ClaimTypes.Role, roles[i]));
 
@@ -57,7 +57,7 @@
             };
         }
 
-        public void ValidateStringToken(string token)
+        public void ValidateStringToken(string? token)
         {
             _handler.ValidateToken(token, GetValidationParameters(_key), out _);
         }
@@ -79,8 +79,11 @@
             };
         }
 
-        public bool IsTokenStringValid(string token)
+        public bool IsTokenStringValid(string? token)
         {
+            if (token is null)
+                return false;
+
             try
             {
                 ValidateStringToken(token);
@@ -103,8 +106,11 @@
             return userId;
         }
 
-        public bool IsRoleInToken(string token, string role)
+        public bool IsRoleInToken(string? token, string role)
         {
+            if (token is null)
+                return false;
+
             if (!Roles.IsValidRole(role))
                 return false;
 

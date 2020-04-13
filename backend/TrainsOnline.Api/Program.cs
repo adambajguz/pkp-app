@@ -4,7 +4,6 @@ namespace TrainsOnline.Api
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
-    using Application.Common.Interfaces;
     using Application.Interfaces;
     using FluentValidation;
     using Microsoft.AspNetCore;

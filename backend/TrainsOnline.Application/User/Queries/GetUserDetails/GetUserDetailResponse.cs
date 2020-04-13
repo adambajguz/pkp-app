@@ -4,7 +4,7 @@
     using Application.Interfaces.Mapping;
     using AutoMapper;
     using Domain.Entities;
-    using TrainsOnline.Application.Common.DTO;
+    using TrainsOnline.Application.DTO;
 
     public class GetUserDetailResponse : IDataTransferObject, ICustomMapping
     {
@@ -16,6 +16,11 @@
 
         public string Email { get; set; } = default!;
         public string Username { get; set; } = default!;
+
+        public string? Name { get; set; }
+        public string? Surname { get; set; }
+        public string? PhoneNumber { get; set; }
+        public string? Address { get; set; }
 
         void ICustomMapping.CreateMappings(Profile configuration)
         {

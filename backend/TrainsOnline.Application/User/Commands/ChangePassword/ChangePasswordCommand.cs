@@ -2,12 +2,11 @@ namespace TrainsOnline.Application.User.Commands.ChangePassword
 {
     using System.Threading;
     using System.Threading.Tasks;
-    using Application.Common.Helpers;
-    using Application.Common.Interfaces.UoW;
     using Application.Interfaces;
     using Domain.Entities;
     using FluentValidation;
     using MediatR;
+    using TrainsOnline.Application.Interfaces.UoW.Generic;
 
     public class ChangePasswordCommand : IRequest
     {
@@ -22,11 +21,13 @@ namespace TrainsOnline.Application.User.Commands.ChangePassword
         {
             private readonly IPKPAppDbUnitOfWork _uow;
             private readonly IDataRightsService _drs;
+            private readonly IUserManagerService _userManager;
 
-            public Handler(IPKPAppDbUnitOfWork uow, IDataRightsService drs)
+            public Handler(IPKPAppDbUnitOfWork uow, IDataRightsService drs, IUserManagerService userManager)
             {
                 _uow = uow;
                 _drs = drs;
+                _userManager = userManager;
             }
 
             public async Task<Unit> Handle(ChangePasswordCommand request, CancellationToken cancellationToken)
@@ -38,9 +39,9 @@ namespace TrainsOnline.Application.User.Commands.ChangePassword
                 User user = await _uow.UsersRepository.GetByIdAsync(data.UserId);
                 ChangePasswordCommandValidator.Model validationModel = new ChangePasswordCommandValidator.Model(data, user);
 
-                await new ChangePasswordCommandValidator().ValidateAndThrowAsync(validationModel, cancellationToken: cancellationToken);
+                await new ChangePasswordCommandValidator(_userManager).ValidateAndThrowAsync(validationModel, cancellationToken: cancellationToken);
 
-                user.Password = PasswordHelper.CreateHash(data.NewPassword);
+                await _userManager.SetPassword(user, data.NewPassword, cancellationToken);
 
                 _uow.UsersRepository.Update(user);
 

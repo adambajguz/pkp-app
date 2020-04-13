@@ -1,9 +1,8 @@
 ﻿namespace TrainsOnline.Infrastructure.Repository
 {
-    using Application.Common.Interfaces;
-    using Application.Common.Interfaces.Repository;
     using Application.Interfaces;
     using AutoMapper;
+    using TrainsOnline.Application.Interfaces.Repository;
     using TrainsOnline.Domain.Entities;
 
     public class RoutesRepository : GenericRepository<Route>, IRoutesRepository

@@ -15,14 +15,6 @@
             public const string IsInUse = "e-mail is already in use";
         }
 
-        public static class Username
-        {
-            public const string IsEmpty = "Username must not be empty";
-            public const string IsTooShort = "Username must have at least {0} characters";
-
-            public const string IsInUse = "Username is already in use";
-        }
-
         public static class Password
         {
             public const string IsEmpty = "Password must not be empty";

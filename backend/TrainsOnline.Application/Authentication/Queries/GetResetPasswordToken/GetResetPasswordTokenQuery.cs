@@ -3,13 +3,13 @@
     using System;
     using System.Threading;
     using System.Threading.Tasks;
-    using Application.Common.Interfaces;
-    using Application.Common.Interfaces.UoW;
     using Domain.Entities;
     using Domain.Jwt;
     using FluentValidation;
     using MediatR;
     using Microsoft.AspNetCore.Http;
+    using TrainsOnline.Application.Interfaces;
+    using TrainsOnline.Application.Interfaces.UoW.Generic;
     using TrainsOnline.Common;
 
     public class GetResetPasswordTokenQuery : IRequest<string>

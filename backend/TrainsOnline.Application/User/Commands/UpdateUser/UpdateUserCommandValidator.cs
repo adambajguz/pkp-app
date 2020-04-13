@@ -1,9 +1,9 @@
 ﻿namespace TrainsOnline.Application.User.Commands.UpdateUser
 {
-    using Application.Common.Interfaces.UoW;
     using Application.Constants;
     using Domain.Entities;
     using FluentValidation;
+    using TrainsOnline.Application.Interfaces.UoW.Generic;
     using TrainsOnline.Common;
 
     public class UpdateUserCommandValidator : AbstractValidator<UpdateUserCommandValidator.Model>
@@ -19,11 +19,6 @@
                 return true;
             }).WithMessage(ValidationMessages.Id.IsIncorrectUser);
 
-            RuleFor(x => x.Data.Username).NotEmpty()
-                                         .WithMessage(ValidationMessages.Username.IsEmpty);
-            RuleFor(x => x.Data.Username).MinimumLength(GlobalAppConfig.MIN_USERNAME_LENGTH)
-                                         .WithMessage(string.Format(ValidationMessages.Username.IsTooShort, GlobalAppConfig.MIN_USERNAME_LENGTH));
-
             RuleFor(x => x.Data.Email).NotEmpty()
                                       .WithMessage(ValidationMessages.Email.IsEmpty);
             RuleFor(x => x.Data.Email).EmailAddress()
@@ -31,18 +26,6 @@
 
             When(x => x.User != null, () =>
             {
-                RuleFor(x => x.Data.Username).MustAsync(async (request, val, token) =>
-                {
-                    User userResult = request.User;
-
-                    if (userResult.Username.Equals(val))
-                        return true;
-
-                    bool checkInUse = await uow.UsersRepository.IsUserNameInUseAsync(val);
-
-                    return !checkInUse;
-                }).WithMessage(ValidationMessages.Username.IsInUse);
-
                 RuleFor(x => x.Data.Email).MustAsync(async (request, val, token) =>
                 {
                     User userResult = request.User;
@@ -50,7 +33,7 @@
                     if (userResult.Email.Equals(val))
                         return true;
 
-                    bool checkInUse = await uow.UsersRepository.IsEmailInUseAsync(val);
+                    bool checkInUse = await uow.UsersRepository.IsEmailInUseAsync(val!);
 
                     return !checkInUse;
 

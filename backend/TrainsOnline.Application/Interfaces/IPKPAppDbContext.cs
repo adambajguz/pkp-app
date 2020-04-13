@@ -1,6 +1,5 @@
-﻿namespace TrainsOnline.Application.Common.Interfaces
+﻿namespace TrainsOnline.Application.Interfaces
 {
-    using Application.Interfaces;
     using Domain.Entities;
     using Domain.Entities.Audit;
     using Microsoft.EntityFrameworkCore;

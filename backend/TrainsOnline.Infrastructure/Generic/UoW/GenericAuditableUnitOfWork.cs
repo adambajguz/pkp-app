@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
     using Application.Interfaces;
@@ -33,45 +34,74 @@
         {
             OnBeforeSaveChanges();
 
-            return _Context.SaveChanges();
+            return Context.SaveChanges();
         }
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
             OnBeforeSaveChanges();
 
-            return await _Context.SaveChangesAsync(cancellationToken);
+            return await Context.SaveChangesAsync(cancellationToken);
+        }   
+        
+        public int SaveChangesWithoutAudit()
+        {
+            return Context.SaveChanges();
+        }
+
+        public async Task<int> SaveChangesWithoutAuditAsync(CancellationToken cancellationToken = default)
+        {
+            return await Context.SaveChangesAsync(cancellationToken);
         }
 
         //https://www.meziantou.net/entity-framework-core-history-audit-table.htm
         private void OnBeforeSaveChanges()
         {
-            _Context.ChangeTracker.DetectChanges();
+            Context.ChangeTracker.DetectChanges();
+            IEnumerable<EntityEntry> entries = Context.ChangeTracker.Entries();
 
-            IEnumerable<EntityEntry> entries = _Context.ChangeTracker.Entries();
-            foreach (EntityEntry entry in entries)
+            List<EntityAuditLog> auditLogsToAdd = ProcessChanges(entries);
+
+            foreach (EntityAuditLog log in auditLogsToAdd)
             {
-                if (entry.Entity is IAuditableEntitiy == false || entry.State == EntityState.Detached || entry.State == EntityState.Unchanged)
-                    continue;
+                EntityAuditLogRepository.Add(log);
+            }
 
-                AuditEntry auditEntry = new AuditEntry(entry)
-                {
-                    TableName = entry.Metadata.GetDefaultTableName()
-                };
+            static List<EntityAuditLog> ProcessChanges(IEnumerable<EntityEntry> entries)
+            {
+                List<EntityAuditLog> auditLogsToAdd = new List<EntityAuditLog>();
 
-                switch (entry.State)
+                foreach (EntityEntry entry in entries)
                 {
-                    case EntityState.Added:
-                        auditEntry.Action = AuditActions.Added;
-                        break;
-                    case EntityState.Deleted:
-                        auditEntry.Action = AuditActions.Deleted;
-                        break;
-                    case EntityState.Modified:
-                        auditEntry.Action = AuditActions.Modified;
-                        break;
+                    if (entry.Entity is IAuditableEntitiy == false || entry.State == EntityState.Detached || entry.State == EntityState.Unchanged)
+                        continue;
+
+                    AuditEntry auditEntry = new AuditEntry(entry)
+                    {
+                        TableName = entry.Metadata.GetDefaultTableName()
+                    };
+
+                    auditEntry.Action = entry.State switch
+                    {
+                        EntityState.Added => AuditActions.Added,
+                        EntityState.Deleted => AuditActions.Deleted,
+                        EntityState.Modified => AuditActions.Modified,
+                        _ => throw new NotImplementedException()
+                    };
+
+                    ProcessProperties(entry, auditEntry);
+
+                    if (auditEntry.NewValues.Count > 0 || auditEntry.Action != AuditActions.Modified)
+                    {
+                        auditLogsToAdd.Add(auditEntry.ToAudit());
+                    }
                 }
 
+                return auditLogsToAdd;
+            }
+
+            static void ProcessProperties(EntityEntry entry, AuditEntry auditEntry)
+            {
                 foreach (PropertyEntry property in entry.Properties)
                 {
                     IProperty metadata = property.Metadata;
@@ -92,11 +122,6 @@
                         if (x.Length == 0)
                             auditEntry.NewValues[metadata.Name] = property.CurrentValue;
                     }
-                }
-
-                if (auditEntry.NewValues.Count > 0 || auditEntry.Action != AuditActions.Modified)
-                {
-                    EntityAuditLogRepository.Add(auditEntry.ToAudit());
                 }
             }
         }

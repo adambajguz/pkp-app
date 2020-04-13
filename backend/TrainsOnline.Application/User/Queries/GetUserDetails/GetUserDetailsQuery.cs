@@ -2,13 +2,13 @@ namespace TrainsOnline.Application.User.Queries.GetUserDetails
 {
     using System.Threading;
     using System.Threading.Tasks;
-    using Application.Common.Interfaces.UoW;
     using Application.Interfaces;
     using AutoMapper;
     using Domain.Entities;
     using FluentValidation;
     using MediatR;
-    using TrainsOnline.Application.Common.DTO;
+    using TrainsOnline.Application.DTO;
+    using TrainsOnline.Application.Interfaces.UoW.Generic;
 
     public class GetUserDetailsQuery : IRequest<GetUserDetailResponse>
     {
