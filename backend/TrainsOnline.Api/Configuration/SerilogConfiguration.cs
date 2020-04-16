@@ -60,7 +60,7 @@
             {
                 string mode = GlobalAppConfig.DEV_MODE ? "DEVelopment" : "PRODuction";
 
-                Log.Warning("Server START: {Mode} mode enabled; Minimum log level - {LogLevel}; Action: {Action}", mode, minLogLevel, action);
+                Log.Warning("Server START: {Mode} mode enabled; Minimum log level - {LogLevel}", mode, minLogLevel);
             }
 
 #pragma warning restore CS0162 // Unreachable code detected

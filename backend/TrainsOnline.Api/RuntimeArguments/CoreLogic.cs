@@ -13,7 +13,6 @@
     using TrainsOnline.Api;
     using TrainsOnline.Api.Configuration;
     using TrainsOnline.Application.Interfaces;
-    using TrainsOnline.Common;
 
     internal static class CoreLogic
     {
@@ -22,7 +21,7 @@
         {
             Console.WriteLine("Loading web host");
 
-            using (IWebHost webHost = RunWebHost(args))
+            using (IWebHost webHost = RunWebHost())
             {
                 if (options.EfMigrateCheck)
                 {
@@ -131,7 +130,7 @@
             } while (key == ConsoleKey.LeftWindows || key == ConsoleKey.RightWindows);
         }
 
-        private static IWebHost RunWebHost(string[] args)
+        private static IWebHost RunWebHost()
         {
             //Custom PropertyNameResolver to remove neasted Property in Classes e.g. Data.Id in UpdateUserCommandValidator.Model
             ValidatorOptions.PropertyNameResolver = (type, member, expression) =>
@@ -152,12 +151,12 @@
 
             Log.Information("Starting web host...");
 
-            return CreateWebHostBuilder(args).Build();
+            return CreateWebHostBuilder().Build();
         }
 
-        private static IWebHostBuilder CreateWebHostBuilder(string[] args)
+        private static IWebHostBuilder CreateWebHostBuilder()
         {
-            return WebHost.CreateDefaultBuilder(args)
+            return WebHost.CreateDefaultBuilder()
                           .UseKestrel()
                           .UseStartup<Startup>()
                           .UseSerilog()
