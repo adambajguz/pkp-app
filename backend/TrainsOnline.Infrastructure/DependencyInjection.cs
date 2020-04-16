@@ -8,10 +8,11 @@
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.IdentityModel.Tokens;
+    using TrainsOnline.Application.Interfaces.Pdf;
     using TrainsOnline.Application.Interfaces.UoW.Generic;
     using TrainsOnline.Infrastructure.Jwt;
     using TrainsOnline.Infrastructure.Main.Email;
-    using TrainsOnline.Infrastructure.PdfBuilder;
+    using TrainsOnline.Infrastructure.Pdf;
     using TrainsOnline.Infrastructure.UserManager;
     using IConfiguration = Microsoft.Extensions.Configuration.IConfiguration;
 
@@ -29,7 +30,7 @@
 
             services.AddScoped<IDataRightsService, DataRightsService>();
             services.AddSingleton<IUserManagerService, UserManagerService>();
-            services.AddSingleton<IPdfBuilderService, PdfBuilderService>();
+            services.AddSingleton<IDocumentsService, DocumentsService>();
 
             // Set license key to use GemBox.Document in Free mode.
             GemBox.Document.ComponentInfo.SetLicense("FREE-LIMITED-KEY");
