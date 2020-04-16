@@ -3,7 +3,6 @@ namespace TrainsOnline.Application.Authentication.Commands.ResetPassword
     using Application.Constants;
     using Domain.Entities;
     using FluentValidation;
-    using TrainsOnline.Common;
 
     public class ResetPasswordCommandValidator : AbstractValidator<ResetPasswordCommandValidator.Model>
     {

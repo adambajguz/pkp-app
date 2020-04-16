@@ -1,6 +1,7 @@
 ﻿namespace TrainsOnline.Api.Configuration
 {
     using Microsoft.AspNetCore.Builder;
+    using TrainsOnline.Common;
 
     public static class SwaggerConfiguration
     {

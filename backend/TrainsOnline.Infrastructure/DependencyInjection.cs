@@ -11,6 +11,7 @@
     using TrainsOnline.Application.Interfaces.UoW.Generic;
     using TrainsOnline.Infrastructure.Jwt;
     using TrainsOnline.Infrastructure.Main.Email;
+    using TrainsOnline.Infrastructure.PdfBuilder;
     using TrainsOnline.Infrastructure.UserManager;
     using IConfiguration = Microsoft.Extensions.Configuration.IConfiguration;
 
@@ -18,9 +19,6 @@
     {
         public static IServiceCollection AddInfrastructureContent(this IServiceCollection services, IConfiguration configuration, IWebHostEnvironment _)
         {
-            services.AddScoped<IDataRightsService, DataRightsService>();
-            services.AddSingleton<IUserManagerService, UserManagerService>();
-
             //services.AddTransient<IMachineDateTimeService, MachineDateTimeService>();
             //services.AddTransient<ICsvFileBuilderService, CsvFileBuilderService>();
 
@@ -28,6 +26,13 @@
             services.AddSingleton<IEmailService, EmailService>();
 
             services.AddScoped<IPKPAppDbUnitOfWork, PKPAppDbUnitOfWork>();
+
+            services.AddScoped<IDataRightsService, DataRightsService>();
+            services.AddSingleton<IUserManagerService, UserManagerService>();
+            services.AddSingleton<IPdfBuilderService, PdfBuilderService>();
+
+            // Set license key to use GemBox.Document in Free mode.
+            GemBox.Document.ComponentInfo.SetLicense("FREE-LIMITED-KEY");
 
             //email configruation
             {

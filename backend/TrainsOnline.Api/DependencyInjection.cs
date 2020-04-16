@@ -9,6 +9,7 @@
     using Microsoft.OpenApi.Models;
     using Serilog;
     using TrainsOnline.Api.Filters;
+    using TrainsOnline.Common;
     using IConfiguration = Microsoft.Extensions.Configuration.IConfiguration;
 
     public static class DependencyInjection

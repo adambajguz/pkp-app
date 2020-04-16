@@ -42,7 +42,6 @@
                 error = new[] { context.Exception.Message },
                 stackTrace = context.Exception.StackTrace
             });
-
         }
     }
 }

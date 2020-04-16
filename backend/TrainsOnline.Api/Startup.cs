@@ -1,5 +1,6 @@
 namespace TrainsOnline.Api
 {
+    using System.ServiceModel;
     using Application;
     using Infrastructure;
     using Microsoft.AspNetCore.Builder;
@@ -7,12 +8,15 @@ namespace TrainsOnline.Api
     using Microsoft.AspNetCore.HttpOverrides;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.DependencyInjection.Extensions;
     using Microsoft.Extensions.Hosting;
     using Persistence;
     using Serilog;
-    using TrainsOnline.Api.Common;
+    using SoapCore;
     using TrainsOnline.Api.Configuration;
-    using TrainsOnline.Api.Configuration.SpecialPages;
+    using TrainsOnline.Api.CustomMiddlewares;
+    using TrainsOnline.Api.SpecialPages;
+    using TrainsOnline.Application.Interfaces;
     using TrainsOnline.Common;
 
     //TODO add api key
@@ -50,6 +54,12 @@ namespace TrainsOnline.Api
                     .AddApplicationContent(Configuration, Environment)
                     .AddApi(Configuration, Environment);
 
+            services.AddSoapServiceOperationTuner(new SoapJwtMiddleware(services.BuildServiceProvider().GetService<IJwtService>()));
+            services.TryAddSingleton<ISampleService, SampleService>();
+
+            //SoapCore
+            services.AddSoapCore();
+
             _services = services;
         }
 
@@ -67,6 +77,9 @@ namespace TrainsOnline.Api
             {
                 endpoints.MapControllers();
             });
+
+            app.UseSoapEndpoint<ISampleService>("/Service.svc", new BasicHttpBinding(), SoapSerializer.DataContractSerializer);
+            app.UseSoapEndpoint<ISampleService>("/Service.asmx", new BasicHttpBinding(), SoapSerializer.XmlSerializer);
 
             if (Environment.IsDevelopment() || GlobalAppConfig.DEV_MODE)
             {
