@@ -15,7 +15,7 @@
             app.UseSwaggerUI(c =>
             {
                 c.RoutePrefix = "api";
-                c.SwaggerEndpoint("/api/v1/swagger.json", "BioGameAPI " + VersionHelper.AppVersion);
+                c.SwaggerEndpoint("/api/v1/swagger.json", GlobalAppConfig.AppInfo.AppName + VersionHelper.AppVersion);
             });
 
             return app;

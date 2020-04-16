@@ -2,20 +2,14 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.IO;
     using System.Linq;
     using CommandLine;
     using FluentValidation;
     using Microsoft.AspNetCore;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.EntityFrameworkCore;
-    using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
-    using Sentry;
     using Serilog;
-    using Serilog.Events;
-    using Serilog.Exceptions;
-    using Serilog.Sinks.SystemConsole.Themes;
     using TrainsOnline.Api;
     using TrainsOnline.Api.Configuration;
     using TrainsOnline.Application.Interfaces;
@@ -28,41 +22,28 @@
         {
             Console.WriteLine("Loading web host");
 
-            string action = "--run";
-
-            if (doMigrate.HasValue())
-                action = "--ef-migrate";
-            else if (verifyMigrate.HasValue())
-                action = "--ef-migrate-check";
-
-            using (IWebHost webHost = RunWebHost(args, action))
+            using (IWebHost webHost = RunWebHost(args))
             {
-                if (verifyMigrate.HasValue() && doMigrate.HasValue())
-                {
-                    Console.WriteLine("ef-migrate and ef-migrate-check are mutually exclusive, select one, and try again");
-                    Environment.Exit(2);
-                }
-
-                if (verifyMigrate.HasValue())
+                if (options.EfMigrateCheck)
                 {
                     bool validateResult = ValidateMigrations<IPKPAppDbContext>(webHost);
 
                     if (!validateResult)
                         Environment.Exit(3);
 
-                    if (!run.HasValue())
+                    if (!options.Run)
                         Environment.Exit(0);
                 }
 
-                if (doMigrate.HasValue())
+                if (options.EfMigrate)
                 {
                     MigrateDatabase<IPKPAppDbContext>(webHost);
 
-                    if (!run.HasValue())
+                    if (!options.Run)
                         Environment.Exit(0);
                 }
 
-                if (run.HasValue())
+                if (options.Run)
                 {
                     try
                     {
@@ -150,8 +131,7 @@
             } while (key == ConsoleKey.LeftWindows || key == ConsoleKey.RightWindows);
         }
 
-
-        private static IWebHost RunWebHost(string[] args, string action)
+        private static IWebHost RunWebHost(string[] args)
         {
             //Custom PropertyNameResolver to remove neasted Property in Classes e.g. Data.Id in UpdateUserCommandValidator.Model
             ValidatorOptions.PropertyNameResolver = (type, member, expression) =>
@@ -164,106 +144,15 @@
                 return null;
             };
 
-            LoggerSettings loggerSettigns;
-            //logger configuration
-            {
-                IConfigurationBuilder configuration = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory());
-                configuration.AddJsonFile(GlobalAppConfig.AppSettingsFileName);
-
-                loggerSettigns = configuration.Build().GetSection("LoggerSettings").Get<LoggerSettings>();
-            }
-
-            LoggerConfiguration loggerConfiguration = new LoggerConfiguration()
-                                         .Enrich.FromLogContext()
-                                         .Enrich.WithExceptionDetails()
-                                         .Enrich.WithProcessId()
-                                         .Enrich.WithProcessName()
-                                         .Enrich.WithThreadId();
-
-#pragma warning disable CS0162 // Unreachable code detected
-            loggerConfiguration.MinimumLevel.Information();
-            string minLogLevel = "Information";
-
-            if (GlobalAppConfig.DEV_MODE)
-            {
-                if (loggerSettigns.LogEverythingInDev)
-                {
-                    loggerConfiguration.MinimumLevel.Verbose();
-                    minLogLevel = "Verbose";
-                }
-                else
-                {
-                    loggerConfiguration.MinimumLevel.Debug();
-                    minLogLevel = "Debug";
-                }
-            }
-#pragma warning restore CS0162 // Unreachable code detected
-
-            ConfigureSentry(loggerSettigns, loggerConfiguration);
-
-            loggerConfiguration.WriteTo.Async(a => a.Logger(WriteToConsole(loggerSettigns)));
-
-            Log.Logger = loggerConfiguration.WriteTo.Async(WriteToFile(loggerSettigns))
-                                            .CreateLogger();
-
-#pragma warning disable CS0162 // Unreachable code detected
-            {
-                string mode = GlobalAppConfig.DEV_MODE ? "DEVelopment" : "PRODuction";
-
-                Log.Warning("Server START: {Mode} mode enabled; Minimum log level - {LogLevel}; Action: {Action}", mode, minLogLevel, action);
-            }
-
-#pragma warning restore CS0162 // Unreachable code detected
-
-            Log.Information($"Config file: {GlobalAppConfig.AppSettingsFileName}");
-            Log.Information($"Logs are stored under: {loggerSettigns.FullPath}");
+            SerilogConfiguration.ConfigureSerilog();
 
             ValidatorOptions.LanguageManager.Enabled = false;
             Log.Information("FluentValidation's support for localization disabled. Default English messages are forced to be used, regardless of the thread's CurrentUICulture.");
             //ValidatorOptions.LanguageManager.Culture = new CultureInfo("en");
 
             Log.Information("Starting web host...");
-            //.Run();
+
             return CreateWebHostBuilder(args).Build();
-
-        }
-
-        private static void ConfigureSentry(LoggerSettings loggerSettigns, LoggerConfiguration loggerConfiguration)
-        {
-            if (!loggerSettigns.SentryEnabled)
-                return;
-
-            loggerConfiguration.WriteTo.Sentry(o =>
-            {
-                // Debug and higher are stored as breadcrumbs (default is Information)
-                o.MinimumBreadcrumbLevel = LogEventLevel.Debug;
-                // Warning and higher is sent as event (default is Error)
-                o.MinimumEventLevel = LogEventLevel.Warning;
-                o.Dsn = new Dsn(loggerSettigns.SentryDSN);
-                o.AttachStacktrace = true;
-                o.SendDefaultPii = true;
-                o.Release = GlobalAppConfig.AppInfo.SentryReleaseVersion;
-                o.ReportAssemblies = true;
-                o.Environment = GlobalAppConfig.DEV_MODE ? "Development" : "Production";
-            });
-        }
-
-        private static Action<LoggerConfiguration> WriteToConsole(LoggerSettings loggerSettigns)
-        {
-            return b => b.WriteTo.Async(c => c.Console(outputTemplate: loggerSettigns.ConsoleOutputTemplate,
-                                                       theme: AnsiConsoleTheme.Literate));
-        }
-
-        private static Action<Serilog.Configuration.LoggerSinkConfiguration> WriteToFile(LoggerSettings loggerSettigns)
-        {
-            return a => a.File(loggerSettigns.FullPath,
-                               outputTemplate: loggerSettigns.FileOutputTemplate,
-                               fileSizeLimitBytes: loggerSettigns.FileSizeLimitInBytes,
-                               rollingInterval: RollingInterval.Day,
-                               rollOnFileSizeLimit: true,
-                               flushToDiskInterval: TimeSpan.FromSeconds(loggerSettigns.FlushIntervalInSeconds),
-                               retainedFileCountLimit: loggerSettigns.RetainedFileCountLimit,
-                               shared: true);
         }
 
         private static IWebHostBuilder CreateWebHostBuilder(string[] args)
