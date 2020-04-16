@@ -23,8 +23,8 @@
             user.Password = _passwordHasher.CreateHash(password!);
 
             return user;
-        } 
-        
+        }
+
         public async Task<bool> ValidatePassword(User user, string? password, CancellationToken cancellationToken = default)
         {
             await new PasswordValidator().ValidateAndThrowAsync(password, cancellationToken: cancellationToken);

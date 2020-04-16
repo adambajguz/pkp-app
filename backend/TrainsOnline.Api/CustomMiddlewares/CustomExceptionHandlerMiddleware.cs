@@ -1,4 +1,4 @@
-﻿namespace TrainsOnline.Api.Common
+﻿namespace TrainsOnline.Api.CustomMiddlewares
 {
     using System;
     using System.Net;
@@ -61,9 +61,7 @@
             context.Response.StatusCode = (int)code;
 
             if (result == string.Empty)
-            {
                 result = JsonConvert.SerializeObject(new { error = exception.Message });
-            }
 
             return context.Response.WriteAsync(result);
         }

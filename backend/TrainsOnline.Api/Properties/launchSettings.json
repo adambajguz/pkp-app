@@ -19,7 +19,7 @@
     },
     "TrainsOnline.Api": {
       "commandName": "Project",
-      "commandLineArgs": "",
+      "commandLineArgs": "--h",
       "launchBrowser": true,
       "launchUrl": "api",
       "environmentVariables": {

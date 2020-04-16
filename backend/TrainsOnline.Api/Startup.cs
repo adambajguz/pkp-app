@@ -1,5 +1,6 @@
 namespace TrainsOnline.Api
 {
+    using System.ServiceModel;
     using Application;
     using Infrastructure;
     using Microsoft.AspNetCore.Builder;
@@ -7,12 +8,16 @@ namespace TrainsOnline.Api
     using Microsoft.AspNetCore.HttpOverrides;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.DependencyInjection.Extensions;
     using Microsoft.Extensions.Hosting;
     using Persistence;
     using Serilog;
-    using TrainsOnline.Api.Common;
+    using SoapCore;
     using TrainsOnline.Api.Configuration;
-    using TrainsOnline.Api.Configuration.SpecialPages;
+    using TrainsOnline.Api.CustomMiddlewares;
+    using TrainsOnline.Api.SoapEndpoints;
+    using TrainsOnline.Api.SpecialPages;
+    using TrainsOnline.Application.Interfaces;
     using TrainsOnline.Common;
 
     //TODO add api key
@@ -48,7 +53,8 @@ namespace TrainsOnline.Api
             services.AddInfrastructureContent(Configuration, Environment)
                     .AddPersistenceContent(Configuration, Environment)
                     .AddApplicationContent(Configuration, Environment)
-                    .AddApi(Configuration, Environment);
+                    .AddApi(Configuration, Environment)
+                    .ConfigureSoapServices();
 
             _services = services;
         }
@@ -66,6 +72,7 @@ namespace TrainsOnline.Api
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapSoapServices();
             });
 
             if (Environment.IsDevelopment() || GlobalAppConfig.DEV_MODE)

@@ -4,7 +4,6 @@
     using Domain.Entities;
     using FluentValidation;
     using TrainsOnline.Application.Interfaces.UoW.Generic;
-    using TrainsOnline.Common;
 
     public class UpdateUserCommandValidator : AbstractValidator<UpdateUserCommandValidator.Model>
     {

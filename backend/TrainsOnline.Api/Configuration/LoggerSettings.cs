@@ -1,4 +1,4 @@
-﻿namespace TrainsOnline.Api
+﻿namespace TrainsOnline.Api.Configuration
 {
     public sealed class LoggerSettings
     {
