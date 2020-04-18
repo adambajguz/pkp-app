@@ -1,4 +1,4 @@
-﻿namespace TrainsOnline.Api.SpecialPages
+﻿namespace TrainsOnline.Api.SpecialPages.Core
 {
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Hosting;

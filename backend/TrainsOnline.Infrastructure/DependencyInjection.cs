@@ -24,12 +24,12 @@
 
             services.AddSingleton<IJwtService, JwtService>();
             services.AddSingleton<IEmailService, EmailService>();
+            services.AddSingleton<IUserManagerService, UserManagerService>();
+            services.AddSingleton<IDocumentsService, DocumentsService>();
 
             services.AddScoped<IPKPAppDbUnitOfWork, PKPAppDbUnitOfWork>();
 
             services.AddScoped<IDataRightsService, DataRightsService>();
-            services.AddSingleton<IUserManagerService, UserManagerService>();
-            services.AddSingleton<IDocumentsService, DocumentsService>();
 
             // Set license key to use GemBox.Document in Free mode.
             GemBox.Document.ComponentInfo.SetLicense("FREE-LIMITED-KEY");

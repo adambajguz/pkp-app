@@ -5,6 +5,7 @@
     using Microsoft.Extensions.DependencyInjection;
     using TrainsOnline.Application.Interfaces;
     using TrainsOnline.Common;
+    using TrainsOnline.Persistence.DbContext;
     using IConfiguration = Microsoft.Extensions.Configuration.IConfiguration;
 
     public static class DependencyInjection

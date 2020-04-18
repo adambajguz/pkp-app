@@ -18,7 +18,9 @@ namespace TrainsOnline.Api
     using TrainsOnline.Api.Configuration;
     using TrainsOnline.Api.CustomMiddlewares;
     using TrainsOnline.Api.SoapEndpoints.Core;
+    using TrainsOnline.Api.SpecialPages.Core;
     using TrainsOnline.Common;
+    using TrainsOnline.Persistence.DbContext;
 
     //TODO add api key
     public class Startup
@@ -52,7 +54,7 @@ namespace TrainsOnline.Api
 
             services.AddInfrastructureContent(Configuration)
                     .AddPersistenceContent(Configuration)
-                    .AddApplicationContent(Configuration, Environment)
+                    .AddApplicationContent()
                     .AddRestApi()
                     .AddSoapApiServices();
 
@@ -65,12 +67,15 @@ namespace TrainsOnline.Api
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app)
         {
-            app.UseRouting();
-            app.UseSerilogRequestLogging();
-            app.UseCors("AllowAll");
+            app.UseRouting()
+               .UseSerilogRequestLogging()
+               .UseCors("AllowAll")
+               .UseCustomExceptionHandler()
+               .UseStatusCodePages(StatusCodePageRespone)
+               .UseHttpsRedirection();
 
-            app.UseAuthentication();
-            app.UseAuthorization();
+            app.UseAuthentication()
+               .UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
@@ -79,7 +84,7 @@ namespace TrainsOnline.Api
                 endpoints.MapSoapServices();
             });
 
-            if (Environment.IsDevelopment() || GlobalAppConfig.DEV_MODE)
+            if (GlobalAppConfig.DEV_MODE)
             {
                 app.UseDeveloperExceptionPage();
             }
@@ -90,13 +95,9 @@ namespace TrainsOnline.Api
                 app.UseHsts();
             }
 
-            app.UseStatusCodePages(StatusCodePageRespone);
-
             app.ConfigureSpecialPages(Environment, _services);
 
-            app.UseCustomExceptionHandler();
             app.UseHealthChecks("/health");
-            app.UseHttpsRedirection();
 
             app.UseForwardedHeaders(new ForwardedHeadersOptions
             {

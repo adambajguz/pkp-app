@@ -9,6 +9,7 @@
     using Microsoft.AspNetCore.Http;
     using Microsoft.Extensions.DependencyInjection;
     using TrainsOnline.Api.SoapEndpoints.Core;
+    using TrainsOnline.Api.SpecialPages.Core;
     using TrainsOnline.Common;
     using TrainsOnline.Common.Extensions;
 
