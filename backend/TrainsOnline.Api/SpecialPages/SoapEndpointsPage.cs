@@ -33,12 +33,14 @@
             sb.Append($"<table border=\"{isDevelopment.ToChar()}\"><thead>");
             sb.Append("<tr>");
             sb.Append("<th>Endpoint</th>");
+            sb.Append("<th>Name</th>");
+            sb.Append("<th>Description</th>");
 
             if (isDevelopment)
             {
                 sb.Append("<th>Route scheme</th>");
-                sb.Append("<th>ImplementationType</th>");
-                sb.Append("<th>ServiceType</th>");
+                sb.Append("<th>Implementation type</th>");
+                sb.Append("<th>Service type</th>");
                 sb.Append("<th>Lifetime</th>");
             }
 
@@ -51,10 +53,12 @@
 
                 sb.Append("<tr>");
                 sb.Append($"<td><a href=\"{route}\">{route}</a></td>");
+                sb.Append($"<td>{spec.RouteAttribute.Name}</td>");
+                sb.Append($"<td>{spec.RouteAttribute.Description}</td>");
 
                 if (isDevelopment)
                 {
-                    sb.Append($"<td>{spec.RouteScheme}</td>");
+                    sb.Append($"<td>{spec.RouteAttribute.RouteScheme}</td>");
                     sb.Append($"<td>{spec.ImplementationType.FullName}</td>");
                     sb.Append($"<td>{spec.ServiceType.FullName}</td>");
 

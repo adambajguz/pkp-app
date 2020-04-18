@@ -13,7 +13,7 @@
     using TrainsOnline.Application.User.Queries.GetUserDetails;
     using TrainsOnline.Application.User.Queries.GetUsersList;
 
-    [SoapRoute("[baseUrl]/user")]
+    [SoapRoute("[baseUrl]/user", "User", "Create, update and get user")]
     public class UserSoapEndpointService : IUserSoapEndpointService
     {
         protected IMediator Mediator { get; }

@@ -8,7 +8,7 @@
     using TrainsOnline.Application.Authentication.Queries.GetValidToken;
     using TrainsOnline.Application.Interfaces;
 
-    [SoapRoute("[baseUrl]/authentication")]
+    [SoapRoute("[baseUrl]/authentication", "Authentication", "User authentication and password reset")]
     public class AuthenticationSoapEndpointService : IAuthenticationSoapEndpointService
     {
         protected IMediator Mediator { get; }

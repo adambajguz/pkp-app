@@ -7,9 +7,14 @@
     {
         public string RouteScheme { get; }
 
-        public SoapRouteAttribute(string routeScheme)
+        public string Name { get; }
+        public string Description { get; }
+
+        public SoapRouteAttribute(string routeScheme, string name, string description = "")
         {
             RouteScheme = routeScheme;
+            Name = name;
+            Description = description;
         }
     }
 }

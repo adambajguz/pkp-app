@@ -37,7 +37,11 @@
             sb.Append($"<h2>{lifetime} ({tmp.Count()})</h2>");
 
             sb.Append("<table border=\"1\"><thead>");
-            sb.Append("<tr><th>Type</th><th>Lifetime</th><th>Instance</th></tr>");
+
+            sb.Append("<th>Service type</th>");
+            sb.Append("<th>Lifetime</th>");
+            sb.Append("<th>Implementation type</th>");
+
             sb.Append("</thead><tbody>");
 
             foreach (ServiceDescriptor x in tmp)
