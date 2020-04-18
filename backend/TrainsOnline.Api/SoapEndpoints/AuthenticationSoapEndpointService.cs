@@ -28,9 +28,9 @@
             return await Mediator.Send(new GetResetPasswordTokenQuery(request));
         }
 
-        public async Task ResetPassword(ResetPasswordRequest request)
+        public async Task<Unit> ResetPassword(ResetPasswordRequest request)
         {
-            await Mediator.Send(new ResetPasswordCommand(request));
+            return await Mediator.Send(new ResetPasswordCommand(request));
         }
     }
 }

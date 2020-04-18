@@ -20,6 +20,7 @@
                 if (services == null)
                     sb.Append("<tr><td>_services is null</td></tr>");
                 else
+                {
                     foreach (ServiceDescriptor svc in services)
                     {
                         sb.Append("<tr>");
@@ -28,6 +29,7 @@
                         sb.Append($"<td>{svc.ImplementationType?.FullName}</td>");
                         sb.Append("</tr>");
                     }
+                }
                 sb.Append("</tbody></table>");
 
                 await context.Response.WriteAsync(sb.ToString());

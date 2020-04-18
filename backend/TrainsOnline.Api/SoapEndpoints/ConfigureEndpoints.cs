@@ -9,7 +9,11 @@
 
     public static class ConfigureEndpoints
     {
-        private const string BaseUrl = "/soap-api";
+        #region Endpoints
+        public static string BaseUrl { get; } = "/soap-api";
+        public static string AuthenticationEndpoint { get; } = BaseUrl + "/authentication";
+        public static string UserEndpoint { get; } = BaseUrl + "/user";
+        #endregion
 
         //TODO maybe add auto soap resolver with reflection
         public static IServiceCollection AddSoapApiServices(this IServiceCollection services)
@@ -19,13 +23,15 @@
                                                                                 .GetService<IJwtService>()));
 
             services.AddTransient<IAuthenticationSoapEndpointService, AuthenticationSoapEndpointService>();
+            services.AddTransient<IUserSoapEndpointService, UserSoapEndpointService>();
 
             return services;
         }
 
         public static IEndpointRouteBuilder MapSoapServices(this IEndpointRouteBuilder routes)
         {
-            routes.UseSoapEndpoint<IAuthenticationSoapEndpointService>(BaseUrl + "/authentication", new BasicHttpBinding(), SoapSerializer.XmlSerializer);
+            routes.UseSoapEndpoint<IAuthenticationSoapEndpointService>(AuthenticationEndpoint, new BasicHttpBinding(), SoapSerializer.DataContractSerializer);
+            routes.UseSoapEndpoint<IUserSoapEndpointService>(UserEndpoint, new BasicHttpBinding(), SoapSerializer.XmlSerializer);
 
             return routes;
         }

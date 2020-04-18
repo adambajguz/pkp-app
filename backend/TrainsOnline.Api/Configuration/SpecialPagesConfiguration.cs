@@ -22,6 +22,7 @@
             }
 
             // Register Development and Production pages
+            app.AddSoapEndpointsPage(services);
 
             return app;
         }

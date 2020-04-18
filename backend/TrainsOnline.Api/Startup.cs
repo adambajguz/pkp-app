@@ -1,7 +1,6 @@
 namespace TrainsOnline.Api
 {
     using System.Net.Mime;
-    using System.Text;
     using System.Threading.Tasks;
     using Application;
     using Infrastructure;
