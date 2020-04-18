@@ -1,6 +1,5 @@
 namespace TrainsOnline.Api
 {
-    using System.ServiceModel;
     using Application;
     using Infrastructure;
     using Microsoft.AspNetCore.Builder;
@@ -8,16 +7,13 @@ namespace TrainsOnline.Api
     using Microsoft.AspNetCore.HttpOverrides;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
-    using Microsoft.Extensions.DependencyInjection.Extensions;
     using Microsoft.Extensions.Hosting;
     using Persistence;
     using Serilog;
-    using SoapCore;
     using TrainsOnline.Api.Configuration;
     using TrainsOnline.Api.CustomMiddlewares;
     using TrainsOnline.Api.SoapEndpoints;
     using TrainsOnline.Api.SpecialPages;
-    using TrainsOnline.Application.Interfaces;
     using TrainsOnline.Common;
 
     //TODO add api key
