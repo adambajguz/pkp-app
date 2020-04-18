@@ -17,7 +17,7 @@ namespace TrainsOnline.Api
     using Serilog;
     using TrainsOnline.Api.Configuration;
     using TrainsOnline.Api.CustomMiddlewares;
-    using TrainsOnline.Api.SoapEndpoints;
+    using TrainsOnline.Api.SoapEndpoints.Core;
     using TrainsOnline.Common;
 
     //TODO add api key

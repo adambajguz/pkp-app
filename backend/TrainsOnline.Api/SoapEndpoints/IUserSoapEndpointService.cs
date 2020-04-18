@@ -3,6 +3,7 @@
     using System.ServiceModel;
     using System.Threading.Tasks;
     using MediatR;
+    using TrainsOnline.Api.SoapEndpoints.Core;
     using TrainsOnline.Application.DTO;
     using TrainsOnline.Application.User.Commands.ChangePassword;
     using TrainsOnline.Application.User.Commands.CreateUser;
@@ -11,7 +12,7 @@
     using TrainsOnline.Application.User.Queries.GetUsersList;
 
     [ServiceContract]
-    public interface IUserSoapEndpointService
+    public interface IUserSoapEndpointService : ISoapEndpointService
     {
         [OperationContract]
         Task<IdResponse> Registration(CreateUserRequest user);

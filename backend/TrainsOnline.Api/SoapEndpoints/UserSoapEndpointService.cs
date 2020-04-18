@@ -3,6 +3,7 @@
     using System;
     using System.Threading.Tasks;
     using MediatR;
+    using TrainsOnline.Api.SoapEndpoints.Core;
     using TrainsOnline.Application.DTO;
     using TrainsOnline.Application.Interfaces;
     using TrainsOnline.Application.User.Commands.ChangePassword;
@@ -12,6 +13,7 @@
     using TrainsOnline.Application.User.Queries.GetUserDetails;
     using TrainsOnline.Application.User.Queries.GetUsersList;
 
+    [SoapRoute("[baseUrl]/authentication")]
     public class UserSoapEndpointService : IUserSoapEndpointService
     {
         protected IMediator Mediator { get; }

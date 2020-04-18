@@ -1,33 +1,33 @@
 ﻿namespace TrainsOnline.Api.SpecialPages
 {
+    using System.Collections.Generic;
+    using System.Reflection;
     using System.Text;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Http;
-    using Microsoft.Extensions.DependencyInjection;
-    using TrainsOnline.Api.SoapEndpoints;
+    using TrainsOnline.Api.SoapEndpoints.Core;
 
     public static class SoapEndpointsPage
     {
-        private static string[] Endpoints { get; } =
-        {
-            ConfigureEndpoints.AuthenticationEndpoint,
-            ConfigureEndpoints.UserEndpoint
-        };
-
-        public static void AddSoapEndpointsPage(this IApplicationBuilder app, IServiceCollection services)
+        public static void AddSoapEndpointsPage(this IApplicationBuilder app)
         {
             app.Map(ConfigureEndpoints.BaseUrl, builder => builder.Run(async context =>
             {
+                IEnumerable<EndpointServiceSpecification> specifications = Assembly.GetExecutingAssembly()
+                                                                                   .GetAllSoapEndpointServicesSpecification();
+
                 StringBuilder sb = new StringBuilder();
                 sb.Append("<h1>Soap Services Endpoints List</h1>");
                 sb.Append("<table><thead>");
-                sb.Append("<tr><th>Endpoints</th></tr>");
+                sb.Append("<tr><th>Endpoint</th><th>Route scheme</th><th>Service : Interface</th></tr>");
                 sb.Append("</thead><tbody>");
 
-                foreach (string endpoint in Endpoints)
+                foreach (EndpointServiceSpecification spec in specifications)
                 {
                     sb.Append("<tr>");
-                    sb.Append($"<td>{endpoint}</td>");
+                    sb.Append($"<td><a href=\"{spec.ResolveRoute(ConfigureEndpoints.BaseUrl)}\">{spec}</a></td>");
+                    sb.Append($"<td>{spec.RouteScheme}</td>");
+                    sb.Append($"<td>{spec.Service.FullName} {spec.Interface.FullName}</td>");
                     sb.Append("</tr>");
                 }
 

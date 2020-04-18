@@ -2,11 +2,13 @@
 {
     using System.Threading.Tasks;
     using MediatR;
+    using TrainsOnline.Api.SoapEndpoints.Core;
     using TrainsOnline.Application.Authentication.Commands.ResetPassword;
     using TrainsOnline.Application.Authentication.Queries.GetResetPasswordToken;
     using TrainsOnline.Application.Authentication.Queries.GetValidToken;
     using TrainsOnline.Application.Interfaces;
 
+    [SoapRoute("[baseUrl]/authentication")]
     public class AuthenticationSoapEndpointService : IAuthenticationSoapEndpointService
     {
         protected IMediator Mediator { get; }
