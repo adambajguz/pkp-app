@@ -14,18 +14,18 @@
         //TODO maybe add auto soap resolver with reflection
         public static IServiceCollection AddSoapApiServices(this IServiceCollection services)
         {
-            services.AddSoapCore();
+            services.AddSoapCore()
+                    .AddSoapServiceOperationTuner(new SoapJwtMiddleware(services.BuildServiceProvider()
+                                                                                .GetService<IJwtService>()));
 
-            services.AddSoapServiceOperationTuner(new SoapJwtMiddleware(services.BuildServiceProvider()
-                                                                                .GetService<IJwtService>()))
-                    .AddSingleton<ISampleService, SampleService>();
+            services.AddTransient<IAuthenticationSoapEndpointService, AuthenticationSoapEndpointService>();
 
             return services;
         }
 
         public static IEndpointRouteBuilder MapSoapServices(this IEndpointRouteBuilder routes)
         {
-            routes.UseSoapEndpoint<ISampleService>(BaseUrl + "/service", new BasicHttpBinding(), SoapSerializer.DataContractSerializer);
+            routes.UseSoapEndpoint<IAuthenticationSoapEndpointService>(BaseUrl + "/authentication", new BasicHttpBinding(), SoapSerializer.XmlSerializer);
 
             return routes;
         }
