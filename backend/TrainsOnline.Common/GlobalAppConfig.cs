@@ -8,6 +8,7 @@
         {
             get
             {
+#pragma warning disable CS0162 // Unreachable code detected
                 if (USE_COMPILATION_CONFIGURATION_TO_DETERMINE_ENVIRONMENT)
                 {
 #if DEBUG
@@ -17,7 +18,6 @@
 #endif
                 }
 
-#pragma warning disable CS0162 // Unreachable code detected
                 return DEV_MODE_SW;
 #pragma warning restore CS0162 // Unreachable code detected
             }

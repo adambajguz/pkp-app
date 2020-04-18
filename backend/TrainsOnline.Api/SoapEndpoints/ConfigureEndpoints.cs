@@ -12,7 +12,7 @@
         private const string BaseUrl = "/soap-api";
 
         //TODO maybe add auto soap resolver with reflection
-        public static IServiceCollection ConfigureSoapServices(this IServiceCollection services)
+        public static IServiceCollection AddSoapApiServices(this IServiceCollection services)
         {
             services.AddSoapCore();
 

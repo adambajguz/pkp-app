@@ -3,11 +3,8 @@
     using System;
     using System.Collections.Generic;
     using CommandLine;
-    using FluentValidation;
-    using Microsoft.AspNetCore;
     using Microsoft.AspNetCore.Hosting;
     using Serilog;
-    using TrainsOnline.Api;
     using TrainsOnline.Api.Configuration;
     using TrainsOnline.Application.Interfaces;
     using TrainsOnline.Common;
@@ -17,7 +14,7 @@
         #region Callbacks for CommandLine library
         public static void Execute(RuntimeOptions options)
         {
-            using (IWebHost webHost = RunWebHost())
+            using (IWebHost webHost = WebHostExtensions.RunWebHost())
             {
 #pragma warning disable CS0162 // Unreachable code detected
                 {
@@ -89,40 +86,6 @@
             do
                 key = Console.ReadKey().Key;
             while (key == ConsoleKey.LeftWindows || key == ConsoleKey.RightWindows);
-        }
-
-        private static IWebHost RunWebHost()
-        {
-            SerilogConfiguration.ConfigureSerilog();
-
-            Log.Information("Loading web host...");
-
-            //Custom PropertyNameResolver to remove neasted Property in Classes e.g. Data.Id in UpdateUserCommandValidator.Model
-            ValidatorOptions.PropertyNameResolver = (type, member, expression) =>
-            {
-                if (member != null)
-                    return member.Name;
-
-                return null;
-            };
-
-
-            ValidatorOptions.LanguageManager.Enabled = false;
-            Log.Information("FluentValidation's support for localization disabled. Default English messages are forced to be used, regardless of the thread's CurrentUICulture.");
-            //ValidatorOptions.LanguageManager.Culture = new CultureInfo("en");
-
-            Log.Information("Starting web host...");
-
-            return CreateWebHostBuilder().Build();
-        }
-
-        private static IWebHostBuilder CreateWebHostBuilder()
-        {
-            return WebHost.CreateDefaultBuilder()
-                          .UseKestrel()
-                          .UseStartup<Startup>()
-                          .UseSerilog()
-                          .UseUrls("http://*:2137", "http://*:2138");
         }
         #endregion
     }

@@ -1,6 +1,5 @@
 ﻿namespace TrainsOnline.Persistence
 {
-    using Microsoft.AspNetCore.Hosting;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
@@ -10,10 +9,10 @@
 
     public static class DependencyInjection
     {
-        public static IServiceCollection AddPersistenceContent(this IServiceCollection services, IConfiguration configuration, IWebHostEnvironment environment)
+        public static IServiceCollection AddPersistenceContent(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddDbContext<IPKPAppDbContext, PKPAppDbContext>(options =>
-                    options.UseSqlServer(configuration.GetConnectionString(GlobalAppConfig.PKPAPP_DB_CONNECTION_STRING_NAME)));
+            services.AddDbContext<PKPAppDbContext>(options => options.UseSqlServer(configuration.GetConnectionString(GlobalAppConfig.PKPAPP_DB_CONNECTION_STRING_NAME)))
+                    .AddTransient<IPKPAppDbContext>(c => c.GetRequiredService<PKPAppDbContext>());
 
             return services;
         }

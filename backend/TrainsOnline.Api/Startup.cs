@@ -1,10 +1,16 @@
 namespace TrainsOnline.Api
 {
+    using System.Net.Mime;
+    using System.Text;
+    using System.Threading.Tasks;
     using Application;
     using Infrastructure;
     using Microsoft.AspNetCore.Builder;
+    using Microsoft.AspNetCore.Diagnostics;
     using Microsoft.AspNetCore.Hosting;
+    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.HttpOverrides;
+    using Microsoft.AspNetCore.WebUtilities;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
@@ -13,7 +19,6 @@ namespace TrainsOnline.Api
     using TrainsOnline.Api.Configuration;
     using TrainsOnline.Api.CustomMiddlewares;
     using TrainsOnline.Api.SoapEndpoints;
-    using TrainsOnline.Api.SpecialPages;
     using TrainsOnline.Common;
 
     //TODO add api key
@@ -46,11 +51,14 @@ namespace TrainsOnline.Api
             //    typeof(Application.Content.DependencyInjection).GetTypeInfo().Assembly
             //    });
 
-            services.AddInfrastructureContent(Configuration, Environment)
-                    .AddPersistenceContent(Configuration, Environment)
+            services.AddInfrastructureContent(Configuration)
+                    .AddPersistenceContent(Configuration)
                     .AddApplicationContent(Configuration, Environment)
-                    .AddApi(Configuration, Environment)
-                    .ConfigureSoapServices();
+                    .AddRestApi()
+                    .AddSoapApiServices();
+
+            services.AddHealthChecks()
+                    .AddDbContextCheck<PKPAppDbContext>();
 
             _services = services;
         }
@@ -67,6 +75,7 @@ namespace TrainsOnline.Api
 
             app.UseEndpoints(endpoints =>
             {
+                //endpoints.MapHealthChecks("/health");
                 endpoints.MapControllers();
                 endpoints.MapSoapServices();
             });
@@ -74,7 +83,6 @@ namespace TrainsOnline.Api
             if (Environment.IsDevelopment() || GlobalAppConfig.DEV_MODE)
             {
                 app.UseDeveloperExceptionPage();
-                app.RegisteredServicesPageX(_services);
             }
             else
             {
@@ -83,8 +91,12 @@ namespace TrainsOnline.Api
                 app.UseHsts();
             }
 
+            app.UseStatusCodePages(StatusCodePageRespone);
+
+            app.ConfigureSpecialPages(Environment, _services);
+
             app.UseCustomExceptionHandler();
-            //app.UseHealthChecks("/health");
+            app.UseHealthChecks("/health");
             app.UseHttpsRedirection();
 
             app.UseForwardedHeaders(new ForwardedHeadersOptions
@@ -93,6 +105,20 @@ namespace TrainsOnline.Api
             });
 
             app.ConfigureSwagger();
+        }
+
+        private static async Task StatusCodePageRespone(StatusCodeContext statusCodeContext)
+        {
+            HttpResponse httpRespone = statusCodeContext.HttpContext.Response;
+            httpRespone.ContentType = MediaTypeNames.Text.Plain;
+
+            string reasonPhrase = ReasonPhrases.GetReasonPhrase(httpRespone.StatusCode);
+
+            string response = $"{GlobalAppConfig.AppInfo.AppName} Error Page\n" +
+                              $"{GlobalAppConfig.AppInfo.AppVersion}\n\n" +
+                              $"Status code: {httpRespone.StatusCode} - {reasonPhrase}";
+
+            await httpRespone.WriteAsync(response);
         }
     }
 }

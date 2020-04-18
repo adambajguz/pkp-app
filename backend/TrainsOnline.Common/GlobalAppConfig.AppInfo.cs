@@ -20,7 +20,7 @@
 
             public static string AppName => "TrainsOnline";
             public static string Author => "Adam Bajguz";
-            public static string AppDevelopmentYear => "2019-2020";
+            public static string AppDevelopmentYear => "2020";
             public static string AppCopyright => $"© {Author} {AppDevelopmentYear}";
             public static string AppNameWithCopyright => $"{AppName} v{AppVersion} — {AppCopyright}";
             public static string SentryReleaseVersion => $"{AppName}-v{AppVersion}";
