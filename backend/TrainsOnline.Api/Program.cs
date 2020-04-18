@@ -9,8 +9,8 @@ namespace TrainsOnline.Api
         public static void Main(string[] args)
         {
             CommandLine.Parser.Default.ParseArguments<RuntimeOptions>(args)
-                     .WithParsed(CoreLogic.Execute)
-                     .WithNotParsed(CoreLogic.HandleOptionsErrors);
+                                      .WithParsed(CoreLogic.Execute)
+                                      .WithNotParsed(CoreLogic.HandleOptionsErrors);
         }
     }
 }

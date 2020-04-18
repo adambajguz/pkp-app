@@ -7,11 +7,8 @@
 
     public static class RegisteredServicesPage
     {
-        public static void RegisteredServicesPageX(this IApplicationBuilder app, IServiceCollection? services)
+        public static void AddRegisteredServicesPage(this IApplicationBuilder app, IServiceCollection services)
         {
-            if (services is null)
-                throw new System.ArgumentNullException(nameof(services));
-
             app.Map("/services", builder => builder.Run(async context =>
             {
                 StringBuilder sb = new StringBuilder();

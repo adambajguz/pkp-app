@@ -4,7 +4,6 @@
     using Infrastructure.DataRights;
     using Infrastructure.UoW;
     using Microsoft.AspNetCore.Authentication.JwtBearer;
-    using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.IdentityModel.Tokens;
@@ -18,7 +17,7 @@
 
     public static class DependencyInjection
     {
-        public static IServiceCollection AddInfrastructureContent(this IServiceCollection services, IConfiguration configuration, IWebHostEnvironment _)
+        public static IServiceCollection AddInfrastructureContent(this IServiceCollection services, IConfiguration configuration)
         {
             //services.AddTransient<IMachineDateTimeService, MachineDateTimeService>();
             //services.AddTransient<ICsvFileBuilderService, CsvFileBuilderService>();
