@@ -17,8 +17,8 @@
         public DocumentBuilder(Stream stream)
         {
             Document = DocumentModel.Load(stream);
-        }  
-        
+        }
+
         public DocumentBuilder(string path)
         {
             Document = DocumentModel.Load(path);
@@ -91,7 +91,7 @@
 
         public byte[] BuildXps()
         {
-            return Build(SaveOptions.XpsDefault); 
+            return Build(SaveOptions.XpsDefault);
         }
 
         private byte[] Build(SaveOptions options)

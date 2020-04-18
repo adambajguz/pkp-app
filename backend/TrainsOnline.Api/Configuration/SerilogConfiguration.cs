@@ -32,19 +32,16 @@
 
 #pragma warning disable CS0162 // Unreachable code detected
             loggerConfiguration.MinimumLevel.Information();
-            string minLogLevel = "Information";
 
             if (GlobalAppConfig.DEV_MODE)
             {
                 if (loggerSettigns.LogEverythingInDev)
                 {
                     loggerConfiguration.MinimumLevel.Verbose();
-                    minLogLevel = "Verbose";
                 }
                 else
                 {
                     loggerConfiguration.MinimumLevel.Debug();
-                    minLogLevel = "Debug";
                 }
             }
 #pragma warning restore CS0162 // Unreachable code detected
@@ -55,15 +52,6 @@
 
             Log.Logger = loggerConfiguration.WriteTo.Async(WriteToFile(loggerSettigns))
                                             .CreateLogger();
-
-#pragma warning disable CS0162 // Unreachable code detected
-            {
-                string mode = GlobalAppConfig.DEV_MODE ? "DEVelopment" : "PRODuction";
-
-                Log.Warning("Server START: {Mode} mode enabled; Minimum log level - {LogLevel}", mode, minLogLevel);
-            }
-
-#pragma warning restore CS0162 // Unreachable code detected
 
             Log.Information($"Config file: {GlobalAppConfig.AppSettingsFileName}");
             Log.Information($"Logs are stored under: {loggerSettigns.FullPath}");

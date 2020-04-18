@@ -9,6 +9,8 @@
 
     public static class ConfigureEndpoints
     {
+        private const string BaseUrl = "/soap-api";
+
         //TODO maybe add auto soap resolver with reflection
         public static IServiceCollection ConfigureSoapServices(this IServiceCollection services)
         {
@@ -23,8 +25,7 @@
 
         public static IEndpointRouteBuilder MapSoapServices(this IEndpointRouteBuilder routes)
         {
-            routes.UseSoapEndpoint<ISampleService>("/service.svc", new BasicHttpBinding(), SoapSerializer.DataContractSerializer);
-            routes.UseSoapEndpoint<ISampleService>("/service.asmx", new BasicHttpBinding(), SoapSerializer.DataContractSerializer);
+            routes.UseSoapEndpoint<ISampleService>(BaseUrl + "/service", new BasicHttpBinding(), SoapSerializer.DataContractSerializer);
 
             return routes;
         }

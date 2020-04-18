@@ -1,4 +1,4 @@
-﻿namespace SPA.Runner.CommandLineOptions
+﻿namespace TrainsOnline.Api.Configuration
 {
     using CommandLine;
 
