@@ -16,15 +16,26 @@
                 throw new ArgumentNullException(nameof(services));
 
             // Register Development pages
-            if (environment.IsDevelopment() || GlobalAppConfig.DEV_MODE)
+            if (GlobalAppConfig.DEV_MODE)
             {
-                app.AddRegisteredServicesPage(services);
+                app.AddSpecialPage<RegisteredServicesPage>(environment, services);
             }
 
+            app.AddSpecialPage<SoapEndpointsPage>(environment, services);
+
             // Register Development and Production pages
-            app.AddSoapEndpointsPage();
+            // Register Development and Production pages
 
             return app;
         }
+
+        public static IApplicationBuilder AddSpecialPage<T>(this IApplicationBuilder app, IWebHostEnvironment environment, IServiceCollection services)
+            where T : SpecialPage, new()
+        {
+            T page = new T();
+            app.Map(page.Route, builder => builder.Run(async context => await page.Render(context, environment, services)));
+
+            return app;
+        }  
     }
 }

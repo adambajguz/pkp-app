@@ -12,7 +12,7 @@
         public static IServiceCollection AddPersistenceContent(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContext<PKPAppDbContext>(options => options.UseSqlServer(configuration.GetConnectionString(GlobalAppConfig.PKPAPP_DB_CONNECTION_STRING_NAME)))
-                    .AddTransient<IPKPAppDbContext>(c => c.GetRequiredService<PKPAppDbContext>());
+                    .AddScoped<IPKPAppDbContext>(c => c.GetRequiredService<PKPAppDbContext>());
 
             return services;
         }

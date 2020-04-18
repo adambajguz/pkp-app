@@ -25,7 +25,7 @@
                 Type @interface = type.GetInterfaces()
                                       .Where(x => x.GetInterfaces()
                                                    .Contains(typeof(ISoapEndpointService)))
-                                      .First();
+                                      .Single();
 
                 string route = type.GetCustomAttribute<SoapRouteAttribute>()?.RouteScheme ?? throw new NullReferenceException($"{nameof(SoapRouteAttribute)} not set in class {type.FullName}");
 
@@ -38,14 +38,14 @@
 
     public class EndpointServiceSpecification
     {
-        public Type Service { get; }
-        public Type Interface { get; }
+        public Type ImplementationType { get; }
+        public Type ServiceType { get; }
         public string RouteScheme { get; }
 
-        public EndpointServiceSpecification(Type service, Type @interface, string routeScheme)
+        public EndpointServiceSpecification(Type implementation, Type @interface, string routeScheme)
         {
-            Service = service;
-            Interface = @interface;
+            ImplementationType = implementation;
+            ServiceType = @interface;
             RouteScheme = routeScheme;
         }
 

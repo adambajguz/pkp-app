@@ -24,7 +24,7 @@
 
             Assembly.GetExecutingAssembly()
                     .GetAllSoapEndpointServicesSpecification()
-                    .ForEach(x => services.AddTransient(x.Interface, x.Service));
+                    .ForEach(x => services.AddTransient(x.ServiceType, x.ImplementationType));
 
 
             return services;
@@ -36,7 +36,7 @@
 
             Assembly.GetExecutingAssembly()
                     .GetAllSoapEndpointServicesSpecification()
-                    .ForEach(x => routes.UseSoapEndpoint(x.Interface,
+                    .ForEach(x => routes.UseSoapEndpoint(x.ServiceType,
                                                          x.ResolveRoute(BaseUrl),
                                                          new BasicHttpBinding(),
                                                          SoapSerializer.DataContractSerializer));

@@ -13,7 +13,7 @@
     using TrainsOnline.Application.User.Queries.GetUserDetails;
     using TrainsOnline.Application.User.Queries.GetUsersList;
 
-    [SoapRoute("[baseUrl]/authentication")]
+    [SoapRoute("[baseUrl]/user")]
     public class UserSoapEndpointService : IUserSoapEndpointService
     {
         protected IMediator Mediator { get; }

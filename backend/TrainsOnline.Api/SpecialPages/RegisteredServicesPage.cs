@@ -1,39 +1,55 @@
 ﻿namespace TrainsOnline.Api.SpecialPages
 {
+    using System.Linq;
     using System.Text;
-    using Microsoft.AspNetCore.Builder;
+    using System.Threading.Tasks;
+    using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Http;
     using Microsoft.Extensions.DependencyInjection;
 
-    public static class RegisteredServicesPage
+    public class RegisteredServicesPage : SpecialPage
     {
-        public static void AddRegisteredServicesPage(this IApplicationBuilder app, IServiceCollection services)
+        public override string Route { get; } = "/services";
+
+        public RegisteredServicesPage()
         {
-            app.Map("/services", builder => builder.Run(async context =>
+
+        }
+
+        public override async Task Render(HttpContext httpContext, IWebHostEnvironment environment, IServiceCollection services)
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.Append("<h1>Registered Services</h1>");
+
+            ServiceDescriptor[] servicesCopy = services.ToArray();
+
+            AddServicesTable(servicesCopy, stringBuilder, ServiceLifetime.Singleton);
+            AddServicesTable(servicesCopy, stringBuilder, ServiceLifetime.Scoped);
+            AddServicesTable(servicesCopy, stringBuilder, ServiceLifetime.Transient);
+
+            await httpContext.Response.WriteAsync(stringBuilder.ToString());
+        }
+
+        private static void AddServicesTable(ServiceDescriptor[] services, StringBuilder sb, ServiceLifetime lifetime)
+        {
+            IOrderedEnumerable<ServiceDescriptor> tmp = services.Where(x => x.Lifetime == lifetime).OrderBy(x => x.ServiceType.FullName);
+
+            sb.Append($"<h2>{lifetime} ({tmp.Count()})</h2>");
+
+            sb.Append("<table border=\"1\"><thead>");
+            sb.Append("<tr><th>Type</th><th>Lifetime</th><th>Instance</th></tr>");
+            sb.Append("</thead><tbody>");
+
+            foreach (ServiceDescriptor x in tmp)
             {
-                StringBuilder sb = new StringBuilder();
-                sb.Append("<h1>Registered Services</h1>");
-                sb.Append("<table><thead>");
-                sb.Append("<tr><th>Type</th><th>Lifetime</th><th>Instance</th></tr>");
-                sb.Append("</thead><tbody>");
+                sb.Append("<tr>");
+                sb.Append($"<td>{x.ServiceType.FullName}</td>");
+                sb.Append($"<td>{x.Lifetime}</td>");
+                sb.Append($"<td>{x.ImplementationType?.FullName}</td>");
+                sb.Append("</tr>");
+            }
 
-                if (services == null)
-                    sb.Append("<tr><td>_services is null</td></tr>");
-                else
-                {
-                    foreach (ServiceDescriptor svc in services)
-                    {
-                        sb.Append("<tr>");
-                        sb.Append($"<td>{svc.ServiceType.FullName}</td>");
-                        sb.Append($"<td>{svc.Lifetime}</td>");
-                        sb.Append($"<td>{svc.ImplementationType?.FullName}</td>");
-                        sb.Append("</tr>");
-                    }
-                }
-                sb.Append("</tbody></table>");
-
-                await context.Response.WriteAsync(sb.ToString());
-            }));
+            sb.Append("</tbody></table>");
         }
     }
 }
