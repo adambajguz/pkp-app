@@ -1,4 +1,4 @@
-﻿namespace TrainsOnline.Api.Configuration
+﻿namespace TrainsOnline.Api.SpecialPages.Core
 {
     using System;
     using Microsoft.AspNetCore.Builder;
@@ -16,11 +16,12 @@
                 throw new ArgumentNullException(nameof(services));
 
             // Register Development pages
-            if (environment.IsDevelopment() || GlobalAppConfig.DEV_MODE)
-            {
-                app.AddRegisteredServicesPage(services);
-            }
+            if (GlobalAppConfig.DEV_MODE)
+                app.AddSpecialPage<RegisteredServicesPage>(environment, services);
 
+            app.AddSpecialPage<SoapEndpointsPage>(environment, services);
+
+            // Register Development and Production pages
             // Register Development and Production pages
 
             return app;

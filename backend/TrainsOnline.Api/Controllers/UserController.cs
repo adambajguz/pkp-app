@@ -14,7 +14,7 @@
     using TrainsOnline.Application.User.Queries.GetUsersList;
     using TrainsOnline.Domain.Jwt;
 
-    [SwaggerTag("Create, update and get user.")]
+    [SwaggerTag("Create, update and get user")]
     public class UserController : BaseController
     {
         [HttpPost("/api/user/register")]

@@ -7,7 +7,7 @@
 
     [ApiController]
     [Route("api/[controller]/[action]")]
-    public class BaseController : Controller
+    public abstract class BaseController : Controller
     {
         private IMediator? _mediator;
         private IDataRightsService? _dataRights;

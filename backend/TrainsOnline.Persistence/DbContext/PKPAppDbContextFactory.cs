@@ -1,4 +1,4 @@
-﻿namespace TrainsOnline.Persistence
+﻿namespace TrainsOnline.Persistence.DbContext
 {
     using Microsoft.EntityFrameworkCore;
     using Persistence.Infrastructure;
