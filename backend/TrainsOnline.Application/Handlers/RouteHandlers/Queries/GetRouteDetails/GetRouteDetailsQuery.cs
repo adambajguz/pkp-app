@@ -2,7 +2,6 @@ namespace TrainsOnline.Application.Handlers.RouteHandlers.Queries.GetRouteDetail
 {
     using System.Threading;
     using System.Threading.Tasks;
-    using Application.Interfaces;
     using AutoMapper;
     using FluentValidation;
     using MediatR;

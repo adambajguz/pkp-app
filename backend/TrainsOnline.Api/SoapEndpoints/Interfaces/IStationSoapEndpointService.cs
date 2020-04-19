@@ -10,10 +10,6 @@
     using TrainsOnline.Application.Handlers.RouteHandlers.Commands.UpdateRoute;
     using TrainsOnline.Application.Handlers.RouteHandlers.Queries.GetRouteDetails;
     using TrainsOnline.Application.Handlers.RouteHandlers.Queries.GetRoutesList;
-    using TrainsOnline.Application.Handlers.StationHandlers.Commands.CreateStation;
-    using TrainsOnline.Application.Handlers.StationHandlers.Commands.UpdateStation;
-    using TrainsOnline.Application.Handlers.StationHandlers.Queries.GetStationDetails;
-    using TrainsOnline.Application.Handlers.StationHandlers.Queries.GetStationsList;
     using TrainsOnline.Domain.Jwt;
 
     [ServiceContract]

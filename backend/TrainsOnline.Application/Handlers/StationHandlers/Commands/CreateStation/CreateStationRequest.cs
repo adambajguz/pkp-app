@@ -1,6 +1,5 @@
 ﻿namespace TrainsOnline.Application.Handlers.StationHandlers.Commands.CreateStation
 {
-    using System;
     using Application.Interfaces.Mapping;
     using AutoMapper;
     using TrainsOnline.Application.DTO;

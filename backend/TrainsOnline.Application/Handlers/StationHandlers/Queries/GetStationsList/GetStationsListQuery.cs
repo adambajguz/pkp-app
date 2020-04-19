@@ -3,7 +3,6 @@
     using System.Threading;
     using System.Threading.Tasks;
     using MediatR;
-    using TrainsOnline.Application.Handlers.RouteHandlers.Queries.GetRouteDetails;
     using TrainsOnline.Application.Handlers.StationHandlers.Queries.GetStationDetails;
     using TrainsOnline.Application.Interfaces.UoW.Generic;
 
