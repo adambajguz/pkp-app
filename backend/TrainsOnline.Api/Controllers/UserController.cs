@@ -17,19 +17,20 @@
     [SwaggerTag("Create, update, and get user")]
     public class UserController : BaseController
     {
-        [HttpPost("/api/user/register")]
+        [HttpPost("/api/user/create")]
         [SwaggerOperation(
-            Summary = "Create (register) new user",
+            Summary = "Create (register) a new user",
             Description = "Creates a new user")]
         [SwaggerResponse(200, "User created", typeof(IdResponse))]
         [SwaggerResponse(400)]
-        public async Task<IActionResult> Registration([FromBody]CreateUserRequest user)
+        [SwaggerResponse(401)]
+        public async Task<IActionResult> CreateUser([FromBody]CreateUserRequest user)
         {
             return Ok(await Mediator.Send(new CreateUserCommand(user)));
         }
 
         [Authorize(Roles = Roles.User)]
-        [HttpGet("/api/user/self")]
+        [HttpGet("/api/user/get-current")]
         [SwaggerOperation(
             Summary = "Get authenticated user details [User]",
             Description = "Gets authenticated user details based on token")]

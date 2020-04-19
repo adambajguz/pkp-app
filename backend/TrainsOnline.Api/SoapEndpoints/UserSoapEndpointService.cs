@@ -26,7 +26,7 @@
             DataRights = dataRights;
         }
 
-        public async Task<IdResponse> Registration(CreateUserRequest user)
+        public async Task<IdResponse> CreateUser(CreateUserRequest user)
         {
             return await Mediator.Send(new CreateUserCommand(user));
         }

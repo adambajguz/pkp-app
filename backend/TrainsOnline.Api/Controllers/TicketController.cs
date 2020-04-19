@@ -46,8 +46,8 @@
         [Authorize(Roles = Roles.User)]
         [HttpPost("/api/ticket/get-document")]
         [SwaggerOperation(
-            Summary = "Get ticket details [User]",
-            Description = "Gets ticket details")]
+            Summary = "Get ticket document [User]",
+            Description = "Gets ticket document")]
         [SwaggerResponse(200, null, typeof(GetTicketDocumentResponse))]
         [SwaggerResponse(400)]
         [SwaggerResponse(401)]
