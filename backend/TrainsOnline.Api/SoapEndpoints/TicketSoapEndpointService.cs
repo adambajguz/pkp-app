@@ -9,7 +9,9 @@
     using TrainsOnline.Application.Handlers.TicketHandlers.Commands.DeleteTicket;
     using TrainsOnline.Application.Handlers.TicketHandlers.Commands.UpdateTicket;
     using TrainsOnline.Application.Handlers.TicketHandlers.Queries.GetTicketDetails;
+    using TrainsOnline.Application.Handlers.TicketHandlers.Queries.GetTicketDocument;
     using TrainsOnline.Application.Handlers.TicketHandlers.Queries.GetTicketsList;
+    using TrainsOnline.Application.Handlers.TicketHandlers.Queries.GetUserTicketsList;
     using TrainsOnline.Application.Interfaces;
 
     [SoapRoute("[baseUrl]/ticket", "Ticket", "Create, update, and get ticket")]
@@ -34,6 +36,11 @@
             return await Mediator.Send(new GetTicketDetailsQuery(id));
         }
 
+        public async Task<GetTicketDocumentResponse> GetTicketDocument(IdRequest id)
+        {
+            return await Mediator.Send(new GetTicketDocumentQuery(id));
+        }
+
         public async Task<Unit> UpdateTicket(UpdateTicketRequest ticket)
         {
             return await Mediator.Send(new UpdateTicketCommand(ticket));
@@ -42,6 +49,11 @@
         public async Task<Unit> DeleteTicket(IdRequest id)
         {
             return await Mediator.Send(new DeleteTicketCommand(id));
+        }
+
+        public async Task<GetTicketsListResponse> GetUserTicketsList(IdRequest id)
+        {
+            return await Mediator.Send(new GetUserTicketsListQuery(id));
         }
 
         public async Task<GetTicketsListResponse> GetTicketsList()
