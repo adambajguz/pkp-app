@@ -15,6 +15,8 @@
         public string? PhoneNumber { get; set; }
         public string? Address { get; set; }
 
+        public bool IsAdmin { get; set; }
+
         void ICustomMapping.CreateMappings(Profile configuration)
         {
             configuration.CreateMap<CreateUserRequest, User>();

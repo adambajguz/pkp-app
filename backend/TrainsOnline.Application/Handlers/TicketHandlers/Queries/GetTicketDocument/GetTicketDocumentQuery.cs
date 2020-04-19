@@ -7,6 +7,7 @@ namespace TrainsOnline.Application.Handlers.TicketHandlers.Queries.GetTicketDocu
     using MediatR;
     using TrainsOnline.Application.DTO;
     using TrainsOnline.Application.Interfaces;
+    using TrainsOnline.Application.Interfaces.Pdf;
     using TrainsOnline.Application.Interfaces.UoW.Generic;
     using TrainsOnline.Domain.Entities;
 
@@ -24,12 +25,14 @@ namespace TrainsOnline.Application.Handlers.TicketHandlers.Queries.GetTicketDocu
             private readonly IPKPAppDbUnitOfWork _uow;
             private readonly IMapper _mapper;
             private readonly IDataRightsService _drs;
+            private readonly IDocumentsService _documents;
 
-            public Handler(IPKPAppDbUnitOfWork uow, IMapper mapper, IDataRightsService drs)
+            public Handler(IPKPAppDbUnitOfWork uow, IMapper mapper, IDataRightsService drs, IDocumentsService documents)
             {
                 _uow = uow;
                 _mapper = mapper;
                 _drs = drs;
+                _documents = documents;
             }
 
             public async Task<GetTicketDocumentResponse> Handle(GetTicketDocumentQuery request, CancellationToken cancellationToken)
@@ -41,7 +44,14 @@ namespace TrainsOnline.Application.Handlers.TicketHandlers.Queries.GetTicketDocu
                 Ticket entity = await _uow.TicketsRepository.GetByIdAsync(data.Id);
                 _drs.ValidateUserId(entity, x => x.UserId);
 
-                return _mapper.Map<GetTicketDocumentResponse>(entity);
+                byte[] document = _documents.NewDocument()
+                                            .AddSection()
+                                            .BuildPdf();
+
+                GetTicketDocumentResponse response = _mapper.Map<GetTicketDocumentResponse>(entity);
+                response.Document = document;
+
+                return response;
             }
         }
     }

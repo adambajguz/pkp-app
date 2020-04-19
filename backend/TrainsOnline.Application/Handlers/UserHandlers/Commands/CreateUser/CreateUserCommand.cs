@@ -24,17 +24,22 @@ namespace TrainsOnline.Application.Handlers.UserHandlers.Commands.CreateUser
             private readonly IPKPAppDbUnitOfWork _uow;
             private readonly IMapper _mapper;
             private readonly IUserManagerService _userManager;
+            private readonly IDataRightsService _drs;
 
-            public Handler(IPKPAppDbUnitOfWork uow, IMapper mapper, IUserManagerService userManager)
+            public Handler(IPKPAppDbUnitOfWork uow, IMapper mapper, IUserManagerService userManager, IDataRightsService drs)
             {
                 _uow = uow;
                 _mapper = mapper;
                 _userManager = userManager;
+                _drs = drs;
             }
 
             public async Task<IdResponse> Handle(CreateUserCommand request, CancellationToken cancellationToken)
             {
                 CreateUserRequest data = request.Data;
+
+                if (data.IsAdmin)
+                    _drs.ValidateIsAdmin();
 
                 await new CreateUserCommandValidator(_uow).ValidateAndThrowAsync(data, cancellationToken: cancellationToken);
 

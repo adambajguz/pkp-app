@@ -18,7 +18,7 @@
     {
         [OperationContract]
         [SoapAuthorize(Roles = Roles.User)]
-        Task<IdResponse> Registration(CreateUserRequest user);
+        Task<IdResponse> CreateUser(CreateUserRequest user);
 
         [OperationContract]
         [SoapAuthorize(Roles = Roles.User)]
