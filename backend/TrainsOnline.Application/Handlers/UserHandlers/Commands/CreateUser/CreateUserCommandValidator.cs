@@ -1,4 +1,4 @@
-﻿namespace TrainsOnline.Application.UserHandlers.Commands.CreateUser
+﻿namespace TrainsOnline.Application.Handlers.UserHandlers.Commands.CreateUser
 {
     using Application.Constants;
     using FluentValidation;

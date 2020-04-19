@@ -1,4 +1,4 @@
-namespace TrainsOnline.Application.UserHandlers.Commands.ChangePassword
+namespace TrainsOnline.Application.Handlers.UserHandlers.Commands.ChangePassword
 {
     using Application.Constants;
     using FluentValidation;

@@ -1,4 +1,4 @@
-﻿namespace TrainsOnline.Application.UserHandlers.Queries.GetUserDetails
+﻿namespace TrainsOnline.Application.Handlers.UserHandlers.Queries.GetUserDetails
 {
     using System;
     using Application.Interfaces.Mapping;

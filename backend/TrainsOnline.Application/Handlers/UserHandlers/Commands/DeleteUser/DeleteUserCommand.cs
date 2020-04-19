@@ -1,4 +1,4 @@
-namespace TrainsOnline.Application.UserHandlers.Commands.DeleteUser
+namespace TrainsOnline.Application.Handlers.UserHandlers.Commands.DeleteUser
 {
     using System.Threading;
     using System.Threading.Tasks;

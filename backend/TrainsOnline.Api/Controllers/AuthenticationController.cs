@@ -1,8 +1,6 @@
 ﻿namespace TrainsOnline.Api.Controllers
 {
     using System.Threading.Tasks;
-    using Application.AuthenticationHandlers.Commands.ResetPassword;
-    using Application.AuthenticationHandlers.Queries.GetResetPasswordToken;
     using Microsoft.AspNetCore.Mvc;
     using Swashbuckle.AspNetCore.Annotations;
     using TrainsOnline.Application.Handlers.AuthenticationHandlers.Commands.ResetPassword;

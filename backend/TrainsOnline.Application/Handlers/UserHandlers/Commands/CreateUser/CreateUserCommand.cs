@@ -1,4 +1,4 @@
-namespace TrainsOnline.Application.UserHandlers.Commands.CreateUser
+namespace TrainsOnline.Application.Handlers.UserHandlers.Commands.CreateUser
 {
     using System.Threading;
     using System.Threading.Tasks;

@@ -5,11 +5,11 @@
     using Microsoft.AspNetCore.Mvc;
     using Swashbuckle.AspNetCore.Annotations;
     using TrainsOnline.Application.DTO;
-    using TrainsOnline.Application.RouteHandlers.Commands.CreateRoute;
-    using TrainsOnline.Application.RouteHandlers.Commands.DeleteRoute;
-    using TrainsOnline.Application.RouteHandlers.Commands.UpdateRoute;
-    using TrainsOnline.Application.RouteHandlers.Queries.GetRouteDetails;
-    using TrainsOnline.Application.RouteHandlers.Queries.GetRoutesList;
+    using TrainsOnline.Application.Handlers.RouteHandlers.Commands.CreateRoute;
+    using TrainsOnline.Application.Handlers.RouteHandlers.Commands.DeleteRoute;
+    using TrainsOnline.Application.Handlers.RouteHandlers.Commands.UpdateRoute;
+    using TrainsOnline.Application.Handlers.RouteHandlers.Queries.GetRouteDetails;
+    using TrainsOnline.Application.Handlers.RouteHandlers.Queries.GetRoutesList;
     using TrainsOnline.Domain.Jwt;
 
     [SwaggerTag("Create, update and get user")]

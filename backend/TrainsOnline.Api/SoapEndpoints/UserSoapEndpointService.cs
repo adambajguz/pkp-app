@@ -5,13 +5,13 @@
     using MediatR;
     using TrainsOnline.Api.SoapEndpoints.Core;
     using TrainsOnline.Application.DTO;
+    using TrainsOnline.Application.Handlers.UserHandlers.Commands.ChangePassword;
+    using TrainsOnline.Application.Handlers.UserHandlers.Commands.CreateUser;
+    using TrainsOnline.Application.Handlers.UserHandlers.Commands.DeleteUser;
+    using TrainsOnline.Application.Handlers.UserHandlers.Commands.UpdateUser;
+    using TrainsOnline.Application.Handlers.UserHandlers.Queries.GetUserDetails;
+    using TrainsOnline.Application.Handlers.UserHandlers.Queries.GetUsersList;
     using TrainsOnline.Application.Interfaces;
-    using TrainsOnline.Application.UserHandlers.Commands.ChangePassword;
-    using TrainsOnline.Application.UserHandlers.Commands.CreateUser;
-    using TrainsOnline.Application.UserHandlers.Commands.DeleteUser;
-    using TrainsOnline.Application.UserHandlers.Commands.UpdateUser;
-    using TrainsOnline.Application.UserHandlers.Queries.GetUserDetails;
-    using TrainsOnline.Application.UserHandlers.Queries.GetUsersList;
 
     [SoapRoute("[baseUrl]/user", "User", "Create, update and get user")]
     public class UserSoapEndpointService : IUserSoapEndpointService

@@ -1,4 +1,4 @@
-namespace TrainsOnline.Application.RouteHandlers.Commands.CreateRoute
+namespace TrainsOnline.Application.Handlers.RouteHandlers.Commands.CreateRoute
 {
     using System.Threading;
     using System.Threading.Tasks;

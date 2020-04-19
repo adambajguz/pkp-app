@@ -1,4 +1,4 @@
-namespace TrainsOnline.Application.UserHandlers.Commands.DeleteUser
+namespace TrainsOnline.Application.Handlers.UserHandlers.Commands.DeleteUser
 {
     using Application.Constants;
     using FluentValidation;

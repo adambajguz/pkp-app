@@ -1,10 +1,10 @@
-﻿namespace TrainsOnline.Application.RouteHandlers.Queries.GetRoutesList
+﻿namespace TrainsOnline.Application.Handlers.RouteHandlers.Queries.GetRoutesList
 {
     using System.Threading;
     using System.Threading.Tasks;
     using MediatR;
+    using TrainsOnline.Application.Handlers.RouteHandlers.Queries.GetRouteDetails;
     using TrainsOnline.Application.Interfaces.UoW.Generic;
-    using TrainsOnline.Application.RouteHandlers.Queries.GetRouteDetails;
 
     public class GetRoutesListQuery : IRequest<GetRoutesListResponse>
     {

@@ -1,4 +1,4 @@
-﻿namespace TrainsOnline.Application.UserHandlers.Queries.GetUsersList
+﻿namespace TrainsOnline.Application.Handlers.UserHandlers.Queries.GetUsersList
 {
     using System;
     using System.Collections.Generic;

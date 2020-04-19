@@ -1,4 +1,4 @@
-namespace TrainsOnline.Application.RouteHandlers.Commands.DeleteRoute
+namespace TrainsOnline.Application.Handlers.RouteHandlers.Commands.DeleteRoute
 {
     using System.Threading;
     using System.Threading.Tasks;

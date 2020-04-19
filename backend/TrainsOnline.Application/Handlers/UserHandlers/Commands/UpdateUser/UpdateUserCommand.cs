@@ -1,4 +1,4 @@
-namespace TrainsOnline.Application.UserHandlers.Commands.UpdateUser
+namespace TrainsOnline.Application.Handlers.UserHandlers.Commands.UpdateUser
 {
     using System.Threading;
     using System.Threading.Tasks;

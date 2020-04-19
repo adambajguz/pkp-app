@@ -1,4 +1,4 @@
-namespace TrainsOnline.Application.RouteHandlers.Queries.GetRouteDetails
+namespace TrainsOnline.Application.Handlers.RouteHandlers.Queries.GetRouteDetails
 {
     using System.Threading;
     using System.Threading.Tasks;

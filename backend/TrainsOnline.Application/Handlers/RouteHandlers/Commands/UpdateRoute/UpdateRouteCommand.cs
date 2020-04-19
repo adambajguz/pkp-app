@@ -1,4 +1,4 @@
-namespace TrainsOnline.Application.RouteHandlers.Commands.UpdateRoute
+namespace TrainsOnline.Application.Handlers.RouteHandlers.Commands.UpdateRoute
 {
     using System.Threading;
     using System.Threading.Tasks;

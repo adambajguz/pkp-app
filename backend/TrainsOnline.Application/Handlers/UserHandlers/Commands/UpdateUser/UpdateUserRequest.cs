@@ -1,4 +1,4 @@
-﻿namespace TrainsOnline.Application.UserHandlers.Commands.UpdateUser
+﻿namespace TrainsOnline.Application.Handlers.UserHandlers.Commands.UpdateUser
 {
     using System;
     using Application.Interfaces.Mapping;
