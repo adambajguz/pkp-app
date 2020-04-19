@@ -8,6 +8,7 @@ namespace TrainsOnline.Application.RouteHandlers.Queries.GetRouteDetails
     using MediatR;
     using TrainsOnline.Application.DTO;
     using TrainsOnline.Application.Interfaces.UoW.Generic;
+    using TrainsOnline.Domain.Entities;
 
     public class GetRouteDetailsQuery : IRequest<GetRouteDetailResponse>
     {
@@ -39,7 +40,7 @@ namespace TrainsOnline.Application.RouteHandlers.Queries.GetRouteDetails
 
                 await new GetRouteDetailsQueryValidator(_uow).ValidateAndThrowAsync(data, cancellationToken: cancellationToken);
 
-                User entity = await _uow.UsersRepository.GetByIdAsync(data.Id);
+                Route entity = await _uow.RoutesRepository.GetByIdAsync(data.Id);
 
                 return _mapper.Map<GetRouteDetailResponse>(entity);
             }

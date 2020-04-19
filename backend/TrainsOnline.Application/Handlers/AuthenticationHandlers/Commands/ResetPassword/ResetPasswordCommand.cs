@@ -1,4 +1,4 @@
-﻿namespace TrainsOnline.Application.Authentication.Commands.ResetPassword
+﻿namespace TrainsOnline.Application.Handlers.AuthenticationHandlers.Commands.ResetPassword
 {
     using System;
     using System.Threading;

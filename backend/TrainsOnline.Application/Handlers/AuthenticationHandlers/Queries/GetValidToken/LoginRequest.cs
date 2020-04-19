@@ -1,4 +1,4 @@
-﻿namespace TrainsOnline.Application.Authentication.Queries.GetValidToken
+﻿namespace TrainsOnline.Application.Handlers.AuthenticationHandlers.Queries.GetValidToken
 {
     using TrainsOnline.Application.DTO;
 

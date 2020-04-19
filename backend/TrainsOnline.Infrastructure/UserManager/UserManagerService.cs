@@ -5,6 +5,7 @@
     using FluentValidation;
     using TrainsOnline.Application.Helpers;
     using TrainsOnline.Application.Interfaces;
+    using TrainsOnline.Domain.Entities;
 
     public class UserManagerService : IUserManagerService
     {

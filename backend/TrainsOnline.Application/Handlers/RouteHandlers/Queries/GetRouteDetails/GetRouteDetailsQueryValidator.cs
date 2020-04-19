@@ -12,7 +12,7 @@
         {
             RuleFor(x => x.Id).NotEmpty().MustAsync(async (request, val, token) =>
             {
-                Route routeResult = await uow.UsersRepository.GetByIdAsync(request.Id);
+                Route routeResult = await uow.RoutesRepository.GetByIdAsync(request.Id);
                 if (routeResult == null)
                     return false;
 

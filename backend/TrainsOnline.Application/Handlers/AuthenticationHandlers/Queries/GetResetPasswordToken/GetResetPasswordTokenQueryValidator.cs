@@ -1,4 +1,4 @@
-﻿namespace TrainsOnline.Application.Authentication.Queries.GetResetPasswordToken
+﻿namespace TrainsOnline.Application.Handlers.AuthenticationHandlers.Queries.GetResetPasswordToken
 {
     using Application.Constants;
     using FluentValidation;
