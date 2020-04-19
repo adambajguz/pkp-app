@@ -12,7 +12,7 @@
     using TrainsOnline.Application.Handlers.StationHandlers.Queries.GetStationsList;
     using TrainsOnline.Domain.Jwt;
 
-    [SwaggerTag("Create, update and get station")]
+    [SwaggerTag("Create, update, and get station")]
     public class StationController : BaseController
     {
         [Authorize(Roles = Roles.Admin)]

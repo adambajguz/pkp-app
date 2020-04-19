@@ -12,7 +12,7 @@
     using TrainsOnline.Application.Handlers.StationHandlers.Queries.GetStationsList;
     using TrainsOnline.Application.Interfaces;
 
-    [SoapRoute("[baseUrl]/station", "Station", "Create, update and get station")]
+    [SoapRoute("[baseUrl]/station", "Station", "Create, update, and get station")]
     public class StationSoapEndpointService : IStationSoapEndpointService
     {
         protected IMediator Mediator { get; }
