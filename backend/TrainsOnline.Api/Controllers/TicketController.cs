@@ -1,5 +1,6 @@
 ﻿namespace TrainsOnline.Api.Controllers
 {
+    using System;
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
@@ -81,6 +82,20 @@
         }
 
         [Authorize(Roles = Roles.User)]
+        [HttpPost("/api/ticket/get-all-current-user")]
+        [SwaggerOperation(
+            Summary = "Get all current user tickets",
+            Description = "Gets a list of all current user tickets [User]")]
+        [SwaggerResponse(200, null, typeof(GetTicketsListResponse))]
+        [SwaggerResponse(401)]
+        public async Task<IActionResult> GetCurrentUserTicketsList()
+        {
+            IdRequest data = new IdRequest((Guid)DataRights.GetUserIdFromContext()!);
+
+            return Ok(await Mediator.Send(new GetUserTicketsListQuery(data)));
+        }
+
+        [Authorize(Roles = Roles.User)]
         [HttpPost("/api/ticket/get-all-user")]
         [SwaggerOperation(
             Summary = "Get all user tickets",
@@ -90,8 +105,8 @@
         public async Task<IActionResult> GetUserTicketsList([FromBody]IdRequest id)
         {
             return Ok(await Mediator.Send(new GetUserTicketsListQuery(id)));
-        }  
-        
+        }
+
         [Authorize(Roles = Roles.Admin)]
         [HttpGet("/api/ticket/get-all")]
         [SwaggerOperation(

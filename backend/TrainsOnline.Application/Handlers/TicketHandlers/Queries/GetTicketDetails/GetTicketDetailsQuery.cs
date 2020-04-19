@@ -6,6 +6,7 @@ namespace TrainsOnline.Application.Handlers.TicketHandlers.Queries.GetTicketDeta
     using FluentValidation;
     using MediatR;
     using TrainsOnline.Application.DTO;
+    using TrainsOnline.Application.Interfaces;
     using TrainsOnline.Application.Interfaces.UoW.Generic;
     using TrainsOnline.Domain.Entities;
 
@@ -22,11 +23,13 @@ namespace TrainsOnline.Application.Handlers.TicketHandlers.Queries.GetTicketDeta
         {
             private readonly IPKPAppDbUnitOfWork _uow;
             private readonly IMapper _mapper;
+            private readonly IDataRightsService _drs;
 
-            public Handler(IPKPAppDbUnitOfWork uow, IMapper mapper)
+            public Handler(IPKPAppDbUnitOfWork uow, IMapper mapper, IDataRightsService drs)
             {
                 _uow = uow;
                 _mapper = mapper;
+                _drs = drs;
             }
 
             public async Task<GetTicketDetailResponse> Handle(GetTicketDetailsQuery request, CancellationToken cancellationToken)
@@ -36,6 +39,7 @@ namespace TrainsOnline.Application.Handlers.TicketHandlers.Queries.GetTicketDeta
                 await new GetTicketDetailsQueryValidator(_uow).ValidateAndThrowAsync(data, cancellationToken: cancellationToken);
 
                 Ticket entity = await _uow.TicketsRepository.GetByIdAsync(data.Id);
+                _drs.ValidateUserId(entity, x => x.UserId);
 
                 return _mapper.Map<GetTicketDetailResponse>(entity);
             }

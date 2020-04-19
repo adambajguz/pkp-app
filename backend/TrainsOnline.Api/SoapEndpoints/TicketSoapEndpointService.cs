@@ -1,5 +1,6 @@
 ﻿namespace TrainsOnline.Api.SoapEndpoints
 {
+    using System;
     using System.Threading.Tasks;
     using MediatR;
     using TrainsOnline.Api.SoapEndpoints.Core;
@@ -49,6 +50,13 @@
         public async Task<Unit> DeleteTicket(IdRequest id)
         {
             return await Mediator.Send(new DeleteTicketCommand(id));
+        }
+
+        public async Task<GetTicketsListResponse> GetCurrentUserTicketsList()
+        {
+            IdRequest data = new IdRequest((Guid)DataRights.GetUserIdFromContext()!);
+
+            return await Mediator.Send(new GetUserTicketsListQuery(data));
         }
 
         public async Task<GetTicketsListResponse> GetUserTicketsList(IdRequest id)

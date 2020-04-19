@@ -6,6 +6,7 @@ namespace TrainsOnline.Application.Handlers.TicketHandlers.Queries.GetTicketDocu
     using FluentValidation;
     using MediatR;
     using TrainsOnline.Application.DTO;
+    using TrainsOnline.Application.Interfaces;
     using TrainsOnline.Application.Interfaces.UoW.Generic;
     using TrainsOnline.Domain.Entities;
 
@@ -22,11 +23,13 @@ namespace TrainsOnline.Application.Handlers.TicketHandlers.Queries.GetTicketDocu
         {
             private readonly IPKPAppDbUnitOfWork _uow;
             private readonly IMapper _mapper;
+            private readonly IDataRightsService _drs;
 
-            public Handler(IPKPAppDbUnitOfWork uow, IMapper mapper)
+            public Handler(IPKPAppDbUnitOfWork uow, IMapper mapper, IDataRightsService drs)
             {
                 _uow = uow;
                 _mapper = mapper;
+                _drs = drs;
             }
 
             public async Task<GetTicketDocumentResponse> Handle(GetTicketDocumentQuery request, CancellationToken cancellationToken)
@@ -36,6 +39,7 @@ namespace TrainsOnline.Application.Handlers.TicketHandlers.Queries.GetTicketDocu
                 await new GetTicketDocumentQueryValidator(_uow).ValidateAndThrowAsync(data, cancellationToken: cancellationToken);
 
                 Ticket entity = await _uow.TicketsRepository.GetByIdAsync(data.Id);
+                _drs.ValidateUserId(entity, x => x.UserId);
 
                 return _mapper.Map<GetTicketDocumentResponse>(entity);
             }

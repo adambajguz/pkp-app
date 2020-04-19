@@ -11,7 +11,6 @@
     using TrainsOnline.Application.Handlers.TicketHandlers.Queries.GetTicketDetails;
     using TrainsOnline.Application.Handlers.TicketHandlers.Queries.GetTicketDocument;
     using TrainsOnline.Application.Handlers.TicketHandlers.Queries.GetTicketsList;
-    using TrainsOnline.Application.Handlers.TicketHandlers.Queries.GetUserTicketsList;
     using TrainsOnline.Domain.Jwt;
 
     [ServiceContract]
@@ -36,6 +35,10 @@
         [SoapAuthorize(Roles = Roles.Admin)]
         [OperationContract]
         Task<Unit> DeleteTicket(IdRequest id);
+
+        [SoapAuthorize(Roles = Roles.User)]
+        [OperationContract]
+        Task<GetTicketsListResponse> GetCurrentUserTicketsList();
 
         [SoapAuthorize(Roles = Roles.User)]
         [OperationContract]
