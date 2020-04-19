@@ -16,7 +16,7 @@ namespace TrainsOnline.Application.User.Commands.DeleteUser
                     return false;
 
                 return true;
-            }).WithMessage(ValidationMessages.Id.IsIncorrectUser);
+            }).WithMessage(ValidationMessages.Id.IsIncorrectId);
         }
 
         public class Model

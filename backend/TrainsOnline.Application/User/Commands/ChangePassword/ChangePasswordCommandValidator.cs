@@ -16,7 +16,7 @@ namespace TrainsOnline.Application.User.Commands.ChangePassword
                     return false;
 
                 return true;
-            }).WithMessage(ValidationMessages.Id.IsIncorrectUser);
+            }).WithMessage(ValidationMessages.Id.IsIncorrectId);
 
             RuleFor(x => x.Data.OldPassword).MustAsync(async (request, val, token) => await _userManager.ValidatePassword(request.User, val))
                                             .WithMessage(ValidationMessages.Password.OldIsIncorrect);

@@ -1,14 +1,15 @@
-namespace TrainsOnline.Application.Authentication.Commands.ResetPassword
+namespace TrainsOnline.Application.Route.Commands.DeleteRoute
 {
     using Application.Constants;
     using Domain.Entities;
     using FluentValidation;
+    using TrainsOnline.Application.DTO;
 
-    public class ResetPasswordCommandValidator : AbstractValidator<ResetPasswordCommandValidator.Model>
+    public class DeleteRouteCommandValidator : AbstractValidator<DeleteRouteCommandValidator.Model>
     {
-        public ResetPasswordCommandValidator()
+        public DeleteRouteCommandValidator()
         {
-            RuleFor(x => x.User.Id).NotEmpty().Must((request, val, token) =>
+            RuleFor(x => x.Data.Id).NotEmpty().Must((request, val, token) =>
             {
                 User userResult = request.User;
                 if (userResult == null)
@@ -20,10 +21,10 @@ namespace TrainsOnline.Application.Authentication.Commands.ResetPassword
 
         public class Model
         {
-            public ResetPasswordRequest Data { get; set; }
+            public IdRequest Data { get; set; }
             public User User { get; set; }
 
-            public Model(ResetPasswordRequest data, User user)
+            public Model(IdRequest data, User user)
             {
                 Data = data;
                 User = user;

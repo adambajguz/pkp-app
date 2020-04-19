@@ -1,4 +1,4 @@
-﻿namespace TrainsOnline.Application.User.Queries.GetUserDetails
+﻿namespace TrainsOnline.Application.Route.Queries.GetRouteDetails
 {
     using Application.Constants;
     using Domain.Entities;
@@ -6,9 +6,9 @@
     using TrainsOnline.Application.DTO;
     using TrainsOnline.Application.Interfaces.UoW.Generic;
 
-    public class GetUserDetailsQueryValidator : AbstractValidator<IdRequest>
+    public class GetRouteDetailsQueryValidator : AbstractValidator<IdRequest>
     {
-        public GetUserDetailsQueryValidator(IPKPAppDbUnitOfWork uow)
+        public GetRouteDetailsQueryValidator(IPKPAppDbUnitOfWork uow)
         {
             RuleFor(x => x.Id).NotEmpty().MustAsync(async (request, val, token) =>
             {

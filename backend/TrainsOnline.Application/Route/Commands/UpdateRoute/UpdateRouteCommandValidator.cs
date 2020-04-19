@@ -1,13 +1,13 @@
-﻿namespace TrainsOnline.Application.User.Commands.UpdateUser
+﻿namespace TrainsOnline.Application.Route.Commands.UpdateRoute
 {
     using Application.Constants;
     using Domain.Entities;
     using FluentValidation;
     using TrainsOnline.Application.Interfaces.UoW.Generic;
 
-    public class UpdateUserCommandValidator : AbstractValidator<UpdateUserCommandValidator.Model>
+    public class UpdateRouteCommandValidator : AbstractValidator<UpdateRouteCommandValidator.Model>
     {
-        public UpdateUserCommandValidator(IPKPAppDbUnitOfWork uow)
+        public UpdateRouteCommandValidator(IPKPAppDbUnitOfWork uow)
         {
             RuleFor(x => x.Data.Id).NotEmpty().Must((request, val, token) =>
             {
@@ -42,10 +42,10 @@
 
         public class Model
         {
-            public UpdateUserRequest Data { get; set; }
+            public UpdateRouteRequest Data { get; set; }
             public User User { get; set; }
 
-            public Model(UpdateUserRequest data, User user)
+            public Model(UpdateRouteRequest data, User user)
             {
                 Data = data;
                 User = user;

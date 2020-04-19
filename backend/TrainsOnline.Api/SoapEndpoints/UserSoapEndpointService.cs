@@ -6,6 +6,11 @@
     using TrainsOnline.Api.SoapEndpoints.Core;
     using TrainsOnline.Application.DTO;
     using TrainsOnline.Application.Interfaces;
+    using TrainsOnline.Application.Route.Commands.CreateRoute;
+    using TrainsOnline.Application.Route.Commands.DeleteRoute;
+    using TrainsOnline.Application.Route.Commands.UpdateRoute;
+    using TrainsOnline.Application.Route.Queries.GetRouteDetails;
+    using TrainsOnline.Application.Route.Queries.GetRoutesList;
     using TrainsOnline.Application.User.Commands.ChangePassword;
     using TrainsOnline.Application.User.Commands.CreateUser;
     using TrainsOnline.Application.User.Commands.DeleteUser;
