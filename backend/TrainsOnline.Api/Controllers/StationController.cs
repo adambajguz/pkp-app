@@ -27,7 +27,7 @@
             return Ok(await Mediator.Send(new CreateStationCommand(station)));
         }
 
-        [HttpPost("/api/route/get")]
+        [HttpPost("/api/station/get")]
         [SwaggerOperation(
             Summary = "Get station details",
             Description = "Gets station details")]
