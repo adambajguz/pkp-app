@@ -12,7 +12,7 @@
     using TrainsOnline.Application.Handlers.RouteHandlers.Queries.GetRoutesList;
     using TrainsOnline.Domain.Jwt;
 
-    [SwaggerTag("Create, update and get user")]
+    [SwaggerTag("Create, update and get route")]
     public class RouteController : BaseController
     {
         [Authorize(Roles = Roles.Admin)]
@@ -22,12 +22,11 @@
             Description = "Creates a new route")]
         [SwaggerResponse(200, "Route created", typeof(IdResponse))]
         [SwaggerResponse(400)]
-        public async Task<IActionResult> Registration([FromBody]CreateRouteRequest route)
+        public async Task<IActionResult> CreateRoute([FromBody]CreateRouteRequest route)
         {
             return Ok(await Mediator.Send(new CreateRouteCommand(route)));
         }
 
-        [Authorize(Roles = Roles.User)]
         [HttpPost("/api/route/get")]
         [SwaggerOperation(
             Summary = "Get route details",
@@ -35,7 +34,7 @@
         [SwaggerResponse(200, null, typeof(GetRouteDetailResponse))]
         [SwaggerResponse(400)]
         [SwaggerResponse(401)]
-        public async Task<IActionResult> GetUserDetails([FromBody]IdRequest id)
+        public async Task<IActionResult> GetRouteDetails([FromBody]IdRequest id)
         {
             return Ok(await Mediator.Send(new GetRouteDetailsQuery(id)));
         }
@@ -47,7 +46,7 @@
             Description = "Updates route details")]
         [SwaggerResponse(200, "Route details updated")]
         [SwaggerResponse(401)]
-        public async Task<IActionResult> UpdateUser([FromBody]UpdateRouteRequest route)
+        public async Task<IActionResult> UpdateRoute([FromBody]UpdateRouteRequest route)
         {
             return Ok(await Mediator.Send(new UpdateRouteCommand(route)));
         }
@@ -60,7 +59,7 @@
         [SwaggerResponse(200, "Route deleted")]
         [SwaggerResponse(400)]
         [SwaggerResponse(401)]
-        public async Task<IActionResult> DeleteUser([FromBody]IdRequest id)
+        public async Task<IActionResult> DeleteRoute([FromBody]IdRequest id)
         {
             return Ok(await Mediator.Send(new DeleteRouteCommand(id)));
         }
@@ -71,7 +70,7 @@
             Description = "Gets a list of all routes")]
         [SwaggerResponse(200, null, typeof(GetRoutesListResponse))]
         [SwaggerResponse(401)]
-        public async Task<IActionResult> GetUsersList()
+        public async Task<IActionResult> GetRoutesList()
         {
             return Ok(await Mediator.Send(new GetRoutesListQuery()));
         }
