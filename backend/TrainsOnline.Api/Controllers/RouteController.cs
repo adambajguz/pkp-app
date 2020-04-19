@@ -18,7 +18,7 @@
         [Authorize(Roles = Roles.Admin)]
         [HttpPost("/api/route/create")]
         [SwaggerOperation(
-            Summary = "Create (register) new route",
+            Summary = "Create new route [Admin]",
             Description = "Creates a new route")]
         [SwaggerResponse(200, "Route created", typeof(IdResponse))]
         [SwaggerResponse(400)]
@@ -42,7 +42,7 @@
         [Authorize(Roles = Roles.Admin)]
         [HttpPost("/api/route/update")]
         [SwaggerOperation(
-            Summary = "Updated route details",
+            Summary = "Updated route details [Admin]",
             Description = "Updates route details")]
         [SwaggerResponse(200, "Route details updated")]
         [SwaggerResponse(401)]
@@ -54,7 +54,7 @@
         [Authorize(Roles = Roles.Admin)]
         [HttpPost("/api/route/delete")]
         [SwaggerOperation(
-            Summary = "Delete route",
+            Summary = "Delete route [Admin]",
             Description = "Deletes route")]
         [SwaggerResponse(200, "Route deleted")]
         [SwaggerResponse(400)]

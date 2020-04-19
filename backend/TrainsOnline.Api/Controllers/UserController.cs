@@ -31,7 +31,7 @@
         [Authorize(Roles = Roles.User)]
         [HttpGet("/api/user/self")]
         [SwaggerOperation(
-            Summary = "Get authenticated user details",
+            Summary = "Get authenticated user details [User]",
             Description = "Gets authenticated user details based on token")]
         [SwaggerResponse(200, null, typeof(GetUserDetailResponse))]
         [SwaggerResponse(400)]
@@ -46,7 +46,7 @@
         [Authorize(Roles = Roles.User)]
         [HttpPost("/api/user/get")]
         [SwaggerOperation(
-            Summary = "Get user details",
+            Summary = "Get user details [User]",
             Description = "Gets user details")]
         [SwaggerResponse(200, null, typeof(GetUserDetailResponse))]
         [SwaggerResponse(400)]
@@ -59,7 +59,7 @@
         [Authorize(Roles = Roles.User)]
         [HttpPost("/api/user/update")]
         [SwaggerOperation(
-            Summary = "Updated user details",
+            Summary = "Updated user details [User]",
             Description = "Updates user details")]
         [SwaggerResponse(200, "User details updated")]
         [SwaggerResponse(401)]
@@ -71,7 +71,7 @@
         [Authorize(Roles = Roles.User)]
         [HttpPost("/api/user/delete")]
         [SwaggerOperation(
-            Summary = "Delete user",
+            Summary = "Delete user [User]",
             Description = "Deletes user")]
         [SwaggerResponse(200, "User deleted")]
         [SwaggerResponse(400)]
@@ -84,7 +84,7 @@
         [Authorize(Roles = Roles.User)]
         [HttpPost("/api/user/change-password")]
         [SwaggerOperation(
-            Summary = "Change user password",
+            Summary = "Change user password [User]",
             Description = "Changes password of an user")]
         [SwaggerResponse(200, "Password changed")]
         [SwaggerResponse(400)]
@@ -94,10 +94,10 @@
             return Ok(await Mediator.Send(new ChangePasswordCommand(user)));
         }
 
-        [Authorize(Roles = Roles.User)]
+        [Authorize(Roles = Roles.Admin)]
         [HttpGet("/api/user/get-all")]
         [SwaggerOperation(
-            Summary = "Get all users",
+            Summary = "Get all users [Admin]",
             Description = "Gets a list of all users")]
         [SwaggerResponse(200, null, typeof(GetUsersListResponse))]
         [SwaggerResponse(401)]

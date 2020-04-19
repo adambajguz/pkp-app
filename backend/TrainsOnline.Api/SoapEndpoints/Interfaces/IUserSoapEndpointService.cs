@@ -41,7 +41,7 @@
         Task<Unit> ChangePassword(ChangePasswordRequest user);
 
         [OperationContract]
-        [SoapAuthorize(Roles = Roles.User)]
+        [SoapAuthorize(Roles = Roles.Admin)]
         Task<GetUsersListResponse> GetUsersList();
     }
 }
