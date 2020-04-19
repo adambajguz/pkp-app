@@ -39,8 +39,8 @@
                     .ForEach(x => routes.UseSoapEndpoint(x.ServiceType,
                                                          x.ResolveRoute(BaseUrl),
                                                          new BasicHttpBinding(),
-                                                         SoapSerializer.DataContractSerializer));
-             
+                                                         SoapSerializer.XmlSerializer));
+
             return routes;
         }
     }

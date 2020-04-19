@@ -6,11 +6,11 @@
         {
             return b ? 1 : 0;
         }
-        
+
         public static char ToChar(this bool b)
         {
             return b ? '1' : '0';
-        }  
+        }
 
         public static char ToCharT(this bool b)
         {

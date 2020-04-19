@@ -12,7 +12,6 @@ namespace TrainsOnline.Api
     using Microsoft.AspNetCore.WebUtilities;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
-    using Microsoft.Extensions.Hosting;
     using Persistence;
     using Serilog;
     using TrainsOnline.Api.Configuration;

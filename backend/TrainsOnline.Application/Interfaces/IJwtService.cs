@@ -12,5 +12,6 @@
 
         Guid GetUserIdFromToken(string token);
         bool IsRoleInToken(string? token, string role);
+        bool IsAnyOfRolesInToken(string? token, string[] roles);
     }
 }

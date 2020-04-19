@@ -1,6 +1,7 @@
 ﻿namespace TrainsOnline.Infrastructure.Jwt
 {
     using System;
+    using System.Collections.Generic;
     using System.IdentityModel.Tokens.Jwt;
     using System.Linq;
     using System.Security.Claims;
@@ -59,6 +60,9 @@
 
         public void ValidateStringToken(string? token)
         {
+            if (string.IsNullOrEmpty(token))
+                throw new ArgumentException("Token is null or empty", nameof(token));
+
             _handler.ValidateToken(token, GetValidationParameters(_key), out _);
         }
 
@@ -115,9 +119,25 @@
                 return false;
 
             JwtSecurityToken jwtToken = _handler.ReadJwtToken(token);
-            System.Collections.Generic.List<Claim> claim = jwtToken.Claims.Where(x => x.Type.Equals("role") || x.Type.Equals(ClaimTypes.Role)).ToList();
+            List<Claim> claims = jwtToken.Claims.Where(x => x.Type.Equals("role") || x.Type.Equals(ClaimTypes.Role)).ToList();
 
-            return claim.FirstOrDefault(x => x.Value.Equals(role)) != null;
+            return claims.FirstOrDefault(x => x.Value.Equals(role)) != null;
+        }      
+        
+        public bool IsAnyOfRolesInToken(string? token, string[] roles)
+        {
+            if (token is null)
+                return false;
+
+            //if (!Roles.IsValidRole(role))
+            //    return false;
+
+            JwtSecurityToken jwtToken = _handler.ReadJwtToken(token);
+            List<Claim> claims = jwtToken.Claims.Where(x => x.Type.Equals("role") || x.Type.Equals(ClaimTypes.Role)).ToList();
+
+            IEnumerable<string> intersection = claims.Select(x => x.Value).Intersect(roles);
+
+            return intersection.Any();
         }
     }
 }
