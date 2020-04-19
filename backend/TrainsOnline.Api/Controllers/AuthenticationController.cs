@@ -1,11 +1,11 @@
 ﻿namespace TrainsOnline.Api.Controllers
 {
     using System.Threading.Tasks;
-    using Application.Authentication.Commands.ResetPassword;
-    using Application.Authentication.Queries.GetResetPasswordToken;
     using Microsoft.AspNetCore.Mvc;
     using Swashbuckle.AspNetCore.Annotations;
-    using TrainsOnline.Application.Authentication.Queries.GetValidToken;
+    using TrainsOnline.Application.Handlers.AuthenticationHandlers.Commands.ResetPassword;
+    using TrainsOnline.Application.Handlers.AuthenticationHandlers.Queries.GetResetPasswordToken;
+    using TrainsOnline.Application.Handlers.AuthenticationHandlers.Queries.GetValidToken;
 
     [SwaggerTag("User authentication and password reset")]
     public class AuthenticationController : BaseController

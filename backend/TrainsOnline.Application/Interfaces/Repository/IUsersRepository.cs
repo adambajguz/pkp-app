@@ -2,7 +2,7 @@
 {
     using System.Threading.Tasks;
     using Application.Interfaces.Repository.Generic;
-    using Domain.Entities;
+    using TrainsOnline.Domain.Entities;
 
     public interface IUsersRepository : IGenericRepository<User>
     {

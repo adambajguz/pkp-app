@@ -7,7 +7,7 @@
     using System.Security.Claims;
     using Microsoft.Extensions.Options;
     using Microsoft.IdentityModel.Tokens;
-    using TrainsOnline.Application.Authentication.Queries.GetValidToken;
+    using TrainsOnline.Application.Handlers.AuthenticationHandlers.Queries.GetValidToken;
     using TrainsOnline.Application.Interfaces;
     using TrainsOnline.Domain.Jwt;
 
@@ -122,8 +122,8 @@
             List<Claim> claims = jwtToken.Claims.Where(x => x.Type.Equals("role") || x.Type.Equals(ClaimTypes.Role)).ToList();
 
             return claims.FirstOrDefault(x => x.Value.Equals(role)) != null;
-        }      
-        
+        }
+
         public bool IsAnyOfRolesInToken(string? token, string[] roles)
         {
             if (token is null)

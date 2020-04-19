@@ -24,15 +24,9 @@
             public const string OldIsIncorrect = "Old password is incorrect";
         }
 
-        public static class User
-        {
-            public const string IsVolumeNotWithinRange = "Volume is not within [0, 1]";
-        }
-
         public static class Id
         {
-            public const string IsIncorrectUser = "Id of User is incorrect";
-            public const string IsIncorrectGameSave = "Id of GameSave is incorrect";
+            public const string IsIncorrectId = "Id is incorrect";
         }
     }
 }
