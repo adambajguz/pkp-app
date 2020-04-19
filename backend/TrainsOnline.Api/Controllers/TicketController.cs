@@ -84,8 +84,8 @@
         [Authorize(Roles = Roles.User)]
         [HttpPost("/api/ticket/get-all-current-user")]
         [SwaggerOperation(
-            Summary = "Get all current user tickets",
-            Description = "Gets a list of all current user tickets [User]")]
+            Summary = "Get all current user tickets [User]",
+            Description = "Gets a list of all current user tickets")]
         [SwaggerResponse(200, null, typeof(GetTicketsListResponse))]
         [SwaggerResponse(401)]
         public async Task<IActionResult> GetCurrentUserTicketsList()
@@ -98,8 +98,8 @@
         [Authorize(Roles = Roles.User)]
         [HttpPost("/api/ticket/get-all-user")]
         [SwaggerOperation(
-            Summary = "Get all user tickets",
-            Description = "Gets a list of all user tickets [User]")]
+            Summary = "Get all user tickets [User]",
+            Description = "Gets a list of all user tickets")]
         [SwaggerResponse(200, null, typeof(GetTicketsListResponse))]
         [SwaggerResponse(401)]
         public async Task<IActionResult> GetUserTicketsList([FromBody]IdRequest id)
@@ -110,8 +110,8 @@
         [Authorize(Roles = Roles.Admin)]
         [HttpGet("/api/ticket/get-all")]
         [SwaggerOperation(
-            Summary = "Get all tickets",
-            Description = "Gets a list of all tickets [Admin]")]
+            Summary = "Get all tickets [Admin]",
+            Description = "Gets a list of all tickets")]
         [SwaggerResponse(200, null, typeof(GetTicketsListResponse))]
         [SwaggerResponse(401)]
         public async Task<IActionResult> GetTicketsList()
