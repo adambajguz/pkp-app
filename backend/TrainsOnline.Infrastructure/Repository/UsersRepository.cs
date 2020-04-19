@@ -6,7 +6,6 @@
     using AutoMapper;
     using Microsoft.EntityFrameworkCore;
     using TrainsOnline.Application.Interfaces.Repository;
-    using TrainsOnline.Domain.Entities;
 
     public class UsersRepository : GenericRepository<User>, IUsersRepository
     {

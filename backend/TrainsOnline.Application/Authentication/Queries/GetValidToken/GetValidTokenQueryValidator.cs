@@ -1,10 +1,10 @@
 ﻿namespace TrainsOnline.Application.Authentication.Queries.GetValidToken
 {
     using Application.Constants;
-    using Domain.Entities;
     using FluentValidation;
     using TrainsOnline.Application.Interfaces;
     using TrainsOnline.Common;
+    using TrainsOnline.Domain.Entities;
 
     public class GetValidTokenQueryValidator : AbstractValidator<GetValidTokenQueryValidator.Model>
     {

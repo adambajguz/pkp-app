@@ -1,22 +1,15 @@
 ﻿namespace TrainsOnline.Api.Controllers
 {
-    using System;
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using Swashbuckle.AspNetCore.Annotations;
     using TrainsOnline.Application.DTO;
-    using TrainsOnline.Application.Route.Commands.CreateRoute;
-    using TrainsOnline.Application.Route.Commands.DeleteRoute;
-    using TrainsOnline.Application.Route.Commands.UpdateRoute;
-    using TrainsOnline.Application.Route.Queries.GetRouteDetails;
-    using TrainsOnline.Application.Route.Queries.GetRoutesList;
-    using TrainsOnline.Application.User.Commands.ChangePassword;
-    using TrainsOnline.Application.User.Commands.CreateUser;
-    using TrainsOnline.Application.User.Commands.DeleteUser;
-    using TrainsOnline.Application.User.Commands.UpdateUser;
-    using TrainsOnline.Application.User.Queries.GetUserDetails;
-    using TrainsOnline.Application.User.Queries.GetUsersList;
+    using TrainsOnline.Application.RouteHandlers.Commands.CreateRoute;
+    using TrainsOnline.Application.RouteHandlers.Commands.DeleteRoute;
+    using TrainsOnline.Application.RouteHandlers.Commands.UpdateRoute;
+    using TrainsOnline.Application.RouteHandlers.Queries.GetRouteDetails;
+    using TrainsOnline.Application.RouteHandlers.Queries.GetRoutesList;
     using TrainsOnline.Domain.Jwt;
 
     [SwaggerTag("Create, update and get user")]

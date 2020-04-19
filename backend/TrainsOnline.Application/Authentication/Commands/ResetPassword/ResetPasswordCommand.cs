@@ -4,12 +4,12 @@
     using System.Threading;
     using System.Threading.Tasks;
     using Application.Exceptions;
-    using Domain.Entities;
     using Domain.Jwt;
     using FluentValidation;
     using MediatR;
     using TrainsOnline.Application.Interfaces;
     using TrainsOnline.Application.Interfaces.UoW.Generic;
+    using TrainsOnline.Domain.Entities;
 
     public class ResetPasswordCommand : IRequest
     {

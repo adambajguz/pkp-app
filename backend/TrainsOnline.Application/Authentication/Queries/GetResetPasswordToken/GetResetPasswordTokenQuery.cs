@@ -3,7 +3,6 @@
     using System;
     using System.Threading;
     using System.Threading.Tasks;
-    using Domain.Entities;
     using Domain.Jwt;
     using FluentValidation;
     using MediatR;
@@ -11,6 +10,7 @@
     using TrainsOnline.Application.Interfaces;
     using TrainsOnline.Application.Interfaces.UoW.Generic;
     using TrainsOnline.Common;
+    using TrainsOnline.Domain.Entities;
 
     public class GetResetPasswordTokenQuery : IRequest<string>
     {
