@@ -18,7 +18,7 @@
 
         void ICustomMapping.CreateMappings(Profile configuration)
         {
-            configuration.CreateMap<CreateRouteRequest, User>();
+            configuration.CreateMap<CreateRouteRequest, Route>();
         }
     }
 }

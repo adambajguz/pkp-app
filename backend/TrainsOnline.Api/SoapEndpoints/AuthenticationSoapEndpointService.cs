@@ -3,6 +3,7 @@
     using System.Threading.Tasks;
     using MediatR;
     using TrainsOnline.Api.SoapEndpoints.Core;
+    using TrainsOnline.Api.SoapEndpoints.Interfaces;
     using TrainsOnline.Application.Handlers.AuthenticationHandlers.Commands.ResetPassword;
     using TrainsOnline.Application.Handlers.AuthenticationHandlers.Queries.GetResetPasswordToken;
     using TrainsOnline.Application.Handlers.AuthenticationHandlers.Queries.GetValidToken;

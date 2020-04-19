@@ -1,4 +1,4 @@
-﻿namespace TrainsOnline.Api.SoapEndpoints
+﻿namespace TrainsOnline.Api.SoapEndpoints.Interfaces
 {
     using System.ServiceModel;
     using System.Threading.Tasks;

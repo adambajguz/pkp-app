@@ -1,4 +1,4 @@
-namespace TrainsOnline.Application.Handlers.RouteHandlers.Queries.GetRouteDetails
+namespace TrainsOnline.Application.Handlers.StationHandlers.Queries.GetStationDetails
 {
     using System.Threading;
     using System.Threading.Tasks;
@@ -10,16 +10,16 @@ namespace TrainsOnline.Application.Handlers.RouteHandlers.Queries.GetRouteDetail
     using TrainsOnline.Application.Interfaces.UoW.Generic;
     using TrainsOnline.Domain.Entities;
 
-    public class GetRouteDetailsQuery : IRequest<GetRouteDetailResponse>
+    public class GetStationDetailsQuery : IRequest<GetStationDetailResponse>
     {
         public IdRequest Data { get; }
 
-        public GetRouteDetailsQuery(IdRequest data)
+        public GetStationDetailsQuery(IdRequest data)
         {
             Data = data;
         }
 
-        public class Handler : IRequestHandler<GetRouteDetailsQuery, GetRouteDetailResponse>
+        public class Handler : IRequestHandler<GetStationDetailsQuery, GetStationDetailResponse>
         {
             private readonly IPKPAppDbUnitOfWork _uow;
             private readonly IMapper _mapper;
@@ -30,15 +30,15 @@ namespace TrainsOnline.Application.Handlers.RouteHandlers.Queries.GetRouteDetail
                 _mapper = mapper;
             }
 
-            public async Task<GetRouteDetailResponse> Handle(GetRouteDetailsQuery request, CancellationToken cancellationToken)
+            public async Task<GetStationDetailResponse> Handle(GetStationDetailsQuery request, CancellationToken cancellationToken)
             {
                 IdRequest data = request.Data;
 
-                await new GetRouteDetailsQueryValidator(_uow).ValidateAndThrowAsync(data, cancellationToken: cancellationToken);
+                await new GetStationDetailsQueryValidator(_uow).ValidateAndThrowAsync(data, cancellationToken: cancellationToken);
 
-                Route entity = await _uow.RoutesRepository.GetByIdAsync(data.Id);
+                Station entity = await _uow.StationsRepository.GetByIdAsync(data.Id);
 
-                return _mapper.Map<GetRouteDetailResponse>(entity);
+                return _mapper.Map<GetStationDetailResponse>(entity);
             }
         }
     }

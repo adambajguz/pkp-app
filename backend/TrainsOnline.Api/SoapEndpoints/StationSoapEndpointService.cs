@@ -17,39 +17,39 @@
     using TrainsOnline.Application.Handlers.StationHandlers.Queries.GetStationsList;
     using TrainsOnline.Application.Interfaces;
 
-    [SoapRoute("[baseUrl]/route", "Route", "Create, update and get route")]
-    public class RouteSoapEndpointService : IRouteSoapEndpointService
+    [SoapRoute("[baseUrl]/station", "Station", "Create, update and get station")]
+    public class StationSoapEndpointService : IStationSoapEndpointService
     {
         protected IMediator Mediator { get; }
         protected IDataRightsService DataRights { get; }
 
-        public RouteSoapEndpointService(IMediator mediator, IDataRightsService dataRights)
+        public StationSoapEndpointService(IMediator mediator, IDataRightsService dataRights)
         {
             Mediator = mediator;
             DataRights = dataRights;
         }
 
-        public async Task<IdResponse> CreateRoute(CreateRouteRequest route)
+        public async Task<IdResponse> CreateStation(CreateRouteRequest route)
         {
             return await Mediator.Send(new CreateRouteCommand(route));
         }
 
-        public async Task<GetRouteDetailResponse> GetRouteDetails(IdRequest id)
+        public async Task<GetRouteDetailResponse> GetStationDetails(IdRequest id)
         {
             return await Mediator.Send(new GetRouteDetailsQuery(id));
         }
 
-        public async Task<Unit> UpdateRoute(UpdateRouteRequest route)
+        public async Task<Unit> UpdateStation(UpdateRouteRequest route)
         {
             return await Mediator.Send(new UpdateRouteCommand(route));
         }
 
-        public async Task<Unit> DeleteRoute(IdRequest id)
+        public async Task<Unit> DeleteStation(IdRequest id)
         {
             return await Mediator.Send(new DeleteRouteCommand(id));
         }
 
-        public async Task<GetRoutesListResponse> GetRoutesList()
+        public async Task<GetRoutesListResponse> GetStationsList()
         {
             return await Mediator.Send(new GetRoutesListQuery());
         }

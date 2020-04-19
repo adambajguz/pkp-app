@@ -1,4 +1,4 @@
-﻿namespace TrainsOnline.Api.SoapEndpoints
+﻿namespace TrainsOnline.Api.SoapEndpoints.Interfaces
 {
     using System.ServiceModel;
     using System.Threading.Tasks;
@@ -10,27 +10,31 @@
     using TrainsOnline.Application.Handlers.RouteHandlers.Commands.UpdateRoute;
     using TrainsOnline.Application.Handlers.RouteHandlers.Queries.GetRouteDetails;
     using TrainsOnline.Application.Handlers.RouteHandlers.Queries.GetRoutesList;
+    using TrainsOnline.Application.Handlers.StationHandlers.Commands.CreateStation;
+    using TrainsOnline.Application.Handlers.StationHandlers.Commands.UpdateStation;
+    using TrainsOnline.Application.Handlers.StationHandlers.Queries.GetStationDetails;
+    using TrainsOnline.Application.Handlers.StationHandlers.Queries.GetStationsList;
     using TrainsOnline.Domain.Jwt;
 
     [ServiceContract]
-    public interface IRouteSoapEndpointService : ISoapEndpointService
+    public interface IStationSoapEndpointService : ISoapEndpointService
     {
         [SoapAuthorize(Roles = Roles.Admin)]
         [OperationContract]
-        Task<IdResponse> CreateRoute(CreateRouteRequest route);
+        Task<IdResponse> CreateStation(CreateRouteRequest route);
 
         [OperationContract]
-        Task<GetRouteDetailResponse> GetRouteDetails(IdRequest id);
-
-        [SoapAuthorize(Roles = Roles.Admin)]
-        [OperationContract]
-        Task<Unit> UpdateRoute(UpdateRouteRequest route);
+        Task<GetRouteDetailResponse> GetStationDetails(IdRequest id);
 
         [SoapAuthorize(Roles = Roles.Admin)]
         [OperationContract]
-        Task<Unit> DeleteRoute(IdRequest id);
+        Task<Unit> UpdateStation(UpdateRouteRequest route);
+
+        [SoapAuthorize(Roles = Roles.Admin)]
+        [OperationContract]
+        Task<Unit> DeleteStation(IdRequest id);
 
         [OperationContract]
-        Task<GetRoutesListResponse> GetRoutesList();
+        Task<GetRoutesListResponse> GetStationsList();
     }
 }

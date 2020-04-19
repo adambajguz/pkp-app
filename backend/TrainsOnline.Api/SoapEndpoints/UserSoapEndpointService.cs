@@ -4,6 +4,7 @@
     using System.Threading.Tasks;
     using MediatR;
     using TrainsOnline.Api.SoapEndpoints.Core;
+    using TrainsOnline.Api.SoapEndpoints.Interfaces;
     using TrainsOnline.Application.DTO;
     using TrainsOnline.Application.Handlers.UserHandlers.Commands.ChangePassword;
     using TrainsOnline.Application.Handlers.UserHandlers.Commands.CreateUser;
