@@ -14,7 +14,6 @@
         public DateTime LastSavedOn { get; set; }
         public Guid? LastSavedBy { get; set; }
 
-
         public string Email { get; set; } = default!;
 
         [AuditIgnore]
