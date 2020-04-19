@@ -34,8 +34,8 @@ namespace TrainsOnline.Application.Handlers.StationHandlers.Commands.UpdateStati
 
                 Station station = await _uow.StationsRepository.GetByIdAsync(data.Id);
 
-                UpdateStationeCommandValidator.Model validationModel = new UpdateStationeCommandValidator.Model(data, station);
-                await new UpdateStationeCommandValidator(_uow).ValidateAndThrowAsync(validationModel, cancellationToken: cancellationToken);
+                UpdateStationCommandValidator.Model validationModel = new UpdateStationCommandValidator.Model(data, station);
+                await new UpdateStationCommandValidator(_uow).ValidateAndThrowAsync(validationModel, cancellationToken: cancellationToken);
 
                 _mapper.Map(data, station);
                 _uow.StationsRepository.Update(station);

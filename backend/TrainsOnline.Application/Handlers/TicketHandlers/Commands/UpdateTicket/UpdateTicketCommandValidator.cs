@@ -1,4 +1,4 @@
-﻿namespace TrainsOnline.Application.Handlers.StationHandlers.Commands.UpdateStation
+﻿namespace TrainsOnline.Application.Handlers.TicketHandlers.Commands.UpdateTicket
 {
     using Domain.Entities;
     using FluentValidation;
@@ -13,13 +13,13 @@
 
         public class Model
         {
-            public UpdateStationRequest Data { get; set; }
-            public Station Station { get; set; }
+            public UpdateTicketRequest Data { get; set; }
+            public Ticket Ticket { get; set; }
 
-            public Model(UpdateStationRequest data, Station station)
+            public Model(UpdateTicketRequest data, Ticket ticket)
             {
                 Data = data;
-                Station = station;
+                Ticket = ticket;
             }
         }
     }
