@@ -9,6 +9,7 @@
     using TrainsOnline.Application.Handlers.TicketHandlers.Commands.CreateTicket;
     using TrainsOnline.Application.Handlers.TicketHandlers.Commands.UpdateTicket;
     using TrainsOnline.Application.Handlers.TicketHandlers.Queries.GetTicketDetails;
+    using TrainsOnline.Application.Handlers.TicketHandlers.Queries.GetTicketDocument;
     using TrainsOnline.Application.Handlers.TicketHandlers.Queries.GetTicketsList;
     using TrainsOnline.Domain.Jwt;
 
@@ -19,8 +20,13 @@
         [OperationContract]
         Task<IdResponse> CreateTicket(CreateTicketRequest ticket);
 
+        [SoapAuthorize(Roles = Roles.User)]
         [OperationContract]
         Task<GetTicketDetailResponse> GetTicketDetails(IdRequest id);
+
+        [SoapAuthorize(Roles = Roles.User)]
+        [OperationContract]
+        Task<GetTicketDocumentResponse> GetTicketDocument(IdRequest id);
 
         [SoapAuthorize(Roles = Roles.Admin)]
         [OperationContract]
@@ -30,6 +36,15 @@
         [OperationContract]
         Task<Unit> DeleteTicket(IdRequest id);
 
+        [SoapAuthorize(Roles = Roles.User)]
+        [OperationContract]
+        Task<GetTicketsListResponse> GetCurrentUserTicketsList();
+
+        [SoapAuthorize(Roles = Roles.User)]
+        [OperationContract]
+        Task<GetTicketsListResponse> GetUserTicketsList(IdRequest id);
+
+        [SoapAuthorize(Roles = Roles.Admin)]
         [OperationContract]
         Task<GetTicketsListResponse> GetTicketsList();
     }

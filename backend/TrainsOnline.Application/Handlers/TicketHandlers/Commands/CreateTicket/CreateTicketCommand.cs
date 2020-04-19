@@ -7,6 +7,7 @@ namespace TrainsOnline.Application.Handlers.TicketHandlers.Commands.CreateTicket
     using FluentValidation;
     using MediatR;
     using TrainsOnline.Application.DTO;
+    using TrainsOnline.Application.Interfaces;
     using TrainsOnline.Application.Interfaces.UoW.Generic;
 
     public class CreateTicketCommand : IRequest<IdResponse>
@@ -22,16 +23,19 @@ namespace TrainsOnline.Application.Handlers.TicketHandlers.Commands.CreateTicket
         {
             private readonly IPKPAppDbUnitOfWork _uow;
             private readonly IMapper _mapper;
+            private readonly IDataRightsService _drs;
 
-            public Handler(IPKPAppDbUnitOfWork uow, IMapper mapper)
+            public Handler(IPKPAppDbUnitOfWork uow, IMapper mapper, IDataRightsService drs)
             {
                 _uow = uow;
                 _mapper = mapper;
+                _drs = drs;
             }
 
             public async Task<IdResponse> Handle(CreateTicketCommand request, CancellationToken cancellationToken)
             {
                 CreateTicketRequest data = request.Data;
+                _drs.ValidateUserId(data, x => x.UserId);
 
                 await new CreateTicketCommandValidator(_uow).ValidateAndThrowAsync(data, cancellationToken: cancellationToken);
 

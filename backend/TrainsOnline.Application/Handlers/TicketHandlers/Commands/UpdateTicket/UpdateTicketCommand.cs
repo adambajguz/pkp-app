@@ -6,6 +6,7 @@ namespace TrainsOnline.Application.Handlers.TicketHandlers.Commands.UpdateTicket
     using Domain.Entities;
     using FluentValidation;
     using MediatR;
+    using TrainsOnline.Application.Interfaces;
     using TrainsOnline.Application.Interfaces.UoW.Generic;
 
     public class UpdateTicketCommand : IRequest
@@ -21,11 +22,13 @@ namespace TrainsOnline.Application.Handlers.TicketHandlers.Commands.UpdateTicket
         {
             private readonly IPKPAppDbUnitOfWork _uow;
             private readonly IMapper _mapper;
+            private readonly IDataRightsService _drs;
 
-            public Handler(IPKPAppDbUnitOfWork uow, IMapper mapper)
+            public Handler(IPKPAppDbUnitOfWork uow, IMapper mapper, IDataRightsService drs)
             {
                 _uow = uow;
                 _mapper = mapper;
+                _drs = drs;
             }
 
             public async Task<Unit> Handle(UpdateTicketCommand request, CancellationToken cancellationToken)
@@ -33,6 +36,7 @@ namespace TrainsOnline.Application.Handlers.TicketHandlers.Commands.UpdateTicket
                 UpdateTicketRequest data = request.Data;
 
                 Ticket ticket = await _uow.TicketsRepository.GetByIdAsync(data.Id);
+                _drs.ValidateUserId(ticket, x => x.UserId);
 
                 UpdateStationeCommandValidator.Model validationModel = new UpdateStationeCommandValidator.Model(data, ticket);
                 await new UpdateStationeCommandValidator(_uow).ValidateAndThrowAsync(validationModel, cancellationToken: cancellationToken);

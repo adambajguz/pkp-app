@@ -1,4 +1,4 @@
-namespace TrainsOnline.Application.Handlers.TicketHandlers.Queries.GetTicketDetails
+namespace TrainsOnline.Application.Handlers.TicketHandlers.Queries.GetTicketDocument
 {
     using System.Threading;
     using System.Threading.Tasks;
@@ -10,16 +10,16 @@ namespace TrainsOnline.Application.Handlers.TicketHandlers.Queries.GetTicketDeta
     using TrainsOnline.Application.Interfaces.UoW.Generic;
     using TrainsOnline.Domain.Entities;
 
-    public class GetTicketDetailsQuery : IRequest<GetTicketDetailResponse>
+    public class GetTicketDocumentQuery : IRequest<GetTicketDocumentResponse>
     {
         public IdRequest Data { get; }
 
-        public GetTicketDetailsQuery(IdRequest data)
+        public GetTicketDocumentQuery(IdRequest data)
         {
             Data = data;
         }
 
-        public class Handler : IRequestHandler<GetTicketDetailsQuery, GetTicketDetailResponse>
+        public class Handler : IRequestHandler<GetTicketDocumentQuery, GetTicketDocumentResponse>
         {
             private readonly IPKPAppDbUnitOfWork _uow;
             private readonly IMapper _mapper;
@@ -32,16 +32,16 @@ namespace TrainsOnline.Application.Handlers.TicketHandlers.Queries.GetTicketDeta
                 _drs = drs;
             }
 
-            public async Task<GetTicketDetailResponse> Handle(GetTicketDetailsQuery request, CancellationToken cancellationToken)
+            public async Task<GetTicketDocumentResponse> Handle(GetTicketDocumentQuery request, CancellationToken cancellationToken)
             {
                 IdRequest data = request.Data;
 
-                await new GetTicketDetailsQueryValidator(_uow).ValidateAndThrowAsync(data, cancellationToken: cancellationToken);
+                await new GetTicketDocumentQueryValidator(_uow).ValidateAndThrowAsync(data, cancellationToken: cancellationToken);
 
                 Ticket entity = await _uow.TicketsRepository.GetByIdAsync(data.Id);
                 _drs.ValidateUserId(entity, x => x.UserId);
 
-                return _mapper.Map<GetTicketDetailResponse>(entity);
+                return _mapper.Map<GetTicketDocumentResponse>(entity);
             }
         }
     }
