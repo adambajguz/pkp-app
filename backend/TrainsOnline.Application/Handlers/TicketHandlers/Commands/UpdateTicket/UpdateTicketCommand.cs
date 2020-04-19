@@ -38,7 +38,7 @@ namespace TrainsOnline.Application.Handlers.TicketHandlers.Commands.UpdateTicket
                 await new UpdateStationeCommandValidator(_uow).ValidateAndThrowAsync(validationModel, cancellationToken: cancellationToken);
 
                 _mapper.Map(data, ticket);
-                _uow.StationsRepository.Update(ticket);
+                _uow.TicketsRepository.Update(ticket);
 
                 await _uow.SaveChangesAsync(cancellationToken);
 

@@ -12,7 +12,7 @@
     using TrainsOnline.Application.Handlers.RouteHandlers.Queries.GetRoutesList;
     using TrainsOnline.Domain.Jwt;
 
-    [SwaggerTag("Create, update and get route")]
+    [SwaggerTag("Create, update, and get route")]
     public class RouteController : BaseController
     {
         [Authorize(Roles = Roles.Admin)]
