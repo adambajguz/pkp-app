@@ -37,7 +37,7 @@
                     .GetAllSoapEndpointServicesSpecification()
                     .ForEach(x => routes.UseSoapEndpoint(x.ServiceType,
                                                          x.ResolveRoute(BaseUrl),
-                                                         new BasicHttpsBinding(BasicHttpsSecurityMode.TransportWithMessageCredential),
+                                                         new BasicHttpsBinding(),
                                                          SoapSerializer.XmlSerializer));
 
             return routes;
