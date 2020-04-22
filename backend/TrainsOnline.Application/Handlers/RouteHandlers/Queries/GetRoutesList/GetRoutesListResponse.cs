@@ -16,8 +16,8 @@
         {
             public Guid Id { get; set; }
 
-            public Guid FromId { get; set; }
-            public Guid ToId { get; set; }
+            //public Guid FromId { get; set; }
+            //public Guid ToId { get; set; }
             public GetStationsListResponse.StationLookupModel From { get; set; } = default!;
             public GetStationsListResponse.StationLookupModel To { get; set; } = default!;
 

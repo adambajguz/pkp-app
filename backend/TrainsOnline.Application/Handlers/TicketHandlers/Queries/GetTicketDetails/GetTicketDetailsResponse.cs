@@ -16,7 +16,7 @@
         public Guid? LastSavedBy { get; set; }
 
         public Guid UserId { get; set; }
-        public Guid RouteId { get; set; }
+        //public Guid RouteId { get; set; }
 
         public TicketRouteDetailsModel Route { get; set; } = default!;
 

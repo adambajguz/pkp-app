@@ -8,8 +8,9 @@
     using TrainsOnline.Application.Handlers.TicketHandlers.Queries.GetTicketsList;
     using TrainsOnline.Application.Interfaces;
     using TrainsOnline.Application.Interfaces.UoW.Generic;
+    using TrainsOnline.Domain.Entities;
 
-    public class GetUserTicketsListQuery : IRequest<GetTicketsListResponse>
+    public class GetUserTicketsListQuery : IRequest<GetUserTicketsListResponse>
     {
         public IdRequest Data { get; }
 
@@ -18,7 +19,7 @@
             Data = data;
         }
 
-        public class Handler : IRequestHandler<GetUserTicketsListQuery, GetTicketsListResponse>
+        public class Handler : IRequestHandler<GetUserTicketsListQuery, GetUserTicketsListResponse>
         {
             private readonly IPKPAppDbUnitOfWork _uow;
             private readonly IDataRightsService _drs;
@@ -30,15 +31,15 @@
 
             }
 
-            public async Task<GetTicketsListResponse> Handle(GetUserTicketsListQuery request, CancellationToken cancellationToken)
+            public async Task<GetUserTicketsListResponse> Handle(GetUserTicketsListQuery request, CancellationToken cancellationToken)
             {
                 _drs.ValidateUserId(request.Data, x => x.Id);
 
                 Guid userId = request.Data.Id;
 
-                return new GetTicketsListResponse
+                return new GetUserTicketsListResponse
                 {
-                    Ticket = await _uow.TicketsRepository.ProjectToAsync<GetTicketsListResponse.TicketLookupModel>(x => x.UserId == userId, cancellationToken: cancellationToken)
+                    Ticket = await _uow.TicketsRepository.ProjectToWithRelatedAsync<GetUserTicketsListResponse.UserTicketLookupModel, Route>(x => x.Route, x => x.UserId == userId, cancellationToken: cancellationToken)
                 };
             }
         }
