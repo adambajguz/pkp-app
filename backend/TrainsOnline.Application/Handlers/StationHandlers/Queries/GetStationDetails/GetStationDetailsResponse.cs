@@ -1,6 +1,7 @@
 ﻿namespace TrainsOnline.Application.Handlers.StationHandlers.Queries.GetStationDetails
 {
     using System;
+    using System.Collections.Generic;
     using Application.Interfaces.Mapping;
     using AutoMapper;
     using Domain.Entities;
@@ -20,9 +21,29 @@
         public double Latitude { get; set; } = default!;
         public double Longitude { get; set; } = default!;
 
+        public ICollection<RouteDeparturesLookupModel> Departures { get; set; } = default!;
+
         void ICustomMapping.CreateMappings(Profile configuration)
         {
             configuration.CreateMap<Station, GetStationDetailsResponse>();
+        }
+
+        public class RouteDeparturesLookupModel : IDataTransferObject, ICustomMapping
+        {
+            public Guid Id { get; set; }
+
+            public Guid ToId { get; set; }
+            public GetStationDetailsResponse To { get; set; } = default!;
+
+            public DateTime DepartureTime { get; set; } = default!;
+            public TimeSpan Duration { get; set; } = default!;
+            public double Distance { get; set; }
+            public double TicketPrice { get; set; }
+
+            void ICustomMapping.CreateMappings(Profile configuration)
+            {
+                configuration.CreateMap<Route, RouteDeparturesLookupModel>();
+            }
         }
     }
 }

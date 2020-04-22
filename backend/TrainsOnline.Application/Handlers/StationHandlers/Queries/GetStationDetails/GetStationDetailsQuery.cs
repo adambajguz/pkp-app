@@ -1,5 +1,6 @@
 namespace TrainsOnline.Application.Handlers.StationHandlers.Queries.GetStationDetails
 {
+    using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
     using AutoMapper;
@@ -35,8 +36,7 @@ namespace TrainsOnline.Application.Handlers.StationHandlers.Queries.GetStationDe
 
                 await new GetStationDetailsQueryValidator(_uow).ValidateAndThrowAsync(data, cancellationToken: cancellationToken);
 
-                Station entity = await _uow.StationsRepository.GetByIdAsync(data.Id);
-
+                Station entity = await _uow.StationsRepository.GetByIdWithRelatedAsync(data.Id, x => x.Departures);
                 return _mapper.Map<GetStationDetailsResponse>(entity);
             }
         }

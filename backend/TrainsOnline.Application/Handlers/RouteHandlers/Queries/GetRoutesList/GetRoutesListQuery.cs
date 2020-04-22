@@ -3,7 +3,6 @@
     using System.Threading;
     using System.Threading.Tasks;
     using MediatR;
-    using Microsoft.AspNetCore.Routing;
     using TrainsOnline.Application.Interfaces.UoW.Generic;
     using TrainsOnline.Domain.Entities;
 
@@ -28,7 +27,7 @@
                 return new GetRoutesListResponse
                 {
                     Routes = await _uow.RoutesRepository.ProjectToWithRelatedAsync<GetRoutesListResponse.RouteLookupModel, Station, Station>(relatedSelector0: x => x.From,
-                                                                                                                                             relatedSelector1: x => x.To, 
+                                                                                                                                             relatedSelector1: x => x.To,
                                                                                                                                              cancellationToken: cancellationToken)
                 };
             }

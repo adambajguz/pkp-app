@@ -11,9 +11,6 @@
         public Guid UserId { get; set; }
         public Guid RouteId { get; set; }
 
-        public double Distance { get; set; } = default!;
-        public TimeSpan Duration { get; set; } = default!;
-
         void ICustomMapping.CreateMappings(Profile configuration)
         {
             configuration.CreateMap<CreateTicketRequest, Ticket>();
