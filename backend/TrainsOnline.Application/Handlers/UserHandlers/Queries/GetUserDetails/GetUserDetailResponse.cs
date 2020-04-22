@@ -29,7 +29,8 @@
 
         void ICustomMapping.CreateMappings(Profile configuration)
         {
-            configuration.CreateMap<User, GetUserDetailResponse>();
+            configuration.CreateMap<User, GetUserDetailResponse>()
+                         .ForMember(dst => dst.Tickets, opt => opt.MapFrom(src => src.Tickets));
         }
     }
 }
