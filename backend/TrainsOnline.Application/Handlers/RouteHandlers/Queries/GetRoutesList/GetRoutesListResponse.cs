@@ -3,9 +3,9 @@
     using System;
     using System.Collections.Generic;
     using AutoMapper;
-    using Microsoft.AspNetCore.Routing;
     using TrainsOnline.Application.DTO;
     using TrainsOnline.Application.Interfaces.Mapping;
+    using TrainsOnline.Domain.Entities;
 
     public class GetRoutesListResponse : IDataTransferObject
     {

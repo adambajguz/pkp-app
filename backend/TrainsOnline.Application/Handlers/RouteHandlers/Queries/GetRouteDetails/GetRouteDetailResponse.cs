@@ -5,6 +5,7 @@
     using AutoMapper;
     using Domain.Entities;
     using TrainsOnline.Application.DTO;
+    using TrainsOnline.Application.Handlers.StationHandlers.Queries.GetStationDetails;
 
     public class GetRouteDetailResponse : IDataTransferObject, ICustomMapping
     {
@@ -17,6 +18,9 @@
 
         public Guid FromId { get; set; }
         public Guid ToId { get; set; }
+
+        public GetStationDetailResponse From { get; set; } = default!;
+        public GetStationDetailResponse To { get; set; } = default!;
 
         public DateTime DepartureTime { get; set; } = default!;
         public TimeSpan Duration { get; set; } = default!;
