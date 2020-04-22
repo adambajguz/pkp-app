@@ -1,6 +1,7 @@
 ﻿namespace TrainsOnline.Api.Controllers
 {
     using System.Threading.Tasks;
+    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Swashbuckle.AspNetCore.Annotations;
     using TrainsOnline.Application.Handlers.AuthenticationHandlers.Commands.ResetPassword;
@@ -14,8 +15,8 @@
         [SwaggerOperation(
             Summary = "Login a user",
             Description = "Authenticates a user")]
-        [SwaggerResponse(200, "User authenticated", typeof(JwtTokenModel))]
-        [SwaggerResponse(400)]
+        [SwaggerResponse(StatusCodes.Status200OK, "User authenticated", typeof(JwtTokenModel))]
+        [SwaggerResponse(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Login([FromBody]LoginRequest model)
         {
             return Ok(await Mediator.Send(new GetValidTokenQuery(model)));
@@ -25,8 +26,8 @@
         [SwaggerOperation(
             Summary = "Send password reset link",
             Description = "Sends e-mail with password reset link")]
-        [SwaggerResponse(200, "Password reset e-mail sent")]
-        [SwaggerResponse(400)]
+        [SwaggerResponse(StatusCodes.Status200OK, "Password reset e-mail sent")]
+        [SwaggerResponse(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> ResetPassword([FromBody]SendResetPasswordRequest request)
         {
             return Ok(await Mediator.Send(new GetResetPasswordTokenQuery(request)));
@@ -36,9 +37,9 @@
         [SwaggerOperation(
             Summary = "Reset user password",
             Description = "Resets user's password using password reset token")]
-        [SwaggerResponse(200, "User password was changed")]
-        [SwaggerResponse(400)]
-        [SwaggerResponse(401)]
+        [SwaggerResponse(StatusCodes.Status200OK, "User password was changed")]
+        [SwaggerResponse(StatusCodes.Status400BadRequest)]
+        [SwaggerResponse(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> ResetPassword([FromBody]ResetPasswordRequest request)
         {
             return Ok(await Mediator.Send(new ResetPasswordCommand(request)));

@@ -3,6 +3,7 @@
     using System;
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Swashbuckle.AspNetCore.Annotations;
     using TrainsOnline.Application.DTO;
@@ -20,10 +21,10 @@
         [HttpPost("/api/user/create")]
         [SwaggerOperation(
             Summary = "Create (register) a new user",
-            Description = "Creates a new user")]
-        [SwaggerResponse(200, "User created", typeof(IdResponse))]
-        [SwaggerResponse(400)]
-        [SwaggerResponse(401)]
+            Description = "Creates a new user (requires [Admin] role to create admin account)")]
+        [SwaggerResponse(StatusCodes.Status200OK, "User created", typeof(IdResponse))]
+        [SwaggerResponse(StatusCodes.Status400BadRequest)]
+        [SwaggerResponse(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> CreateUser([FromBody]CreateUserRequest user)
         {
             return Ok(await Mediator.Send(new CreateUserCommand(user)));
@@ -32,11 +33,10 @@
         [Authorize(Roles = Roles.User)]
         [HttpGet("/api/user/get-current")]
         [SwaggerOperation(
-            Summary = "Get authenticated user details [User]",
+            Summary = "Get authenticated user details [" + Roles.User + "]",
             Description = "Gets authenticated user details based on token")]
-        [SwaggerResponse(200, null, typeof(GetUserDetailResponse))]
-        [SwaggerResponse(400)]
-        [SwaggerResponse(401)]
+        [SwaggerResponse(StatusCodes.Status200OK, null, typeof(GetUserDetailResponse))]
+        [SwaggerResponse(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> GetCurrentUserDetails()
         {
             IdRequest data = new IdRequest((Guid)DataRights.GetUserIdFromContext()!);
@@ -47,11 +47,11 @@
         [Authorize(Roles = Roles.User)]
         [HttpPost("/api/user/get")]
         [SwaggerOperation(
-            Summary = "Get user details [User]",
+            Summary = "Get user details [" + Roles.User + "]",
             Description = "Gets user details")]
-        [SwaggerResponse(200, null, typeof(GetUserDetailResponse))]
-        [SwaggerResponse(400)]
-        [SwaggerResponse(401)]
+        [SwaggerResponse(StatusCodes.Status200OK, null, typeof(GetUserDetailResponse))]
+        [SwaggerResponse(StatusCodes.Status400BadRequest)]
+        [SwaggerResponse(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> GetUserDetails([FromBody]IdRequest id)
         {
             return Ok(await Mediator.Send(new GetUserDetailsQuery(id)));
@@ -60,10 +60,11 @@
         [Authorize(Roles = Roles.User)]
         [HttpPost("/api/user/update")]
         [SwaggerOperation(
-            Summary = "Updated user details [User]",
-            Description = "Updates user details")]
-        [SwaggerResponse(200, "User details updated")]
-        [SwaggerResponse(401)]
+            Summary = "Updated user details [" + Roles.User + "]",
+            Description = "Updates user details (requires [Admin] role to create admin account)")]
+        [SwaggerResponse(StatusCodes.Status200OK, "User details updated")]
+        [SwaggerResponse(StatusCodes.Status400BadRequest)]
+        [SwaggerResponse(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> UpdateUser([FromBody]UpdateUserRequest user)
         {
             return Ok(await Mediator.Send(new UpdateUserCommand(user)));
@@ -72,11 +73,11 @@
         [Authorize(Roles = Roles.User)]
         [HttpPost("/api/user/delete")]
         [SwaggerOperation(
-            Summary = "Delete user [User]",
+            Summary = "Delete user [" + Roles.User + "]",
             Description = "Deletes user")]
-        [SwaggerResponse(200, "User deleted")]
-        [SwaggerResponse(400)]
-        [SwaggerResponse(401)]
+        [SwaggerResponse(StatusCodes.Status200OK, "User deleted")]
+        [SwaggerResponse(StatusCodes.Status400BadRequest)]
+        [SwaggerResponse(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> DeleteUser([FromBody]IdRequest id)
         {
             return Ok(await Mediator.Send(new DeleteUserCommand(id)));
@@ -85,11 +86,11 @@
         [Authorize(Roles = Roles.User)]
         [HttpPost("/api/user/change-password")]
         [SwaggerOperation(
-            Summary = "Change user password [User]",
+            Summary = "Change user password [" + Roles.User + "]",
             Description = "Changes password of an user")]
-        [SwaggerResponse(200, "Password changed")]
-        [SwaggerResponse(400)]
-        [SwaggerResponse(401)]
+        [SwaggerResponse(StatusCodes.Status200OK, "Password changed")]
+        [SwaggerResponse(StatusCodes.Status400BadRequest)]
+        [SwaggerResponse(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> ChangePassword([FromBody]ChangePasswordRequest user)
         {
             return Ok(await Mediator.Send(new ChangePasswordCommand(user)));
@@ -98,10 +99,10 @@
         [Authorize(Roles = Roles.Admin)]
         [HttpGet("/api/user/get-all")]
         [SwaggerOperation(
-            Summary = "Get all users [Admin]",
+            Summary = "Get all users [" + Roles.Admin + "]",
             Description = "Gets a list of all users")]
-        [SwaggerResponse(200, null, typeof(GetUsersListResponse))]
-        [SwaggerResponse(401)]
+        [SwaggerResponse(StatusCodes.Status200OK, null, typeof(GetUsersListResponse))]
+        [SwaggerResponse(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> GetUsersList()
         {
             return Ok(await Mediator.Send(new GetUsersListQuery()));
