@@ -95,6 +95,32 @@
             //return _dbSet.FirstOrDefaultAsync(x => x.Id.Equals(id));
         }
 
+        public virtual async Task<TEntity> GetByIdWithRelatedAsync<TProperty>(Guid id, Expression<Func<TEntity, TProperty>> relatedSelector0)
+        {
+            return await _dbSet.Include(relatedSelector0)
+                               .FirstOrDefaultAsync(x => x.Id.Equals(id));
+        }
+
+        public virtual async Task<TEntity> GetByIdWithRelatedAsync<TProperty>(Guid id, Expression<Func<TEntity, TProperty>> relatedSelector0, Expression<Func<TEntity, TProperty>> relatedSelector1)
+        {
+            return await _dbSet.Include(relatedSelector0)
+                               .Include(relatedSelector1)
+                               .FirstOrDefaultAsync(x => x.Id.Equals(id));
+        }
+
+        public virtual async Task<TEntity> GetByIdWithRelatedAsync<TProperty>(Guid id, Expression<Func<TEntity, TProperty>> relatedSelector0, Expression<Func<TEntity, TProperty>> relatedSelector1, params Expression<Func<TEntity, TProperty>>[] relatedSelectors)
+        {
+            var expr = _dbSet.Include(relatedSelector0)
+                             .Include(relatedSelector1);
+
+            foreach (Expression<Func<TEntity, TProperty>> relatedExpr in relatedSelectors)
+            {
+                expr = expr.Include(relatedExpr);
+            }
+
+            return await expr.FirstOrDefaultAsync(x => x.Id.Equals(id));
+        }
+
         public virtual async Task<TEntity> NoTrackigGetByIdAsync(Guid id)
         {
             return await _dbSet.AsNoTracking().FirstOrDefaultAsync(x => x.Id.Equals(id));

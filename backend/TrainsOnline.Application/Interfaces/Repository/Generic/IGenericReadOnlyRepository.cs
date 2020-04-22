@@ -36,6 +36,13 @@
         Task<TEntity> NoTrackigFirstOrDefaultAsync(CancellationToken cancellationToken = default);
 
         Task<TEntity> GetByIdAsync(Guid id);
+
+        Task<TEntity> GetByIdWithRelatedAsync<TProperty>(Guid id, Expression<Func<TEntity, TProperty>> relatedSelector0);
+        Task<TEntity> GetByIdWithRelatedAsync<TProperty>(Guid id, Expression<Func<TEntity, TProperty>> relatedSelector0,
+                                                                  Expression<Func<TEntity, TProperty>> relatedSelector1);
+        Task<TEntity> GetByIdWithRelatedAsync<TProperty>(Guid id, Expression<Func<TEntity, TProperty>> relatedSelector0,
+                                                                  Expression<Func<TEntity, TProperty>> relatedSelector1,
+                                                                  params Expression<Func<TEntity, TProperty>>[] relatedSelectors);
         Task<TEntity> NoTrackigGetByIdAsync(Guid id);
 
         Task<int> GetCountAsync(Expression<Func<TEntity, bool>>? filter = null);
