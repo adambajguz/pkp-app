@@ -26,12 +26,12 @@
             return await Mediator.Send(new GetValidTokenQuery(model));
         }
 
-        public async Task<string> ResetPassword(SendResetPasswordRequest request)
+        public async Task<string> ResetPasswordStep1(SendResetPasswordRequest request)
         {
             return await Mediator.Send(new GetResetPasswordTokenQuery(request));
         }
 
-        public async Task<Unit> ResetPassword(ResetPasswordRequest request)
+        public async Task<Unit> ResetPasswordStep2(ResetPasswordRequest request)
         {
             return await Mediator.Send(new ResetPasswordCommand(request));
         }

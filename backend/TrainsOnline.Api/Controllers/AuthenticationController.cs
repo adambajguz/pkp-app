@@ -24,23 +24,23 @@
 
         [HttpPost("/api/user/reset-password")]
         [SwaggerOperation(
-            Summary = "Send password reset link",
+            Summary = "Send password reset link (Reset password step 1)",
             Description = "Sends e-mail with password reset link")]
         [SwaggerResponse(StatusCodes.Status200OK, "Password reset e-mail sent")]
         [SwaggerResponse(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> ResetPassword([FromBody]SendResetPasswordRequest request)
+        public async Task<IActionResult> ResetPasswordStep1([FromBody]SendResetPasswordRequest request)
         {
             return Ok(await Mediator.Send(new GetResetPasswordTokenQuery(request)));
         }
 
         [HttpPost("/api/user/reset-password/change")]
         [SwaggerOperation(
-            Summary = "Reset user password",
+            Summary = "Reset user password (Reset password step 2)",
             Description = "Resets user's password using password reset token")]
         [SwaggerResponse(StatusCodes.Status200OK, "User password was changed")]
         [SwaggerResponse(StatusCodes.Status400BadRequest)]
         [SwaggerResponse(StatusCodes.Status401Unauthorized)]
-        public async Task<IActionResult> ResetPassword([FromBody]ResetPasswordRequest request)
+        public async Task<IActionResult> ResetPasswordStep2([FromBody]ResetPasswordRequest request)
         {
             return Ok(await Mediator.Send(new ResetPasswordCommand(request)));
         }

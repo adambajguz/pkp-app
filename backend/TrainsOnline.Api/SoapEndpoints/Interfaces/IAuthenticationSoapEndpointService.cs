@@ -15,9 +15,9 @@
         Task<JwtTokenModel> Login(LoginRequest model);
 
         [OperationContract]
-        Task<Unit> ResetPassword(ResetPasswordRequest request);
+        Task<string> ResetPasswordStep1(SendResetPasswordRequest request);
 
         [OperationContract]
-        Task<string> ResetPassword(SendResetPasswordRequest request);
+        Task<Unit> ResetPasswordStep2(ResetPasswordRequest request);
     }
 }
