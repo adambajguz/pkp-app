@@ -41,7 +41,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TrainsOnline.Persistence", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TrainsOnline.Api", "TrainsOnline.Api\TrainsOnline.Api.csproj", "{D46991C6-E716-4F36-B3CD-3096828C1CD8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrainsOnline.Domain.Abstractions", "TrainsOnline.Domain.Abstractions\TrainsOnline.Domain.Abstractions.csproj", "{5AD9FF81-2602-49EE-8721-6674C8DB73F3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TrainsOnline.Domain.Abstractions", "TrainsOnline.Domain.Abstractions\TrainsOnline.Domain.Abstractions.csproj", "{5AD9FF81-2602-49EE-8721-6674C8DB73F3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -127,10 +127,10 @@ Global
 		{D46991C6-E716-4F36-B3CD-3096828C1CD8}.Release|x86.Build.0 = Release|x86
 		{5AD9FF81-2602-49EE-8721-6674C8DB73F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5AD9FF81-2602-49EE-8721-6674C8DB73F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5AD9FF81-2602-49EE-8721-6674C8DB73F3}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{5AD9FF81-2602-49EE-8721-6674C8DB73F3}.Debug|x64.Build.0 = Debug|Any CPU
-		{5AD9FF81-2602-49EE-8721-6674C8DB73F3}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{5AD9FF81-2602-49EE-8721-6674C8DB73F3}.Debug|x86.Build.0 = Debug|Any CPU
+		{5AD9FF81-2602-49EE-8721-6674C8DB73F3}.Debug|x64.ActiveCfg = Debug|x64
+		{5AD9FF81-2602-49EE-8721-6674C8DB73F3}.Debug|x64.Build.0 = Debug|x64
+		{5AD9FF81-2602-49EE-8721-6674C8DB73F3}.Debug|x86.ActiveCfg = Debug|x86
+		{5AD9FF81-2602-49EE-8721-6674C8DB73F3}.Debug|x86.Build.0 = Debug|x86
 		{5AD9FF81-2602-49EE-8721-6674C8DB73F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5AD9FF81-2602-49EE-8721-6674C8DB73F3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5AD9FF81-2602-49EE-8721-6674C8DB73F3}.Release|x64.ActiveCfg = Release|x64

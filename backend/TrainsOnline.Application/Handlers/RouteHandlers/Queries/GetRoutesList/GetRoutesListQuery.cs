@@ -3,7 +3,6 @@
     using System.Threading;
     using System.Threading.Tasks;
     using MediatR;
-    using TrainsOnline.Application.Handlers.RouteHandlers.Queries.GetRouteDetails;
     using TrainsOnline.Application.Interfaces.UoW.Generic;
 
     public class GetRoutesListQuery : IRequest<GetRoutesListResponse>
@@ -26,7 +25,7 @@
             {
                 return new GetRoutesListResponse
                 {
-                    Routes = await _uow.RoutesRepository.ProjectTo<GetRouteDetailResponse>(cancellationToken: cancellationToken)
+                    Routes = await _uow.RoutesRepository.ProjectTo<GetRoutesListResponse.RouteLookupModel>(cancellationToken: cancellationToken)
                 };
             }
         }

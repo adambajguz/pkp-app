@@ -3,7 +3,6 @@
     using System.Threading;
     using System.Threading.Tasks;
     using MediatR;
-    using TrainsOnline.Application.Handlers.StationHandlers.Queries.GetStationDetails;
     using TrainsOnline.Application.Interfaces.UoW.Generic;
 
     public class GetStationsListQuery : IRequest<GetStationsListResponse>
@@ -26,7 +25,7 @@
             {
                 return new GetStationsListResponse
                 {
-                    Stations = await _uow.StationsRepository.ProjectTo<GetStationDetailResponse>(cancellationToken: cancellationToken)
+                    Stations = await _uow.StationsRepository.ProjectTo<GetStationsListResponse.StationLookupModel>(cancellationToken: cancellationToken)
                 };
             }
         }

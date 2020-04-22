@@ -1,11 +1,30 @@
 ﻿namespace TrainsOnline.Application.Handlers.RouteHandlers.Queries.GetRoutesList
 {
+    using System;
     using System.Collections.Generic;
+    using AutoMapper;
+    using Microsoft.AspNetCore.Routing;
     using TrainsOnline.Application.DTO;
-    using TrainsOnline.Application.Handlers.RouteHandlers.Queries.GetRouteDetails;
+    using TrainsOnline.Application.Interfaces.Mapping;
 
     public class GetRoutesListResponse : IDataTransferObject
     {
-        public IList<GetRouteDetailResponse> Routes { get; set; } = default!;
+        public IList<RouteLookupModel> Routes { get; set; } = default!;
+
+        public class RouteLookupModel : IDataTransferObject, ICustomMapping
+        {
+            public Guid Id { get; set; }
+
+            public Guid FromId { get; set; }
+            public Guid ToId { get; set; }
+
+            public DateTime DepartureTime { get; set; } = default!;
+            public TimeSpan Duration { get; set; } = default!;
+
+            void ICustomMapping.CreateMappings(Profile configuration)
+            {
+                configuration.CreateMap<Route, RouteLookupModel>();
+            }
+        }
     }
 }
