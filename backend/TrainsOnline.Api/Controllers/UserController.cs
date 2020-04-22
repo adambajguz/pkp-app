@@ -35,7 +35,7 @@
         [SwaggerOperation(
             Summary = "Get authenticated user details [" + Roles.User + "]",
             Description = "Gets authenticated user details based on token")]
-        [SwaggerResponse(StatusCodes.Status200OK, null, typeof(GetUserDetailResponse))]
+        [SwaggerResponse(StatusCodes.Status200OK, null, typeof(GetUserDetailsResponse))]
         [SwaggerResponse(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> GetCurrentUserDetails()
         {
@@ -49,7 +49,7 @@
         [SwaggerOperation(
             Summary = "Get user details [" + Roles.User + "]",
             Description = "Gets user details")]
-        [SwaggerResponse(StatusCodes.Status200OK, null, typeof(GetUserDetailResponse))]
+        [SwaggerResponse(StatusCodes.Status200OK, null, typeof(GetUserDetailsResponse))]
         [SwaggerResponse(StatusCodes.Status400BadRequest)]
         [SwaggerResponse(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> GetUserDetails([FromBody]IdRequest id)

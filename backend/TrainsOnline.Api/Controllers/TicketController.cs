@@ -37,7 +37,7 @@
         [SwaggerOperation(
             Summary = "Get ticket details [User]",
             Description = "Gets ticket details")]
-        [SwaggerResponse(StatusCodes.Status200OK, null, typeof(GetTicketDetailResponse))]
+        [SwaggerResponse(StatusCodes.Status200OK, null, typeof(GetTicketDetailsResponse))]
         [SwaggerResponse(StatusCodes.Status400BadRequest)]
         [SwaggerResponse(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> GetTicketDetails([FromBody]IdRequest id)

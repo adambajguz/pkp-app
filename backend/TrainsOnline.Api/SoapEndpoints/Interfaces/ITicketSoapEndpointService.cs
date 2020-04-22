@@ -22,7 +22,7 @@
 
         [SoapAuthorize(Roles = Roles.User)]
         [OperationContract]
-        Task<GetTicketDetailResponse> GetTicketDetails(IdRequest id);
+        Task<GetTicketDetailsResponse> GetTicketDetails(IdRequest id);
 
         [SoapAuthorize(Roles = Roles.User)]
         [OperationContract]

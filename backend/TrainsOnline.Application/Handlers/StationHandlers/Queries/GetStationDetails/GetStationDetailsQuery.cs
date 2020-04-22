@@ -9,7 +9,7 @@ namespace TrainsOnline.Application.Handlers.StationHandlers.Queries.GetStationDe
     using TrainsOnline.Application.Interfaces.UoW.Generic;
     using TrainsOnline.Domain.Entities;
 
-    public class GetStationDetailsQuery : IRequest<GetStationDetailResponse>
+    public class GetStationDetailsQuery : IRequest<GetStationDetailsResponse>
     {
         public IdRequest Data { get; }
 
@@ -18,7 +18,7 @@ namespace TrainsOnline.Application.Handlers.StationHandlers.Queries.GetStationDe
             Data = data;
         }
 
-        public class Handler : IRequestHandler<GetStationDetailsQuery, GetStationDetailResponse>
+        public class Handler : IRequestHandler<GetStationDetailsQuery, GetStationDetailsResponse>
         {
             private readonly IPKPAppDbUnitOfWork _uow;
             private readonly IMapper _mapper;
@@ -29,7 +29,7 @@ namespace TrainsOnline.Application.Handlers.StationHandlers.Queries.GetStationDe
                 _mapper = mapper;
             }
 
-            public async Task<GetStationDetailResponse> Handle(GetStationDetailsQuery request, CancellationToken cancellationToken)
+            public async Task<GetStationDetailsResponse> Handle(GetStationDetailsQuery request, CancellationToken cancellationToken)
             {
                 IdRequest data = request.Data;
 
@@ -37,7 +37,7 @@ namespace TrainsOnline.Application.Handlers.StationHandlers.Queries.GetStationDe
 
                 Station entity = await _uow.StationsRepository.GetByIdAsync(data.Id);
 
-                return _mapper.Map<GetStationDetailResponse>(entity);
+                return _mapper.Map<GetStationDetailsResponse>(entity);
             }
         }
     }

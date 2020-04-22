@@ -32,7 +32,7 @@
             return await Mediator.Send(new CreateTicketCommand(ticket));
         }
 
-        public async Task<GetTicketDetailResponse> GetTicketDetails(IdRequest id)
+        public async Task<GetTicketDetailsResponse> GetTicketDetails(IdRequest id)
         {
             return await Mediator.Send(new GetTicketDetailsQuery(id));
         }

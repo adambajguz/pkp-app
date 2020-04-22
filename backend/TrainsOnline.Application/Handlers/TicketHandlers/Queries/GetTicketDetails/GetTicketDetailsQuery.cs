@@ -10,7 +10,7 @@ namespace TrainsOnline.Application.Handlers.TicketHandlers.Queries.GetTicketDeta
     using TrainsOnline.Application.Interfaces.UoW.Generic;
     using TrainsOnline.Domain.Entities;
 
-    public class GetTicketDetailsQuery : IRequest<GetTicketDetailResponse>
+    public class GetTicketDetailsQuery : IRequest<GetTicketDetailsResponse>
     {
         public IdRequest Data { get; }
 
@@ -19,7 +19,7 @@ namespace TrainsOnline.Application.Handlers.TicketHandlers.Queries.GetTicketDeta
             Data = data;
         }
 
-        public class Handler : IRequestHandler<GetTicketDetailsQuery, GetTicketDetailResponse>
+        public class Handler : IRequestHandler<GetTicketDetailsQuery, GetTicketDetailsResponse>
         {
             private readonly IPKPAppDbUnitOfWork _uow;
             private readonly IMapper _mapper;
@@ -32,7 +32,7 @@ namespace TrainsOnline.Application.Handlers.TicketHandlers.Queries.GetTicketDeta
                 _drs = drs;
             }
 
-            public async Task<GetTicketDetailResponse> Handle(GetTicketDetailsQuery request, CancellationToken cancellationToken)
+            public async Task<GetTicketDetailsResponse> Handle(GetTicketDetailsQuery request, CancellationToken cancellationToken)
             {
                 IdRequest data = request.Data;
 
@@ -41,7 +41,7 @@ namespace TrainsOnline.Application.Handlers.TicketHandlers.Queries.GetTicketDeta
                 Ticket entity = await _uow.TicketsRepository.GetByIdAsync(data.Id);
                 _drs.ValidateUserId(entity, x => x.UserId);
 
-                return _mapper.Map<GetTicketDetailResponse>(entity);
+                return _mapper.Map<GetTicketDetailsResponse>(entity);
             }
         }
     }

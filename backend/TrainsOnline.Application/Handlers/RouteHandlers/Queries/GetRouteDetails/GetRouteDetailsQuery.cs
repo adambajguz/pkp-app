@@ -9,7 +9,7 @@ namespace TrainsOnline.Application.Handlers.RouteHandlers.Queries.GetRouteDetail
     using TrainsOnline.Application.Interfaces.UoW.Generic;
     using TrainsOnline.Domain.Entities;
 
-    public class GetRouteDetailsQuery : IRequest<GetRouteDetailResponse>
+    public class GetRouteDetailsQuery : IRequest<GetRouteDetailsResponse>
     {
         public IdRequest Data { get; }
 
@@ -18,7 +18,7 @@ namespace TrainsOnline.Application.Handlers.RouteHandlers.Queries.GetRouteDetail
             Data = data;
         }
 
-        public class Handler : IRequestHandler<GetRouteDetailsQuery, GetRouteDetailResponse>
+        public class Handler : IRequestHandler<GetRouteDetailsQuery, GetRouteDetailsResponse>
         {
             private readonly IPKPAppDbUnitOfWork _uow;
             private readonly IMapper _mapper;
@@ -29,7 +29,7 @@ namespace TrainsOnline.Application.Handlers.RouteHandlers.Queries.GetRouteDetail
                 _mapper = mapper;
             }
 
-            public async Task<GetRouteDetailResponse> Handle(GetRouteDetailsQuery request, CancellationToken cancellationToken)
+            public async Task<GetRouteDetailsResponse> Handle(GetRouteDetailsQuery request, CancellationToken cancellationToken)
             {
                 IdRequest data = request.Data;
 
@@ -37,7 +37,7 @@ namespace TrainsOnline.Application.Handlers.RouteHandlers.Queries.GetRouteDetail
 
                 Route entity = await _uow.RoutesRepository.GetByIdWithRelatedAsync(data.Id, x => x.From, x => x.To);
 
-                return _mapper.Map<GetRouteDetailResponse>(entity);
+                return _mapper.Map<GetRouteDetailsResponse>(entity);
             }
         }
     }
