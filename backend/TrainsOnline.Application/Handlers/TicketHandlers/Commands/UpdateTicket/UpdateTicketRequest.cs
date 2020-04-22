@@ -10,9 +10,6 @@
     {
         public Guid Id { get; set; }
 
-        public virtual Route Route { get; set; } = default!;
-        public virtual User User { get; set; } = default!;
-
         public double Distance { get; set; } = default!;
         public TimeSpan Duration { get; set; } = default!;
 

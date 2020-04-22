@@ -29,8 +29,8 @@
         {
             public Guid Id { get; set; }
 
-            public Guid FromId { get; set; }
-            public Guid ToId { get; set; }
+            //public Guid FromId { get; set; }
+            //public Guid ToId { get; set; }
 
             public TicketStationDetailsModel From { get; set; } = default!;
             public TicketStationDetailsModel To { get; set; } = default!;
