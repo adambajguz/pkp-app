@@ -33,7 +33,7 @@
         [SwaggerOperation(
             Summary = "Get route details",
             Description = "Gets route details")]
-        [SwaggerResponse(StatusCodes.Status200OK, null, typeof(GetRouteDetailResponse))]
+        [SwaggerResponse(StatusCodes.Status200OK, null, typeof(GetRouteDetailsResponse))]
         [SwaggerResponse(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> GetRouteDetails([FromBody]IdRequest id)
         {

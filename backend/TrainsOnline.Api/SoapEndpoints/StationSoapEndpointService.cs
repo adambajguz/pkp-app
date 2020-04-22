@@ -29,7 +29,7 @@
             return await Mediator.Send(new CreateStationCommand(station));
         }
 
-        public async Task<GetStationDetailResponse> GetStationDetails(IdRequest id)
+        public async Task<GetStationDetailsResponse> GetStationDetails(IdRequest id)
         {
             return await Mediator.Send(new GetStationDetailsQuery(id));
         }

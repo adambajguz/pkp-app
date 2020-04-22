@@ -20,7 +20,7 @@
         Task<IdResponse> CreateStation(CreateStationRequest station);
 
         [OperationContract]
-        Task<GetStationDetailResponse> GetStationDetails(IdRequest id);
+        Task<GetStationDetailsResponse> GetStationDetails(IdRequest id);
 
         [SoapAuthorize(Roles = Roles.Admin)]
         [OperationContract]

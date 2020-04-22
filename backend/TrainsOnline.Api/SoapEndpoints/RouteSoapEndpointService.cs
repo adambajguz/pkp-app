@@ -29,7 +29,7 @@
             return await Mediator.Send(new CreateRouteCommand(route));
         }
 
-        public async Task<GetRouteDetailResponse> GetRouteDetails(IdRequest id)
+        public async Task<GetRouteDetailsResponse> GetRouteDetails(IdRequest id)
         {
             return await Mediator.Send(new GetRouteDetailsQuery(id));
         }

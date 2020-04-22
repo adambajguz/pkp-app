@@ -33,7 +33,7 @@
         [SwaggerOperation(
             Summary = "Get station details",
             Description = "Gets station details")]
-        [SwaggerResponse(StatusCodes.Status200OK, null, typeof(GetStationDetailResponse))]
+        [SwaggerResponse(StatusCodes.Status200OK, null, typeof(GetStationDetailsResponse))]
         [SwaggerResponse(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> GetStationDetails([FromBody]IdRequest id)
         {

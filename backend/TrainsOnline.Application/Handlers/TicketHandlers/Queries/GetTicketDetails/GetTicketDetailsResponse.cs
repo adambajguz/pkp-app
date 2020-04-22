@@ -1,4 +1,4 @@
-﻿namespace TrainsOnline.Application.Handlers.StationHandlers.Queries.GetStationDetails
+﻿namespace TrainsOnline.Application.Handlers.TicketHandlers.Queries.GetTicketDetails
 {
     using System;
     using Application.Interfaces.Mapping;
@@ -6,7 +6,7 @@
     using Domain.Entities;
     using TrainsOnline.Application.DTO;
 
-    public class GetStationDetailResponse : IDataTransferObject, ICustomMapping
+    public class GetTicketDetailsResponse : IDataTransferObject, ICustomMapping
     {
         public Guid Id { get; set; }
 
@@ -15,14 +15,12 @@
         public DateTime LastSavedOn { get; set; }
         public Guid? LastSavedBy { get; set; }
 
-        public string Name { get; set; } = default!;
-
-        public double Latitude { get; set; } = default!;
-        public double Longitude { get; set; } = default!;
+        public Guid UserId { get; set; }
+        public Guid RouteId { get; set; }
 
         void ICustomMapping.CreateMappings(Profile configuration)
         {
-            configuration.CreateMap<Station, GetStationDetailResponse>();
+            configuration.CreateMap<Ticket, GetTicketDetailsResponse>();
         }
     }
 }

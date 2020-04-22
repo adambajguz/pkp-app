@@ -20,7 +20,7 @@
         Task<IdResponse> CreateRoute(CreateRouteRequest route);
 
         [OperationContract]
-        Task<GetRouteDetailResponse> GetRouteDetails(IdRequest id);
+        Task<GetRouteDetailsResponse> GetRouteDetails(IdRequest id);
 
         [SoapAuthorize(Roles = Roles.Admin)]
         [OperationContract]

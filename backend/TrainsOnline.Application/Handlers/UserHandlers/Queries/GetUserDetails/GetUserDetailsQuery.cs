@@ -10,7 +10,7 @@ namespace TrainsOnline.Application.Handlers.UserHandlers.Queries.GetUserDetails
     using TrainsOnline.Application.Interfaces.UoW.Generic;
     using TrainsOnline.Domain.Entities;
 
-    public class GetUserDetailsQuery : IRequest<GetUserDetailResponse>
+    public class GetUserDetailsQuery : IRequest<GetUserDetailsResponse>
     {
         public IdRequest Data { get; }
 
@@ -19,7 +19,7 @@ namespace TrainsOnline.Application.Handlers.UserHandlers.Queries.GetUserDetails
             Data = data;
         }
 
-        public class Handler : IRequestHandler<GetUserDetailsQuery, GetUserDetailResponse>
+        public class Handler : IRequestHandler<GetUserDetailsQuery, GetUserDetailsResponse>
         {
             private readonly IPKPAppDbUnitOfWork _uow;
             private readonly IMapper _mapper;
@@ -32,7 +32,7 @@ namespace TrainsOnline.Application.Handlers.UserHandlers.Queries.GetUserDetails
                 _drs = drs;
             }
 
-            public async Task<GetUserDetailResponse> Handle(GetUserDetailsQuery request, CancellationToken cancellationToken)
+            public async Task<GetUserDetailsResponse> Handle(GetUserDetailsQuery request, CancellationToken cancellationToken)
             {
                 IdRequest data = request.Data;
 
@@ -42,7 +42,7 @@ namespace TrainsOnline.Application.Handlers.UserHandlers.Queries.GetUserDetails
 
                 User entity = await _uow.UsersRepository.GetByIdAsync(data.Id);
 
-                return _mapper.Map<GetUserDetailResponse>(entity);
+                return _mapper.Map<GetUserDetailsResponse>(entity);
             }
         }
     }

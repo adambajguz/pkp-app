@@ -31,14 +31,14 @@
             return await Mediator.Send(new CreateUserCommand(user));
         }
 
-        public async Task<GetUserDetailResponse> GetCurrentUserDetails()
+        public async Task<GetUserDetailsResponse> GetCurrentUserDetails()
         {
             IdRequest data = new IdRequest((Guid)DataRights.GetUserIdFromContext()!);
 
             return await Mediator.Send(new GetUserDetailsQuery(data));
         }
 
-        public async Task<GetUserDetailResponse> GetUserDetails(IdRequest id)
+        public async Task<GetUserDetailsResponse> GetUserDetails(IdRequest id)
         {
             return await Mediator.Send(new GetUserDetailsQuery(id));
         }

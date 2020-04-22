@@ -22,11 +22,11 @@
 
         [OperationContract]
         [SoapAuthorize(Roles = Roles.User)]
-        Task<GetUserDetailResponse> GetCurrentUserDetails();
+        Task<GetUserDetailsResponse> GetCurrentUserDetails();
 
         [OperationContract]
         [SoapAuthorize(Roles = Roles.User)]
-        Task<GetUserDetailResponse> GetUserDetails(IdRequest id);
+        Task<GetUserDetailsResponse> GetUserDetails(IdRequest id);
 
         [OperationContract]
         [SoapAuthorize(Roles = Roles.User)]

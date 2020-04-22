@@ -6,7 +6,7 @@
     using TrainsOnline.Application.DTO;
     using TrainsOnline.Domain.Entities;
 
-    public class GetUserDetailResponse : IDataTransferObject, ICustomMapping
+    public class GetUserDetailsResponse : IDataTransferObject, ICustomMapping
     {
         public Guid Id { get; set; }
         public DateTime CreatedOn { get; set; }
@@ -25,7 +25,7 @@
 
         void ICustomMapping.CreateMappings(Profile configuration)
         {
-            configuration.CreateMap<User, GetUserDetailResponse>();
+            configuration.CreateMap<User, GetUserDetailsResponse>();
         }
     }
 }
