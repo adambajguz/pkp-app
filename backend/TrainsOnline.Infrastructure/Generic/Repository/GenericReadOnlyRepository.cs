@@ -142,39 +142,39 @@
             return await GetQueryable(filter).AnyAsync();
         }
 
-        public virtual async Task<IList<T>> ProjectToAsync<T>(Expression<Func<TEntity, bool>>? filter = null,
+        public virtual async Task<List<T>> ProjectToAsync<T>(Expression<Func<TEntity, bool>>? filter = null,
                                                               Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>>? orderBy = null,
                                                               CancellationToken cancellationToken = default)
         {
             return await GetQueryable(filter, orderBy).ProjectTo<T>(_mapper.ConfigurationProvider).ToListAsync(cancellationToken);
         }
 
-        public virtual async Task<IList<T>> ProjectToWithRelatedAsync<T, TProperty0>(Expression<Func<TEntity, TProperty0>> relatedSelector0,
-                                                                                     Expression<Func<TEntity, bool>>? filter = null,
-                                                                                     Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>>? orderBy = null,
-                                                                                     CancellationToken cancellationToken = default)
+        public virtual async Task<List<T>> ProjectToWithRelatedAsync<T, TProperty0>(Expression<Func<TEntity, TProperty0>> relatedSelector0,
+                                                                                    Expression<Func<TEntity, bool>>? filter = null,
+                                                                                    Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>>? orderBy = null,
+                                                                                    CancellationToken cancellationToken = default)
         {
             return await GetQueryable(filter, orderBy).Include(relatedSelector0)
                                                       .ProjectTo<T>(_mapper.ConfigurationProvider).ToListAsync(cancellationToken);
         }
 
-        public virtual async Task<IList<T>> ProjectToWithRelatedAsync<T, TProperty0, TProperty1>(Expression<Func<TEntity, TProperty0>> relatedSelector0,
-                                                                                                 Expression<Func<TEntity, TProperty1>> relatedSelector1,
-                                                                                                 Expression<Func<TEntity, bool>>? filter = null,
-                                                                                                 Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>>? orderBy = null,
-                                                                                                 CancellationToken cancellationToken = default)
+        public virtual async Task<List<T>> ProjectToWithRelatedAsync<T, TProperty0, TProperty1>(Expression<Func<TEntity, TProperty0>> relatedSelector0,
+                                                                                                Expression<Func<TEntity, TProperty1>> relatedSelector1,
+                                                                                                Expression<Func<TEntity, bool>>? filter = null,
+                                                                                                Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>>? orderBy = null,
+                                                                                                CancellationToken cancellationToken = default)
         {
             return await GetQueryable(filter, orderBy).Include(relatedSelector0)
                                                       .Include(relatedSelector1)
                                                       .ProjectTo<T>(_mapper.ConfigurationProvider).ToListAsync(cancellationToken);
         }
 
-        public virtual async Task<IList<T>> ProjectToWithRelatedAsync<T, TProperty0, TProperty1>(Expression<Func<TEntity, TProperty0>> relatedSelector0,
-                                                                                    Expression<Func<TEntity, TProperty1>> relatedSelector1,
-                                                                                    Expression<Func<TEntity, bool>>? filter = null,
-                                                                                    Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>>? orderBy = null,
-                                                                                    CancellationToken cancellationToken = default,
-                                                                                    params Expression<Func<TEntity, object>>[] relatedSelectors)
+        public virtual async Task<List<T>> ProjectToWithRelatedAsync<T, TProperty0, TProperty1>(Expression<Func<TEntity, TProperty0>> relatedSelector0,
+                                                                                                Expression<Func<TEntity, TProperty1>> relatedSelector1,
+                                                                                                Expression<Func<TEntity, bool>>? filter = null,
+                                                                                                Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>>? orderBy = null,
+                                                                                                CancellationToken cancellationToken = default,
+                                                                                                params Expression<Func<TEntity, object>>[] relatedSelectors)
         {
             IQueryable<TEntity> expr = GetQueryable(filter, orderBy).Include(relatedSelector0)
                                                                     .Include(relatedSelector1);
