@@ -1,0 +1,1668 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="8c2bed23-0352-47ef-9db9-1341b6a3a649" activeEnvironment="Default" name="http://localhost:2138/soap-api" resourceRoot="" soapui-version="5.5.0" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="713ffad8-0fc8-41d1-9e26-0d1e3a60593c" wsaVersion="NONE" name="authentication" type="wsdl" bindingName="{http://tempuri.org/}BasicHttpBinding" soapVersion="1_1" anonymous="optional" definition="http://localhost:2138/soap-api/authentication" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:2138/soap-api/authentication"><con:part><con:url>http://localhost:2138/soap-api/authentication</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://tempuri.org/" name="IAuthenticationSoapEndpointService" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://tempuri.org/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:http="http://schemas.microsoft.com/ws/06/2004/policy/http" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays"/>
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/System"/>
+      <xsd:element name="Login">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" name="model" type="tns:LoginRequest"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="LoginResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" name="LoginResult" type="tns:JwtTokenModel"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="ResetPasswordStep1">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" name="request" type="tns:SendResetPasswordRequest"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="ResetPasswordStep1Response">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" name="ResetPasswordStep1Result" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="ResetPasswordStep2">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" name="request" type="tns:ResetPasswordRequest"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="ResetPasswordStep2Response">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" name="ResetPasswordStep2Result" type="tns:Unit"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="LoginRequest">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="1" name="Email" type="xsd:string"/>
+          <xsd:element minOccurs="0" maxOccurs="1" name="Password" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="JwtTokenModel">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="1" name="Token" type="xsd:string"/>
+          <xsd:element minOccurs="1" maxOccurs="1" name="Lease" type="xsd:duration"/>
+          <xsd:element minOccurs="1" maxOccurs="1" name="ValidTo" type="xsd:dateTime"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="SendResetPasswordRequest">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="1" name="Email" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ResetPasswordRequest">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="1" name="Token" type="xsd:string"/>
+          <xsd:element minOccurs="0" maxOccurs="1" name="Password" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="Unit">
+        <xsd:sequence/>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IAuthenticationSoapEndpointService_Login_InputMessage">
+    <wsdl:part name="parameters" element="tns:Login"/>
+  </wsdl:message>
+  <wsdl:message name="IAuthenticationSoapEndpointService_Login_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoginResponse"/>
+  </wsdl:message>
+  <wsdl:message name="IAuthenticationSoapEndpointService_ResetPasswordStep1_InputMessage">
+    <wsdl:part name="parameters" element="tns:ResetPasswordStep1"/>
+  </wsdl:message>
+  <wsdl:message name="IAuthenticationSoapEndpointService_ResetPasswordStep1_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ResetPasswordStep1Response"/>
+  </wsdl:message>
+  <wsdl:message name="IAuthenticationSoapEndpointService_ResetPasswordStep2_InputMessage">
+    <wsdl:part name="parameters" element="tns:ResetPasswordStep2"/>
+  </wsdl:message>
+  <wsdl:message name="IAuthenticationSoapEndpointService_ResetPasswordStep2_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ResetPasswordStep2Response"/>
+  </wsdl:message>
+  <wsdl:portType name="IAuthenticationSoapEndpointService">
+    <wsdl:operation name="Login">
+      <wsdl:input message="tns:IAuthenticationSoapEndpointService_Login_InputMessage"/>
+      <wsdl:output message="tns:IAuthenticationSoapEndpointService_Login_OutputMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="ResetPasswordStep1">
+      <wsdl:input message="tns:IAuthenticationSoapEndpointService_ResetPasswordStep1_InputMessage"/>
+      <wsdl:output message="tns:IAuthenticationSoapEndpointService_ResetPasswordStep1_OutputMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="ResetPasswordStep2">
+      <wsdl:input message="tns:IAuthenticationSoapEndpointService_ResetPasswordStep2_InputMessage"/>
+      <wsdl:output message="tns:IAuthenticationSoapEndpointService_ResetPasswordStep2_OutputMessage"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding" type="tns:IAuthenticationSoapEndpointService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="Login">
+      <soap:operation soapAction="http://tempuri.org/IAuthenticationSoapEndpointService/Login" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResetPasswordStep1">
+      <soap:operation soapAction="http://tempuri.org/IAuthenticationSoapEndpointService/ResetPasswordStep1" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResetPasswordStep2">
+      <soap:operation soapAction="http://tempuri.org/IAuthenticationSoapEndpointService/ResetPasswordStep2" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="IAuthenticationSoapEndpointService">
+    <wsdl:port name="BasicHttpBinding" binding="tns:BasicHttpBinding">
+      <soap:address location="http://localhost:2138/soap-api/authentication"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:2138/soap-api/authentication</con:endpoint></con:endpoints><con:operation id="7ad86831-b85f-417b-91b1-f7760692c833" isOneWay="false" action="http://tempuri.org/IAuthenticationSoapEndpointService/Login" name="Login" bindingOperationName="Login" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="39e5946c-3d97-47fb-a4c4-55ab61e2e2e5" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:2138/soap-api/authentication</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <tem:Login>\r
+         <!--Optional:-->\r
+         <tem:model>\r
+            <!--Optional:-->\r
+            <tem:Email>?</tem:Email>\r
+            <!--Optional:-->\r
+            <tem:Password>?</tem:Password>\r
+         </tem:model>\r
+      </tem:Login>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/IAuthenticationSoapEndpointService/Login"/></con:call></con:operation><con:operation id="802244be-2d42-4921-bac8-f1ed40cfb90d" isOneWay="false" action="http://tempuri.org/IAuthenticationSoapEndpointService/ResetPasswordStep1" name="ResetPasswordStep1" bindingOperationName="ResetPasswordStep1" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="81d95081-dc2b-4ecb-8863-4ec62b1c573c" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:2138/soap-api/authentication</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <tem:ResetPasswordStep1>\r
+         <!--Optional:-->\r
+         <tem:request>\r
+            <!--Optional:-->\r
+            <tem:Email>?</tem:Email>\r
+         </tem:request>\r
+      </tem:ResetPasswordStep1>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/IAuthenticationSoapEndpointService/ResetPasswordStep1"/></con:call></con:operation><con:operation id="a452a340-b1ca-4b2d-870c-4aa88b02a20d" isOneWay="false" action="http://tempuri.org/IAuthenticationSoapEndpointService/ResetPasswordStep2" name="ResetPasswordStep2" bindingOperationName="ResetPasswordStep2" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="0337e1c5-9183-4ac3-a228-18cbd344175e" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:2138/soap-api/authentication</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <tem:ResetPasswordStep2>\r
+         <!--Optional:-->\r
+         <tem:request>\r
+            <!--Optional:-->\r
+            <tem:Token>?</tem:Token>\r
+            <!--Optional:-->\r
+            <tem:Password>?</tem:Password>\r
+         </tem:request>\r
+      </tem:ResetPasswordStep2>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/IAuthenticationSoapEndpointService/ResetPasswordStep2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" id="93e0d04f-19b9-4feb-a9e2-34edd8ad090c" wsaVersion="NONE" name="route" type="wsdl" bindingName="{http://tempuri.org/}BasicHttpBinding" soapVersion="1_1" anonymous="optional" definition="http://localhost:2138/soap-api/route" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:2138/soap-api/route"><con:part><con:url>http://localhost:2138/soap-api/route</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://tempuri.org/" name="IRouteSoapEndpointService" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://tempuri.org/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:http="http://schemas.microsoft.com/ws/06/2004/policy/http" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays"/>
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/System"/>
+      <xsd:element name="CreateRoute">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" name="route" type="tns:CreateRouteRequest"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="CreateRouteResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" name="CreateRouteResult" type="tns:IdResponse"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetRouteDetails">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" name="id" type="tns:IdRequest"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetRouteDetailsResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" name="GetRouteDetailsResult" type="tns:GetRouteDetailsResponse"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="UpdateRoute">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" name="route" type="tns:UpdateRouteRequest"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="UpdateRouteResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" name="UpdateRouteResult" type="tns:Unit"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="DeleteRoute">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" name="id" type="tns:IdRequest"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="DeleteRouteResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" name="DeleteRouteResult" type="tns:Unit"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetRoutesList">
+        <xsd:complexType/>
+      </xsd:element>
+      <xsd:element name="GetRoutesListResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" name="GetRoutesListResult" type="tns:GetRoutesListResponse"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="CreateRouteRequest">
+        <xsd:sequence>
+          <xsd:element minOccurs="1" maxOccurs="1" name="FromId" type="xsd:string"/>
+          <xsd:element minOccurs="1" maxOccurs="1" name="ToId" type="xsd:string"/>
+          <xsd:element minOccurs="1" maxOccurs="1" name="DepartureTime" type="xsd:dateTime"/>
+          <xsd:element minOccurs="1" maxOccurs="1" name="Duration" type="xsd:duration"/>
+          <xsd:element minOccurs="1" maxOccurs="1" name="Distance" type="xsd:double"/>
+          <xsd:element minOccurs="1" maxOccurs="1" name="TicketPrice" type="xsd:double"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="IdResponse">
+        <xsd:sequence>
+          <xsd:element minOccurs="1" maxOccurs="1" name="Id" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="IdRequest">
+        <xsd:sequence>
+          <xsd:element minOccurs="1" maxOccurs="1" name="Id" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="GetRouteDetailsResponse">
+        <xsd:sequence>
+          <xsd:element minOccurs="1" maxOccurs="1" name="Id" type="xsd:string"/>
+          <xsd:element minOccurs="1" maxOccurs="1" name="CreatedOn" type="xsd:dateTime"/>
+          <xsd:element nillable="true" minOccurs="1" maxOccurs="1" name="CreatedBy" type="xsd:string"/>
+          <xsd:element minOccurs="1" maxOccurs="1" name="LastSavedOn" type="xsd:dateTime"/>
+          <xsd:element nillable="true" minOccurs="1" maxOccurs="1" name="LastSavedBy" type="xsd:string"/>
+          <xsd:element minOccurs="0" maxOccurs="1" name="From" type="tns:RouteStationLookupModel"/>
+          <xsd:element minOccurs="0" maxOccurs="1" name="To" type="tns:RouteStationLookupModel"/>
+          <xsd:element minOccurs="1" maxOccurs="1" name="DepartureTime" type="xsd:dateTime"/>
+          <xsd:element minOccurs="1" maxOccurs="1" name="Duration" type="xsd:duration"/>
+          <xsd:element minOccurs="1" maxOccurs="1" name="Distance" type="xsd:double"/>
+          <xsd:element minOccurs="1" maxOccurs="1" name="TicketPrice" type="xsd:double"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="UpdateRouteRequest">
+        <xsd:sequence>
+          <xsd:element minOccurs="1" maxOccurs="1" name="Id" type="xsd:string"/>
+          <xsd:element minOccurs="1" maxOccurs="1" name="FromId" type="xsd:string"/>
+          <xsd:element minOccurs="1" maxOccurs="1" name="ToId" type="xsd:string"/>
+          <xsd:element minOccurs="1" maxOccurs="1" name="DepartureTime" type="xsd:dateTime"/>
+          <xsd:element minOccurs="1" maxOccurs="1" name="Duration" type="xsd:duration"/>
+          <xsd:element minOccurs="1" maxOccurs="1" name="Distance" type="xsd:double"/>
+          <xsd:element minOccurs="1" maxOccurs="1" name="TicketPrice" type="xsd:double"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="Unit">
+        <xsd:sequence/>
+      </xsd:complexType>
+      <xsd:complexType name="GetRoutesListResponse">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="1" name="Routes" nillable="true" type="tns:ArrayOfRouteLookupModel"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="RouteStationLookupModel">
+        <xsd:sequence>
+          <xsd:element minOccurs="1" maxOccurs="1" name="Id" type="xsd:string"/>
+          <xsd:element minOccurs="0" maxOccurs="1" name="Name" type="xsd:string"/>
+          <xsd:element minOccurs="1" maxOccurs="1" name="Latitude" type="xsd:double"/>
+          <xsd:element minOccurs="1" maxOccurs="1" name="Longitude" type="xsd:double"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOfRouteLookupModel">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" nillable="true" name="RouteLookupModel" type="tns:RouteLookupModel"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="RouteLookupModel">
+        <xsd:sequence>
+          <xsd:element minOccurs="1" maxOccurs="1" name="Id" type="xsd:string"/>
+          <xsd:element minOccurs="0" maxOccurs="1" name="From" type="tns:StationLookupModel"/>
+          <xsd:element minOccurs="0" maxOccurs="1" name="To" type="tns:StationLookupModel"/>
+          <xsd:element minOccurs="1" maxOccurs="1" name="DepartureTime" type="xsd:dateTime"/>
+          <xsd:element minOccurs="1" maxOccurs="1" name="Duration" type="xsd:duration"/>
+          <xsd:element minOccurs="1" maxOccurs="1" name="Distance" type="xsd:double"/>
+          <xsd:element minOccurs="1" maxOccurs="1" name="TicketPrice" type="xsd:double"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="StationLookupModel">
+        <xsd:sequence>
+          <xsd:element minOccurs="1" maxOccurs="1" name="Id" type="xsd:string"/>
+          <xsd:element minOccurs="0" maxOccurs="1" name="Name" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IRouteSoapEndpointService_CreateRoute_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateRoute"/>
+  </wsdl:message>
+  <wsdl:message name="IRouteSoapEndpointService_CreateRoute_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateRouteResponse"/>
+  </wsdl:message>
+  <wsdl:message name="IRouteSoapEndpointService_GetRouteDetails_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRouteDetails"/>
+  </wsdl:message>
+  <wsdl:message name="IRouteSoapEndpointService_GetRouteDetails_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRouteDetailsResponse"/>
+  </wsdl:message>
+  <wsdl:message name="IRouteSoapEndpointService_UpdateRoute_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateRoute"/>
+  </wsdl:message>
+  <wsdl:message name="IRouteSoapEndpointService_UpdateRoute_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateRouteResponse"/>
+  </wsdl:message>
+  <wsdl:message name="IRouteSoapEndpointService_DeleteRoute_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteRoute"/>
+  </wsdl:message>
+  <wsdl:message name="IRouteSoapEndpointService_DeleteRoute_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteRouteResponse"/>
+  </wsdl:message>
+  <wsdl:message name="IRouteSoapEndpointService_GetRoutesList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRoutesList"/>
+  </wsdl:message>
+  <wsdl:message name="IRouteSoapEndpointService_GetRoutesList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRoutesListResponse"/>
+  </wsdl:message>
+  <wsdl:portType name="IRouteSoapEndpointService">
+    <wsdl:operation name="CreateRoute">
+      <wsdl:input message="tns:IRouteSoapEndpointService_CreateRoute_InputMessage"/>
+      <wsdl:output message="tns:IRouteSoapEndpointService_CreateRoute_OutputMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetRouteDetails">
+      <wsdl:input message="tns:IRouteSoapEndpointService_GetRouteDetails_InputMessage"/>
+      <wsdl:output message="tns:IRouteSoapEndpointService_GetRouteDetails_OutputMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateRoute">
+      <wsdl:input message="tns:IRouteSoapEndpointService_UpdateRoute_InputMessage"/>
+      <wsdl:output message="tns:IRouteSoapEndpointService_UpdateRoute_OutputMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteRoute">
+      <wsdl:input message="tns:IRouteSoapEndpointService_DeleteRoute_InputMessage"/>
+      <wsdl:output message="tns:IRouteSoapEndpointService_DeleteRoute_OutputMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetRoutesList">
+      <wsdl:input message="tns:IRouteSoapEndpointService_GetRoutesList_InputMessage"/>
+      <wsdl:output message="tns:IRouteSoapEndpointService_GetRoutesList_OutputMessage"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding" type="tns:IRouteSoapEndpointService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="CreateRoute">
+      <soap:operation soapAction="http://tempuri.org/IRouteSoapEndpointService/CreateRoute" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRouteDetails">
+      <soap:operation soapAction="http://tempuri.org/IRouteSoapEndpointService/GetRouteDetails" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateRoute">
+      <soap:operation soapAction="http://tempuri.org/IRouteSoapEndpointService/UpdateRoute" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteRoute">
+      <soap:operation soapAction="http://tempuri.org/IRouteSoapEndpointService/DeleteRoute" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRoutesList">
+      <soap:operation soapAction="http://tempuri.org/IRouteSoapEndpointService/GetRoutesList" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="IRouteSoapEndpointService">
+    <wsdl:port name="BasicHttpBinding" binding="tns:BasicHttpBinding">
+      <soap:address location="http://localhost:2138/soap-api/route"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:2138/soap-api/route</con:endpoint></con:endpoints><con:operation id="138875da-e7e2-4b07-a598-a3ecd8fe077e" isOneWay="false" action="http://tempuri.org/IRouteSoapEndpointService/CreateRoute" name="CreateRoute" bindingOperationName="CreateRoute" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="70b40ac5-32a9-4cb1-bb5c-c6282ec34063" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:2138/soap-api/route</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <tem:CreateRoute>\r
+         <!--Optional:-->\r
+         <tem:route>\r
+            <tem:FromId>?</tem:FromId>\r
+            <tem:ToId>?</tem:ToId>\r
+            <tem:DepartureTime>?</tem:DepartureTime>\r
+            <tem:Duration>?</tem:Duration>\r
+            <tem:Distance>?</tem:Distance>\r
+            <tem:TicketPrice>?</tem:TicketPrice>\r
+         </tem:route>\r
+      </tem:CreateRoute>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/IRouteSoapEndpointService/CreateRoute"/></con:call></con:operation><con:operation id="97c1b2b3-6d64-41ee-9b9f-e2f5ea53e961" isOneWay="false" action="http://tempuri.org/IRouteSoapEndpointService/DeleteRoute" name="DeleteRoute" bindingOperationName="DeleteRoute" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="22283952-8568-42d0-9166-c7b730fc3232" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:2138/soap-api/route</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <tem:DeleteRoute>\r
+         <!--Optional:-->\r
+         <tem:id>\r
+            <tem:Id>?</tem:Id>\r
+         </tem:id>\r
+      </tem:DeleteRoute>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/IRouteSoapEndpointService/DeleteRoute"/></con:call></con:operation><con:operation id="c8269635-65cf-4079-8887-9209dcda8333" isOneWay="false" action="http://tempuri.org/IRouteSoapEndpointService/GetRouteDetails" name="GetRouteDetails" bindingOperationName="GetRouteDetails" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="b1165a7f-2102-4ec7-9922-20e81b12e830" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:2138/soap-api/route</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <tem:GetRouteDetails>\r
+         <!--Optional:-->\r
+         <tem:id>\r
+            <tem:Id>?</tem:Id>\r
+         </tem:id>\r
+      </tem:GetRouteDetails>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/IRouteSoapEndpointService/GetRouteDetails"/></con:call></con:operation><con:operation id="ac6d6a3c-c4a1-442e-8d02-382192446f96" isOneWay="false" action="http://tempuri.org/IRouteSoapEndpointService/GetRoutesList" name="GetRoutesList" bindingOperationName="GetRoutesList" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="10d9c96d-beb7-475e-89a8-f00b3350bd0b" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:2138/soap-api/route</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <tem:GetRoutesList/>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/IRouteSoapEndpointService/GetRoutesList"/></con:call></con:operation><con:operation id="a800abd2-0195-499f-bd97-872f64ae4574" isOneWay="false" action="http://tempuri.org/IRouteSoapEndpointService/UpdateRoute" name="UpdateRoute" bindingOperationName="UpdateRoute" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="b3d72c3b-fe23-4a57-9e77-318dfa3b1506" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:2138/soap-api/route</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <tem:UpdateRoute>\r
+         <!--Optional:-->\r
+         <tem:route>\r
+            <tem:Id>?</tem:Id>\r
+            <tem:FromId>?</tem:FromId>\r
+            <tem:ToId>?</tem:ToId>\r
+            <tem:DepartureTime>?</tem:DepartureTime>\r
+            <tem:Duration>?</tem:Duration>\r
+            <tem:Distance>?</tem:Distance>\r
+            <tem:TicketPrice>?</tem:TicketPrice>\r
+         </tem:route>\r
+      </tem:UpdateRoute>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/IRouteSoapEndpointService/UpdateRoute"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" id="d4b4ebe7-9b12-4f8c-adab-7e849a4d83f7" wsaVersion="NONE" name="station" type="wsdl" bindingName="{http://tempuri.org/}BasicHttpBinding" soapVersion="1_1" anonymous="optional" definition="http://localhost:2138/soap-api/station" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:2138/soap-api/station"><con:part><con:url>http://localhost:2138/soap-api/station</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://tempuri.org/" name="IStationSoapEndpointService" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://tempuri.org/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:http="http://schemas.microsoft.com/ws/06/2004/policy/http" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays"/>
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/System"/>
+      <xsd:element name="CreateStation">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" name="station" type="tns:CreateStationRequest"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="CreateStationResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" name="CreateStationResult" type="tns:IdResponse"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetStationDetails">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" name="id" type="tns:IdRequest"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetStationDetailsResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" name="GetStationDetailsResult" type="tns:GetStationDetailsResponse"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="UpdateStation">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" name="station" type="tns:UpdateStationRequest"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="UpdateStationResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" name="UpdateStationResult" type="tns:Unit"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="DeleteStation">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" name="id" type="tns:IdRequest"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="DeleteStationResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" name="DeleteStationResult" type="tns:Unit"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetStationsList">
+        <xsd:complexType/>
+      </xsd:element>
+      <xsd:element name="GetStationsListResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" name="GetStationsListResult" type="tns:GetStationsListResponse"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="CreateStationRequest">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="1" name="Name" type="xsd:string"/>
+          <xsd:element minOccurs="1" maxOccurs="1" name="Latitude" type="xsd:double"/>
+          <xsd:element minOccurs="1" maxOccurs="1" name="Longitude" type="xsd:double"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="IdResponse">
+        <xsd:sequence>
+          <xsd:element minOccurs="1" maxOccurs="1" name="Id" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="IdRequest">
+        <xsd:sequence>
+          <xsd:element minOccurs="1" maxOccurs="1" name="Id" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="GetStationDetailsResponse">
+        <xsd:sequence>
+          <xsd:element minOccurs="1" maxOccurs="1" name="Id" type="xsd:string"/>
+          <xsd:element minOccurs="1" maxOccurs="1" name="CreatedOn" type="xsd:dateTime"/>
+          <xsd:element nillable="true" minOccurs="1" maxOccurs="1" name="CreatedBy" type="xsd:string"/>
+          <xsd:element minOccurs="1" maxOccurs="1" name="LastSavedOn" type="xsd:dateTime"/>
+          <xsd:element nillable="true" minOccurs="1" maxOccurs="1" name="LastSavedBy" type="xsd:string"/>
+          <xsd:element minOccurs="0" maxOccurs="1" name="Name" type="xsd:string"/>
+          <xsd:element minOccurs="1" maxOccurs="1" name="Latitude" type="xsd:double"/>
+          <xsd:element minOccurs="1" maxOccurs="1" name="Longitude" type="xsd:double"/>
+          <xsd:element minOccurs="0" maxOccurs="1" name="Departures" nillable="true" type="tns:ArrayOfRouteDeparturesLookupModel"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="UpdateStationRequest">
+        <xsd:sequence>
+          <xsd:element minOccurs="1" maxOccurs="1" name="Id" type="xsd:string"/>
+          <xsd:element minOccurs="0" maxOccurs="1" name="Name" type="xsd:string"/>
+          <xsd:element minOccurs="1" maxOccurs="1" name="Latitude" type="xsd:double"/>
+          <xsd:element minOccurs="1" maxOccurs="1" name="Longitude" type="xsd:double"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="Unit">
+        <xsd:sequence/>
+      </xsd:complexType>
+      <xsd:complexType name="GetStationsListResponse">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="1" name="Stations" nillable="true" type="tns:ArrayOfStationLookupModel"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOfRouteDeparturesLookupModel">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" nillable="true" name="RouteDeparturesLookupModel" type="tns:RouteDeparturesLookupModel"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOfStationLookupModel">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" nillable="true" name="StationLookupModel" type="tns:StationLookupModel"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="RouteDeparturesLookupModel">
+        <xsd:sequence>
+          <xsd:element minOccurs="1" maxOccurs="1" name="Id" type="xsd:string"/>
+          <xsd:element minOccurs="1" maxOccurs="1" name="ToId" type="xsd:string"/>
+          <xsd:element minOccurs="0" maxOccurs="1" name="To" type="tns:GetStationDetailsResponse"/>
+          <xsd:element minOccurs="1" maxOccurs="1" name="DepartureTime" type="xsd:dateTime"/>
+          <xsd:element minOccurs="1" maxOccurs="1" name="Duration" type="xsd:duration"/>
+          <xsd:element minOccurs="1" maxOccurs="1" name="Distance" type="xsd:double"/>
+          <xsd:element minOccurs="1" maxOccurs="1" name="TicketPrice" type="xsd:double"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="StationLookupModel">
+        <xsd:sequence>
+          <xsd:element minOccurs="1" maxOccurs="1" name="Id" type="xsd:string"/>
+          <xsd:element minOccurs="0" maxOccurs="1" name="Name" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IStationSoapEndpointService_CreateStation_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateStation"/>
+  </wsdl:message>
+  <wsdl:message name="IStationSoapEndpointService_CreateStation_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateStationResponse"/>
+  </wsdl:message>
+  <wsdl:message name="IStationSoapEndpointService_GetStationDetails_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetStationDetails"/>
+  </wsdl:message>
+  <wsdl:message name="IStationSoapEndpointService_GetStationDetails_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetStationDetailsResponse"/>
+  </wsdl:message>
+  <wsdl:message name="IStationSoapEndpointService_UpdateStation_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateStation"/>
+  </wsdl:message>
+  <wsdl:message name="IStationSoapEndpointService_UpdateStation_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateStationResponse"/>
+  </wsdl:message>
+  <wsdl:message name="IStationSoapEndpointService_DeleteStation_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteStation"/>
+  </wsdl:message>
+  <wsdl:message name="IStationSoapEndpointService_DeleteStation_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteStationResponse"/>
+  </wsdl:message>
+  <wsdl:message name="IStationSoapEndpointService_GetStationsList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetStationsList"/>
+  </wsdl:message>
+  <wsdl:message name="IStationSoapEndpointService_GetStationsList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetStationsListResponse"/>
+  </wsdl:message>
+  <wsdl:portType name="IStationSoapEndpointService">
+    <wsdl:operation name="CreateStation">
+      <wsdl:input message="tns:IStationSoapEndpointService_CreateStation_InputMessage"/>
+      <wsdl:output message="tns:IStationSoapEndpointService_CreateStation_OutputMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetStationDetails">
+      <wsdl:input message="tns:IStationSoapEndpointService_GetStationDetails_InputMessage"/>
+      <wsdl:output message="tns:IStationSoapEndpointService_GetStationDetails_OutputMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateStation">
+      <wsdl:input message="tns:IStationSoapEndpointService_UpdateStation_InputMessage"/>
+      <wsdl:output message="tns:IStationSoapEndpointService_UpdateStation_OutputMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteStation">
+      <wsdl:input message="tns:IStationSoapEndpointService_DeleteStation_InputMessage"/>
+      <wsdl:output message="tns:IStationSoapEndpointService_DeleteStation_OutputMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetStationsList">
+      <wsdl:input message="tns:IStationSoapEndpointService_GetStationsList_InputMessage"/>
+      <wsdl:output message="tns:IStationSoapEndpointService_GetStationsList_OutputMessage"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding" type="tns:IStationSoapEndpointService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="CreateStation">
+      <soap:operation soapAction="http://tempuri.org/IStationSoapEndpointService/CreateStation" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStationDetails">
+      <soap:operation soapAction="http://tempuri.org/IStationSoapEndpointService/GetStationDetails" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateStation">
+      <soap:operation soapAction="http://tempuri.org/IStationSoapEndpointService/UpdateStation" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteStation">
+      <soap:operation soapAction="http://tempuri.org/IStationSoapEndpointService/DeleteStation" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStationsList">
+      <soap:operation soapAction="http://tempuri.org/IStationSoapEndpointService/GetStationsList" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="IStationSoapEndpointService">
+    <wsdl:port name="BasicHttpBinding" binding="tns:BasicHttpBinding">
+      <soap:address location="http://localhost:2138/soap-api/station"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:2138/soap-api/station</con:endpoint></con:endpoints><con:operation id="a9c17021-6f06-4a49-a42f-bb372f1bf968" isOneWay="false" action="http://tempuri.org/IStationSoapEndpointService/CreateStation" name="CreateStation" bindingOperationName="CreateStation" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="fa7db484-ede5-4597-9907-6c682aadf5a0" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:2138/soap-api/station</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <tem:CreateStation>\r
+         <!--Optional:-->\r
+         <tem:station>\r
+            <!--Optional:-->\r
+            <tem:Name>?</tem:Name>\r
+            <tem:Latitude>?</tem:Latitude>\r
+            <tem:Longitude>?</tem:Longitude>\r
+         </tem:station>\r
+      </tem:CreateStation>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/IStationSoapEndpointService/CreateStation"/></con:call></con:operation><con:operation id="b0538499-1e79-49e4-aea2-b36ce75c690c" isOneWay="false" action="http://tempuri.org/IStationSoapEndpointService/DeleteStation" name="DeleteStation" bindingOperationName="DeleteStation" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="07342e19-7db4-4293-aaa8-714eac6a82cd" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:2138/soap-api/station</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <tem:DeleteStation>\r
+         <!--Optional:-->\r
+         <tem:id>\r
+            <tem:Id>?</tem:Id>\r
+         </tem:id>\r
+      </tem:DeleteStation>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/IStationSoapEndpointService/DeleteStation"/></con:call></con:operation><con:operation id="fc04f7d0-5b07-4e15-91b7-a88e2758eabd" isOneWay="false" action="http://tempuri.org/IStationSoapEndpointService/GetStationDetails" name="GetStationDetails" bindingOperationName="GetStationDetails" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="fee5a5fc-8801-4af3-bd34-4fb89653d1c1" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:2138/soap-api/station</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <tem:GetStationDetails>\r
+         <!--Optional:-->\r
+         <tem:id>\r
+            <tem:Id>?</tem:Id>\r
+         </tem:id>\r
+      </tem:GetStationDetails>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/IStationSoapEndpointService/GetStationDetails"/></con:call></con:operation><con:operation id="4be3b1d3-0c81-4fe0-b817-413fa8b6d45b" isOneWay="false" action="http://tempuri.org/IStationSoapEndpointService/GetStationsList" name="GetStationsList" bindingOperationName="GetStationsList" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="f3aec972-0592-46f2-ba72-00efe7698c37" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:2138/soap-api/station</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <tem:GetStationsList/>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/IStationSoapEndpointService/GetStationsList"/></con:call></con:operation><con:operation id="39c877da-4170-41ab-b9f1-3b6e221e3cf9" isOneWay="false" action="http://tempuri.org/IStationSoapEndpointService/UpdateStation" name="UpdateStation" bindingOperationName="UpdateStation" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="ad9a497c-3794-4f32-ba8f-67c5ea2a597c" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:2138/soap-api/station</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <tem:UpdateStation>\r
+         <!--Optional:-->\r
+         <tem:station>\r
+            <tem:Id>?</tem:Id>\r
+            <!--Optional:-->\r
+            <tem:Name>?</tem:Name>\r
+            <tem:Latitude>?</tem:Latitude>\r
+            <tem:Longitude>?</tem:Longitude>\r
+         </tem:station>\r
+      </tem:UpdateStation>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/IStationSoapEndpointService/UpdateStation"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" id="d15fdeec-2c39-4033-a6fa-9f4f563e01f1" wsaVersion="NONE" name="ticket" type="wsdl" bindingName="{http://tempuri.org/}BasicHttpBinding" soapVersion="1_1" anonymous="optional" definition="http://localhost:2138/soap-api/ticket" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:2138/soap-api/ticket"><con:part><con:url>http://localhost:2138/soap-api/ticket</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://tempuri.org/" name="ITicketSoapEndpointService" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://tempuri.org/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:http="http://schemas.microsoft.com/ws/06/2004/policy/http" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays"/>
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/System"/>
+      <xsd:element name="CreateTicket">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" name="ticket" type="tns:CreateTicketRequest"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="CreateTicketResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" name="CreateTicketResult" type="tns:IdResponse"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetTicketDetails">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" name="id" type="tns:IdRequest"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetTicketDetailsResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" name="GetTicketDetailsResult" type="tns:GetTicketDetailsResponse"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetTicketDocument">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" name="id" type="tns:IdRequest"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetTicketDocumentResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" name="GetTicketDocumentResult" type="tns:GetTicketDocumentResponse"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="UpdateTicket">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" name="ticket" type="tns:UpdateTicketRequest"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="UpdateTicketResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" name="UpdateTicketResult" type="tns:Unit"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="DeleteTicket">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" name="id" type="tns:IdRequest"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="DeleteTicketResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" name="DeleteTicketResult" type="tns:Unit"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetCurrentUserTicketsList">
+        <xsd:complexType/>
+      </xsd:element>
+      <xsd:element name="GetCurrentUserTicketsListResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" name="GetCurrentUserTicketsListResult" type="tns:GetUserTicketsListResponse"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetUserTicketsList">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" name="id" type="tns:IdRequest"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetUserTicketsListResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" name="GetUserTicketsListResult" type="tns:GetUserTicketsListResponse"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetTicketsList">
+        <xsd:complexType/>
+      </xsd:element>
+      <xsd:element name="GetTicketsListResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" name="GetTicketsListResult" type="tns:GetTicketsListResponse"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="CreateTicketRequest">
+        <xsd:sequence>
+          <xsd:element minOccurs="1" maxOccurs="1" name="UserId" type="xsd:string"/>
+          <xsd:element minOccurs="1" maxOccurs="1" name="RouteId" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="IdResponse">
+        <xsd:sequence>
+          <xsd:element minOccurs="1" maxOccurs="1" name="Id" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="IdRequest">
+        <xsd:sequence>
+          <xsd:element minOccurs="1" maxOccurs="1" name="Id" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="GetTicketDetailsResponse">
+        <xsd:sequence>
+          <xsd:element minOccurs="1" maxOccurs="1" name="Id" type="xsd:string"/>
+          <xsd:element minOccurs="1" maxOccurs="1" name="CreatedOn" type="xsd:dateTime"/>
+          <xsd:element nillable="true" minOccurs="1" maxOccurs="1" name="CreatedBy" type="xsd:string"/>
+          <xsd:element minOccurs="1" maxOccurs="1" name="LastSavedOn" type="xsd:dateTime"/>
+          <xsd:element nillable="true" minOccurs="1" maxOccurs="1" name="LastSavedBy" type="xsd:string"/>
+          <xsd:element minOccurs="1" maxOccurs="1" name="UserId" type="xsd:string"/>
+          <xsd:element minOccurs="0" maxOccurs="1" name="Route" type="tns:TicketRouteDetailsModel"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="GetTicketDocumentResponse">
+        <xsd:sequence>
+          <xsd:element minOccurs="1" maxOccurs="1" name="Id" type="xsd:string"/>
+          <xsd:element minOccurs="0" maxOccurs="1" name="Document" type="xsd:base64Binary"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="UpdateTicketRequest">
+        <xsd:sequence>
+          <xsd:element minOccurs="1" maxOccurs="1" name="Id" type="xsd:string"/>
+          <xsd:element minOccurs="1" maxOccurs="1" name="Distance" type="xsd:double"/>
+          <xsd:element minOccurs="1" maxOccurs="1" name="Duration" type="xsd:duration"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="Unit">
+        <xsd:sequence/>
+      </xsd:complexType>
+      <xsd:complexType name="GetUserTicketsListResponse">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="1" name="Ticket" nillable="true" type="tns:ArrayOfUserTicketLookupModel"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="GetTicketsListResponse">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="1" name="Ticket" nillable="true" type="tns:ArrayOfTicketLookupModel"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="TicketRouteDetailsModel">
+        <xsd:sequence>
+          <xsd:element minOccurs="1" maxOccurs="1" name="Id" type="xsd:string"/>
+          <xsd:element minOccurs="0" maxOccurs="1" name="From" type="tns:TicketStationDetailsModel"/>
+          <xsd:element minOccurs="0" maxOccurs="1" name="To" type="tns:TicketStationDetailsModel"/>
+          <xsd:element minOccurs="1" maxOccurs="1" name="DepartureTime" type="xsd:dateTime"/>
+          <xsd:element minOccurs="1" maxOccurs="1" name="Duration" type="xsd:duration"/>
+          <xsd:element minOccurs="1" maxOccurs="1" name="Distance" type="xsd:double"/>
+          <xsd:element minOccurs="1" maxOccurs="1" name="TicketPrice" type="xsd:double"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOfUserTicketLookupModel">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" nillable="true" name="UserTicketLookupModel" type="tns:UserTicketLookupModel"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOfTicketLookupModel">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" nillable="true" name="TicketLookupModel" type="tns:TicketLookupModel"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="TicketStationDetailsModel">
+        <xsd:sequence>
+          <xsd:element minOccurs="1" maxOccurs="1" name="Id" type="xsd:string"/>
+          <xsd:element minOccurs="0" maxOccurs="1" name="Name" type="xsd:string"/>
+          <xsd:element minOccurs="1" maxOccurs="1" name="Latitude" type="xsd:double"/>
+          <xsd:element minOccurs="1" maxOccurs="1" name="Longitude" type="xsd:double"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="UserTicketLookupModel">
+        <xsd:sequence>
+          <xsd:element minOccurs="1" maxOccurs="1" name="Id" type="xsd:string"/>
+          <xsd:element minOccurs="1" maxOccurs="1" name="UserId" type="xsd:string"/>
+          <xsd:element minOccurs="0" maxOccurs="1" name="Route" type="tns:GetRouteDetailsResponse"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="TicketLookupModel">
+        <xsd:sequence>
+          <xsd:element minOccurs="1" maxOccurs="1" name="Id" type="xsd:string"/>
+          <xsd:element minOccurs="1" maxOccurs="1" name="UserId" type="xsd:string"/>
+          <xsd:element minOccurs="1" maxOccurs="1" name="RouteId" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="GetRouteDetailsResponse">
+        <xsd:sequence>
+          <xsd:element minOccurs="1" maxOccurs="1" name="Id" type="xsd:string"/>
+          <xsd:element minOccurs="1" maxOccurs="1" name="CreatedOn" type="xsd:dateTime"/>
+          <xsd:element nillable="true" minOccurs="1" maxOccurs="1" name="CreatedBy" type="xsd:string"/>
+          <xsd:element minOccurs="1" maxOccurs="1" name="LastSavedOn" type="xsd:dateTime"/>
+          <xsd:element nillable="true" minOccurs="1" maxOccurs="1" name="LastSavedBy" type="xsd:string"/>
+          <xsd:element minOccurs="0" maxOccurs="1" name="From" type="tns:RouteStationLookupModel"/>
+          <xsd:element minOccurs="0" maxOccurs="1" name="To" type="tns:RouteStationLookupModel"/>
+          <xsd:element minOccurs="1" maxOccurs="1" name="DepartureTime" type="xsd:dateTime"/>
+          <xsd:element minOccurs="1" maxOccurs="1" name="Duration" type="xsd:duration"/>
+          <xsd:element minOccurs="1" maxOccurs="1" name="Distance" type="xsd:double"/>
+          <xsd:element minOccurs="1" maxOccurs="1" name="TicketPrice" type="xsd:double"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="RouteStationLookupModel">
+        <xsd:sequence>
+          <xsd:element minOccurs="1" maxOccurs="1" name="Id" type="xsd:string"/>
+          <xsd:element minOccurs="0" maxOccurs="1" name="Name" type="xsd:string"/>
+          <xsd:element minOccurs="1" maxOccurs="1" name="Latitude" type="xsd:double"/>
+          <xsd:element minOccurs="1" maxOccurs="1" name="Longitude" type="xsd:double"/>
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="ITicketSoapEndpointService_CreateTicket_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateTicket"/>
+  </wsdl:message>
+  <wsdl:message name="ITicketSoapEndpointService_CreateTicket_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateTicketResponse"/>
+  </wsdl:message>
+  <wsdl:message name="ITicketSoapEndpointService_GetTicketDetails_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTicketDetails"/>
+  </wsdl:message>
+  <wsdl:message name="ITicketSoapEndpointService_GetTicketDetails_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTicketDetailsResponse"/>
+  </wsdl:message>
+  <wsdl:message name="ITicketSoapEndpointService_GetTicketDocument_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTicketDocument"/>
+  </wsdl:message>
+  <wsdl:message name="ITicketSoapEndpointService_GetTicketDocument_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTicketDocumentResponse"/>
+  </wsdl:message>
+  <wsdl:message name="ITicketSoapEndpointService_UpdateTicket_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateTicket"/>
+  </wsdl:message>
+  <wsdl:message name="ITicketSoapEndpointService_UpdateTicket_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateTicketResponse"/>
+  </wsdl:message>
+  <wsdl:message name="ITicketSoapEndpointService_DeleteTicket_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteTicket"/>
+  </wsdl:message>
+  <wsdl:message name="ITicketSoapEndpointService_DeleteTicket_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteTicketResponse"/>
+  </wsdl:message>
+  <wsdl:message name="ITicketSoapEndpointService_GetCurrentUserTicketsList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCurrentUserTicketsList"/>
+  </wsdl:message>
+  <wsdl:message name="ITicketSoapEndpointService_GetCurrentUserTicketsList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCurrentUserTicketsListResponse"/>
+  </wsdl:message>
+  <wsdl:message name="ITicketSoapEndpointService_GetUserTicketsList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserTicketsList"/>
+  </wsdl:message>
+  <wsdl:message name="ITicketSoapEndpointService_GetUserTicketsList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserTicketsListResponse"/>
+  </wsdl:message>
+  <wsdl:message name="ITicketSoapEndpointService_GetTicketsList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTicketsList"/>
+  </wsdl:message>
+  <wsdl:message name="ITicketSoapEndpointService_GetTicketsList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTicketsListResponse"/>
+  </wsdl:message>
+  <wsdl:portType name="ITicketSoapEndpointService">
+    <wsdl:operation name="CreateTicket">
+      <wsdl:input message="tns:ITicketSoapEndpointService_CreateTicket_InputMessage"/>
+      <wsdl:output message="tns:ITicketSoapEndpointService_CreateTicket_OutputMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetTicketDetails">
+      <wsdl:input message="tns:ITicketSoapEndpointService_GetTicketDetails_InputMessage"/>
+      <wsdl:output message="tns:ITicketSoapEndpointService_GetTicketDetails_OutputMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetTicketDocument">
+      <wsdl:input message="tns:ITicketSoapEndpointService_GetTicketDocument_InputMessage"/>
+      <wsdl:output message="tns:ITicketSoapEndpointService_GetTicketDocument_OutputMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTicket">
+      <wsdl:input message="tns:ITicketSoapEndpointService_UpdateTicket_InputMessage"/>
+      <wsdl:output message="tns:ITicketSoapEndpointService_UpdateTicket_OutputMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteTicket">
+      <wsdl:input message="tns:ITicketSoapEndpointService_DeleteTicket_InputMessage"/>
+      <wsdl:output message="tns:ITicketSoapEndpointService_DeleteTicket_OutputMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrentUserTicketsList">
+      <wsdl:input message="tns:ITicketSoapEndpointService_GetCurrentUserTicketsList_InputMessage"/>
+      <wsdl:output message="tns:ITicketSoapEndpointService_GetCurrentUserTicketsList_OutputMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserTicketsList">
+      <wsdl:input message="tns:ITicketSoapEndpointService_GetUserTicketsList_InputMessage"/>
+      <wsdl:output message="tns:ITicketSoapEndpointService_GetUserTicketsList_OutputMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetTicketsList">
+      <wsdl:input message="tns:ITicketSoapEndpointService_GetTicketsList_InputMessage"/>
+      <wsdl:output message="tns:ITicketSoapEndpointService_GetTicketsList_OutputMessage"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding" type="tns:ITicketSoapEndpointService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="CreateTicket">
+      <soap:operation soapAction="http://tempuri.org/ITicketSoapEndpointService/CreateTicket" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTicketDetails">
+      <soap:operation soapAction="http://tempuri.org/ITicketSoapEndpointService/GetTicketDetails" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTicketDocument">
+      <soap:operation soapAction="http://tempuri.org/ITicketSoapEndpointService/GetTicketDocument" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTicket">
+      <soap:operation soapAction="http://tempuri.org/ITicketSoapEndpointService/UpdateTicket" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteTicket">
+      <soap:operation soapAction="http://tempuri.org/ITicketSoapEndpointService/DeleteTicket" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrentUserTicketsList">
+      <soap:operation soapAction="http://tempuri.org/ITicketSoapEndpointService/GetCurrentUserTicketsList" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserTicketsList">
+      <soap:operation soapAction="http://tempuri.org/ITicketSoapEndpointService/GetUserTicketsList" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTicketsList">
+      <soap:operation soapAction="http://tempuri.org/ITicketSoapEndpointService/GetTicketsList" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ITicketSoapEndpointService">
+    <wsdl:port name="BasicHttpBinding" binding="tns:BasicHttpBinding">
+      <soap:address location="http://localhost:2138/soap-api/ticket"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:2138/soap-api/ticket</con:endpoint></con:endpoints><con:operation id="8e4aa0db-f9be-4e69-8b4b-4e8dbe7d00ed" isOneWay="false" action="http://tempuri.org/ITicketSoapEndpointService/CreateTicket" name="CreateTicket" bindingOperationName="CreateTicket" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="6c409cfc-00c2-44d8-ab93-06600201cb2b" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:2138/soap-api/ticket</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <tem:CreateTicket>\r
+         <!--Optional:-->\r
+         <tem:ticket>\r
+            <tem:UserId>?</tem:UserId>\r
+            <tem:RouteId>?</tem:RouteId>\r
+         </tem:ticket>\r
+      </tem:CreateTicket>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/ITicketSoapEndpointService/CreateTicket"/></con:call></con:operation><con:operation id="7daf42fc-1ce7-4af0-970a-6751650be478" isOneWay="false" action="http://tempuri.org/ITicketSoapEndpointService/DeleteTicket" name="DeleteTicket" bindingOperationName="DeleteTicket" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="5bf83910-9da3-4ec6-8606-65b266f9e29d" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:2138/soap-api/ticket</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <tem:DeleteTicket>\r
+         <!--Optional:-->\r
+         <tem:id>\r
+            <tem:Id>?</tem:Id>\r
+         </tem:id>\r
+      </tem:DeleteTicket>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/ITicketSoapEndpointService/DeleteTicket"/></con:call></con:operation><con:operation id="683222cc-fd92-4772-960c-f4aff2d7c450" isOneWay="false" action="http://tempuri.org/ITicketSoapEndpointService/GetCurrentUserTicketsList" name="GetCurrentUserTicketsList" bindingOperationName="GetCurrentUserTicketsList" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="db13d4b7-28b3-4d21-b8be-517d68698cf1" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:2138/soap-api/ticket</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <tem:GetCurrentUserTicketsList/>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/ITicketSoapEndpointService/GetCurrentUserTicketsList"/></con:call></con:operation><con:operation id="b0df1e22-c977-420a-8a6a-cd60782dae6d" isOneWay="false" action="http://tempuri.org/ITicketSoapEndpointService/GetTicketDetails" name="GetTicketDetails" bindingOperationName="GetTicketDetails" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="1ebc027c-623b-41a9-b351-bb3966d8a5a0" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:2138/soap-api/ticket</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <tem:GetTicketDetails>\r
+         <!--Optional:-->\r
+         <tem:id>\r
+            <tem:Id>?</tem:Id>\r
+         </tem:id>\r
+      </tem:GetTicketDetails>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/ITicketSoapEndpointService/GetTicketDetails"/></con:call></con:operation><con:operation id="b56ba4d1-687b-4372-8d9f-54459f28c779" isOneWay="false" action="http://tempuri.org/ITicketSoapEndpointService/GetTicketDocument" name="GetTicketDocument" bindingOperationName="GetTicketDocument" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="c6c540d2-ecaa-4fda-b195-197c8d22d098" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:2138/soap-api/ticket</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <tem:GetTicketDocument>\r
+         <!--Optional:-->\r
+         <tem:id>\r
+            <tem:Id>?</tem:Id>\r
+         </tem:id>\r
+      </tem:GetTicketDocument>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/ITicketSoapEndpointService/GetTicketDocument"/></con:call></con:operation><con:operation id="6d6a4245-02be-4dfa-afed-85d622f97525" isOneWay="false" action="http://tempuri.org/ITicketSoapEndpointService/GetTicketsList" name="GetTicketsList" bindingOperationName="GetTicketsList" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="d31d5ac5-219f-4cdc-99fa-ff5a634d4672" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:2138/soap-api/ticket</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <tem:GetTicketsList/>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/ITicketSoapEndpointService/GetTicketsList"/></con:call></con:operation><con:operation id="b4c85951-e544-41de-b803-7a2a661bafe3" isOneWay="false" action="http://tempuri.org/ITicketSoapEndpointService/GetUserTicketsList" name="GetUserTicketsList" bindingOperationName="GetUserTicketsList" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="09089c6d-8215-4cab-a2e2-7b4041c1b644" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:2138/soap-api/ticket</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <tem:GetUserTicketsList>\r
+         <!--Optional:-->\r
+         <tem:id>\r
+            <tem:Id>?</tem:Id>\r
+         </tem:id>\r
+      </tem:GetUserTicketsList>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/ITicketSoapEndpointService/GetUserTicketsList"/></con:call></con:operation><con:operation id="8f512554-7481-48a8-ab3a-c7262bc48493" isOneWay="false" action="http://tempuri.org/ITicketSoapEndpointService/UpdateTicket" name="UpdateTicket" bindingOperationName="UpdateTicket" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="81c8d704-9213-4b23-8753-e5e6ca19355f" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:2138/soap-api/ticket</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <tem:UpdateTicket>\r
+         <!--Optional:-->\r
+         <tem:ticket>\r
+            <tem:Id>?</tem:Id>\r
+            <tem:Distance>?</tem:Distance>\r
+            <tem:Duration>?</tem:Duration>\r
+         </tem:ticket>\r
+      </tem:UpdateTicket>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/ITicketSoapEndpointService/UpdateTicket"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" id="944c9b75-eebb-4447-aefa-49abba5a00a7" wsaVersion="NONE" name="user" type="wsdl" bindingName="{http://tempuri.org/}BasicHttpBinding" soapVersion="1_1" anonymous="optional" definition="http://localhost:2138/soap-api/user" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:2138/soap-api/user"><con:part><con:url>http://localhost:2138/soap-api/user</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://tempuri.org/" name="IUserSoapEndpointService" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://tempuri.org/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:http="http://schemas.microsoft.com/ws/06/2004/policy/http" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays"/>
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/System"/>
+      <xsd:element name="CreateUser">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" name="user" type="tns:CreateUserRequest"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="CreateUserResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" name="CreateUserResult" type="tns:IdResponse"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetCurrentUserDetails">
+        <xsd:complexType/>
+      </xsd:element>
+      <xsd:element name="GetCurrentUserDetailsResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" name="GetCurrentUserDetailsResult" type="tns:GetUserDetailsResponse"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetUserDetails">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" name="id" type="tns:IdRequest"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetUserDetailsResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" name="GetUserDetailsResult" type="tns:GetUserDetailsResponse"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="UpdateUser">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" name="user" type="tns:UpdateUserRequest"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="UpdateUserResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" name="UpdateUserResult" type="tns:Unit"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="DeleteUser">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" name="id" type="tns:IdRequest"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="DeleteUserResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" name="DeleteUserResult" type="tns:Unit"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="ChangePassword">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" name="user" type="tns:ChangePasswordRequest"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="ChangePasswordResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" name="ChangePasswordResult" type="tns:Unit"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetUsersList">
+        <xsd:complexType/>
+      </xsd:element>
+      <xsd:element name="GetUsersListResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" name="GetUsersListResult" type="tns:GetUsersListResponse"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="CreateUserRequest">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="1" name="Email" type="xsd:string"/>
+          <xsd:element minOccurs="0" maxOccurs="1" name="Password" type="xsd:string"/>
+          <xsd:element minOccurs="0" maxOccurs="1" name="Name" type="xsd:string"/>
+          <xsd:element minOccurs="0" maxOccurs="1" name="Surname" type="xsd:string"/>
+          <xsd:element minOccurs="0" maxOccurs="1" name="PhoneNumber" type="xsd:string"/>
+          <xsd:element minOccurs="0" maxOccurs="1" name="Address" type="xsd:string"/>
+          <xsd:element minOccurs="1" maxOccurs="1" name="IsAdmin" type="xsd:boolean"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="IdResponse">
+        <xsd:sequence>
+          <xsd:element minOccurs="1" maxOccurs="1" name="Id" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="GetUserDetailsResponse">
+        <xsd:sequence>
+          <xsd:element minOccurs="1" maxOccurs="1" name="Id" type="xsd:string"/>
+          <xsd:element minOccurs="1" maxOccurs="1" name="CreatedOn" type="xsd:dateTime"/>
+          <xsd:element nillable="true" minOccurs="1" maxOccurs="1" name="CreatedBy" type="xsd:string"/>
+          <xsd:element minOccurs="1" maxOccurs="1" name="LastSavedOn" type="xsd:dateTime"/>
+          <xsd:element nillable="true" minOccurs="1" maxOccurs="1" name="LastSavedBy" type="xsd:string"/>
+          <xsd:element minOccurs="0" maxOccurs="1" name="Email" type="xsd:string"/>
+          <xsd:element minOccurs="0" maxOccurs="1" name="Name" type="xsd:string"/>
+          <xsd:element minOccurs="0" maxOccurs="1" name="Surname" type="xsd:string"/>
+          <xsd:element minOccurs="0" maxOccurs="1" name="PhoneNumber" type="xsd:string"/>
+          <xsd:element minOccurs="0" maxOccurs="1" name="Address" type="xsd:string"/>
+          <xsd:element minOccurs="1" maxOccurs="1" name="IsAdmin" type="xsd:boolean"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="IdRequest">
+        <xsd:sequence>
+          <xsd:element minOccurs="1" maxOccurs="1" name="Id" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="UpdateUserRequest">
+        <xsd:sequence>
+          <xsd:element minOccurs="1" maxOccurs="1" name="Id" type="xsd:string"/>
+          <xsd:element minOccurs="0" maxOccurs="1" name="Email" type="xsd:string"/>
+          <xsd:element minOccurs="0" maxOccurs="1" name="Name" type="xsd:string"/>
+          <xsd:element minOccurs="0" maxOccurs="1" name="Surname" type="xsd:string"/>
+          <xsd:element minOccurs="0" maxOccurs="1" name="PhoneNumber" type="xsd:string"/>
+          <xsd:element minOccurs="0" maxOccurs="1" name="Address" type="xsd:string"/>
+          <xsd:element minOccurs="1" maxOccurs="1" name="IsAdmin" type="xsd:boolean"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="Unit">
+        <xsd:sequence/>
+      </xsd:complexType>
+      <xsd:complexType name="ChangePasswordRequest">
+        <xsd:sequence>
+          <xsd:element minOccurs="1" maxOccurs="1" name="UserId" type="xsd:string"/>
+          <xsd:element minOccurs="0" maxOccurs="1" name="OldPassword" type="xsd:string"/>
+          <xsd:element minOccurs="0" maxOccurs="1" name="NewPassword" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="GetUsersListResponse">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="1" name="Users" nillable="true" type="tns:ArrayOfUserLookupModel"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOfUserLookupModel">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" nillable="true" name="UserLookupModel" type="tns:UserLookupModel"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="UserLookupModel">
+        <xsd:sequence>
+          <xsd:element minOccurs="1" maxOccurs="1" name="Id" type="xsd:string"/>
+          <xsd:element minOccurs="0" maxOccurs="1" name="Email" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IUserSoapEndpointService_CreateUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateUser"/>
+  </wsdl:message>
+  <wsdl:message name="IUserSoapEndpointService_CreateUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateUserResponse"/>
+  </wsdl:message>
+  <wsdl:message name="IUserSoapEndpointService_GetCurrentUserDetails_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCurrentUserDetails"/>
+  </wsdl:message>
+  <wsdl:message name="IUserSoapEndpointService_GetCurrentUserDetails_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCurrentUserDetailsResponse"/>
+  </wsdl:message>
+  <wsdl:message name="IUserSoapEndpointService_GetUserDetails_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserDetails"/>
+  </wsdl:message>
+  <wsdl:message name="IUserSoapEndpointService_GetUserDetails_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserDetailsResponse"/>
+  </wsdl:message>
+  <wsdl:message name="IUserSoapEndpointService_UpdateUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateUser"/>
+  </wsdl:message>
+  <wsdl:message name="IUserSoapEndpointService_UpdateUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateUserResponse"/>
+  </wsdl:message>
+  <wsdl:message name="IUserSoapEndpointService_DeleteUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteUser"/>
+  </wsdl:message>
+  <wsdl:message name="IUserSoapEndpointService_DeleteUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteUserResponse"/>
+  </wsdl:message>
+  <wsdl:message name="IUserSoapEndpointService_ChangePassword_InputMessage">
+    <wsdl:part name="parameters" element="tns:ChangePassword"/>
+  </wsdl:message>
+  <wsdl:message name="IUserSoapEndpointService_ChangePassword_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ChangePasswordResponse"/>
+  </wsdl:message>
+  <wsdl:message name="IUserSoapEndpointService_GetUsersList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUsersList"/>
+  </wsdl:message>
+  <wsdl:message name="IUserSoapEndpointService_GetUsersList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUsersListResponse"/>
+  </wsdl:message>
+  <wsdl:portType name="IUserSoapEndpointService">
+    <wsdl:operation name="CreateUser">
+      <wsdl:input message="tns:IUserSoapEndpointService_CreateUser_InputMessage"/>
+      <wsdl:output message="tns:IUserSoapEndpointService_CreateUser_OutputMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrentUserDetails">
+      <wsdl:input message="tns:IUserSoapEndpointService_GetCurrentUserDetails_InputMessage"/>
+      <wsdl:output message="tns:IUserSoapEndpointService_GetCurrentUserDetails_OutputMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserDetails">
+      <wsdl:input message="tns:IUserSoapEndpointService_GetUserDetails_InputMessage"/>
+      <wsdl:output message="tns:IUserSoapEndpointService_GetUserDetails_OutputMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUser">
+      <wsdl:input message="tns:IUserSoapEndpointService_UpdateUser_InputMessage"/>
+      <wsdl:output message="tns:IUserSoapEndpointService_UpdateUser_OutputMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUser">
+      <wsdl:input message="tns:IUserSoapEndpointService_DeleteUser_InputMessage"/>
+      <wsdl:output message="tns:IUserSoapEndpointService_DeleteUser_OutputMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="ChangePassword">
+      <wsdl:input message="tns:IUserSoapEndpointService_ChangePassword_InputMessage"/>
+      <wsdl:output message="tns:IUserSoapEndpointService_ChangePassword_OutputMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetUsersList">
+      <wsdl:input message="tns:IUserSoapEndpointService_GetUsersList_InputMessage"/>
+      <wsdl:output message="tns:IUserSoapEndpointService_GetUsersList_OutputMessage"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding" type="tns:IUserSoapEndpointService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="CreateUser">
+      <soap:operation soapAction="http://tempuri.org/IUserSoapEndpointService/CreateUser" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrentUserDetails">
+      <soap:operation soapAction="http://tempuri.org/IUserSoapEndpointService/GetCurrentUserDetails" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserDetails">
+      <soap:operation soapAction="http://tempuri.org/IUserSoapEndpointService/GetUserDetails" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUser">
+      <soap:operation soapAction="http://tempuri.org/IUserSoapEndpointService/UpdateUser" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUser">
+      <soap:operation soapAction="http://tempuri.org/IUserSoapEndpointService/DeleteUser" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangePassword">
+      <soap:operation soapAction="http://tempuri.org/IUserSoapEndpointService/ChangePassword" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUsersList">
+      <soap:operation soapAction="http://tempuri.org/IUserSoapEndpointService/GetUsersList" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="IUserSoapEndpointService">
+    <wsdl:port name="BasicHttpBinding" binding="tns:BasicHttpBinding">
+      <soap:address location="http://localhost:2138/soap-api/user"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:2138/soap-api/user</con:endpoint></con:endpoints><con:operation id="b23b676b-2302-4321-a7e9-793fe795035d" isOneWay="false" action="http://tempuri.org/IUserSoapEndpointService/ChangePassword" name="ChangePassword" bindingOperationName="ChangePassword" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="843b8d02-5f52-47f5-91f3-c2f9f6937b2f" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:2138/soap-api/user</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <tem:ChangePassword>\r
+         <!--Optional:-->\r
+         <tem:user>\r
+            <tem:UserId>?</tem:UserId>\r
+            <!--Optional:-->\r
+            <tem:OldPassword>?</tem:OldPassword>\r
+            <!--Optional:-->\r
+            <tem:NewPassword>?</tem:NewPassword>\r
+         </tem:user>\r
+      </tem:ChangePassword>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/IUserSoapEndpointService/ChangePassword"/></con:call></con:operation><con:operation id="dccaa13d-8b0a-4f0d-8989-498027fbefa3" isOneWay="false" action="http://tempuri.org/IUserSoapEndpointService/CreateUser" name="CreateUser" bindingOperationName="CreateUser" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="1544688a-d1d4-4b8a-9441-5925ca81b280" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:2138/soap-api/user</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <tem:CreateUser>\r
+         <!--Optional:-->\r
+         <tem:user>\r
+            <!--Optional:-->\r
+            <tem:Email>?</tem:Email>\r
+            <!--Optional:-->\r
+            <tem:Password>?</tem:Password>\r
+            <!--Optional:-->\r
+            <tem:Name>?</tem:Name>\r
+            <!--Optional:-->\r
+            <tem:Surname>?</tem:Surname>\r
+            <!--Optional:-->\r
+            <tem:PhoneNumber>?</tem:PhoneNumber>\r
+            <!--Optional:-->\r
+            <tem:Address>?</tem:Address>\r
+            <tem:IsAdmin>?</tem:IsAdmin>\r
+         </tem:user>\r
+      </tem:CreateUser>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/IUserSoapEndpointService/CreateUser"/></con:call></con:operation><con:operation id="1bf65447-d02d-45e7-8246-2442959fe013" isOneWay="false" action="http://tempuri.org/IUserSoapEndpointService/DeleteUser" name="DeleteUser" bindingOperationName="DeleteUser" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="975e7e5b-c711-4725-a7dd-47446351c20f" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:2138/soap-api/user</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <tem:DeleteUser>\r
+         <!--Optional:-->\r
+         <tem:id>\r
+            <tem:Id>?</tem:Id>\r
+         </tem:id>\r
+      </tem:DeleteUser>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/IUserSoapEndpointService/DeleteUser"/></con:call></con:operation><con:operation id="7871e36d-71e7-4425-83cf-c20c296bb54f" isOneWay="false" action="http://tempuri.org/IUserSoapEndpointService/GetCurrentUserDetails" name="GetCurrentUserDetails" bindingOperationName="GetCurrentUserDetails" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="d6d03a75-2c9b-4287-ab22-1cc67b5b022d" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:2138/soap-api/user</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <tem:GetCurrentUserDetails/>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/IUserSoapEndpointService/GetCurrentUserDetails"/></con:call></con:operation><con:operation id="3e582180-6eaf-4cce-be13-b1a2bd27f7de" isOneWay="false" action="http://tempuri.org/IUserSoapEndpointService/GetUserDetails" name="GetUserDetails" bindingOperationName="GetUserDetails" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="a57b0baf-925e-42ce-a44c-7197c242c71f" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:2138/soap-api/user</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <tem:GetUserDetails>\r
+         <!--Optional:-->\r
+         <tem:id>\r
+            <tem:Id>?</tem:Id>\r
+         </tem:id>\r
+      </tem:GetUserDetails>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/IUserSoapEndpointService/GetUserDetails"/></con:call></con:operation><con:operation id="6398918e-bf77-487f-b8be-9392b5439880" isOneWay="false" action="http://tempuri.org/IUserSoapEndpointService/GetUsersList" name="GetUsersList" bindingOperationName="GetUsersList" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="dba868ea-d889-4a23-91dd-afdc6fa77b22" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:2138/soap-api/user</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <tem:GetUsersList/>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/IUserSoapEndpointService/GetUsersList"/></con:call></con:operation><con:operation id="0918ca47-4221-4500-ab94-b53313a6d959" isOneWay="false" action="http://tempuri.org/IUserSoapEndpointService/UpdateUser" name="UpdateUser" bindingOperationName="UpdateUser" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="263e8bdb-d5f8-4c60-9371-ad4d37066fba" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:2138/soap-api/user</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <tem:UpdateUser>\r
+         <!--Optional:-->\r
+         <tem:user>\r
+            <tem:Id>?</tem:Id>\r
+            <!--Optional:-->\r
+            <tem:Email>?</tem:Email>\r
+            <!--Optional:-->\r
+            <tem:Name>?</tem:Name>\r
+            <!--Optional:-->\r
+            <tem:Surname>?</tem:Surname>\r
+            <!--Optional:-->\r
+            <tem:PhoneNumber>?</tem:PhoneNumber>\r
+            <!--Optional:-->\r
+            <tem:Address>?</tem:Address>\r
+            <tem:IsAdmin>?</tem:IsAdmin>\r
+         </tem:user>\r
+      </tem:UpdateUser>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/IUserSoapEndpointService/UpdateUser"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/></con:soapui-project>
