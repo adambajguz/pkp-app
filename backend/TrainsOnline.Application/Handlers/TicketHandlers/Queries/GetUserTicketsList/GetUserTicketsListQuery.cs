@@ -38,7 +38,7 @@
 
                 return new GetTicketsListResponse
                 {
-                    Ticket = await _uow.TicketsRepository.ProjectTo<GetTicketsListResponse.TicketLookupModel>(x => x.UserId == userId, cancellationToken: cancellationToken)
+                    Ticket = await _uow.TicketsRepository.ProjectToAsync<GetTicketsListResponse.TicketLookupModel>(x => x.UserId == userId, cancellationToken: cancellationToken)
                 };
             }
         }
