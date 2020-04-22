@@ -11,7 +11,6 @@
     using AutoMapper;
     using AutoMapper.QueryableExtensions;
     using Microsoft.EntityFrameworkCore;
-    using Microsoft.EntityFrameworkCore.Query;
     using TrainsOnline.Domain.Abstractions.Base;
 
     public class GenericReadOnlyRepository<TEntity> : IGenericReadOnlyRepository<TEntity>
@@ -102,7 +101,7 @@
                                .FirstOrDefaultAsync(x => x.Id.Equals(id));
         }
 
-        public virtual async Task<TEntity> GetByIdWithRelatedAsync<TProperty0, TProperty1>(Guid id, 
+        public virtual async Task<TEntity> GetByIdWithRelatedAsync<TProperty0, TProperty1>(Guid id,
                                                                                            Expression<Func<TEntity, TProperty0>> relatedSelector0,
                                                                                            Expression<Func<TEntity, TProperty1>> relatedSelector1)
         {

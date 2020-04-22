@@ -45,7 +45,7 @@
         }
 
         [Authorize(Roles = Roles.User)]
-        [HttpPost("/api/us  er/get")]
+        [HttpPost("/api/user/get")]
         [SwaggerOperation(
             Summary = "Get user details [" + Roles.User + "]",
             Description = "Gets user details")]

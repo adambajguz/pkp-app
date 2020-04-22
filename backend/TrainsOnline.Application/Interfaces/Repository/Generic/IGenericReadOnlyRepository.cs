@@ -41,7 +41,7 @@
         Task<TEntity> GetByIdWithRelatedAsync<TProperty0, TProperty1>(Guid id,
                                                                       Expression<Func<TEntity, TProperty0>> relatedSelector0,
                                                                       Expression<Func<TEntity, TProperty1>> relatedSelector1);
-        Task<TEntity> GetByIdWithRelatedAsync<TProperty0, TProperty1>(Guid id, 
+        Task<TEntity> GetByIdWithRelatedAsync<TProperty0, TProperty1>(Guid id,
                                                                       Expression<Func<TEntity, TProperty0>> relatedSelector0,
                                                                       Expression<Func<TEntity, TProperty1>> relatedSelector1,
                                                                       params Expression<Func<TEntity, object>>[] relatedSelectors);
@@ -69,5 +69,5 @@
                                                                             Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>>? orderBy = null,
                                                                             CancellationToken cancellationToken = default,
                                                                             params Expression<Func<TEntity, object>>[] relatedSelectors);
-    }                                                                 
+    }
 }

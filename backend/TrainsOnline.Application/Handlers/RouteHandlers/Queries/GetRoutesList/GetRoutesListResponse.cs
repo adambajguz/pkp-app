@@ -18,12 +18,13 @@
 
             public Guid FromId { get; set; }
             public Guid ToId { get; set; }
+            public GetStationsListResponse.StationLookupModel From { get; set; } = default!;
+            public GetStationsListResponse.StationLookupModel To { get; set; } = default!;
 
             public DateTime DepartureTime { get; set; } = default!;
             public TimeSpan Duration { get; set; } = default!;
-
-            public GetStationsListResponse.StationLookupModel From { get; set; } = default!;
-            public GetStationsListResponse.StationLookupModel To { get; set; } = default!;
+            public double Distance { get; set; }
+            public double TicketPrice { get; set; }
 
             void ICustomMapping.CreateMappings(Profile configuration)
             {
