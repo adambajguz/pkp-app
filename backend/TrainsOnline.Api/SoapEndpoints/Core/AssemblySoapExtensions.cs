@@ -51,7 +51,7 @@
 
         public string ResolveRoute(string basePath)
         {
-            return RouteAttribute.RouteScheme.Replace("[baseUrl]", basePath);
+            return RouteAttribute.RouteScheme.Replace("[baseUrl]", basePath) + ".svc";
         }
     }
 }
