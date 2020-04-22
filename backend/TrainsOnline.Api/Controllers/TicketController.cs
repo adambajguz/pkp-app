@@ -89,7 +89,7 @@
         [SwaggerOperation(
             Summary = "Get all current user tickets [" + Roles.User + "]",
             Description = "Gets a list of all current user tickets")]
-        [SwaggerResponse(StatusCodes.Status200OK, null, typeof(GetTicketsListResponse))]
+        [SwaggerResponse(StatusCodes.Status200OK, null, typeof(GetUserTicketsListResponse))]
         [SwaggerResponse(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> GetCurrentUserTicketsList()
         {
@@ -103,7 +103,7 @@
         [SwaggerOperation(
             Summary = "Get all user tickets [" + Roles.User + "]",
             Description = "Gets a list of all user tickets")]
-        [SwaggerResponse(StatusCodes.Status200OK, null, typeof(GetTicketsListResponse))]
+        [SwaggerResponse(StatusCodes.Status200OK, null, typeof(GetUserTicketsListResponse))]
         [SwaggerResponse(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> GetUserTicketsList([FromBody]IdRequest id)
         {

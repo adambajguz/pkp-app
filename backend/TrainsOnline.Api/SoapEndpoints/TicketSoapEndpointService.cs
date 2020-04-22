@@ -52,14 +52,14 @@
             return await Mediator.Send(new DeleteTicketCommand(id));
         }
 
-        public async Task<GetTicketsListResponse> GetCurrentUserTicketsList()
+        public async Task<GetUserTicketsListResponse> GetCurrentUserTicketsList()
         {
             IdRequest data = new IdRequest((Guid)DataRights.GetUserIdFromContext()!);
 
             return await Mediator.Send(new GetUserTicketsListQuery(data));
         }
 
-        public async Task<GetTicketsListResponse> GetUserTicketsList(IdRequest id)
+        public async Task<GetUserTicketsListResponse> GetUserTicketsList(IdRequest id)
         {
             return await Mediator.Send(new GetUserTicketsListQuery(id));
         }

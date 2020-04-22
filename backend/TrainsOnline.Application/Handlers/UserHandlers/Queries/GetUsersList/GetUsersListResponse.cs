@@ -15,6 +15,8 @@
         {
             public Guid Id { get; set; }
 
+            public string Email { get; set; } = default!;
+
             void ICustomMapping.CreateMappings(Profile configuration)
             {
                 configuration.CreateMap<User, UserLookupModel>();

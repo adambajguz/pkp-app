@@ -38,11 +38,11 @@
 
         [SoapAuthorize(Roles = Roles.User)]
         [OperationContract]
-        Task<GetTicketsListResponse> GetCurrentUserTicketsList();
+        Task<GetUserTicketsListResponse> GetCurrentUserTicketsList();
 
         [SoapAuthorize(Roles = Roles.User)]
         [OperationContract]
-        Task<GetTicketsListResponse> GetUserTicketsList(IdRequest id);
+        Task<GetUserTicketsListResponse> GetUserTicketsList(IdRequest id);
 
         [SoapAuthorize(Roles = Roles.Admin)]
         [OperationContract]
