@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using AutoMapper;
     using TrainsOnline.Application.DTO;
+    using TrainsOnline.Application.Handlers.StationHandlers.Queries.GetStationsList;
     using TrainsOnline.Application.Interfaces.Mapping;
     using TrainsOnline.Domain.Entities;
 
@@ -20,6 +21,9 @@
 
             public DateTime DepartureTime { get; set; } = default!;
             public TimeSpan Duration { get; set; } = default!;
+
+            public GetStationsListResponse.StationLookupModel From { get; set; } = default!;
+            public GetStationsListResponse.StationLookupModel To { get; set; } = default!;
 
             void ICustomMapping.CreateMappings(Profile configuration)
             {
