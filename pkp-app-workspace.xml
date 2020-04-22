@@ -3,4 +3,5 @@
   <con:settings/>
   <con:project name="http://localhost:2138/soap-api">X:/GitHub/pkp-app/http---localhost-2138-soap-api-soapui-project.xml</con:project>
   <con:project name="https://genericapi.francecentral.cloudapp.azure.com/soap-api/">X:/GitHub/pkp-app/https---genericapi-francecentral-cloudapp-azure-com-soap-api--soapui-project.xml</con:project>
+  <con:collectInfoForSupport>false</con:collectInfoForSupport>
 </con:soapui-workspace>
