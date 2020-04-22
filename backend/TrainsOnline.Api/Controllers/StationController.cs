@@ -68,7 +68,7 @@
 
         [HttpGet("/api/station/get-all")]
         [SwaggerOperation(
-            Summary = "Get all routes",
+            Summary = "Get all stations",
             Description = "Gets a list of all stations")]
         [SwaggerResponse(StatusCodes.Status200OK, null, typeof(GetStationsListResponse))]
         public async Task<IActionResult> GetStationsList()
