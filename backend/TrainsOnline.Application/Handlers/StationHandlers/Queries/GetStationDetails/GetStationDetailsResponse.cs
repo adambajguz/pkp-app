@@ -33,7 +33,7 @@
         {
             public Guid Id { get; set; }
 
-            public Guid ToId { get; set; }
+            //public Guid ToId { get; set; }
             public RouteDeparturesToLookupModel To { get; set; } = default!;
 
             public DateTime DepartureTime { get; set; } = default!;
