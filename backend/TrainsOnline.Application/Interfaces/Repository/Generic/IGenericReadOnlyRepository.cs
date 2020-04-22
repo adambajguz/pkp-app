@@ -51,23 +51,23 @@
 
         Task<bool> GetExistsAsync(Expression<Func<TEntity, bool>>? filter = null);
 
-        Task<IList<T>> ProjectToAsync<T>(Expression<Func<TEntity, bool>>? filter = null,
-                                         Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>>? orderBy = null,
-                                         CancellationToken cancellationToken = default);
-        Task<IList<T>> ProjectToWithRelatedAsync<T, TProperty0>(Expression<Func<TEntity, TProperty0>> relatedSelector0,
+        Task<List<T>> ProjectToAsync<T>(Expression<Func<TEntity, bool>>? filter = null,
+                                        Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>>? orderBy = null,
+                                        CancellationToken cancellationToken = default);
+        Task<List<T>> ProjectToWithRelatedAsync<T, TProperty0>(Expression<Func<TEntity, TProperty0>> relatedSelector0,
                                                                Expression<Func<TEntity, bool>>? filter = null,
                                                                Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>>? orderBy = null,
                                                                CancellationToken cancellationToken = default);
-        Task<IList<T>> ProjectToWithRelatedAsync<T, TProperty0, TProperty1>(Expression<Func<TEntity, TProperty0>> relatedSelector0,
-                                                                            Expression<Func<TEntity, TProperty1>> relatedSelector1,
-                                                                            Expression<Func<TEntity, bool>>? filter = null,
-                                                                            Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>>? orderBy = null,
-                                                                            CancellationToken cancellationToken = default);
-        Task<IList<T>> ProjectToWithRelatedAsync<T, TProperty0, TProperty1>(Expression<Func<TEntity, TProperty0>> relatedSelector0,
-                                                                            Expression<Func<TEntity, TProperty1>> relatedSelector1,
-                                                                            Expression<Func<TEntity, bool>>? filter = null,
-                                                                            Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>>? orderBy = null,
-                                                                            CancellationToken cancellationToken = default,
-                                                                            params Expression<Func<TEntity, object>>[] relatedSelectors);
+        Task<List<T>> ProjectToWithRelatedAsync<T, TProperty0, TProperty1>(Expression<Func<TEntity, TProperty0>> relatedSelector0,
+                                                                           Expression<Func<TEntity, TProperty1>> relatedSelector1,
+                                                                           Expression<Func<TEntity, bool>>? filter = null,
+                                                                           Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>>? orderBy = null,
+                                                                           CancellationToken cancellationToken = default);
+        Task<List<T>> ProjectToWithRelatedAsync<T, TProperty0, TProperty1>(Expression<Func<TEntity, TProperty0>> relatedSelector0,
+                                                                           Expression<Func<TEntity, TProperty1>> relatedSelector1,
+                                                                           Expression<Func<TEntity, bool>>? filter = null,
+                                                                           Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>>? orderBy = null,
+                                                                           CancellationToken cancellationToken = default,
+                                                                           params Expression<Func<TEntity, object>>[] relatedSelectors);
     }
 }

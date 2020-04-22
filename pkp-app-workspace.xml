@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-workspace name="pkp-app" soapui-version="5.5.0" xmlns:con="http://eviware.com/soapui/config">
+  <con:settings/>
+  <con:project name="http://localhost:2138/soap-api">X:/GitHub/pkp-app/http---localhost-2138-soap-api-soapui-project.xml</con:project>
+  <con:project name="https://genericapi.francecentral.cloudapp.azure.com/soap-api/">X:/GitHub/pkp-app/https---genericapi-francecentral-cloudapp-azure-com-soap-api--soapui-project.xml</con:project>
+</con:soapui-workspace>

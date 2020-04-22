@@ -19,7 +19,6 @@
             services.AddSoapCore()
                     .AddSoapServiceOperationTuner(new SoapJwtMiddleware(services.BuildServiceProvider()
                                                                                 .GetService<IJwtService>()));
-
             //services.AddTransient<ISampleSoapEndpointService, SampleSoapEndpointService>();
 
             Assembly.GetExecutingAssembly()
