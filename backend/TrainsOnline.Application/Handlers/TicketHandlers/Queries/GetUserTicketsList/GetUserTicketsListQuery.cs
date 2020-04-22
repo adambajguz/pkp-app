@@ -5,7 +5,6 @@
     using System.Threading.Tasks;
     using MediatR;
     using TrainsOnline.Application.DTO;
-    using TrainsOnline.Application.Handlers.TicketHandlers.Queries.GetTicketDetails;
     using TrainsOnline.Application.Handlers.TicketHandlers.Queries.GetTicketsList;
     using TrainsOnline.Application.Interfaces;
     using TrainsOnline.Application.Interfaces.UoW.Generic;
@@ -39,7 +38,7 @@
 
                 return new GetTicketsListResponse
                 {
-                    Ticket = await _uow.TicketsRepository.ProjectTo<GetTicketDetailResponse>(x => x.UserId == userId, cancellationToken: cancellationToken)
+                    Ticket = await _uow.TicketsRepository.ProjectTo<GetTicketsListResponse.TicketLookupModel>(x => x.UserId == userId, cancellationToken: cancellationToken)
                 };
             }
         }

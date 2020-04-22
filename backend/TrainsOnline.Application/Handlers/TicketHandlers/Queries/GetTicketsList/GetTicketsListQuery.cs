@@ -3,7 +3,6 @@
     using System.Threading;
     using System.Threading.Tasks;
     using MediatR;
-    using TrainsOnline.Application.Handlers.TicketHandlers.Queries.GetTicketDetails;
     using TrainsOnline.Application.Interfaces.UoW.Generic;
 
     public class GetTicketsListQuery : IRequest<GetTicketsListResponse>
@@ -26,7 +25,7 @@
             {
                 return new GetTicketsListResponse
                 {
-                    Ticket = await _uow.TicketsRepository.ProjectTo<GetTicketDetailResponse>(cancellationToken: cancellationToken)
+                    Ticket = await _uow.TicketsRepository.ProjectTo<GetTicketsListResponse.TicketLookupModel>(cancellationToken: cancellationToken)
                 };
             }
         }
