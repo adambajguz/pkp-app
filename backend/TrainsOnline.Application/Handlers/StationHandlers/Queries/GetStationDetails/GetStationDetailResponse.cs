@@ -27,7 +27,9 @@
 
         void ICustomMapping.CreateMappings(Profile configuration)
         {
-            configuration.CreateMap<Station, GetStationDetailResponse>();
+            configuration.CreateMap<Station, GetStationDetailResponse>()
+                         .ForMember(dst => dst.Departures, opt => opt.MapFrom(src => src.Departures))
+                         .ForMember(dst => dst.Arrivals, opt => opt.MapFrom(src => src.Arrivals));
         }
     }
 }
