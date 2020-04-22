@@ -30,6 +30,10 @@
         void ICustomMapping.CreateMappings(Profile configuration)
         {
             configuration.CreateMap<Route, GetRouteDetailResponse>();
+
+            configuration.CreateMap<Route, GetRouteDetailResponse>()
+                         .ForMember(dst => dst.From, opt => opt.MapFrom(src => src.From))
+                         .ForMember(dst => dst.To, opt => opt.MapFrom(src => src.To));
         }
     }
 }

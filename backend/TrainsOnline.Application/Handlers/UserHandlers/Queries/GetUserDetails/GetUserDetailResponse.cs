@@ -1,11 +1,9 @@
 ﻿namespace TrainsOnline.Application.Handlers.UserHandlers.Queries.GetUserDetails
 {
     using System;
-    using System.Collections.Generic;
     using Application.Interfaces.Mapping;
     using AutoMapper;
     using TrainsOnline.Application.DTO;
-    using TrainsOnline.Application.Handlers.TicketHandlers.Queries.GetTicketsList;
     using TrainsOnline.Domain.Entities;
 
     public class GetUserDetailResponse : IDataTransferObject, ICustomMapping
@@ -25,12 +23,9 @@
 
         public bool IsAdmin { get; set; }
 
-        public ICollection<GetTicketsListResponse.TicketLookupModel> Tickets { get; set; } = default!;
-
         void ICustomMapping.CreateMappings(Profile configuration)
         {
-            configuration.CreateMap<User, GetUserDetailResponse>()
-                         .ForMember(dst => dst.Tickets, opt => opt.MapFrom(src => src.Tickets));
+            configuration.CreateMap<User, GetUserDetailResponse>();
         }
     }
 }

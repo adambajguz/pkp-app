@@ -4,7 +4,6 @@
     using System.Collections.Generic;
     using AutoMapper;
     using TrainsOnline.Application.DTO;
-    using TrainsOnline.Application.Handlers.RouteHandlers.Queries.GetRouteDetails;
     using TrainsOnline.Application.Interfaces.Mapping;
     using TrainsOnline.Domain.Entities;
 
@@ -18,8 +17,6 @@
 
             public Guid UserId { get; set; }
             public Guid RouteId { get; set; }
-
-            public GetRouteDetailResponse Route { get; set; } = default!;
 
             void ICustomMapping.CreateMappings(Profile configuration)
             {
