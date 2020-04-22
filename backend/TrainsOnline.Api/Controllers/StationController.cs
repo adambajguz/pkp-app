@@ -2,6 +2,7 @@
 {
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Swashbuckle.AspNetCore.Annotations;
     using TrainsOnline.Application.DTO;
@@ -18,10 +19,11 @@
         [Authorize(Roles = Roles.Admin)]
         [HttpPost("/api/station/create")]
         [SwaggerOperation(
-            Summary = "Create new station [Admin]",
+            Summary = "Create new station [" + Roles.Admin + "]",
             Description = "Creates a new station")]
-        [SwaggerResponse(200, "Station created", typeof(IdResponse))]
-        [SwaggerResponse(400)]
+        [SwaggerResponse(StatusCodes.Status200OK, "Station created", typeof(IdResponse))]
+        [SwaggerResponse(StatusCodes.Status400BadRequest)]
+        [SwaggerResponse(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> CreateStation([FromBody]CreateStationRequest station)
         {
             return Ok(await Mediator.Send(new CreateStationCommand(station)));
@@ -31,9 +33,8 @@
         [SwaggerOperation(
             Summary = "Get station details",
             Description = "Gets station details")]
-        [SwaggerResponse(200, null, typeof(GetStationDetailResponse))]
-        [SwaggerResponse(400)]
-        [SwaggerResponse(401)]
+        [SwaggerResponse(StatusCodes.Status200OK, null, typeof(GetStationDetailResponse))]
+        [SwaggerResponse(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> GetStationDetails([FromBody]IdRequest id)
         {
             return Ok(await Mediator.Send(new GetStationDetailsQuery(id)));
@@ -42,10 +43,11 @@
         [Authorize(Roles = Roles.Admin)]
         [HttpPost("/api/station/update")]
         [SwaggerOperation(
-            Summary = "Updated station details [Admin]",
+            Summary = "Updated station details [" + Roles.Admin + "]",
             Description = "Updates station details")]
-        [SwaggerResponse(200, "Station details updated")]
-        [SwaggerResponse(401)]
+        [SwaggerResponse(StatusCodes.Status200OK, "Station details updated")]
+        [SwaggerResponse(StatusCodes.Status400BadRequest)]
+        [SwaggerResponse(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> UpdateStation([FromBody]UpdateStationRequest station)
         {
             return Ok(await Mediator.Send(new UpdateStationCommand(station)));
@@ -54,11 +56,11 @@
         [Authorize(Roles = Roles.Admin)]
         [HttpPost("/api/station/delete")]
         [SwaggerOperation(
-            Summary = "Delete station [Admin]",
+            Summary = "Delete station [" + Roles.Admin + "]",
             Description = "Deletes station")]
-        [SwaggerResponse(200, "Station deleted")]
-        [SwaggerResponse(400)]
-        [SwaggerResponse(401)]
+        [SwaggerResponse(StatusCodes.Status200OK, "Station deleted")]
+        [SwaggerResponse(StatusCodes.Status400BadRequest)]
+        [SwaggerResponse(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> DeleteStation([FromBody]IdRequest id)
         {
             return Ok(await Mediator.Send(new DeleteStationCommand(id)));
@@ -68,8 +70,7 @@
         [SwaggerOperation(
             Summary = "Get all routes",
             Description = "Gets a list of all stations")]
-        [SwaggerResponse(200, null, typeof(GetStationsListResponse))]
-        [SwaggerResponse(401)]
+        [SwaggerResponse(StatusCodes.Status200OK, null, typeof(GetStationsListResponse))]
         public async Task<IActionResult> GetStationsList()
         {
             return Ok(await Mediator.Send(new GetStationsListQuery()));
