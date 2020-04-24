@@ -41,27 +41,22 @@
 
         public async Task ValidateUserId<T>(T model, Expression<Func<T, Guid>> userIdFieldExpression) where T : class
         {
-            if (_currentUser.IsAdmin)
-                return;
-
             Func<T, Guid> func = userIdFieldExpression.Compile();
-            Guid dataUserId = func(model);
+            Guid userId = func(model);
 
-            await ValidateUserId(dataUserId);
+            await ValidateUserId(userId);
         }
 
         public async Task ValidateUserId(Guid userIdToValidate)
         {
-            if (_currentUser.IsAdmin)
-                return;
+            Guid userId = _currentUser.UserId ?? throw new ForbiddenException();
 
-            Guid? userId = _currentUser.UserId;
-            if (userId == null || userIdToValidate != userId)
+            if (!_currentUser.IsAdmin && userIdToValidate != userId)
                 throw new ForbiddenException();
 
             User user = await _uow.UsersRepository.GetByIdAsync(userIdToValidate);
             if (user is null)
-                throw new ForbiddenException();
+                throw new BadUserException();
         }
 
         public void ValidateIsAdmin()

@@ -6,6 +6,11 @@
 
     public class ValidationResultModel
     {
+        public ValidationResultModel()
+        {
+
+        }
+
         public ValidationResultModel(ValidationException validationException)
         {
             Message = validationException.Message.Equals(string.Empty) ? "Validation Failed" : validationException.Message;
