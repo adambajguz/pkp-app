@@ -32,8 +32,7 @@ namespace TrainsOnline.Application.Handlers.UserHandlers.Commands.DeleteUser
             public async Task<Unit> Handle(DeleteUserCommand request, CancellationToken cancellationToken)
             {
                 IdRequest data = request.Data;
-
-                _drs.ValidateUserId(data, x => x.Id);
+                await _drs.ValidateUserId(data, x => x.Id);
 
                 User user = await _uow.UsersRepository.GetByIdAsync(data.Id);
 

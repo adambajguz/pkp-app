@@ -34,7 +34,7 @@ namespace TrainsOnline.Application.Handlers.TicketHandlers.Commands.DeleteTicket
                 IdRequest data = request.Data;
 
                 Ticket ticket = await _uow.TicketsRepository.GetByIdAsync(data.Id);
-                _drs.ValidateUserId(ticket, x => x.UserId);
+                await _drs.ValidateUserId(ticket, x => x.UserId);
 
                 EntityRequestByIdValidator<Ticket>.Model validationModel = new EntityRequestByIdValidator<Ticket>.Model(data, ticket);
                 await new EntityRequestByIdValidator<Ticket>().ValidateAndThrowAsync(validationModel, cancellationToken: cancellationToken);

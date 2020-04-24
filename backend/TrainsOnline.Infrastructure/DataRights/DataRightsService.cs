@@ -4,19 +4,24 @@
     using System.Linq;
     using System.Linq.Expressions;
     using System.Security.Claims;
+    using System.Threading.Tasks;
     using Application.Exceptions;
     using Application.Interfaces;
     using Microsoft.AspNetCore.Http;
+    using TrainsOnline.Application.Interfaces.UoW.Generic;
+    using TrainsOnline.Domain.Entities;
     using TrainsOnline.Domain.Jwt;
 
     //TODO use expressions to validate datarights
     public class DataRightsService : IDataRightsService
     {
         private readonly IHttpContextAccessor _context;
+        private readonly IPKPAppDbUnitOfWork _uow;
 
-        public DataRightsService(IHttpContextAccessor context)
+        public DataRightsService(IHttpContextAccessor context, IPKPAppDbUnitOfWork uow)
         {
             _context = context;
+            _uow = uow;
         }
 
         public Guid? GetUserIdFromContext()
@@ -51,7 +56,7 @@
             return ContextHasRole(Roles.Admin);
         }
 
-        public void ValidateUserId<T>(T model, Expression<Func<T, Guid>> userIdFieldExpression) where T : class
+        public async Task ValidateUserId<T>(T model, Expression<Func<T, Guid>> userIdFieldExpression) where T : class
         {
             if (ContextIsAdmin())
                 return;
@@ -59,18 +64,20 @@
             Func<T, Guid> func = userIdFieldExpression.Compile();
             Guid dataUserId = func(model);
 
-            Guid? userId = GetUserIdFromContext();
-            if (userId == null || dataUserId != userId)
-                throw new ForbiddenException();
+            await ValidateUserId(dataUserId);
         }
 
-        public void ValidateUserId(Guid userIdToValidate)
+        public async Task ValidateUserId(Guid userIdToValidate)
         {
             if (ContextIsAdmin())
                 return;
 
             Guid? userId = GetUserIdFromContext();
             if (userId == null || userIdToValidate != userId)
+                throw new ForbiddenException();
+
+            User user = await _uow.UsersRepository.GetByIdAsync(userIdToValidate);
+            if (user is null)
                 throw new ForbiddenException();
         }
 

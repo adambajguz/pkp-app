@@ -34,8 +34,7 @@ namespace TrainsOnline.Application.Handlers.UserHandlers.Commands.UpdateUser
             public async Task<Unit> Handle(UpdateUserCommand request, CancellationToken cancellationToken)
             {
                 UpdateUserRequest data = request.Data;
-
-                _drs.ValidateUserId(data, x => x.Id);
+                await _drs.ValidateUserId(data, x => x.Id);
 
                 if (data.IsAdmin)
                     _drs.ValidateIsAdmin();

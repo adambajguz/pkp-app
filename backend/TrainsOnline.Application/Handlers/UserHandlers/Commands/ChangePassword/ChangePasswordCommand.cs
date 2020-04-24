@@ -33,12 +33,11 @@ namespace TrainsOnline.Application.Handlers.UserHandlers.Commands.ChangePassword
             public async Task<Unit> Handle(ChangePasswordCommand request, CancellationToken cancellationToken)
             {
                 ChangePasswordRequest data = request.Data;
-
-                _drs.ValidateUserId(data, x => x.UserId);
+                await _drs.ValidateUserId(data, x => x.UserId);
 
                 User user = await _uow.UsersRepository.GetByIdAsync(data.UserId);
-                ChangePasswordCommandValidator.Model validationModel = new ChangePasswordCommandValidator.Model(data, user);
 
+                ChangePasswordCommandValidator.Model validationModel = new ChangePasswordCommandValidator.Model(data, user);
                 await new ChangePasswordCommandValidator(_userManager).ValidateAndThrowAsync(validationModel, cancellationToken: cancellationToken);
 
                 await _userManager.SetPassword(user, data.NewPassword, cancellationToken);

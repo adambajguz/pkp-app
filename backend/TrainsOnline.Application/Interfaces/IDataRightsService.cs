@@ -2,6 +2,7 @@
 {
     using System;
     using System.Linq.Expressions;
+    using System.Threading.Tasks;
 
     public interface IDataRightsService
     {
@@ -11,8 +12,8 @@
         bool ContextHasRole(string role);
         bool ContextIsAdmin();
 
-        void ValidateUserId(Guid userIdToValidate);
-        void ValidateUserId<T>(T model, Expression<Func<T, Guid>> userIdFieldExpression) where T : class;
+        Task ValidateUserId(Guid userIdToValidate);
+        Task ValidateUserId<T>(T model, Expression<Func<T, Guid>> userIdFieldExpression) where T : class;
         void ValidateHasRole(string role);
         void ValidateIsAdmin();
     }
