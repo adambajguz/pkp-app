@@ -6,7 +6,6 @@
     using AutoMapper;
     using Domain.Entities;
     using TrainsOnline.Application.DTO;
-    using static TrainsOnline.Application.Handlers.StationHandlers.Queries.GetStationDetails.GetStationDetailsResponse.RouteDeparturesLookupModel;
 
     public class GetStationDetailsResponse : IDataTransferObject, ICustomMapping
     {
