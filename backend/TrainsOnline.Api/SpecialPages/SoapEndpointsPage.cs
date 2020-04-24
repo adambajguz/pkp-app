@@ -30,6 +30,12 @@
                                                                                .GetAllSoapEndpointServicesSpecification();
 
             StringBuilder sb = new StringBuilder();
+            sb.BeginHTML();
+
+            sb.Append("<p>");
+            sb.Append(GlobalAppConfig.AppInfo.AppDescriptionHTML);
+            sb.Append("</p>");
+
             sb.Append("<h1>Soap Services Endpoints List</h1>");
             sb.Append($"<table border=\"{isDevelopment.ToChar()}\"><thead>");
             sb.Append("<tr>");
@@ -71,6 +77,7 @@
             }
 
             sb.Append("</tbody></table>");
+            sb.EndHTML();
 
             await httpContext.Response.WriteAsync(sb.ToString());
         }

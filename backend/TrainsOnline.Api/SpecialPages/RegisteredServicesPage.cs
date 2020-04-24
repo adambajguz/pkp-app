@@ -19,16 +19,19 @@
 
         public override async Task Render(HttpContext httpContext, IWebHostEnvironment environment, IServiceCollection services)
         {
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.Append("<h1>Registered Services</h1>");
+            StringBuilder sb = new StringBuilder();
+            sb.BeginHTML();
+            sb.Append("<h1>Registered Services</h1>");
 
             ServiceDescriptor[] servicesCopy = services.ToArray();
 
-            AddServicesTable(servicesCopy, stringBuilder, ServiceLifetime.Singleton);
-            AddServicesTable(servicesCopy, stringBuilder, ServiceLifetime.Scoped);
-            AddServicesTable(servicesCopy, stringBuilder, ServiceLifetime.Transient);
+            AddServicesTable(servicesCopy, sb, ServiceLifetime.Singleton);
+            AddServicesTable(servicesCopy, sb, ServiceLifetime.Scoped);
+            AddServicesTable(servicesCopy, sb, ServiceLifetime.Transient);
 
-            await httpContext.Response.WriteAsync(stringBuilder.ToString());
+            sb.EndHTML();
+
+            await httpContext.Response.WriteAsync(sb.ToString());
         }
 
         private static void AddServicesTable(ServiceDescriptor[] services, StringBuilder sb, ServiceLifetime lifetime)
