@@ -1,6 +1,5 @@
 ﻿namespace TrainsOnline.Application.Handlers.RouteHandlers.Commands.CreateRoute
 {
-    using System.Data;
     using FluentValidation;
     using TrainsOnline.Application.Constants;
     using TrainsOnline.Application.Interfaces.UoW.Generic;
@@ -15,7 +14,7 @@
 
                 return exists;
             }).WithMessage(ValidationMessages.General.IsIncorrectId);
-            
+
             RuleFor(x => x.ToId).NotEmpty().MustAsync(async (request, val, token) =>
             {
                 bool exists = await uow.RoutesRepository.GetExistsAsync(x => x.Id == val);
