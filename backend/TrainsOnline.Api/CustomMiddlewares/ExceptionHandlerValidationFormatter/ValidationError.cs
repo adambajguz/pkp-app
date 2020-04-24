@@ -1,4 +1,4 @@
-﻿namespace TrainsOnline.Api.Models
+﻿namespace TrainsOnline.Api.CustomMiddlewares.ExceptionHandlerValidationFormatter
 {
     public class ValidationError
     {

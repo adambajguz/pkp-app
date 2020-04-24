@@ -8,7 +8,7 @@
     using Microsoft.AspNetCore.Http;
     using Newtonsoft.Json;
     using Serilog;
-    using TrainsOnline.Api.Models;
+    using TrainsOnline.Api.CustomMiddlewares.ExceptionHandlerValidationFormatter;
 
     public class CustomExceptionHandlerMiddleware
     {
@@ -33,11 +33,12 @@
 
         private async Task HandleExceptionAsync(HttpContext context, Exception exception)
         {
+            object errorObject = new object();
             HttpStatusCode code = exception switch
             {
-                FluentValidation.ValidationException _ => HttpStatusCode.BadRequest,
+                FluentValidation.ValidationException ex => HandleValidationException(ex, ref errorObject),
                 BadUserException _ => HttpStatusCode.Forbidden,
-                ForbiddenException _ => HttpStatusCode.Forbidden,
+                ForbiddenException _ => HttpStatusCode.Unauthorized,
                 NotFoundException _ => HttpStatusCode.NotFound,
                 _ => HandleUnknownException(exception)
             };
@@ -46,13 +47,20 @@
             {
                 statusCode = code,
                 message = exception.Message,
-                errors = exception is FluentValidation.ValidationException vex ? (object)new ValidationResultModel(vex) : null,
+                errors = errorObject,
                 //stackTrace = exception.StackTrace,
             };
 
             context.Response.ContentType = "application/json";
             context.Response.StatusCode = (int)code;
             await context.Response.WriteAsync(JsonConvert.SerializeObject(response));
+        }
+
+        private static HttpStatusCode HandleValidationException(FluentValidation.ValidationException exception, ref object errors)
+        {
+            errors = exception.FormatValidationExceptions();
+
+            return HttpStatusCode.BadRequest;
         }
 
         private static HttpStatusCode HandleUnknownException(Exception exception)
