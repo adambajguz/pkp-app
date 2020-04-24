@@ -28,6 +28,7 @@
         {
             public const string IsIncorrectId = "Id is incorrect";
             public const string IsNullOrEmpty = "Is null or empty";
+            public const string GreaterThenZero = "Number should be greater than 0";
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace TrainsOnline.Api.CustomMiddlewares
+﻿namespace TrainsOnline.Api.CustomMiddlewares.Exceptions
 {
     using System;
     using System.Net;
@@ -8,7 +8,7 @@
     using Microsoft.AspNetCore.Http;
     using Newtonsoft.Json;
     using Serilog;
-    using TrainsOnline.Api.CustomMiddlewares.ExceptionHandlerValidationFormatter;
+    using TrainsOnline.Api.CustomMiddlewares.Exceptions.ValidationFormatter;
 
     public class CustomExceptionHandlerMiddleware
     {
@@ -43,13 +43,7 @@
                 _ => HandleUnknownException(exception)
             };
 
-            object response = new
-            {
-                statusCode = code,
-                message = exception.Message,
-                errors = errorObject,
-                //stackTrace = exception.StackTrace,
-            };
+            ExceptionResponse response = new ExceptionResponse(code, exception.Message, errorObject);
 
             context.Response.ContentType = "application/json";
             context.Response.StatusCode = (int)code;

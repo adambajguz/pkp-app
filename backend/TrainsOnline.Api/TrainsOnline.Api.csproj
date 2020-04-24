@@ -20,6 +20,11 @@
   <ItemGroup>
     <Folder Include="wwwroot\" />
   </ItemGroup>
+  
+  <PropertyGroup>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <Deterministic>false</Deterministic>
+  </PropertyGroup> 
 
   <ItemGroup>
     <PackageReference Include="CommandLineParser" Version="2.7.82" />

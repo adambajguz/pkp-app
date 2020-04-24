@@ -15,7 +15,7 @@ namespace TrainsOnline.Api
     using Persistence;
     using Serilog;
     using TrainsOnline.Api.Configuration;
-    using TrainsOnline.Api.CustomMiddlewares;
+    using TrainsOnline.Api.CustomMiddlewares.Exceptions;
     using TrainsOnline.Api.SoapEndpoints.Core;
     using TrainsOnline.Api.SpecialPages.Core;
     using TrainsOnline.Common;
@@ -114,7 +114,7 @@ namespace TrainsOnline.Api
             string reasonPhrase = ReasonPhrases.GetReasonPhrase(httpRespone.StatusCode);
 
             string response = $"{GlobalAppConfig.AppInfo.AppName} Error Page\n" +
-                              $"{GlobalAppConfig.AppInfo.AppVersion}\n\n" +
+                              $"{GlobalAppConfig.AppInfo.AppVersionText}\n\n" +
                               $"Status code: {httpRespone.StatusCode} - {reasonPhrase}";
 
             await httpRespone.WriteAsync(response);

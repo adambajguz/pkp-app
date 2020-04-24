@@ -18,8 +18,11 @@
             });
             app.UseSwaggerUI(c =>
             {
+                c.DisplayRequestDuration();
+                c.EnableValidator();
+                c.ShowExtensions();
                 c.RoutePrefix = "api";
-                c.SwaggerEndpoint("/api/v1/swagger.json", GlobalAppConfig.AppInfo.AppName + VersionHelper.AppVersion);
+                c.SwaggerEndpoint(GlobalAppConfig.AppInfo.SwaggerStartupUrl, GlobalAppConfig.AppInfo.AppNameWithVersion);
             });
 
             return app;
@@ -30,11 +33,11 @@
             services.AddSwaggerGen(c =>
             {
                 c.EnableAnnotations();
-                c.SwaggerDoc("v1", new OpenApiInfo
+                c.SwaggerDoc(GlobalAppConfig.AppInfo.SwaggerDocumentName, new OpenApiInfo
                 {
-                    Version = VersionHelper.AppVersion,
-                    Title = "TrainsOnline",
-                    Description = "Backend Api for TrainsOnline.\n"
+                    Version = GlobalAppConfig.AppInfo.AppVersionText,
+                    Title = GlobalAppConfig.AppInfo.AppName,
+                    Description = GlobalAppConfig.AppInfo.AppDescriptionHTML
                 });
 
                 c.AddSecurityDefinition(JwtBearerDefaults.AuthenticationScheme, //Name the security scheme
