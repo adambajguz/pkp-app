@@ -24,9 +24,10 @@
             public const string OldIsIncorrect = "Old password is incorrect";
         }
 
-        public static class Id
+        public static class General
         {
             public const string IsIncorrectId = "Id is incorrect";
+            public const string IsNullOrEmpty = "Is null or empty";
         }
     }
 }

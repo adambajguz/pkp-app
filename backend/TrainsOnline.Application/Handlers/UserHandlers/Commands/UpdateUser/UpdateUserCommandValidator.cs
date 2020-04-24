@@ -12,11 +12,8 @@
             RuleFor(x => x.Data.Id).NotEmpty().Must((request, val, token) =>
             {
                 User userResult = request.User;
-                if (userResult == null)
-                    return false;
-
-                return true;
-            }).WithMessage(ValidationMessages.Id.IsIncorrectId);
+                return userResult != null;
+            }).WithMessage(ValidationMessages.General.IsIncorrectId);
 
             RuleFor(x => x.Data.Email).NotEmpty()
                                       .WithMessage(ValidationMessages.Email.IsEmpty);

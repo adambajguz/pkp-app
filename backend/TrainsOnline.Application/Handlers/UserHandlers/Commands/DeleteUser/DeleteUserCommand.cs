@@ -36,9 +36,9 @@ namespace TrainsOnline.Application.Handlers.UserHandlers.Commands.DeleteUser
                 _drs.ValidateUserId(data, x => x.Id);
 
                 User user = await _uow.UsersRepository.GetByIdAsync(data.Id);
-                DeleteUserCommandValidator.Model validationModel = new DeleteUserCommandValidator.Model(data, user);
 
-                await new DeleteUserCommandValidator().ValidateAndThrowAsync(validationModel, cancellationToken: cancellationToken);
+                EntityRequestByIdValidator<User>.Model validationModel = new EntityRequestByIdValidator<User>.Model(data, user);
+                await new EntityRequestByIdValidator<User>().ValidateAndThrowAsync(validationModel, cancellationToken: cancellationToken);
 
                 _uow.UsersRepository.Remove(user);
                 await _uow.SaveChangesAsync();

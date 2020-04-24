@@ -8,14 +8,13 @@ namespace TrainsOnline.Application.Handlers.AuthenticationHandlers.Commands.Rese
     {
         public ResetPasswordCommandValidator()
         {
+            RuleFor(x => x.Data.Token).NotEmpty()
+                                      .WithMessage(ValidationMessages.General.IsNullOrEmpty);
+
             RuleFor(x => x.User.Id).NotEmpty().Must((request, val, token) =>
             {
-                User userResult = request.User;
-                if (userResult == null)
-                    return false;
-
-                return true;
-            }).WithMessage(ValidationMessages.Id.IsIncorrectId);
+                return request.User != null;
+            }).WithMessage(ValidationMessages.General.IsIncorrectId);
         }
 
         public class Model

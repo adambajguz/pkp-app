@@ -17,7 +17,7 @@
                     return false;
 
                 return true;
-            }).WithMessage(ValidationMessages.Id.IsIncorrectId);
+            }).WithMessage(ValidationMessages.General.IsIncorrectId);
         }
     }
 }

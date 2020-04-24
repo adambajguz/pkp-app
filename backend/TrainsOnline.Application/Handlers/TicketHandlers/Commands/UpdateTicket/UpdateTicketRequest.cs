@@ -10,8 +10,8 @@
     {
         public Guid Id { get; set; }
 
-        public double Distance { get; set; } = default!;
-        public TimeSpan Duration { get; set; } = default!;
+        public Guid UserId { get; set; }
+        public Guid RouteId { get; set; }
 
         void ICustomMapping.CreateMappings(Profile configuration)
         {
