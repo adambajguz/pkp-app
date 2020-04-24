@@ -19,12 +19,12 @@
     public class TicketSoapEndpointService : ITicketSoapEndpointService
     {
         protected IMediator Mediator { get; }
-        protected IDataRightsService DataRights { get; }
+        protected ICurrentUserService CurrentUser { get; }
 
-        public TicketSoapEndpointService(IMediator mediator, IDataRightsService dataRights)
+        public TicketSoapEndpointService(IMediator mediator, ICurrentUserService currentUser)
         {
             Mediator = mediator;
-            DataRights = dataRights;
+            CurrentUser = currentUser;
         }
 
         public async Task<IdResponse> CreateTicket(CreateTicketRequest ticket)
@@ -54,7 +54,7 @@
 
         public async Task<GetUserTicketsListResponse> GetCurrentUserTicketsList()
         {
-            IdRequest data = new IdRequest((Guid)DataRights.GetUserIdFromContext()!);
+            IdRequest data = new IdRequest((Guid)CurrentUser.UserId!);
 
             return await Mediator.Send(new GetUserTicketsListQuery(data));
         }

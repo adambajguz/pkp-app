@@ -2,13 +2,32 @@
 {
     using Domain.Entities;
     using FluentValidation;
+    using TrainsOnline.Application.Constants;
     using TrainsOnline.Application.Interfaces.UoW.Generic;
 
-    public class UpdateStationeCommandValidator : AbstractValidator<UpdateStationeCommandValidator.Model>
+    public class UpdateTicketCommandValidator : AbstractValidator<UpdateTicketCommandValidator.Model>
     {
-        public UpdateStationeCommandValidator(IPKPAppDbUnitOfWork uow)
+        public UpdateTicketCommandValidator(IPKPAppDbUnitOfWork uow)
         {
+            RuleFor(x => x.Data.Id).NotEmpty().Must((request, val, token) =>
+            {
+                Ticket userResult = request.Ticket;
+                return userResult != null;
+            }).WithMessage(ValidationMessages.General.IsIncorrectId);
 
+            RuleFor(x => x.Data.UserId).MustAsync(async (request, val, token) =>
+            {
+                bool exists = await uow.UsersRepository.GetExistsAsync(x => x.Id == val);
+
+                return !exists;
+            }).WithMessage(ValidationMessages.General.IsIncorrectId);
+
+            RuleFor(x => x.Data.RouteId).MustAsync(async (request, val, token) =>
+            {
+                bool exists = await uow.RoutesRepository.GetExistsAsync(x => x.Id == val);
+
+                return !exists;
+            }).WithMessage(ValidationMessages.General.IsIncorrectId);
         }
 
         public class Model

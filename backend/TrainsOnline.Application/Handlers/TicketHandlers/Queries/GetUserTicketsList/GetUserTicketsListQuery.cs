@@ -28,14 +28,13 @@
             {
                 _uow = uow;
                 _drs = drs;
-
             }
 
             public async Task<GetUserTicketsListResponse> Handle(GetUserTicketsListQuery request, CancellationToken cancellationToken)
             {
-                _drs.ValidateUserId(request.Data, x => x.Id);
-
-                Guid userId = request.Data.Id;
+                IdRequest data = request.Data;
+                Guid userId = data.Id;
+                await _drs.ValidateUserId(data, x => x.Id);
 
                 return new GetUserTicketsListResponse
                 {

@@ -10,7 +10,7 @@
     {
         public Guid Id { get; set; }
 
-        public string Name { get; set; } = default!;
+        public string? Name { get; set; } = default!;
 
         public double Latitude { get; set; } = default!;
         public double Longitude { get; set; } = default!;

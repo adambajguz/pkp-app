@@ -18,12 +18,12 @@
     public class UserSoapEndpointService : IUserSoapEndpointService
     {
         protected IMediator Mediator { get; }
-        protected IDataRightsService DataRights { get; }
+        protected ICurrentUserService CurrentUser { get; }
 
-        public UserSoapEndpointService(IMediator mediator, IDataRightsService dataRights)
+        public UserSoapEndpointService(IMediator mediator, ICurrentUserService currentUser)
         {
             Mediator = mediator;
-            DataRights = dataRights;
+            CurrentUser = currentUser;
         }
 
         public async Task<IdResponse> CreateUser(CreateUserRequest user)
@@ -33,7 +33,7 @@
 
         public async Task<GetUserDetailsResponse> GetCurrentUserDetails()
         {
-            IdRequest data = new IdRequest((Guid)DataRights.GetUserIdFromContext()!);
+            IdRequest data = new IdRequest((Guid)CurrentUser.UserId!);
 
             return await Mediator.Send(new GetUserDetailsQuery(data));
         }

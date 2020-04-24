@@ -5,7 +5,6 @@
     using Microsoft.Extensions.DependencyInjection;
     using Serilog;
     using TrainsOnline.Api.Configuration;
-    using TrainsOnline.Api.Filters;
 
     public static class DependencyInjection
     {
@@ -22,7 +21,7 @@
             });
 
             //Mvc
-            services.AddControllers(options => options.Filters.Add(typeof(CustomExceptionFilterAttribute)))
+            services.AddControllers()
                     .AddNewtonsoftJson()
                     //.AddJsonOptions(options =>
                     //{

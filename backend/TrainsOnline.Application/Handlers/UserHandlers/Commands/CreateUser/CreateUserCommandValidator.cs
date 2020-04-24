@@ -12,6 +12,7 @@
                                  .WithMessage(ValidationMessages.Email.IsEmpty);
             RuleFor(x => x.Email).EmailAddress()
                                  .WithMessage(ValidationMessages.Email.HasWrongFormat);
+
             RuleFor(x => x.Email).MustAsync(async (request, val, token) =>
             {
                 bool checkInUse = await uow.UsersRepository.IsEmailInUseAsync(val);

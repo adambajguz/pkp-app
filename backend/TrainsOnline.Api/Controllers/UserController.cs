@@ -39,7 +39,7 @@
         [SwaggerResponse(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> GetCurrentUserDetails()
         {
-            IdRequest data = new IdRequest((Guid)DataRights.GetUserIdFromContext()!);
+            IdRequest data = new IdRequest((Guid)CurrentUser.UserId!);
 
             return Ok(await Mediator.Send(new GetUserDetailsQuery(data)));
         }

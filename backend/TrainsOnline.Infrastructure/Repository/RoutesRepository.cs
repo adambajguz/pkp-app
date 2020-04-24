@@ -7,7 +7,9 @@
 
     public class RoutesRepository : GenericRepository<Route>, IRoutesRepository
     {
-        public RoutesRepository(IDataRightsService dataRightsService, IPKPAppDbContext context, IMapper mapper) : base(dataRightsService, context, mapper)
+        public RoutesRepository(ICurrentUserService currentUserService,
+                                IPKPAppDbContext context,
+                                IMapper mapper) : base(currentUserService, context, mapper)
         {
 
         }

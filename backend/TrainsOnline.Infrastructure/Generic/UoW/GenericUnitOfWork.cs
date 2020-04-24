@@ -13,7 +13,7 @@
 
     public abstract class GenericUnitOfWork : IGenericUnitOfWork, IDisposable
     {
-        protected IDataRightsService DataRights { get; private set; }
+        protected ICurrentUserService CurrentUser { get; private set; }
         protected IGenericDatabaseContext Context { get; private set; }
         protected IMapper Mapper { get; private set; }
 
@@ -21,9 +21,9 @@
 
         private Dictionary<Type, IGenericReadOnlyRepository> Repositories { get; } = new Dictionary<Type, IGenericReadOnlyRepository>();
 
-        public GenericUnitOfWork(IDataRightsService dataRightsService, IGenericDatabaseContext context, IMapper mapper)
+        public GenericUnitOfWork(ICurrentUserService currentUserService, IGenericDatabaseContext context, IMapper mapper)
         {
-            DataRights = dataRightsService;
+            CurrentUser = currentUserService;
             Context = context;
             Mapper = mapper;
         }
@@ -54,7 +54,7 @@
                 return (value as IGenericRepository<TEntity>)!;
             }
 
-            IGenericRepository<TEntity> repository = (Activator.CreateInstance(typeof(GenericRepository<TEntity>), DataRights, Context, Mapper) as IGenericRepository<TEntity>)!;
+            IGenericRepository<TEntity> repository = (Activator.CreateInstance(typeof(GenericRepository<TEntity>), CurrentUser, Context, Mapper) as IGenericRepository<TEntity>)!;
             Repositories.Add(type, repository);
             return repository;
         }
@@ -68,7 +68,7 @@
                 return (value as IGenericReadOnlyRepository<TEntity>)!;
             }
 
-            IGenericReadOnlyRepository<TEntity> repository = (Activator.CreateInstance(typeof(GenericReadOnlyRepository<TEntity>), DataRights, Context, Mapper) as IGenericReadOnlyRepository<TEntity>)!;
+            IGenericReadOnlyRepository<TEntity> repository = (Activator.CreateInstance(typeof(GenericReadOnlyRepository<TEntity>), CurrentUser, Context, Mapper) as IGenericReadOnlyRepository<TEntity>)!;
             Repositories.Add(type, repository);
             return repository;
         }
@@ -83,7 +83,7 @@
                 return (TSpecificRepositoryInterface)Repositories[type];
             }
 
-            TSpecificRepositoryInterface repository = (TSpecificRepositoryInterface)Activator.CreateInstance(typeof(TSpecificRepository), DataRights, Context, Mapper)!;
+            TSpecificRepositoryInterface repository = (TSpecificRepositoryInterface)Activator.CreateInstance(typeof(TSpecificRepository), CurrentUser, Context, Mapper)!;
             Repositories.Add(type, repository);
             return repository;
         }

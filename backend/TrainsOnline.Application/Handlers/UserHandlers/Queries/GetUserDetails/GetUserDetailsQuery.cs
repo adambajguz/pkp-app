@@ -35,12 +35,12 @@ namespace TrainsOnline.Application.Handlers.UserHandlers.Queries.GetUserDetails
             public async Task<GetUserDetailsResponse> Handle(GetUserDetailsQuery request, CancellationToken cancellationToken)
             {
                 IdRequest data = request.Data;
-
-                _drs.ValidateUserId(data, x => x.Id);
-
-                await new GetUserDetailsQueryValidator(_uow).ValidateAndThrowAsync(data, cancellationToken: cancellationToken);
+                await _drs.ValidateUserId(data, x => x.Id);
 
                 User entity = await _uow.UsersRepository.GetByIdAsync(data.Id);
+
+                EntityRequestByIdValidator<User>.Model validationModel = new EntityRequestByIdValidator<User>.Model(data, entity);
+                await new EntityRequestByIdValidator<User>().ValidateAndThrowAsync(validationModel, cancellationToken: cancellationToken);
 
                 return _mapper.Map<GetUserDetailsResponse>(entity);
             }

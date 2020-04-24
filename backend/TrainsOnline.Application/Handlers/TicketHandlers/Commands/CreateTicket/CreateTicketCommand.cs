@@ -35,7 +35,7 @@ namespace TrainsOnline.Application.Handlers.TicketHandlers.Commands.CreateTicket
             public async Task<IdResponse> Handle(CreateTicketCommand request, CancellationToken cancellationToken)
             {
                 CreateTicketRequest data = request.Data;
-                _drs.ValidateUserId(data, x => x.UserId);
+                await _drs.ValidateUserId(data, x => x.UserId);
 
                 await new CreateTicketCommandValidator(_uow).ValidateAndThrowAsync(data, cancellationToken: cancellationToken);
 

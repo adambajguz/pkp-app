@@ -10,18 +10,15 @@
     using TrainsOnline.Application.Handlers.StationHandlers.Commands.UpdateStation;
     using TrainsOnline.Application.Handlers.StationHandlers.Queries.GetStationDetails;
     using TrainsOnline.Application.Handlers.StationHandlers.Queries.GetStationsList;
-    using TrainsOnline.Application.Interfaces;
 
     [SoapRoute("[baseUrl]/station", "Station", "Create, update, and get station")]
     public class StationSoapEndpointService : IStationSoapEndpointService
     {
         protected IMediator Mediator { get; }
-        protected IDataRightsService DataRights { get; }
 
-        public StationSoapEndpointService(IMediator mediator, IDataRightsService dataRights)
+        public StationSoapEndpointService(IMediator mediator)
         {
             Mediator = mediator;
-            DataRights = dataRights;
         }
 
         public async Task<IdResponse> CreateStation(CreateStationRequest station)

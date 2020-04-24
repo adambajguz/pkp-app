@@ -7,6 +7,8 @@
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Http;
     using Newtonsoft.Json;
+    using Serilog;
+    using TrainsOnline.Api.CustomMiddlewares.ExceptionHandlerValidationFormatter;
 
     public class CustomExceptionHandlerMiddleware
     {
@@ -29,41 +31,43 @@
             }
         }
 
-        private Task HandleExceptionAsync(HttpContext context, Exception exception)
+        private async Task HandleExceptionAsync(HttpContext context, Exception exception)
         {
-            HttpStatusCode code = HttpStatusCode.InternalServerError;
-
-            string result = string.Empty;
-
-            switch (exception)
+            object errorObject = new object();
+            HttpStatusCode code = exception switch
             {
-                case ValidationException validationException:
-                    code = HttpStatusCode.BadRequest;
-                    result = JsonConvert.SerializeObject(validationException.Failures);
-                    break;
-                case BadRequestException badRequestException:
-                    code = HttpStatusCode.BadRequest;
-                    result = badRequestException.Message;
-                    break;
-                case DeleteFailureException deleteFailureException:
-                    code = HttpStatusCode.BadRequest;
-                    result = deleteFailureException.Message;
-                    break;
-                case ForbiddenException _:
-                    code = HttpStatusCode.Forbidden;
-                    break;
-                case NotFoundException _:
-                    code = HttpStatusCode.NotFound;
-                    break;
-            }
+                FluentValidation.ValidationException ex => HandleValidationException(ex, ref errorObject),
+                BadUserException _ => HttpStatusCode.Forbidden,
+                ForbiddenException _ => HttpStatusCode.Unauthorized,
+                NotFoundException _ => HttpStatusCode.NotFound,
+                _ => HandleUnknownException(exception)
+            };
+
+            object response = new
+            {
+                statusCode = code,
+                message = exception.Message,
+                errors = errorObject,
+                //stackTrace = exception.StackTrace,
+            };
 
             context.Response.ContentType = "application/json";
             context.Response.StatusCode = (int)code;
+            await context.Response.WriteAsync(JsonConvert.SerializeObject(response));
+        }
 
-            if (result == string.Empty)
-                result = JsonConvert.SerializeObject(new { error = exception.Message });
+        private static HttpStatusCode HandleValidationException(FluentValidation.ValidationException exception, ref object errors)
+        {
+            errors = exception.FormatValidationExceptions();
 
-            return context.Response.WriteAsync(result);
+            return HttpStatusCode.BadRequest;
+        }
+
+        private static HttpStatusCode HandleUnknownException(Exception exception)
+        {
+            Log.Error(exception, "Unhandled exception in CustomExceptionHandlerMiddleware");
+
+            return HttpStatusCode.InternalServerError;
         }
     }
 

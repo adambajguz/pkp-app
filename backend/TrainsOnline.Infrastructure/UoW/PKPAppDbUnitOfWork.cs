@@ -20,7 +20,7 @@
         private IUsersRepository? _usersRepository;
         public IUsersRepository UsersRepository => _usersRepository ?? (_usersRepository = GetSpecificRepository<IUsersRepository, UsersRepository>());
 
-        public PKPAppDbUnitOfWork(IDataRightsService dataRightsService, IPKPAppDbContext context, IMapper mapper) : base(dataRightsService, context, mapper)
+        public PKPAppDbUnitOfWork(ICurrentUserService currentUserService, IPKPAppDbContext context, IMapper mapper) : base(currentUserService, context, mapper)
         {
 
         }

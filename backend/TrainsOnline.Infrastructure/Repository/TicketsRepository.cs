@@ -7,7 +7,9 @@
 
     public class TicketsRepository : GenericRepository<Ticket>, ITicketsRepository
     {
-        public TicketsRepository(IDataRightsService dataRightsService, IPKPAppDbContext context, IMapper mapper) : base(dataRightsService, context, mapper)
+        public TicketsRepository(ICurrentUserService currentUserService,
+                                 IPKPAppDbContext context,
+                                 IMapper mapper) : base(currentUserService, context, mapper)
         {
 
         }

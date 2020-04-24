@@ -36,10 +36,10 @@ namespace TrainsOnline.Application.Handlers.TicketHandlers.Commands.UpdateTicket
                 UpdateTicketRequest data = request.Data;
 
                 Ticket ticket = await _uow.TicketsRepository.GetByIdAsync(data.Id);
-                _drs.ValidateUserId(ticket, x => x.UserId);
+                await _drs.ValidateUserId(ticket, x => x.UserId);
 
-                UpdateStationeCommandValidator.Model validationModel = new UpdateStationeCommandValidator.Model(data, ticket);
-                await new UpdateStationeCommandValidator(_uow).ValidateAndThrowAsync(validationModel, cancellationToken: cancellationToken);
+                UpdateTicketCommandValidator.Model validationModel = new UpdateTicketCommandValidator.Model(data, ticket);
+                await new UpdateTicketCommandValidator(_uow).ValidateAndThrowAsync(validationModel, cancellationToken: cancellationToken);
 
                 _mapper.Map(data, ticket);
                 _uow.TicketsRepository.Update(ticket);
