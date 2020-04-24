@@ -1,4 +1,4 @@
-﻿namespace TrainsOnline.Api.CustomMiddlewares.ExceptionHandlerValidationFormatter
+﻿namespace TrainsOnline.Api.CustomMiddlewares.Exceptions.ValidationFormatter
 {
     using System.Collections.Generic;
     using System.Linq;

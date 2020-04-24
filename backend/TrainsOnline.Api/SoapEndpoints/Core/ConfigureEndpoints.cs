@@ -5,7 +5,7 @@
     using Microsoft.AspNetCore.Routing;
     using Microsoft.Extensions.DependencyInjection;
     using SoapCore;
-    using TrainsOnline.Api.CustomMiddlewares;
+    using TrainsOnline.Api.CustomMiddlewares.Soap;
     using TrainsOnline.Application.Interfaces;
     using TrainsOnline.Common.Extensions;
 
@@ -13,12 +13,12 @@
     {
         public static string BaseUrl { get; } = "/soap-api";
 
-        //TODO maybe add auto soap resolver with reflection
         public static IServiceCollection AddSoapApiServices(this IServiceCollection services)
         {
             services.AddSoapCore()
                     .AddSoapServiceOperationTuner(new SoapJwtMiddleware(services.BuildServiceProvider()
                                                                                 .GetService<IJwtService>()));
+
             //services.AddTransient<ISampleSoapEndpointService, SampleSoapEndpointService>();
 
             Assembly.GetExecutingAssembly()

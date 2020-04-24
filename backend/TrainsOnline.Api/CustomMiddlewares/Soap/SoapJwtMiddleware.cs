@@ -1,4 +1,4 @@
-﻿namespace TrainsOnline.Api.CustomMiddlewares
+﻿namespace TrainsOnline.Api.CustomMiddlewares.Soap
 {
     using System;
     using System.Linq;

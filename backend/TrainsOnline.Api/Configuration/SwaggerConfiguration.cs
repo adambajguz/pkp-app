@@ -19,7 +19,7 @@
             app.UseSwaggerUI(c =>
             {
                 c.RoutePrefix = "api";
-                c.SwaggerEndpoint("/api/v1/swagger.json", GlobalAppConfig.AppInfo.AppName + VersionHelper.AppVersion);
+                c.SwaggerEndpoint("/api/v1/swagger.json", GlobalAppConfig.AppInfo.AppNameWithVersion);
             });
 
             return app;
@@ -32,7 +32,7 @@
                 c.EnableAnnotations();
                 c.SwaggerDoc("v1", new OpenApiInfo
                 {
-                    Version = VersionHelper.AppVersion,
+                    Version = GlobalAppConfig.AppInfo.AppVersionText,
                     Title = "TrainsOnline",
                     Description = "Backend Api for TrainsOnline.\n"
                 });

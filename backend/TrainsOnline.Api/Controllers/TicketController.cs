@@ -6,6 +6,7 @@
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Swashbuckle.AspNetCore.Annotations;
+    using TrainsOnline.Api.CustomMiddlewares.Exceptions;
     using TrainsOnline.Application.DTO;
     using TrainsOnline.Application.Handlers.TicketHandlers.Commands.CreateTicket;
     using TrainsOnline.Application.Handlers.TicketHandlers.Commands.DeleteTicket;
@@ -25,8 +26,8 @@
             Summary = "Create new ticket [User]",
             Description = "Creates a new ticket")]
         [SwaggerResponse(StatusCodes.Status200OK, "Ticket created", typeof(IdResponse))]
-        [SwaggerResponse(StatusCodes.Status400BadRequest)]
-        [SwaggerResponse(StatusCodes.Status401Unauthorized)]
+        [SwaggerResponse(StatusCodes.Status400BadRequest, null, typeof(ExceptionResponse))]
+        [SwaggerResponse(StatusCodes.Status401Unauthorized, null, typeof(ExceptionResponse))]
         public async Task<IActionResult> CreateTicket([FromBody]CreateTicketRequest ticket)
         {
             return Ok(await Mediator.Send(new CreateTicketCommand(ticket)));
@@ -38,8 +39,8 @@
             Summary = "Get ticket details [User]",
             Description = "Gets ticket details")]
         [SwaggerResponse(StatusCodes.Status200OK, null, typeof(GetTicketDetailsResponse))]
-        [SwaggerResponse(StatusCodes.Status400BadRequest)]
-        [SwaggerResponse(StatusCodes.Status401Unauthorized)]
+        [SwaggerResponse(StatusCodes.Status400BadRequest, null, typeof(ExceptionResponse))]
+        [SwaggerResponse(StatusCodes.Status401Unauthorized, null, typeof(ExceptionResponse))]
         public async Task<IActionResult> GetTicketDetails([FromBody]IdRequest id)
         {
             return Ok(await Mediator.Send(new GetTicketDetailsQuery(id)));
@@ -51,8 +52,8 @@
             Summary = "Get ticket document [User]",
             Description = "Gets ticket document")]
         [SwaggerResponse(StatusCodes.Status200OK, null, typeof(GetTicketDocumentResponse))]
-        [SwaggerResponse(StatusCodes.Status400BadRequest)]
-        [SwaggerResponse(StatusCodes.Status401Unauthorized)]
+        [SwaggerResponse(StatusCodes.Status400BadRequest, null, typeof(ExceptionResponse))]
+        [SwaggerResponse(StatusCodes.Status401Unauthorized, null, typeof(ExceptionResponse))]
         public async Task<IActionResult> GetTicketDocument([FromBody]IdRequest id)
         {
             return Ok(await Mediator.Send(new GetTicketDocumentQuery(id)));
@@ -64,8 +65,8 @@
             Summary = "Updated ticket details [" + Roles.Admin + "]",
             Description = "Updates ticket details")]
         [SwaggerResponse(StatusCodes.Status200OK, "Ticket details updated")]
-        [SwaggerResponse(StatusCodes.Status400BadRequest)]
-        [SwaggerResponse(StatusCodes.Status401Unauthorized)]
+        [SwaggerResponse(StatusCodes.Status400BadRequest, null, typeof(ExceptionResponse))]
+        [SwaggerResponse(StatusCodes.Status401Unauthorized, null, typeof(ExceptionResponse))]
         public async Task<IActionResult> UpdateStation([FromBody]UpdateTicketRequest ticket)
         {
             return Ok(await Mediator.Send(new UpdateTicketCommand(ticket)));
@@ -77,8 +78,8 @@
             Summary = "Delete ticket [" + Roles.Admin + "]",
             Description = "Deletes ticket")]
         [SwaggerResponse(StatusCodes.Status200OK, "Ticket deleted")]
-        [SwaggerResponse(StatusCodes.Status400BadRequest)]
-        [SwaggerResponse(StatusCodes.Status401Unauthorized)]
+        [SwaggerResponse(StatusCodes.Status400BadRequest, null, typeof(ExceptionResponse))]
+        [SwaggerResponse(StatusCodes.Status401Unauthorized, null, typeof(ExceptionResponse))]
         public async Task<IActionResult> DeleteTicket([FromBody]IdRequest id)
         {
             return Ok(await Mediator.Send(new DeleteTicketCommand(id)));
@@ -90,7 +91,7 @@
             Summary = "Get all current user tickets [" + Roles.User + "]",
             Description = "Gets a list of all current user tickets")]
         [SwaggerResponse(StatusCodes.Status200OK, null, typeof(GetUserTicketsListResponse))]
-        [SwaggerResponse(StatusCodes.Status401Unauthorized)]
+        [SwaggerResponse(StatusCodes.Status401Unauthorized, null, typeof(ExceptionResponse))]
         public async Task<IActionResult> GetCurrentUserTicketsList()
         {
             IdRequest data = new IdRequest((Guid)CurrentUser.UserId!);
@@ -104,7 +105,7 @@
             Summary = "Get all user tickets [" + Roles.User + "]",
             Description = "Gets a list of all user tickets")]
         [SwaggerResponse(StatusCodes.Status200OK, null, typeof(GetUserTicketsListResponse))]
-        [SwaggerResponse(StatusCodes.Status401Unauthorized)]
+        [SwaggerResponse(StatusCodes.Status401Unauthorized, null, typeof(ExceptionResponse))]
         public async Task<IActionResult> GetUserTicketsList([FromBody]IdRequest id)
         {
             return Ok(await Mediator.Send(new GetUserTicketsListQuery(id)));
@@ -116,7 +117,7 @@
             Summary = "Get all tickets [" + Roles.Admin + "]",
             Description = "Gets a list of all tickets")]
         [SwaggerResponse(StatusCodes.Status200OK, null, typeof(GetTicketsListResponse))]
-        [SwaggerResponse(StatusCodes.Status401Unauthorized)]
+        [SwaggerResponse(StatusCodes.Status401Unauthorized, null, typeof(ExceptionResponse))]
         public async Task<IActionResult> GetTicketsList()
         {
             return Ok(await Mediator.Send(new GetTicketsListQuery()));
