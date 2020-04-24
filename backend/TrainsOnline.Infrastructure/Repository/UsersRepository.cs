@@ -10,7 +10,9 @@
 
     public class UsersRepository : GenericRepository<User>, IUsersRepository
     {
-        public UsersRepository(IDataRightsService dataRightsService, IPKPAppDbContext context, IMapper mapper) : base(dataRightsService, context, mapper)
+        public UsersRepository(ICurrentUserService currentUserService,
+                               IPKPAppDbContext context,
+                               IMapper mapper) : base(currentUserService, context, mapper)
         {
 
         }

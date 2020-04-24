@@ -16,12 +16,10 @@
     public class RouteSoapEndpointService : IRouteSoapEndpointService
     {
         protected IMediator Mediator { get; }
-        protected IDataRightsService DataRights { get; }
 
-        public RouteSoapEndpointService(IMediator mediator, IDataRightsService dataRights)
+        public RouteSoapEndpointService(IMediator mediator)
         {
             Mediator = mediator;
-            DataRights = dataRights;
         }
 
         public async Task<IdResponse> CreateRoute(CreateRouteRequest route)

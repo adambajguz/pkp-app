@@ -10,9 +10,9 @@
     public abstract class BaseController : Controller
     {
         private IMediator? _mediator;
-        private IDataRightsService? _dataRights;
+        private ICurrentUserService? _currentUser;
 
         protected IMediator Mediator => _mediator ?? (_mediator = HttpContext.RequestServices.GetService<IMediator>());
-        protected IDataRightsService DataRights => _dataRights ?? (_dataRights = HttpContext.RequestServices.GetService<IDataRightsService>());
+        protected ICurrentUserService CurrentUser => _currentUser ?? (_currentUser = HttpContext.RequestServices.GetService<ICurrentUserService>());
     }
 }

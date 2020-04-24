@@ -9,6 +9,7 @@
     using Microsoft.IdentityModel.Tokens;
     using TrainsOnline.Application.Interfaces.Pdf;
     using TrainsOnline.Application.Interfaces.UoW.Generic;
+    using TrainsOnline.Infrastructure.CurrentUser;
     using TrainsOnline.Infrastructure.Jwt;
     using TrainsOnline.Infrastructure.Main.Email;
     using TrainsOnline.Infrastructure.Pdf;
@@ -27,8 +28,8 @@
             services.AddSingleton<IUserManagerService, UserManagerService>();
             services.AddSingleton<IDocumentsService, DocumentsService>();
 
+            services.AddScoped<ICurrentUserService, CurrentUserService>();
             services.AddScoped<IPKPAppDbUnitOfWork, PKPAppDbUnitOfWork>();
-
             services.AddScoped<IDataRightsService, DataRightsService>();
 
             // Set license key to use GemBox.Document in Free mode.

@@ -12,17 +12,17 @@
     public class GenericRepository<TEntity> : GenericReadOnlyRepository<TEntity>, IGenericRepository<TEntity>
         where TEntity : class, IBaseEntity
     {
-        private IDataRightsService DataRights { get; }
+        private ICurrentUserService CurrentUser { get; }
 
-        public GenericRepository(IDataRightsService dataRightsService, IGenericDatabaseContext context, IMapper mapper) : base(context, mapper)
+        public GenericRepository(ICurrentUserService currentUserService, IGenericDatabaseContext context, IMapper mapper) : base(context, mapper)
         {
-            DataRights = dataRightsService;
+            CurrentUser = currentUserService;
         }
 
         public virtual TEntity Add(TEntity entity)
         {
             DateTime time = DateTime.UtcNow;
-            Guid? userGuid = DataRights.GetUserIdFromContext();
+            Guid? userGuid = CurrentUser.UserId;
 
             if (entity is IEntityCreation entityCreation)
             {
@@ -46,7 +46,7 @@
             if (entity is IEntityLastSaved entityModification)
             {
                 entityModification.LastSavedOn = DateTime.UtcNow;
-                entityModification.LastSavedBy = DataRights.GetUserIdFromContext();
+                entityModification.LastSavedBy = CurrentUser.UserId;
             }
             _dbSet.Attach(entity);
             //_context.Entry(entity).State = EntityState.Modified;

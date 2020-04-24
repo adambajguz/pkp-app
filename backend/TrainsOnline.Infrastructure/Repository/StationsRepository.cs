@@ -7,7 +7,9 @@
 
     public class StationsRepository : GenericRepository<Station>, IStationsRepository
     {
-        public StationsRepository(IDataRightsService dataRightsService, IPKPAppDbContext context, IMapper mapper) : base(dataRightsService, context, mapper)
+        public StationsRepository(ICurrentUserService currentUserService,
+                                  IPKPAppDbContext context,
+                                  IMapper mapper) : base(currentUserService, context, mapper)
         {
 
         }

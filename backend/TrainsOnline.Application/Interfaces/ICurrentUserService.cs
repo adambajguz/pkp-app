@@ -1,9 +1,14 @@
 ﻿namespace TrainsOnline.Application.Interfaces
 {
-    internal interface ICurrentUserService
-    {
-        string UserId { get; }
+    using System;
 
-        bool IsAuthenticated { get; }
+    public interface ICurrentUserService
+    {
+        public Guid? UserId { get; }
+        public bool IsAuthenticated { get; }
+        public bool IsAdmin { get; }
+
+        bool HasRole(string role);
+        string[] GetRoles();
     }
 }

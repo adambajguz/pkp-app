@@ -16,12 +16,10 @@
     public class StationSoapEndpointService : IStationSoapEndpointService
     {
         protected IMediator Mediator { get; }
-        protected IDataRightsService DataRights { get; }
 
-        public StationSoapEndpointService(IMediator mediator, IDataRightsService dataRights)
+        public StationSoapEndpointService(IMediator mediator)
         {
             Mediator = mediator;
-            DataRights = dataRights;
         }
 
         public async Task<IdResponse> CreateStation(CreateStationRequest station)

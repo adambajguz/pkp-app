@@ -6,11 +6,12 @@
 
     public interface IDataRightsService
     {
-        string[] GetRolesFromContext();
-        Guid? GetUserIdFromContext();
+        public Guid? UserId { get; }
+        public bool IsAuthenticated { get; }
+        public bool IsAdmin { get; }
 
-        bool ContextHasRole(string role);
-        bool ContextIsAdmin();
+        bool HasRole(string role);
+        string[] GetRoles();
 
         Task ValidateUserId(Guid userIdToValidate);
         Task ValidateUserId<T>(T model, Expression<Func<T, Guid>> userIdFieldExpression) where T : class;

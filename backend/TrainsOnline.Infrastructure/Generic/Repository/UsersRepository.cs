@@ -7,7 +7,7 @@
 
     public class EntityAuditLogRepository : GenericRepository<EntityAuditLog>, IEntityAuditLogRepository
     {
-        public EntityAuditLogRepository(IDataRightsService dataRightsService, IGenericDatabaseContext context, IMapper mapper) : base(dataRightsService, context, mapper)
+        public EntityAuditLogRepository(ICurrentUserService currentUserService, IGenericDatabaseContext context, IMapper mapper) : base(currentUserService, context, mapper)
         {
 
         }

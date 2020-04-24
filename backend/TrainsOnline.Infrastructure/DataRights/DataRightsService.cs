@@ -12,53 +12,36 @@
     using TrainsOnline.Domain.Entities;
     using TrainsOnline.Domain.Jwt;
 
-    //TODO use expressions to validate datarights
     public class DataRightsService : IDataRightsService
     {
+        public Guid? UserId { get => _currentUser.UserId; }
+        public bool IsAuthenticated { get => _currentUser.IsAuthenticated; }
+        public bool IsAdmin { get => _currentUser.IsAdmin; }
+
         private readonly IHttpContextAccessor _context;
+        private readonly ICurrentUserService _currentUser;
         private readonly IPKPAppDbUnitOfWork _uow;
 
-        public DataRightsService(IHttpContextAccessor context, IPKPAppDbUnitOfWork uow)
+        public DataRightsService(IHttpContextAccessor context, ICurrentUserService currentUserService, IPKPAppDbUnitOfWork uow)
         {
             _context = context;
+            _currentUser = currentUserService;
             _uow = uow;
         }
 
-        public Guid? GetUserIdFromContext()
+        public bool HasRole(string role)
         {
-            ClaimsIdentity? identity = _context.HttpContext.User.Identity as ClaimsIdentity;
-            Claim? claim = identity?.FindFirst(ClaimTypes.UserData);
-
-            return claim == null ? null : (Guid?)Guid.Parse(claim.Value);
+            return _currentUser.HasRole(role);
         }
 
-        public string[] GetRolesFromContext()
+        public string[] GetRoles()
         {
-            ClaimsIdentity? identity = _context.HttpContext.User.Identity as ClaimsIdentity;
-            string[] roles = identity?.FindAll(ClaimTypes.Role).Select(x => x.Value).ToArray() ?? new string[] { };
-
-            return roles;
-        }
-
-        public bool ContextHasRole(string role)
-        {
-            if (!Roles.IsValidRole(role))
-                return false;
-
-            ClaimsIdentity? identity = _context.HttpContext.User.Identity as ClaimsIdentity;
-            Claim? result = identity?.FindAll(ClaimTypes.Role).Where(x => x.Value == role).FirstOrDefault();
-
-            return result != null;
-        }
-
-        public bool ContextIsAdmin()
-        {
-            return ContextHasRole(Roles.Admin);
+            return _currentUser.GetRoles();
         }
 
         public async Task ValidateUserId<T>(T model, Expression<Func<T, Guid>> userIdFieldExpression) where T : class
         {
-            if (ContextIsAdmin())
+            if (_currentUser.IsAdmin)
                 return;
 
             Func<T, Guid> func = userIdFieldExpression.Compile();
@@ -69,10 +52,10 @@
 
         public async Task ValidateUserId(Guid userIdToValidate)
         {
-            if (ContextIsAdmin())
+            if (_currentUser.IsAdmin)
                 return;
 
-            Guid? userId = GetUserIdFromContext();
+            Guid? userId = _currentUser.UserId;
             if (userId == null || userIdToValidate != userId)
                 throw new ForbiddenException();
 

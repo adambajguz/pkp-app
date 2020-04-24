@@ -10,7 +10,7 @@
         public UpdateUserCommandValidator(IPKPAppDbUnitOfWork uow)
         {
             RuleFor(x => x.Data.Email).NotEmpty()
-                            .WithMessage(ValidationMessages.Email.IsEmpty);
+                                      .WithMessage(ValidationMessages.Email.IsEmpty);
             RuleFor(x => x.Data.Email).EmailAddress()
                                       .WithMessage(ValidationMessages.Email.HasWrongFormat);
 

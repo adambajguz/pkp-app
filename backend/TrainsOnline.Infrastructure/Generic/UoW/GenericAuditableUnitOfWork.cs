@@ -24,7 +24,7 @@
         public IEntityAuditLogRepository EntityAuditLogRepository => _entityAuditLogRepository ?? (_entityAuditLogRepository = GetSpecificRepository<IEntityAuditLogRepository, EntityAuditLogRepository>());
 
 
-        public GenericAuditableUnitOfWork(IDataRightsService dataRightsService, IGenericDatabaseContext context, IMapper mapper) : base(dataRightsService, context, mapper)
+        public GenericAuditableUnitOfWork(ICurrentUserService currentUserService, IGenericDatabaseContext context, IMapper mapper) : base(currentUserService, context, mapper)
         {
 
         }
