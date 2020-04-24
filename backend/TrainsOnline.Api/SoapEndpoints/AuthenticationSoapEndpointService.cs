@@ -7,7 +7,6 @@
     using TrainsOnline.Application.Handlers.AuthenticationHandlers.Commands.ResetPassword;
     using TrainsOnline.Application.Handlers.AuthenticationHandlers.Queries.GetResetPasswordToken;
     using TrainsOnline.Application.Handlers.AuthenticationHandlers.Queries.GetValidToken;
-    using TrainsOnline.Application.Interfaces;
 
     [SoapRoute("[baseUrl]/authentication", "Authentication", "User authentication and password reset")]
     public class AuthenticationSoapEndpointService : IAuthenticationSoapEndpointService

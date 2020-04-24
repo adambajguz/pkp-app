@@ -13,8 +13,8 @@
                 bool exists = await uow.UsersRepository.GetExistsAsync(x => x.Id == val);
 
                 return !exists;
-            }).WithMessage(ValidationMessages.General.IsIncorrectId); 
-            
+            }).WithMessage(ValidationMessages.General.IsIncorrectId);
+
             RuleFor(x => x.RouteId).MustAsync(async (request, val, token) =>
             {
                 bool exists = await uow.RoutesRepository.GetExistsAsync(x => x.Id == val);

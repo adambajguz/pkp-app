@@ -3,7 +3,6 @@ namespace TrainsOnline.Application.Handlers.TicketHandlers.Queries.GetTicketDocu
     using System.Threading;
     using System.Threading.Tasks;
     using AutoMapper;
-    using FluentValidation;
     using MediatR;
     using TrainsOnline.Application.DTO;
     using TrainsOnline.Application.Interfaces;

@@ -14,9 +14,9 @@
 
     public class DataRightsService : IDataRightsService
     {
-        public Guid? UserId { get => _currentUser.UserId; }
-        public bool IsAuthenticated { get => _currentUser.IsAuthenticated; }
-        public bool IsAdmin { get => _currentUser.IsAdmin; }
+        public Guid? UserId => _currentUser.UserId;
+        public bool IsAuthenticated => _currentUser.IsAuthenticated;
+        public bool IsAdmin => _currentUser.IsAdmin;
 
         private readonly IHttpContextAccessor _context;
         private readonly ICurrentUserService _currentUser;

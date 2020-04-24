@@ -41,7 +41,7 @@ namespace TrainsOnline.Application.Handlers.UserHandlers.Queries.GetUserDetails
 
                 EntityRequestByIdValidator<User>.Model validationModel = new EntityRequestByIdValidator<User>.Model(data, entity);
                 await new EntityRequestByIdValidator<User>().ValidateAndThrowAsync(validationModel, cancellationToken: cancellationToken);
-                
+
                 return _mapper.Map<GetUserDetailsResponse>(entity);
             }
         }
