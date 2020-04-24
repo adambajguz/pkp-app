@@ -3,6 +3,7 @@ namespace TrainsOnline.Application.Handlers.TicketHandlers.Queries.GetTicketDocu
     using System.Threading;
     using System.Threading.Tasks;
     using AutoMapper;
+    using FluentValidation;
     using MediatR;
     using TrainsOnline.Application.DTO;
     using TrainsOnline.Application.Interfaces;
@@ -40,6 +41,10 @@ namespace TrainsOnline.Application.Handlers.TicketHandlers.Queries.GetTicketDocu
 
                 Ticket entity = await _uow.TicketsRepository.GetByIdAsync(data.Id);
                 await _drs.ValidateUserId(entity, x => x.UserId);
+
+                EntityRequestByIdValidator<Ticket>.Model validationModel = new EntityRequestByIdValidator<Ticket>.Model(data, entity);
+                await new EntityRequestByIdValidator<Ticket>().ValidateAndThrowAsync(validationModel, cancellationToken: cancellationToken);
+
 
                 byte[] document = _documents.NewDocument()
                                             .AddSection()

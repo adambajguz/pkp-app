@@ -11,22 +11,21 @@
         {
             RuleFor(x => x.Data.Id).NotEmpty().Must((request, val, token) =>
             {
-                Ticket userResult = request.Ticket;
-                return userResult != null;
+                return request.Ticket != null;
             }).WithMessage(ValidationMessages.General.IsIncorrectId);
 
             RuleFor(x => x.Data.UserId).MustAsync(async (request, val, token) =>
             {
                 bool exists = await uow.UsersRepository.GetExistsAsync(x => x.Id == val);
 
-                return !exists;
+                return exists;
             }).WithMessage(ValidationMessages.General.IsIncorrectId);
 
             RuleFor(x => x.Data.RouteId).MustAsync(async (request, val, token) =>
             {
                 bool exists = await uow.RoutesRepository.GetExistsAsync(x => x.Id == val);
 
-                return !exists;
+                return exists;
             }).WithMessage(ValidationMessages.General.IsIncorrectId);
         }
 
