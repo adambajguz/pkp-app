@@ -1,5 +1,6 @@
 ﻿namespace TrainsOnline.Api.Controllers
 {
+    using System;
     using Application.Interfaces;
     using MediatR;
     using Microsoft.AspNetCore.Mvc;
@@ -9,10 +10,16 @@
     [Route("api/[controller]/[action]")]
     public abstract class BaseController : Controller
     {
-        private IMediator? _mediator;
-        private ICurrentUserService? _currentUser;
+        private readonly Lazy<IMediator> _mediator;
+        private readonly Lazy<ICurrentUserService> _currentUser;
 
-        protected IMediator Mediator => _mediator ?? (_mediator = HttpContext.RequestServices.GetService<IMediator>());
-        protected ICurrentUserService CurrentUser => _currentUser ?? (_currentUser = HttpContext.RequestServices.GetService<ICurrentUserService>());
+        protected IMediator Mediator => _mediator.Value;
+        protected ICurrentUserService CurrentUser => _currentUser.Value;
+
+        public BaseController()
+        {
+            _mediator = new Lazy<IMediator>(() => HttpContext.RequestServices.GetService<IMediator>()); ;
+            _currentUser = new Lazy<ICurrentUserService>(() => HttpContext.RequestServices.GetService<ICurrentUserService>());
+        }
     }
 }

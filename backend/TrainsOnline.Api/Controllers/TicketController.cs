@@ -93,7 +93,7 @@
         [SwaggerResponse(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> GetCurrentUserTicketsList()
         {
-            IdRequest data = new IdRequest((Guid)CurrentUser.GetUserIdFromContext()!);
+            IdRequest data = new IdRequest((Guid)CurrentUser.UserId!);
 
             return Ok(await Mediator.Send(new GetUserTicketsListQuery(data)));
         }
