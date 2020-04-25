@@ -13,6 +13,7 @@
     using TrainsOnline.Application.Interfaces;
     using TrainsOnline.Application.Interfaces.Documents;
     using TrainsOnline.Application.Interfaces.UoW.Generic;
+    using TrainsOnline.Common.Extensions;
     using TrainsOnline.Domain.Entities;
 
     public class GetTicketDocumentQuery : IRequest<GetTicketDocumentResponse>
@@ -30,13 +31,15 @@
             private readonly IMapper _mapper;
             private readonly IDataRightsService _drs;
             private readonly IDocumentsService _documents;
+            private readonly IQRCodeService _qr;
 
-            public Handler(IPKPAppDbUnitOfWork uow, IMapper mapper, IDataRightsService drs, IDocumentsService documents)
+            public Handler(IPKPAppDbUnitOfWork uow, IMapper mapper, IDataRightsService drs, IDocumentsService documents, IQRCodeService qr)
             {
                 _uow = uow;
                 _mapper = mapper;
                 _drs = drs;
                 _documents = documents;
+                _qr = qr;
             }
 
             public async Task<GetTicketDocumentResponse> Handle(GetTicketDocumentQuery request, CancellationToken cancellationToken)
@@ -49,7 +52,17 @@
                 await new EntityRequestByIdValidator<Ticket>().ValidateAndThrowAsync(validationModel, cancellationToken: cancellationToken);
                 await _drs.ValidateUserId(entity, x => x.UserId);
 
-                using (MemoryStream memoryStream = new MemoryStream(System.Convert.FromBase64String(PdfHeaderImage.Image)))
+                byte[] ticketCalendarCode = _qr.CreateCalendarCode($"{entity.Route.From.Name} → {entity.Route.To.Name}",
+                                                                   $"PKP Ticket {{{entity.Id}}}",
+                                                                   entity.Route.From.Latitude,
+                                                                   entity.Route.To.Longitude,
+                                                                   entity.Route.DepartureTime,
+                                                                   entity.Route.Duration);
+                byte[] ticketCode = _qr.CreateTextCode($"PKP Ticket {{{entity.Id}}}");
+
+                using (MemoryStream qrCalendarCodeMemoryStream = new MemoryStream(ticketCalendarCode))
+                using (MemoryStream qrCodeMemoryStream = new MemoryStream(ticketCode))
+                using (MemoryStream headerImageMemoryStream = new MemoryStream(Convert.FromBase64String(PdfHeaderImage.Image)))
                 {
                     DateTime arrival = entity.Route.DepartureTime.Add(entity.Route.Duration);
                     Color color = Color.FromArgb(57, 89, 158);
@@ -58,24 +71,22 @@
                                                 .AddSection()
 
                                                 .AddComplexParagraph()
-                                                .AddImage(memoryStream, 160, 30)
+                                                .AddImage(headerImageMemoryStream, 160, 30)
                                                 .AddNewLine(2)
-                                                .FinishParagraph()
 
-                                                .AddComplexParagraph()
                                                 .AddRunLine("────────────────────────────────┤ TICKET ├─────────────────────────────────", bold: true, fontColor: color)
                                                 .AddRun("         TID  ", bold: true, fontColor: color).AddRunLine($"PKP Ticket {{{entity.Id}}}")
                                                 .AddRun("   TIMESTAMP  ", bold: true, fontColor: color).AddRunLine(entity.LastSavedOn.ToString())
                                                 .AddRun("       ROUTE  ", bold: true, fontColor: color).AddRunLine($"{entity.Route.From.Name} → {entity.Route.To.Name}")
                                                 .AddRun("   DEPARTURE  ", bold: true, fontColor: color).AddRunLine(entity.Route.DepartureTime.ToString())
-                                                .AddNewLine(3)
+                                                .AddNewLine(2)
                                                 .AddRunLine("───────────────────────────────┤ PASSENGER ├───────────────────────────────", bold: true, fontColor: color)
                                                 .AddRun("         UID  ", bold: true, fontColor: color).AddRunLine($"{{{entity.UserId}}}")
                                                 .AddRun("        NAME  ", bold: true, fontColor: color).AddRunLine($"{entity.User.Name} {entity.User.Surname}")
                                                 .AddRun("      E-MAIL  ", bold: true, fontColor: color).AddRunLine(entity.User.Email)
                                                 .AddRun("     ADDRESS  ", bold: true, fontColor: color).AddRunLine(entity.User.Address)
                                                 .AddRun("       PHONE  ", bold: true, fontColor: color).AddRunLine(entity.User.PhoneNumber)
-                                                .AddNewLine(3)
+                                                .AddNewLine(2)
                                                 .AddRunLine("─────────────────────────────┤ ROUTE DETAILS ├─────────────────────────────", bold: true, fontColor: color)
                                                 .AddRun("        RUID  ", bold: true, fontColor: color).AddRunLine($"{{{entity.RouteId}}}")
                                                 .AddRun("  CREATED ON  ", bold: true, fontColor: color).AddRunLine(entity.CreatedOn.ToString())
@@ -83,13 +94,26 @@
 
                                                 .AddSimpleTable(new object[,]
                                                 {
-                                                    { "Departure",                           "Arrival",           "Travel time",          "Distance",                    "Ticket price"                 },
-                                                    { entity.Route.From.Name,                entity.Route.To.Name, entity.Route.Duration, $"{entity.Route.Distance} km", $"${entity.Route.TicketPrice}" },
-                                                    { entity.Route.DepartureTime.ToString(), arrival,             "",                     "",                           ""                             },
+                                                    { "Departure",                                               "Arrival",                            "Travel time",         "Distance",                    "Ticket price"                 },
+                                                    { $"{entity.Route.From.Name}\n{entity.Route.DepartureTime}", $"{entity.Route.To.Name}\n{arrival}", entity.Route.Duration, $"{entity.Route.Distance} km", $"${entity.Route.TicketPrice}" },
                                                 })
 
-                                                .FinishSection()
+                                                .AddComplexParagraph()
+                                                .AddNewLine(2)
+                                                .AddRunLine("─────────────────────────────┤ MISCELLANEOUS ├─────────────────────────────", bold: true, fontColor: color)
+                                                .FinishParagraph()
+                                                .AddMultiColumn(2,
+                                                                (x) => x.AddRunLine("Calendar event QR Code:")
+                                                                        .AddImage(qrCodeMemoryStream, 45, 45)
+                                                                        .AddNewLine()
+                                                                        .AddRunLine("This code allows you to add an event to your device with all crucial data from this ticket."),
 
+                                                                (x) => x.AddRunLine("Verification QR Code:")
+                                                                        .AddImage(qrCodeMemoryStream, 45, 45)
+                                                                        .AddNewLine()
+                                                                        .AddRunLine("The verification QR Code allows you to verify authenticity of the ticket using a dedicated online service."))
+
+                                                .FinishSection()
                                                 .BuildPdf();
 
                     GetTicketDocumentResponse response = _mapper.Map<GetTicketDocumentResponse>(entity);
