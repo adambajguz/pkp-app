@@ -33,8 +33,27 @@
 
             Paragraph.Inlines.Add(run);
             return this;
+        }        
+        
+        public IDocumentComplexParagraphBuilder AddRunLine(string text,
+                                                           double size = 10,
+                                                           bool bold = false,
+                                                           bool italic = false)
+        {
+            AddRun(text, size, bold, italic);
+            AddNewLine();
+
+            return this;
         }
 
+        public IDocumentComplexParagraphBuilder AddNewLine()
+        {
+            SpecialCharacter run = new SpecialCharacter(Document, SpecialCharacterType.LineBreak);
+            Paragraph.Inlines.Add(run);
+
+            return this;
+        }     
+        
         public IDocumentComplexParagraphBuilder AddSpecialCharacter(DocumentSpecialCharacters specialCharacter)
         {
             SpecialCharacter run = new SpecialCharacter(Document, (SpecialCharacterType)specialCharacter);
@@ -54,6 +73,16 @@
         }
         
         public IDocumentComplexParagraphBuilder AddImage(Stream imageStream,
+                                                         double width,
+                                                         double height)
+        {
+            Picture picture = new Picture(Document, imageStream, width, height, LengthUnit.Millimeter);
+            Paragraph.Inlines.Add(picture);
+
+            return this;
+        }     
+        
+        public IDocumentComplexParagraphBuilder AddImage(MemoryStream imageStream,
                                                          double width,
                                                          double height)
         {

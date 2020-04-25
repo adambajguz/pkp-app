@@ -1,5 +1,7 @@
 namespace TrainsOnline.Application.Handlers.TicketHandlers.Queries.GetTicketDocument
 {
+    using System.IO;
+    using System.Text;
     using System.Threading;
     using System.Threading.Tasks;
     using AutoMapper;
@@ -43,18 +45,42 @@ namespace TrainsOnline.Application.Handlers.TicketHandlers.Queries.GetTicketDocu
 
                 EntityRequestByIdValidator<Ticket>.Model validationModel = new EntityRequestByIdValidator<Ticket>.Model(data, entity);
                 await new EntityRequestByIdValidator<Ticket>().ValidateAndThrowAsync(validationModel, cancellationToken: cancellationToken);
-
                 await _drs.ValidateUserId(entity, x => x.UserId);
 
-                byte[] document = _documents.NewDocument()
-                                            .AddSection()
-                                            .FinishSection()
-                                            .BuildPdf();
+                using (MemoryStream memoryStream = new MemoryStream(System.Convert.FromBase64String(PdfHeaderImage.Image)))
+                {
+                    byte[] document = _documents.NewDocument()
+                                                .AddSection()
 
-                GetTicketDocumentResponse response = _mapper.Map<GetTicketDocumentResponse>(entity);
-                response.Document = document;
+                                                .AddComplexParagraph()
+                                                .AddImage(@"pdf-header.png", 160, 30)
+                                                .AddImage(memoryStream, 160, 30)
+                                                .AddNewLine()
+                                                .AddNewLine()
+                                                .AddRunLine($"PKP Ticket {{{entity.Id}}}")
+                                                .AddRunLine(entity.CreatedOn.ToString())
+                                                .AddRunLine(entity.User.Email)
+                                                .AddRunLine(entity.User.Address)
+                                                .AddRunLine(entity.User.Name)
+                                                .AddRunLine(entity.User.Surname)
+                                                .FinishParagraph()
 
-                return response;
+                                                .AddComplexParagraph()
+                                                .AddRunLine(entity.Route.From.Name)
+                                                .AddRunLine(entity.Route.To.Name)
+                                                .AddRunLine(entity.Route.DepartureTime.ToString())
+                                                .AddRunLine(entity.Route.Duration.ToString())
+                                                .AddRunLine(entity.Route.Distance.ToString())
+                                                .FinishParagraph()
+                                                .FinishSection()
+
+                                                .BuildPdf();
+
+                    GetTicketDocumentResponse response = _mapper.Map<GetTicketDocumentResponse>(entity);
+                    response.Document = document;
+
+                    return response;
+                }
             }
         }
     }
