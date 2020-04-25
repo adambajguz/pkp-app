@@ -50,10 +50,13 @@
             return this;
         }
 
-        public IDocumentComplexParagraphBuilder AddNewLine()
+        public IDocumentComplexParagraphBuilder AddNewLine(int count = 1)
         {
-            SpecialCharacter run = new SpecialCharacter(Document, SpecialCharacterType.LineBreak);
-            Paragraph.Inlines.Add(run);
+            for (int i = 0; i < count; ++i)
+            {
+                SpecialCharacter run = new SpecialCharacter(Document, SpecialCharacterType.LineBreak);
+                Paragraph.Inlines.Add(run);
+            }
 
             return this;
         }     
