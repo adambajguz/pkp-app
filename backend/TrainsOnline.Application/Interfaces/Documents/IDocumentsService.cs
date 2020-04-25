@@ -1,4 +1,4 @@
-﻿namespace TrainsOnline.Application.Interfaces.Pdf
+﻿namespace TrainsOnline.Application.Interfaces.Documents
 {
     using System.IO;
 

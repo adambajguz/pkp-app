@@ -1,13 +1,8 @@
-﻿namespace TrainsOnline.Application.Interfaces.Pdf
+﻿namespace TrainsOnline.Application.Interfaces.Documents
 {
     public interface IDocumentBuilder
     {
-        IDocumentBuilder AddSection();
-        IDocumentBuilder AddParagraph();
-        IDocumentBuilder AddRun();
-        IDocumentBuilder AddSpecialCharacter();
-        IDocumentBuilder AddTable();
-        IDocumentBuilder AddImage();
+        IDocumentSectionBuilder AddSection();
 
         byte[] BuildDocx();
         byte[] BuildPdf();

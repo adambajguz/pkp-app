@@ -2,7 +2,8 @@
 {
     using System.IO;
     using GemBox.Document;
-    using TrainsOnline.Application.Interfaces.Pdf;
+    using TrainsOnline.Application.Interfaces.Documents;
+    using TrainsOnline.Infrastructure.Documents;
 
     public class DocumentsService : IDocumentsService
     {
@@ -10,6 +11,7 @@
         {
 
         }
+
         public IDocumentBuilder NewDocument()
         {
             return new DocumentBuilder();

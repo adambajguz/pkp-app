@@ -7,7 +7,7 @@
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.IdentityModel.Tokens;
-    using TrainsOnline.Application.Interfaces.Pdf;
+    using TrainsOnline.Application.Interfaces.Documents;
     using TrainsOnline.Application.Interfaces.UoW.Generic;
     using TrainsOnline.Infrastructure.CurrentUser;
     using TrainsOnline.Infrastructure.Jwt;

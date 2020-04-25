@@ -1,10 +1,10 @@
-﻿namespace TrainsOnline.Infrastructure.Pdf
+﻿namespace TrainsOnline.Infrastructure.Documents
 {
     using System.IO;
     using GemBox.Document;
-    using TrainsOnline.Application.Interfaces.Pdf;
+    using TrainsOnline.Application.Interfaces.Documents;
 
-    public class DocumentBuilder : IDocumentBuilder
+    internal class DocumentBuilder : IDocumentBuilder
     {
         private DocumentModel Document { get; } = new DocumentModel();
 
@@ -24,34 +24,12 @@
             Document = DocumentModel.Load(path);
         }
 
-        public IDocumentBuilder AddImage()
+        public IDocumentSectionBuilder AddSection()
         {
-            throw new System.NotImplementedException();
-        }
+            Section section = new Section(Document);
+            Document.Sections.Add(section);
 
-        public IDocumentBuilder AddParagraph()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public IDocumentBuilder AddRun()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public IDocumentBuilder AddSection()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public IDocumentBuilder AddSpecialCharacter()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public IDocumentBuilder AddTable()
-        {
-            throw new System.NotImplementedException();
+            return new DocumentSectionBuilder(Document, this, section);
         }
 
         public byte[] BuildDocx()

@@ -86,7 +86,7 @@
         }
 
         [Authorize(Roles = Roles.User)]
-        [HttpPost("/api/ticket/get-all-current-user")]
+        [HttpGet("/api/ticket/get-all-current-user")]
         [SwaggerOperation(
             Summary = "Get all current user tickets [" + Roles.User + "]",
             Description = "Gets a list of all current user tickets")]
