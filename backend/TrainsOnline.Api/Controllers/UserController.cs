@@ -59,7 +59,7 @@
         }
 
         [Authorize(Roles = Roles.User)]
-        [HttpPost("/api/user/update")]
+        [HttpPut("/api/user/update")]
         [SwaggerOperation(
             Summary = "Updated user details [" + Roles.User + "]",
             Description = "Updates user details (requires [Admin] role to create admin account)")]
@@ -72,7 +72,7 @@
         }
 
         [Authorize(Roles = Roles.User)]
-        [HttpPost("/api/user/delete")]
+        [HttpDelete("/api/user/delete")]
         [SwaggerOperation(
             Summary = "Delete user [" + Roles.User + "]",
             Description = "Deletes user")]
@@ -85,7 +85,7 @@
         }
 
         [Authorize(Roles = Roles.User)]
-        [HttpPost("/api/user/change-password")]
+        [HttpPatch("/api/user/change-password")]
         [SwaggerOperation(
             Summary = "Change user password [" + Roles.User + "]",
             Description = "Changes password of an user")]

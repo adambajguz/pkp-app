@@ -42,7 +42,7 @@
         }
 
         [Authorize(Roles = Roles.Admin)]
-        [HttpPost("/api/route/update")]
+        [HttpPut("/api/route/update")]
         [SwaggerOperation(
             Summary = "Updated route details [" + Roles.Admin + "]",
             Description = "Updates route details")]
@@ -55,7 +55,7 @@
         }
 
         [Authorize(Roles = Roles.Admin)]
-        [HttpPost("/api/route/delete")]
+        [HttpDelete("/api/route/delete")]
         [SwaggerOperation(
             Summary = "Delete route [" + Roles.Admin + "]",
             Description = "Deletes route")]
