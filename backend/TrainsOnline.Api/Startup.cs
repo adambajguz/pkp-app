@@ -70,8 +70,10 @@ namespace TrainsOnline.Api
                .UseSerilogRequestLogging()
                .UseCors("AllowAll")
                .UseCustomExceptionHandler()
+               .UseResponseCompression()
                .UseStatusCodePages(StatusCodePageRespone)
                .UseHttpsRedirection();
+
 
             app.UseAuthentication()
                .UseAuthorization();
