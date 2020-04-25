@@ -60,7 +60,7 @@
         }
 
         [Authorize(Roles = Roles.Admin)]
-        [HttpPost("/api/ticket/update")]
+        [HttpPut("/api/ticket/update")]
         [SwaggerOperation(
             Summary = "Updated ticket details [" + Roles.Admin + "]",
             Description = "Updates ticket details")]
@@ -73,7 +73,7 @@
         }
 
         [Authorize(Roles = Roles.Admin)]
-        [HttpPost("/api/ticket/delete")]
+        [HttpDelete("/api/ticket/delete")]
         [SwaggerOperation(
             Summary = "Delete ticket [" + Roles.Admin + "]",
             Description = "Deletes ticket")]
