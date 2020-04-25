@@ -3,7 +3,6 @@
     using System.IO;
     using GemBox.Document;
     using TrainsOnline.Application.Interfaces.Documents;
-    using TrainsOnline.Common;
 
     internal class DocumentComplexParagraphBuilder : IDocumentComplexParagraphBuilder
     {

@@ -12,9 +12,9 @@
     using TrainsOnline.Application.Interfaces.Documents;
     using TrainsOnline.Application.Interfaces.UoW.Generic;
     using TrainsOnline.Infrastructure.CurrentUser;
+    using TrainsOnline.Infrastructure.Documents;
     using TrainsOnline.Infrastructure.Jwt;
     using TrainsOnline.Infrastructure.Main.Email;
-    using TrainsOnline.Infrastructure.Pdf;
     using TrainsOnline.Infrastructure.QRCode;
     using TrainsOnline.Infrastructure.UserManager;
     using IConfiguration = Microsoft.Extensions.Configuration.IConfiguration;
