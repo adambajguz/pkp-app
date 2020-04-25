@@ -96,7 +96,7 @@
                                      .AddSection()
 
                                      .AddComplexParagraph()
-                                     .AddImage(headerImageMemoryStream, DocumentImageFormats.Png, 160, 30)
+                                     //.AddImage(headerImageMemoryStream, DocumentImageFormats.Png, 160, 30)
                                      .AddNewLine(2)
 
                                      .AddRunLine("────────────────────────────────┤ TICKET ├─────────────────────────────────", bold: true, fontColor: color)
