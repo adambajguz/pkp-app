@@ -58,8 +58,8 @@
         public async Task<IActionResult> GetTicketDocument([FromBody]IdRequest id)
         {
             return Ok(await Mediator.Send(new GetTicketDocumentQuery(id)));
-        }   
-        
+        }
+
         [HttpPost("/api/ticket/validate-document")]
         [SwaggerOperation(
             Summary = "Validate ticket document",

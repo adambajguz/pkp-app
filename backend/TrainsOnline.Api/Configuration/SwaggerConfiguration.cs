@@ -33,7 +33,7 @@
 
                 //https://mac-blog.org.ua/dotnet-core-swashbuckle-3-bearer-auth/
                 System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
-                var ns = assembly.GetName().Name;
+                string? ns = assembly.GetName().Name;
                 c.IndexStream = () => assembly.GetManifestResourceStream($"{ns}.index.html");
             });
 

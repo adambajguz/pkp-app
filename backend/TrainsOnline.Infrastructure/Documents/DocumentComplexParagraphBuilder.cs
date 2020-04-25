@@ -36,8 +36,8 @@
 
             Paragraph.Inlines.Add(run);
             return this;
-        }        
-        
+        }
+
         public IDocumentComplexParagraphBuilder AddRunLine(string text,
                                                            double size = 10,
                                                            bool bold = false,
@@ -59,8 +59,8 @@
             }
 
             return this;
-        }     
-        
+        }
+
         public IDocumentComplexParagraphBuilder AddSpecialCharacter(DocumentSpecialCharacters specialCharacter)
         {
             SpecialCharacter run = new SpecialCharacter(Document, (SpecialCharacterType)specialCharacter);
@@ -78,7 +78,7 @@
 
             return this;
         }
-        
+
         public IDocumentComplexParagraphBuilder AddImage(Stream imageStream,
                                                          DocumentImageFormats format,
                                                          double width,
@@ -88,8 +88,8 @@
             Paragraph.Inlines.Add(picture);
 
             return this;
-        }     
-        
+        }
+
         public IDocumentComplexParagraphBuilder AddImage(MemoryStream imageStream,
                                                          DocumentImageFormats format,
                                                          double width,
