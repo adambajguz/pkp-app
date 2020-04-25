@@ -1,5 +1,7 @@
 ﻿namespace TrainsOnline.Infrastructure.Documents
 {
+    using System;
+    using System.Collections.Generic;
     using GemBox.Document;
     using GemBox.Document.Tables;
     using TrainsOnline.Application.Interfaces.Documents;
@@ -7,6 +9,7 @@
     internal class DocumentSectionBuilder : IDocumentSectionBuilder
     {
         private const string SimpleTableStyleName = "Simple Table";
+        private const string InvisibileTableStyleName = "Invisible Table";
 
         private DocumentModel Document { get; }
         private DocumentBuilder Parent { get; }
@@ -40,8 +43,8 @@
             TableStyle? customTableStyle = null;
             if (Document.Styles.Contains(SimpleTableStyleName))
                 customTableStyle = Document.Styles[SimpleTableStyleName] as TableStyle;
-            
-            if(customTableStyle is null)
+
+            if (customTableStyle is null)
             {
                 // Create and add a custom table style.
                 customTableStyle = new TableStyle(SimpleTableStyleName);
@@ -63,8 +66,8 @@
                 firstRowFormat.ParagraphFormat.Alignment = HorizontalAlignment.Left;
                 firstRowFormat.CellFormat.Borders.SetBorders(MultipleBorderTypes.Outside, BorderStyle.Dashed, borderColor, 1);
                 firstRowFormat.CellFormat.BackgroundColor = headerBackgroundColor;
-                firstRowFormat.CellFormat.Padding = new Padding(2, LengthUnit.Millimeter);        
-               
+                firstRowFormat.CellFormat.Padding = new Padding(2, LengthUnit.Millimeter);
+
                 // Set table style conditional format for last row.
                 TableStyleFormat lastRowFormat = customTableStyle.ConditionalFormats[TableStyleFormatType.LastRow];
                 lastRowFormat.CharacterFormat.FontColor = Color.Black;
@@ -101,6 +104,59 @@
                     Paragraph paragraph = new Paragraph(Document, tableData[r, c].ToString());
                     cell.Blocks.Add(paragraph);
                 }
+            }
+
+            return this;
+        }
+
+        public IDocumentSectionBuilder AddMultiColumn(int columnsCount, params Action<IDocumentComplexParagraphBuilder>[] actions)
+        {
+            if (actions.Length != columnsCount)
+                throw new ArgumentException($"Parameter {nameof(actions)}  should have length equal to value provided in {nameof(columnsCount)}");
+
+            TableStyle? customTableStyle = null;
+            if (Document.Styles.Contains(InvisibileTableStyleName))
+                customTableStyle = Document.Styles[InvisibileTableStyleName] as TableStyle;
+
+            if (customTableStyle is null)
+            {
+                // Create and add a custom table style.
+                customTableStyle = new TableStyle(InvisibileTableStyleName);
+
+                // Set table style format.
+                customTableStyle.ParagraphFormat.Alignment = HorizontalAlignment.Left;
+                customTableStyle.CharacterFormat.FontColor = Color.Black;
+                customTableStyle.CellFormat.Borders.ClearBorders();
+                customTableStyle.CellFormat.Padding = new Padding(0, LengthUnit.Millimeter);
+
+                Document.Styles.Add(customTableStyle);
+            }
+
+            //Create table
+            Table table = new Table(Document);
+            table.TableFormat.PreferredWidth = new TableWidth(100, TableWidthUnit.Percentage);
+            table.TableFormat.Style = customTableStyle;
+
+            Section.Blocks.Add(table);
+
+
+
+            // Create a row and add it to table.
+            TableRow row = new TableRow(Document);
+            table.Rows.Add(row);
+
+            for (int c = 0; c < columnsCount; ++c)
+            {
+                // Create a cell and add it to row.
+                TableCell cell = new TableCell(Document);
+                row.Cells.Add(cell);
+
+                // Create a paragraph and add it to cell.
+                Paragraph paragraph = new Paragraph(Document);
+                cell.Blocks.Add(paragraph);
+
+                DocumentComplexParagraphBuilder complexParagraph = new DocumentComplexParagraphBuilder(Document, this, paragraph);
+                actions[c].Invoke(complexParagraph);
             }
 
             return this;
