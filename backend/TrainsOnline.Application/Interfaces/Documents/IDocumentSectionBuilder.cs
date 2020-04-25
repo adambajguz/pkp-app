@@ -5,7 +5,7 @@
         IDocumentSectionBuilder AddParagraph(string text);
         IDocumentComplexParagraphBuilder AddComplexParagraph();
 
-        IDocumentSectionBuilder AddSimpleTable(object[,] tableData);
+        IDocumentSectionBuilder AddSimpleTable(object[,] tableData, bool hasHeader = true);
 
         IDocumentBuilder FinishSection();
     }

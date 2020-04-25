@@ -1,5 +1,7 @@
-namespace TrainsOnline.Application.Handlers.TicketHandlers.Queries.GetTicketDocument
+﻿namespace TrainsOnline.Application.Handlers.TicketHandlers.Queries.GetTicketDocument
 {
+    using System;
+    using System.Drawing;
     using System.IO;
     using System.Text;
     using System.Threading;
@@ -49,29 +51,46 @@ namespace TrainsOnline.Application.Handlers.TicketHandlers.Queries.GetTicketDocu
 
                 using (MemoryStream memoryStream = new MemoryStream(System.Convert.FromBase64String(PdfHeaderImage.Image)))
                 {
+                    DateTime arrival = entity.Route.DepartureTime.Add(entity.Route.Duration);
+
                     byte[] document = _documents.NewDocument()
                                                 .AddSection()
 
                                                 .AddComplexParagraph()
-                                                .AddImage(@"pdf-header.png", 160, 30)
                                                 .AddImage(memoryStream, 160, 30)
                                                 .AddNewLine()
                                                 .AddNewLine()
-                                                .AddRunLine($"PKP Ticket {{{entity.Id}}}")
-                                                .AddRunLine(entity.CreatedOn.ToString())
-                                                .AddRunLine(entity.User.Email)
-                                                .AddRunLine(entity.User.Address)
-                                                .AddRunLine(entity.User.Name)
-                                                .AddRunLine(entity.User.Surname)
+                                                .FinishParagraph()
+
+                                                .AddComplexParagraph()
+                                                .AddRunLine("─────────────────────────────────┤ TICKET ├─────────────────────────────────", bold: true, fontColor: Color.FromArgb(57, 89, 158))
+                                                .AddRun("        ID ", bold: true, fontColor: Color.FromArgb(57, 89, 158)).AddRunLine($"PKP Ticket {{{entity.Id}}}")
+                                                .AddRun(" TIMESTAMP ", bold: true, fontColor: Color.FromArgb(57, 89, 158)).AddRunLine(entity.LastSavedOn.ToString())
+                                                .AddRun("     ROUTE ", bold: true, fontColor: Color.FromArgb(57, 89, 158)).AddRunLine($"{entity.Route.From.Name} → {entity.Route.To.Name}")
+                                                .AddRun(" DEPARTURE ", bold: true, fontColor: Color.FromArgb(57, 89, 158)).AddRunLine(entity.Route.DepartureTime.ToString())
+                                                .AddNewLine()
+                                                .AddNewLine()
+                                                .AddRunLine("────────────────────────────────┤ PASSENGER ├───────────────────────────────", bold: true, fontColor: Color.FromArgb(57, 89, 158))
+                                                .AddRun("      NAME ", bold: true, fontColor: Color.FromArgb(57, 89, 158)).AddRunLine($"{entity.User.Name} {entity.User.Surname}")
+                                                .AddRun("    E-MAIL ", bold: true, fontColor: Color.FromArgb(57, 89, 158)).AddRunLine(entity.User.Email)
+                                                .AddRun(   "ADDRESS ", bold: true, fontColor: Color.FromArgb(57, 89, 158)).AddRunLine(entity.User.Address)
                                                 .FinishParagraph()
 
                                                 .AddComplexParagraph()
                                                 .AddRunLine(entity.Route.From.Name)
                                                 .AddRunLine(entity.Route.To.Name)
-                                                .AddRunLine(entity.Route.DepartureTime.ToString())
-                                                .AddRunLine(entity.Route.Duration.ToString())
                                                 .AddRunLine(entity.Route.Distance.ToString())
+
+                                                .AddRunLine("──────────────────────────────┤ ROUTE DETAILS ├─────────────────────────────", bold: true, fontColor: Color.FromArgb(57, 89, 158))
                                                 .FinishParagraph()
+
+                                                .AddSimpleTable(new object[,]
+                                                {
+                                                    { "Departure",                           "Arrival",           "Travel time",         "Distance",             "Ticket price"                 },
+                                                    { entity.Route.From.Name,                entity.Route.To.Name, "",                    entity.Route.Distance, $"${entity.Route.TicketPrice}" },
+                                                    { entity.Route.DepartureTime.ToString(), arrival,              entity.Route.Duration, "",                    ""                             },
+                                                })
+
                                                 .FinishSection()
 
                                                 .BuildPdf();

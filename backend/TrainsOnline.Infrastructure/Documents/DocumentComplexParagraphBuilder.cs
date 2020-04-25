@@ -20,14 +20,17 @@
         public IDocumentComplexParagraphBuilder AddRun(string text,
                                                        double size = 10,
                                                        bool bold = false,
-                                                       bool italic = false)
+                                                       bool italic = false,
+                                                       System.Drawing.Color? fontColor = null)
         {
             Run run = new Run(Document, text)
             {
                 CharacterFormat = {
                     Size = size,
                     Bold = bold,
-                    Italic = italic
+                    Italic = italic,
+                    FontColor = new Color(fontColor?.R ?? 0, fontColor?.G ?? 0, fontColor?.B ?? 0),
+                    FontName = "Courier New"
                 }
             };
 
@@ -38,9 +41,10 @@
         public IDocumentComplexParagraphBuilder AddRunLine(string text,
                                                            double size = 10,
                                                            bool bold = false,
-                                                           bool italic = false)
+                                                           bool italic = false,
+                                                           System.Drawing.Color? fontColor = null)
         {
-            AddRun(text, size, bold, italic);
+            AddRun(text, size, bold, italic, fontColor);
             AddNewLine();
 
             return this;
