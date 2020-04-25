@@ -79,14 +79,14 @@
                                                 .AddRun("   TIMESTAMP  ", bold: true, fontColor: color).AddRunLine(entity.LastSavedOn.ToString())
                                                 .AddRun("       ROUTE  ", bold: true, fontColor: color).AddRunLine($"{entity.Route.From.Name} → {entity.Route.To.Name}")
                                                 .AddRun("   DEPARTURE  ", bold: true, fontColor: color).AddRunLine(entity.Route.DepartureTime.ToString())
-                                                .AddNewLine(2)
+                                                .AddNewLine()
                                                 .AddRunLine("───────────────────────────────┤ PASSENGER ├───────────────────────────────", bold: true, fontColor: color)
                                                 .AddRun("         UID  ", bold: true, fontColor: color).AddRunLine($"{{{entity.UserId}}}")
                                                 .AddRun("        NAME  ", bold: true, fontColor: color).AddRunLine($"{entity.User.Name} {entity.User.Surname}")
                                                 .AddRun("      E-MAIL  ", bold: true, fontColor: color).AddRunLine(entity.User.Email)
                                                 .AddRun("     ADDRESS  ", bold: true, fontColor: color).AddRunLine(entity.User.Address)
                                                 .AddRun("       PHONE  ", bold: true, fontColor: color).AddRunLine(entity.User.PhoneNumber)
-                                                .AddNewLine(2)
+                                                .AddNewLine()
                                                 .AddRunLine("─────────────────────────────┤ ROUTE DETAILS ├─────────────────────────────", bold: true, fontColor: color)
                                                 .AddRun("        RUID  ", bold: true, fontColor: color).AddRunLine($"{{{entity.RouteId}}}")
                                                 .AddRun("  CREATED ON  ", bold: true, fontColor: color).AddRunLine(entity.CreatedOn.ToString())
@@ -99,19 +99,19 @@
                                                 })
 
                                                 .AddComplexParagraph()
-                                                .AddNewLine(2)
+                                                .AddNewLine()
                                                 .AddRunLine("─────────────────────────────┤ MISCELLANEOUS ├─────────────────────────────", bold: true, fontColor: color)
                                                 .FinishParagraph()
                                                 .AddMultiColumn(2,
                                                                 (x) => x.AddRunLine("Calendar event QR Code:")
-                                                                        .AddImage(qrCodeMemoryStream, 45, 45)
+                                                                        .AddImage(qrCalendarCodeMemoryStream, 45, 45)
                                                                         .AddNewLine()
-                                                                        .AddRunLine("This code allows you to add an event to your device with all crucial data from this ticket."),
+                                                                        .AddRunLine("This code allows you to add an event to your device with all crucial data from this ticket.", size: 8),
 
                                                                 (x) => x.AddRunLine("Verification QR Code:")
                                                                         .AddImage(qrCodeMemoryStream, 45, 45)
                                                                         .AddNewLine()
-                                                                        .AddRunLine("The verification QR Code allows you to verify authenticity of the ticket using a dedicated online service."))
+                                                                        .AddRunLine("The verification QR Code allows you to verify authenticity of the ticket using a dedicated online service.", size: 8))
 
                                                 .FinishSection()
                                                 .BuildPdf();
