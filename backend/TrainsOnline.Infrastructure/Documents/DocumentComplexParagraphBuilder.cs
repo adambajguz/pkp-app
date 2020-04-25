@@ -31,7 +31,7 @@
                     Bold = bold,
                     Italic = italic,
                     FontColor = new Color(fontColor?.R ?? 0, fontColor?.G ?? 0, fontColor?.B ?? 0),
-                    FontName = GlobalAppConfig.IsWindows ? "Courier New" : "Bitstream Vera Sans Mono"
+                    FontName = "Courier New" //sudo apt-get install ttf-mscorefonts-installer
                 }
             };
 
