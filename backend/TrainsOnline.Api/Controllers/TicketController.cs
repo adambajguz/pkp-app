@@ -60,7 +60,7 @@
             return Ok(await Mediator.Send(new GetTicketDocumentQuery(id)));
         }
 
-        [HttpPost("/api/ticket/validate-document")]
+        [HttpGet("/api/ticket/validate-document")]
         [SwaggerOperation(
             Summary = "Validate ticket document",
             Description = "Gets ticket document validation result")]
