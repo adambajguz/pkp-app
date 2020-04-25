@@ -40,10 +40,11 @@ namespace TrainsOnline.Application.Handlers.TicketHandlers.Queries.GetTicketDocu
                 IdRequest data = request.Data;
 
                 Ticket entity = await _uow.TicketsRepository.GetByIdWithRelatedAsync(data.Id, x => x.Route, x => x.Route.From, x => x.Route.To);
-                await _drs.ValidateUserId(entity, x => x.UserId);
 
                 EntityRequestByIdValidator<Ticket>.Model validationModel = new EntityRequestByIdValidator<Ticket>.Model(data, entity);
                 await new EntityRequestByIdValidator<Ticket>().ValidateAndThrowAsync(validationModel, cancellationToken: cancellationToken);
+
+                await _drs.ValidateUserId(entity, x => x.UserId);
 
                 byte[] document = _documents.NewDocument()
                                             .AddSection()

@@ -26,7 +26,7 @@
             app.UseSwaggerUI(c =>
             {
                 c.DisplayRequestDuration();
-                c.EnableValidator();
+                //c.EnableValidator();
                 c.ShowExtensions();
                 c.RoutePrefix = GlobalAppConfig.AppInfo.SwaggerRoute;
                 c.SwaggerEndpoint(GlobalAppConfig.AppInfo.SwaggerStartupUrl, GlobalAppConfig.AppInfo.AppNameWithVersion);
