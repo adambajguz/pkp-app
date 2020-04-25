@@ -74,7 +74,6 @@ namespace TrainsOnline.Api
                .UseStatusCodePages(StatusCodePageRespone)
                .UseHttpsRedirection();
 
-
             app.UseAuthentication()
                .UseAuthorization();
 
@@ -98,7 +97,7 @@ namespace TrainsOnline.Api
 
             app.ConfigureSpecialPages(Environment, _services);
 
-            app.UseHealthChecks("/health");
+            app.UseHealthChecks(GlobalAppConfig.AppInfo.HealthUrl);
 
             app.UseForwardedHeaders(new ForwardedHeadersOptions
             {
