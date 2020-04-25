@@ -6,6 +6,8 @@
 
     internal class DocumentSectionBuilder : IDocumentSectionBuilder
     {
+        private const string SimpleTableStyleName = "Simple Table";
+
         private DocumentModel Document { get; }
         private DocumentBuilder Parent { get; }
         private Section Section { get; }
@@ -33,10 +35,50 @@
             return new DocumentComplexParagraphBuilder(Document, this, paragraph);
         }
 
-        public IDocumentSectionBuilder AddSimpleTable(object[,] tableData)
+        public IDocumentSectionBuilder AddSimpleTable(object[,] tableData, bool hasHeader = true)
         {
+            TableStyle? customTableStyle = null;
+            if (Document.Styles.Contains(SimpleTableStyleName))
+                customTableStyle = Document.Styles[SimpleTableStyleName] as TableStyle;
+            
+            if(customTableStyle is null)
+            {
+                // Create and add a custom table style.
+                customTableStyle = new TableStyle(SimpleTableStyleName);
+
+                // Set table style format.
+                Color borderColor = new Color(57, 89, 158);
+                Color headerBackgroundColor = new Color(68, 136, 138);
+
+                customTableStyle.ParagraphFormat.Alignment = HorizontalAlignment.Left;
+                customTableStyle.CharacterFormat.FontColor = Color.Black;
+                customTableStyle.TableFormat.Borders.SetBorders(MultipleBorderTypes.Left | MultipleBorderTypes.Right | MultipleBorderTypes.InsideVertical, BorderStyle.Dashed, borderColor, 1);
+                customTableStyle.CellFormat.Borders.SetBorders(MultipleBorderTypes.Outside, BorderStyle.Dashed, borderColor, 1);
+                customTableStyle.CellFormat.Padding = new Padding(2, LengthUnit.Millimeter);
+
+                // Set table style conditional format for first row.
+                TableStyleFormat firstRowFormat = customTableStyle.ConditionalFormats[TableStyleFormatType.FirstRow];
+                firstRowFormat.CharacterFormat.Bold = true;
+                firstRowFormat.CharacterFormat.FontColor = Color.White;
+                firstRowFormat.ParagraphFormat.Alignment = HorizontalAlignment.Left;
+                firstRowFormat.CellFormat.Borders.SetBorders(MultipleBorderTypes.Outside, BorderStyle.Dashed, borderColor, 1);
+                firstRowFormat.CellFormat.BackgroundColor = headerBackgroundColor;
+                firstRowFormat.CellFormat.Padding = new Padding(2, LengthUnit.Millimeter);        
+               
+                // Set table style conditional format for last row.
+                TableStyleFormat lastRowFormat = customTableStyle.ConditionalFormats[TableStyleFormatType.LastRow];
+                lastRowFormat.CharacterFormat.FontColor = Color.Black;
+                lastRowFormat.CellFormat.Borders.SetBorders(MultipleBorderTypes.Bottom | MultipleBorderTypes.Left | MultipleBorderTypes.Right, BorderStyle.Dashed, borderColor, 1);
+                lastRowFormat.CellFormat.Padding = new Padding(2, LengthUnit.Millimeter);
+
+                Document.Styles.Add(customTableStyle);
+            }
+
+            //Create table
             Table table = new Table(Document);
             table.TableFormat.PreferredWidth = new TableWidth(100, TableWidthUnit.Percentage);
+            table.TableFormat.Style = customTableStyle;
+            table.TableFormat.StyleOptions = TableStyleOptions.FirstRow | TableStyleOptions.LastRow;
 
             Section.Blocks.Add(table);
 
@@ -56,7 +98,7 @@
                     row.Cells.Add(cell);
 
                     // Create a paragraph and add it to cell.
-                    var paragraph = new Paragraph(Document, tableData[r, c].ToString());
+                    Paragraph paragraph = new Paragraph(Document, tableData[r, c].ToString());
                     cell.Blocks.Add(paragraph);
                 }
             }
