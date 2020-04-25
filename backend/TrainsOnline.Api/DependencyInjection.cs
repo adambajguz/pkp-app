@@ -1,8 +1,11 @@
 ﻿namespace TrainsOnline.Api
 {
+    using System.IO.Compression;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.ResponseCompression;
     using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.IdentityModel.Tokens;
     using Serilog;
     using TrainsOnline.Api.Configuration;
 
@@ -30,7 +33,52 @@
                     //})
                     .SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
 
-            services.AddResponseCompression();
+            services.AddResponseCompression(options =>
+            {
+                options.EnableForHttps = true;
+
+                options.Providers.Add<BrotliCompressionProvider>();
+                options.Providers.Add<GzipCompressionProvider>();
+
+                options.MimeTypes = new[]
+                {
+                     // General
+                    "text/plain",
+
+                    // Static files
+                    "text/css",
+                    "application/javascript",
+                    "font/woff2",
+
+                    // MVC
+                    "text/html",
+                    "application/xml",
+                    "text/xml",
+                    "application/json",
+                    "text/json",
+
+                    // WebAssembly
+                    "application/wasm",
+
+                    // Images
+                    "image/*"
+                };
+                options.ExcludedMimeTypes = new[]
+                {
+                    "audio/*",
+                    "video/*"
+                };
+            });
+
+            services.Configure<GzipCompressionProviderOptions>(options =>
+            {
+                options.Level = CompressionLevel.Fastest;
+            });
+
+            services.Configure<BrotliCompressionProviderOptions>(options =>
+            {
+                options.Level = CompressionLevel.Fastest;
+            });
 
             //Cors
             services.AddCors(options => //TODO: Change cors only to our server

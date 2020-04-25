@@ -16,12 +16,19 @@
                 c.SerializeAsV2 = false;
                 c.RouteTemplate = "api/{documentName}/swagger.json";
             });
+
+            app.UseReDoc(c =>
+            {
+                c.RoutePrefix = GlobalAppConfig.AppInfo.ReDocRoute;
+                c.SpecUrl(GlobalAppConfig.AppInfo.SwaggerStartupUrl);
+            });
+
             app.UseSwaggerUI(c =>
             {
                 c.DisplayRequestDuration();
                 c.EnableValidator();
                 c.ShowExtensions();
-                c.RoutePrefix = "api";
+                c.RoutePrefix = GlobalAppConfig.AppInfo.SwaggerRoute;
                 c.SwaggerEndpoint(GlobalAppConfig.AppInfo.SwaggerStartupUrl, GlobalAppConfig.AppInfo.AppNameWithVersion);
             });
 
@@ -43,7 +50,7 @@
                 c.AddSecurityDefinition(JwtBearerDefaults.AuthenticationScheme, //Name the security scheme
                     new OpenApiSecurityScheme
                     {
-                        Description = "JWT Authorization header using the Bearer scheme. Use /api/login endpoint below to retrive token, then paste it to the textbox below:",
+                        Description = "JWT Authorization header using the Bearer scheme. Use /api/login endpoint to retrive a token.",
                         Type = SecuritySchemeType.Http,
                         Scheme = "bearer"
                     });
@@ -63,6 +70,7 @@
                     }
                 });
             });
+            services.AddSwaggerGenNewtonsoftSupport();
         }
     }
 }
