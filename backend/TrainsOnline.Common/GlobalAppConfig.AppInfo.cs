@@ -28,6 +28,7 @@
             public static string SwaggerUrl { get; } = $"/{SwaggerRoute}/index.html";
             public static string ReDocRoute { get; } = $"{SwaggerRoute}/redoc";
             public static string ReDocUrl { get; } = $"/{ReDocRoute}/index.html";
+            public static string HealthUrl { get; } = "/health";
 
             public static string AppDescription { get; } = $"Backend Api for {AppName}.\n" +
                                                            $"{AppCopyright}\n" +
@@ -38,7 +39,9 @@
                                                            @$"ReDoc can be accessed through {ReDocUrl}\n" +
                                                            "\n" +
                                                            @$"REST API base url is {RestApiUrl}\n" +
-                                                           @$"SOAP API base url and docs is {SoapApiUrl}\n";
+                                                           @$"SOAP API base url and docs is {SoapApiUrl}\n" +
+                                                           "\n" +
+                                                           @$"App health can be checked under {HealthUrl}\n";
 
             public static string AppDescriptionHTML { get; } = $"Backend Api for {AppName}<br>" +
                                                                $"{AppCopyright}<br>" +
@@ -50,7 +53,9 @@
                                                                @$"ReDoc can be accessed through <a href=""{ReDocUrl}"">{ReDocUrl}</a><br>" +
                                                                @$"<br>" +
                                                                @$"REST API base url is <a href=""{RestApiUrl}"">{RestApiUrl}</a><br>" +
-                                                               @$"SOAP API base url and docs <a href=""{SoapApiUrl}"">{SoapApiUrl}</a>" +
+                                                               @$"SOAP API base url and docs <a href=""{SoapApiUrl}"">{SoapApiUrl}</a><br>" +
+                                                               @$"<br>" +
+                                                               @$"App health can be checked under <a href=""{HealthUrl}"">{HealthUrl}</a><br>" +
                                                                "</p>";
         }
     }

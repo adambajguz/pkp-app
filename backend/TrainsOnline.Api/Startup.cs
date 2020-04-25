@@ -70,6 +70,7 @@ namespace TrainsOnline.Api
                .UseSerilogRequestLogging()
                .UseCors("AllowAll")
                .UseCustomExceptionHandler()
+               .UseResponseCompression()
                .UseStatusCodePages(StatusCodePageRespone)
                .UseHttpsRedirection();
 
@@ -96,7 +97,7 @@ namespace TrainsOnline.Api
 
             app.ConfigureSpecialPages(Environment, _services);
 
-            app.UseHealthChecks("/health");
+            app.UseHealthChecks(GlobalAppConfig.AppInfo.HealthUrl);
 
             app.UseForwardedHeaders(new ForwardedHeadersOptions
             {
