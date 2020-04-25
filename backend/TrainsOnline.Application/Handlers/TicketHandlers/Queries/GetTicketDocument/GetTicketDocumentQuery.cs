@@ -70,19 +70,19 @@
             private byte[] BuildVerificationQRCode(Ticket entity)
             {
                 Uri baseUri = _context.HttpContext.GetAbsoluteUri();
-                Uri validationUri = new Uri(baseUri, $"/api/ticket/validate-document?tid={entity.Id}");
-                byte[] ticketVerificationCode = _qr.CreateWebCode(validationUri);
-                return ticketVerificationCode;
+                Uri validationUri = new Uri(baseUri, $"/api/ticket/validate-document?tid={entity.Id}&uid={entity.UserId}&rid={entity.RouteId}");
+
+                return _qr.CreateWebCode(validationUri);
             }
 
             private byte[] BuildCalendarQRCode(Ticket entity)
             {
                 return _qr.CreateCalendarCode($"{entity.Route.From.Name} → {entity.Route.To.Name}",
-                                                                   $"PKP Ticket {{{entity.Id}}}",
-                                                                   entity.Route.From.Latitude,
-                                                                   entity.Route.To.Longitude,
-                                                                   entity.Route.DepartureTime,
-                                                                   entity.Route.Duration);
+                                              $"PKP Ticket {{{entity.Id}}}",
+                                              entity.Route.From.Latitude,
+                                              entity.Route.To.Longitude,
+                                              entity.Route.DepartureTime,
+                                              entity.Route.Duration);
             }
 
             private byte[] BuildDocument(Ticket entity, byte[] ticketCalendarCode, byte[] ticketVerificationCode)
@@ -98,7 +98,7 @@
                                      .AddSection()
                                  
                                      .AddComplexParagraph()
-                                     .AddImage(headerImageMemoryStream, 160, 30)
+                                     .AddImage(headerImageMemoryStream, DocumentImageFormats.Png, 160, 30)
                                      .AddNewLine(2)
                                  
                                      .AddRunLine("────────────────────────────────┤ TICKET ├─────────────────────────────────", bold: true, fontColor: color)
@@ -115,7 +115,7 @@
                                      .AddRun("       PHONE  ", bold: true, fontColor: color).AddRunLine(entity.User.PhoneNumber)
                                      .AddNewLine()
                                      .AddRunLine("─────────────────────────────┤ ROUTE DETAILS ├─────────────────────────────", bold: true, fontColor: color)
-                                     .AddRun("        RUID  ", bold: true, fontColor: color).AddRunLine($"{{{entity.RouteId}}}")
+                                     .AddRun("         RID  ", bold: true, fontColor: color).AddRunLine($"{{{entity.RouteId}}}")
                                      .AddRun("  CREATED ON  ", bold: true, fontColor: color).AddRunLine(entity.CreatedOn.ToString())
                                      .FinishParagraph()
                                  
@@ -131,14 +131,14 @@
                                      .FinishParagraph()
                                      .AddMultiColumn(2, paddingHorizontal: 4,
                                                      (x) => x.AddRunLine("Calendar event QR Code:")
-                                                             .AddImage(qrCalendarCodeMemoryStream, 55, 55)
+                                                             .AddImage(qrCalendarCodeMemoryStream, DocumentImageFormats.Png, 55, 55)
                                                              .AddNewLine()
-                                                             .AddRunLine("This code allows you to add an event to calendar app on your device. The event will contain all crucial data from this ticket.", size: 8),
+                                                             .AddRunLine("This code allows you to add an event to calendar app on your device. The event will contain all crucial data from this ticket.", size: 8, italic: true),
                                  
                                                      (x) => x.AddRunLine("Verification QR Code:")
-                                                             .AddImage(qrCodeMemoryStream, 55, 55)
+                                                             .AddImage(qrCodeMemoryStream, DocumentImageFormats.Png, 55, 55)
                                                              .AddNewLine()
-                                                             .AddRunLine("The verification QR Code allows you to verify authenticity of the ticket using a dedicated online service.", size: 8))
+                                                             .AddRunLine("The verification QR Code allows you to verify authenticity of the ticket using a dedicated online service.", size: 8, italic: true))
                                  
                                      .FinishSection()
                                      .BuildPdf();

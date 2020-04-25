@@ -80,20 +80,22 @@
         }
         
         public IDocumentComplexParagraphBuilder AddImage(Stream imageStream,
+                                                         DocumentImageFormats format,
                                                          double width,
                                                          double height)
         {
-            Picture picture = new Picture(Document, imageStream, width, height, LengthUnit.Millimeter);
+            Picture picture = new Picture(Document, imageStream, (PictureFormat)format, width, height, LengthUnit.Millimeter);
             Paragraph.Inlines.Add(picture);
 
             return this;
         }     
         
         public IDocumentComplexParagraphBuilder AddImage(MemoryStream imageStream,
+                                                         DocumentImageFormats format,
                                                          double width,
                                                          double height)
         {
-            Picture picture = new Picture(Document, imageStream, width, height, LengthUnit.Millimeter);
+            Picture picture = new Picture(Document, imageStream, (PictureFormat)format, width, height, LengthUnit.Millimeter);
             Paragraph.Inlines.Add(picture);
 
             return this;
