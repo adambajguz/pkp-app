@@ -87,7 +87,7 @@
             {
                 using (MemoryStream qrCalendarCodeMemoryStream = new MemoryStream(ticketCalendarCode))
                 using (MemoryStream qrCodeMemoryStream = new MemoryStream(ticketVerificationCode))
-                using (MemoryStream headerImageMemoryStream = new MemoryStream(Convert.FromBase64String(PdfHeaderImage.Image)))
+                using (MemoryStream headerImageMemoryStream = new MemoryStream(Convert.FromBase64String(PdfHeaderImage.ImageJpeg)))
                 {
                     DateTime arrival = entity.Route.DepartureTime.Add(entity.Route.Duration);
                     Color color = Color.FromArgb(57, 89, 158);
@@ -96,7 +96,7 @@
                                      .AddSection()
 
                                      .AddComplexParagraph()
-                                     //.AddImage(headerImageMemoryStream, DocumentImageFormats.Png, 160, 30)
+                                     .AddImage(headerImageMemoryStream, DocumentImageFormats.Jpeg, 160, 30)
                                      .AddNewLine(2)
 
                                      .AddRunLine("────────────────────────────────┤ TICKET ├─────────────────────────────────", bold: true, fontColor: color)
@@ -134,7 +134,7 @@
                                                              .AddRunLine("This code allows you to add an event to calendar app on your device. The event will contain all crucial data from this ticket.", size: 8, italic: true),
 
                                                      (x) => x.AddRunLine("Verification QR Code:")
-                                                             //.AddImage(qrCodeMemoryStream, DocumentImageFormats.Png, 55, 55)
+                                                             .AddImage(qrCodeMemoryStream, DocumentImageFormats.Png, 55, 55)
                                                              .AddNewLine()
                                                              .AddRunLine("The verification QR Code allows you to verify authenticity of the ticket using a dedicated online service.", size: 8, italic: true))
 

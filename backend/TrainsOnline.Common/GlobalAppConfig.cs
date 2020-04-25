@@ -3,7 +3,7 @@
     using System.Runtime.InteropServices;
 
     public static partial class GlobalAppConfig
-    { 
+    {
         public const bool DEV_MODE_SW = true;
         public const bool USE_COMPILATION_CONFIGURATION_TO_DETERMINE_ENVIRONMENT = true;
         public static bool DEV_MODE
