@@ -57,6 +57,18 @@
         public async Task<IActionResult> GetTicketDocument([FromBody]IdRequest id)
         {
             return Ok(await Mediator.Send(new GetTicketDocumentQuery(id)));
+        }   
+        
+        [HttpPost("/api/ticket/validate-document")]
+        [SwaggerOperation(
+            Summary = "Validate ticket document",
+            Description = "Gets ticket document validation result")]
+        [SwaggerResponse(StatusCodes.Status200OK, null, typeof(bool))]
+        [SwaggerResponse(StatusCodes.Status400BadRequest, null, typeof(ExceptionResponse))]
+        public async Task<IActionResult> GetTValidateDocument([FromRoute]Guid tid)
+        {
+            IdRequest idRequest = new IdRequest(tid);
+            return Ok(await Mediator.Send(new GetTicketDocumentQuery(idRequest)));
         }
 
         [Authorize(Roles = Roles.Admin)]

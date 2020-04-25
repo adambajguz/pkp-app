@@ -9,7 +9,9 @@
     using AutoMapper;
     using FluentValidation;
     using MediatR;
+    using Microsoft.AspNetCore.Http;
     using TrainsOnline.Application.DTO;
+    using TrainsOnline.Application.Extensions;
     using TrainsOnline.Application.Interfaces;
     using TrainsOnline.Application.Interfaces.Documents;
     using TrainsOnline.Application.Interfaces.UoW.Generic;
@@ -32,14 +34,16 @@
             private readonly IDataRightsService _drs;
             private readonly IDocumentsService _documents;
             private readonly IQRCodeService _qr;
+            private readonly IHttpContextAccessor _context;
 
-            public Handler(IPKPAppDbUnitOfWork uow, IMapper mapper, IDataRightsService drs, IDocumentsService documents, IQRCodeService qr)
+            public Handler(IPKPAppDbUnitOfWork uow, IMapper mapper, IDataRightsService drs, IDocumentsService documents, IQRCodeService qr, IHttpContextAccessor context)
             {
                 _uow = uow;
                 _mapper = mapper;
                 _drs = drs;
                 _documents = documents;
                 _qr = qr;
+                _context = context;
             }
 
             public async Task<GetTicketDocumentResponse> Handle(GetTicketDocumentQuery request, CancellationToken cancellationToken)
@@ -58,10 +62,13 @@
                                                                    entity.Route.To.Longitude,
                                                                    entity.Route.DepartureTime,
                                                                    entity.Route.Duration);
-                byte[] ticketCode = _qr.CreateTextCode($"PKP Ticket {{{entity.Id}}}");
+
+                Uri baseUri = _context.HttpContext.GetAbsoluteUri();
+                Uri validationUri = new Uri(baseUri, $"/api/ticket/validate-document?tid={entity.Id}");
+                byte[] ticketVerificationCode = _qr.CreateWebCode(validationUri);
 
                 using (MemoryStream qrCalendarCodeMemoryStream = new MemoryStream(ticketCalendarCode))
-                using (MemoryStream qrCodeMemoryStream = new MemoryStream(ticketCode))
+                using (MemoryStream qrCodeMemoryStream = new MemoryStream(ticketVerificationCode))
                 using (MemoryStream headerImageMemoryStream = new MemoryStream(Convert.FromBase64String(PdfHeaderImage.Image)))
                 {
                     DateTime arrival = entity.Route.DepartureTime.Add(entity.Route.Duration);
@@ -102,14 +109,14 @@
                                                 .AddNewLine()
                                                 .AddRunLine("─────────────────────────────┤ MISCELLANEOUS ├─────────────────────────────", bold: true, fontColor: color)
                                                 .FinishParagraph()
-                                                .AddMultiColumn(2,
+                                                .AddMultiColumn(2, paddingHorizontal: 4,
                                                                 (x) => x.AddRunLine("Calendar event QR Code:")
-                                                                        .AddImage(qrCalendarCodeMemoryStream, 45, 45)
+                                                                        .AddImage(qrCalendarCodeMemoryStream, 55, 55)
                                                                         .AddNewLine()
-                                                                        .AddRunLine("This code allows you to add an event to your device with all crucial data from this ticket.", size: 8),
+                                                                        .AddRunLine("This code allows you to add an event to calendar app on your device. The event will contain all crucial data from this ticket.", size: 8),
 
                                                                 (x) => x.AddRunLine("Verification QR Code:")
-                                                                        .AddImage(qrCodeMemoryStream, 45, 45)
+                                                                        .AddImage(qrCodeMemoryStream, 55, 55)
                                                                         .AddNewLine()
                                                                         .AddRunLine("The verification QR Code allows you to verify authenticity of the ticket using a dedicated online service.", size: 8))
 
