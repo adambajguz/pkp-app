@@ -15,6 +15,7 @@
     using TrainsOnline.Application.Handlers.TicketHandlers.Queries.GetTicketDocument;
     using TrainsOnline.Application.Handlers.TicketHandlers.Queries.GetTicketsList;
     using TrainsOnline.Application.Handlers.TicketHandlers.Queries.GetUserTicketsList;
+    using TrainsOnline.Application.Handlers.TicketHandlers.Queries.ValidateDocument;
     using TrainsOnline.Domain.Jwt;
 
     [SwaggerTag("Create, update, and get ticket")]
@@ -57,18 +58,17 @@
         public async Task<IActionResult> GetTicketDocument([FromBody]IdRequest id)
         {
             return Ok(await Mediator.Send(new GetTicketDocumentQuery(id)));
-        }   
-        
+        }
+
         [HttpPost("/api/ticket/validate-document")]
         [SwaggerOperation(
             Summary = "Validate ticket document",
             Description = "Gets ticket document validation result")]
         [SwaggerResponse(StatusCodes.Status200OK, null, typeof(bool))]
         [SwaggerResponse(StatusCodes.Status400BadRequest, null, typeof(ExceptionResponse))]
-        public async Task<IActionResult> GetTValidateDocument([FromRoute]Guid tid)
+        public async Task<IActionResult> GetValidateDocument([FromRoute]Guid tid, [FromRoute]Guid uid, [FromRoute]Guid rid)
         {
-            IdRequest idRequest = new IdRequest(tid);
-            return Ok(await Mediator.Send(new GetTicketDocumentQuery(idRequest)));
+            return Ok(await Mediator.Send(new ValidateDocumentQuery(tid, uid, rid)));
         }
 
         [Authorize(Roles = Roles.Admin)]

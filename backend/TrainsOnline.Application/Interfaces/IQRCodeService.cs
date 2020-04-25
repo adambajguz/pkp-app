@@ -17,7 +17,7 @@
                                   DateTime end,
                                   bool allDayEvent = false,
                                   int pixelsPerModule = 16);
-        
+
         byte[] CreateCalendarCode(string subject,
                                   string description,
                                   double latitude,

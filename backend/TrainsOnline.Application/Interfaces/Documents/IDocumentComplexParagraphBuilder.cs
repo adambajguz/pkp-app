@@ -22,9 +22,11 @@
                                                   double width,
                                                   double height);
         IDocumentComplexParagraphBuilder AddImage(Stream imageStream,
+                                                  DocumentImageFormats format,
                                                   double width,
                                                   double height);
         IDocumentComplexParagraphBuilder AddImage(MemoryStream imageStream,
+                                                  DocumentImageFormats format,
                                                   double width,
                                                   double height);
         IDocumentSectionBuilder FinishParagraph();

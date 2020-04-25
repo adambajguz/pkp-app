@@ -36,8 +36,8 @@
 
             Paragraph.Inlines.Add(run);
             return this;
-        }        
-        
+        }
+
         public IDocumentComplexParagraphBuilder AddRunLine(string text,
                                                            double size = 10,
                                                            bool bold = false,
@@ -59,8 +59,8 @@
             }
 
             return this;
-        }     
-        
+        }
+
         public IDocumentComplexParagraphBuilder AddSpecialCharacter(DocumentSpecialCharacters specialCharacter)
         {
             SpecialCharacter run = new SpecialCharacter(Document, (SpecialCharacterType)specialCharacter);
@@ -78,22 +78,24 @@
 
             return this;
         }
-        
+
         public IDocumentComplexParagraphBuilder AddImage(Stream imageStream,
+                                                         DocumentImageFormats format,
                                                          double width,
                                                          double height)
         {
-            Picture picture = new Picture(Document, imageStream, width, height, LengthUnit.Millimeter);
+            Picture picture = new Picture(Document, imageStream, (PictureFormat)format, width, height, LengthUnit.Millimeter);
             Paragraph.Inlines.Add(picture);
 
             return this;
-        }     
-        
+        }
+
         public IDocumentComplexParagraphBuilder AddImage(MemoryStream imageStream,
+                                                         DocumentImageFormats format,
                                                          double width,
                                                          double height)
         {
-            Picture picture = new Picture(Document, imageStream, width, height, LengthUnit.Millimeter);
+            Picture picture = new Picture(Document, imageStream, (PictureFormat)format, width, height, LengthUnit.Millimeter);
             Paragraph.Inlines.Add(picture);
 
             return this;

@@ -1,7 +1,6 @@
 ﻿namespace TrainsOnline.Infrastructure.Documents
 {
     using System;
-    using System.Collections.Generic;
     using GemBox.Document;
     using GemBox.Document.Tables;
     using TrainsOnline.Application.Interfaces.Documents;

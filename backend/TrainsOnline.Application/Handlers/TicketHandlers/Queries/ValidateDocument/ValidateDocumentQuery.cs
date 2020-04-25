@@ -1,18 +1,23 @@
 ﻿namespace TrainsOnline.Application.Handlers.TicketHandlers.Queries.ValidateDocument
 {
+    using System;
     using System.Threading;
     using System.Threading.Tasks;
     using MediatR;
-    using TrainsOnline.Application.DTO;
     using TrainsOnline.Application.Interfaces.UoW.Generic;
+    using TrainsOnline.Domain.Entities;
 
     public class ValidateDocumentQuery : IRequest<bool>
     {
-        public IdRequest Data { get; }
+        public Guid TId { get; }
+        public Guid UId { get; }
+        public Guid RId { get; }
 
-        public ValidateDocumentQuery(IdRequest data)
+        public ValidateDocumentQuery(Guid tid, Guid uid, Guid rid)
         {
-            Data = data;
+            TId = tid;
+            UId = uid;
+            RId = rid;
         }
 
         public class Handler : IRequestHandler<ValidateDocumentQuery, bool>
@@ -26,11 +31,13 @@
 
             public async Task<bool> Handle(ValidateDocumentQuery request, CancellationToken cancellationToken)
             {
-                IdRequest data = request.Data;
+                Ticket ticket = await _uow.TicketsRepository.GetByIdAsync(request.TId);
 
-                bool ticketExists = await _uow.TicketsRepository.GetExistsAsync(x => x.Id == data.Id);
+                bool isTicketValid = ticket.Id == request.TId &&
+                                     ticket.UserId == request.UId &&
+                                     ticket.RouteId == request.RId;
 
-                return ticketExists;
+                return isTicketValid;
             }
         }
     }
