@@ -30,6 +30,11 @@
                 c.ShowExtensions();
                 c.RoutePrefix = GlobalAppConfig.AppInfo.SwaggerRoute;
                 c.SwaggerEndpoint(GlobalAppConfig.AppInfo.SwaggerStartupUrl, GlobalAppConfig.AppInfo.AppNameWithVersion);
+
+                //https://mac-blog.org.ua/dotnet-core-swashbuckle-3-bearer-auth/
+                System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
+                var ns = assembly.GetName().Name;
+                c.IndexStream = () => assembly.GetManifestResourceStream($"{ns}.index.html");
             });
 
             return app;
