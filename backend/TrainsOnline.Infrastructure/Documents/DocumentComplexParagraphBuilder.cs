@@ -3,6 +3,7 @@
     using System.IO;
     using GemBox.Document;
     using TrainsOnline.Application.Interfaces.Documents;
+    using TrainsOnline.Common;
 
     internal class DocumentComplexParagraphBuilder : IDocumentComplexParagraphBuilder
     {
@@ -30,7 +31,7 @@
                     Bold = bold,
                     Italic = italic,
                     FontColor = new Color(fontColor?.R ?? 0, fontColor?.G ?? 0, fontColor?.B ?? 0),
-                    FontName = "Courier New"
+                    FontName = GlobalAppConfig.IsWindows ? "Courier New" : "Bitstream Vera Sans Mono"
                 }
             };
 
