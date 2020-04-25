@@ -15,7 +15,7 @@
                                                            bool italic = false,
                                                            System.Drawing.Color? fontColor = null);
 
-        IDocumentComplexParagraphBuilder AddNewLine();
+        IDocumentComplexParagraphBuilder AddNewLine(int count = 1);
         IDocumentComplexParagraphBuilder AddSpecialCharacter(DocumentSpecialCharacters specialCharacter);
 
         IDocumentComplexParagraphBuilder AddImage(string imagePath,
