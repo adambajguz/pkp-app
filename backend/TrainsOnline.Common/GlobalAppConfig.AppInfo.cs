@@ -44,7 +44,7 @@
                                                                $"{AppCopyright}<br>" +
                                                                "<hr>" +
                                                                "<p>" +
-                                                               "<em>Links:</em><br>" +
+                                                               "<b>Links:</b><br>" +
                                                                @$"OpenAPI specification can be found at <a href=""{SwaggerStartupUrl}"">{SwaggerStartupUrl}</a><br>" +
                                                                @$"Swagger can be accessed through <a href=""{SwaggerUrl}"">{SwaggerUrl}</a><br>" +
                                                                @$"ReDoc can be accessed through <a href=""{ReDocUrl}"">{ReDocUrl}</a><br>" +
