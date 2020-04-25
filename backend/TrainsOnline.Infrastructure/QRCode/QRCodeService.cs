@@ -31,6 +31,17 @@
             return qrCode.GetGraphic(pixelsPerModule);
         }
 
+        public byte[] CreateWebCode(Uri uri, int pixelsPerModule = 8)
+        {
+            Url generator = new Url(uri.AbsoluteUri);
+
+            string payload = generator.ToString();
+            QRCodeData qrCodeData = QRGenerator.CreateQrCode(payload, QRCodeGenerator.ECCLevel.Q);
+            PngByteQRCode qrCode = new PngByteQRCode(qrCodeData);
+
+            return qrCode.GetGraphic(pixelsPerModule);
+        }
+
         public byte[] CreateCalendarCode(string subject,
                                          string description,
                                          double latitude,

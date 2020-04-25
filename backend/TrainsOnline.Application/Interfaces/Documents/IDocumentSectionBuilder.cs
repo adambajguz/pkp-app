@@ -8,7 +8,7 @@
         IDocumentComplexParagraphBuilder AddComplexParagraph();
 
         IDocumentSectionBuilder AddSimpleTable(object[,] tableData, bool hasHeader = true);
-        IDocumentSectionBuilder AddMultiColumn(int columnsCount, params Action<IDocumentComplexParagraphBuilder>[] actions);
+        IDocumentSectionBuilder AddMultiColumn(int columnsCount, double paddingHorizontal, params Action<IDocumentComplexParagraphBuilder>[] actions);
 
         IDocumentBuilder FinishSection();
     }

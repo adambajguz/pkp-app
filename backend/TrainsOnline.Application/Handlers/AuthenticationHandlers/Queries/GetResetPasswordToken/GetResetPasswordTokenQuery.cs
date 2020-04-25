@@ -7,6 +7,7 @@
     using FluentValidation;
     using MediatR;
     using Microsoft.AspNetCore.Http;
+    using TrainsOnline.Application.Extensions;
     using TrainsOnline.Application.Interfaces;
     using TrainsOnline.Application.Interfaces.UoW.Generic;
     using TrainsOnline.Common;
@@ -30,8 +31,8 @@
 
             public Handler(IPKPAppDbUnitOfWork uow, IHttpContextAccessor context, IJwtService jwt, IEmailService email)
             {
-                _context = context;
                 _uow = uow;
+                _context = context;
                 _jwt = jwt;
                 _email = email;
             }
@@ -40,7 +41,7 @@
             {
                 SendResetPasswordRequest data = request.Data;
 
-                Uri uri = GetAbsoluteUri();
+                Uri uri = _context.HttpContext.GetAbsoluteUri();
 
                 await new GetResetPasswordTokenQueryValidator().ValidateAndThrowAsync(data, cancellationToken: cancellationToken);
 
@@ -58,20 +59,6 @@
                 }
 
                 return "e-mail sent";
-            }
-
-            private Uri GetAbsoluteUri()
-            {
-                HttpRequest request = _context.HttpContext.Request;
-                UriBuilder uriBuilder = new UriBuilder
-                {
-                    Scheme = request.Scheme,
-                    Host = request.Host.Host,
-                    Path = request.Path.ToString(),
-                    Query = request.QueryString.ToString()
-                };
-
-                return uriBuilder.Uri;
             }
         }
     }

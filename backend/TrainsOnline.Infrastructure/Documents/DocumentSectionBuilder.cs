@@ -109,7 +109,7 @@
             return this;
         }
 
-        public IDocumentSectionBuilder AddMultiColumn(int columnsCount, params Action<IDocumentComplexParagraphBuilder>[] actions)
+        public IDocumentSectionBuilder AddMultiColumn(int columnsCount, double paddingHorizontal, params Action<IDocumentComplexParagraphBuilder>[] actions)
         {
             if (actions.Length != columnsCount)
                 throw new ArgumentException($"Parameter {nameof(actions)}  should have length equal to value provided in {nameof(columnsCount)}");
@@ -127,7 +127,7 @@
                 customTableStyle.ParagraphFormat.Alignment = HorizontalAlignment.Left;
                 customTableStyle.CharacterFormat.FontColor = Color.Black;
                 customTableStyle.CellFormat.Borders.ClearBorders();
-                customTableStyle.CellFormat.Padding = new Padding(0, LengthUnit.Millimeter);
+                customTableStyle.CellFormat.Padding = new Padding(paddingHorizontal, 0, LengthUnit.Millimeter);
 
                 Document.Styles.Add(customTableStyle);
             }
@@ -138,8 +138,6 @@
             table.TableFormat.Style = customTableStyle;
 
             Section.Blocks.Add(table);
-
-
 
             // Create a row and add it to table.
             TableRow row = new TableRow(Document);
