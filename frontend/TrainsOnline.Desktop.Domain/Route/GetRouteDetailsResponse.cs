@@ -1,7 +1,7 @@
-﻿namespace TrainsOnline.Application.Handlers.RouteHandlers.Queries.GetRouteDetails
+﻿namespace TrainsOnline.Desktop.Domain.Route
 {
     using System;
-    using TrainsOnline.Application.DTO;
+    using TrainsOnline.Desktop.Domain.DTO;
 
     public class GetRouteDetailsResponse : IDataTransferObject
     {

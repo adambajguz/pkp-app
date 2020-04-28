@@ -1,4 +1,4 @@
-﻿namespace TrainsOnline.Application.DTO
+﻿namespace TrainsOnline.Desktop.Domain.DTO
 {
     public interface IDataTransferObject
     {

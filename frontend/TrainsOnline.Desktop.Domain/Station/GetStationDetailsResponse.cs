@@ -1,8 +1,8 @@
-﻿namespace TrainsOnline.Application.Handlers.StationHandlers.Queries.GetStationDetails
+﻿namespace TrainsOnline.Desktop.Domain.Station
 {
     using System;
     using System.Collections.Generic;
-    using TrainsOnline.Application.DTO;
+    using TrainsOnline.Desktop.Domain.DTO;
 
     public class GetStationDetailsResponse : IDataTransferObject
     {

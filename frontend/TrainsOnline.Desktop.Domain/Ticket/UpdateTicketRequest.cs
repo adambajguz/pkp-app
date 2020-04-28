@@ -1,7 +1,7 @@
-﻿namespace TrainsOnline.Application.Handlers.TicketHandlers.Commands.UpdateTicket
+﻿namespace TrainsOnline.Desktop.Domain.Ticket
 {
     using System;
-    using TrainsOnline.Application.DTO;
+    using TrainsOnline.Desktop.Domain.DTO;
 
     public class UpdateTicketRequest : IDataTransferObject
     {

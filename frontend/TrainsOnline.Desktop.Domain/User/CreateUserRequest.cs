@@ -1,6 +1,6 @@
-﻿namespace TrainsOnline.Application.Handlers.UserHandlers.Commands.CreateUser
+﻿namespace TrainsOnline.Desktop.Domain.User
 {
-    using TrainsOnline.Application.DTO;
+    using TrainsOnline.Desktop.Domain.DTO;
 
     public class CreateUserRequest : IDataTransferObject
     {

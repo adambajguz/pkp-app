@@ -1,7 +1,7 @@
-﻿namespace TrainsOnline.Application.Handlers.RouteHandlers.Commands.UpdateRoute
+﻿namespace TrainsOnline.Desktop.Domain.Route
 {
     using System;
-    using TrainsOnline.Application.DTO;
+    using TrainsOnline.Desktop.Domain.DTO;
 
     public class UpdateRouteRequest : IDataTransferObject
     {

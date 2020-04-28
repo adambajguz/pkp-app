@@ -1,7 +1,7 @@
 ﻿namespace TrainsOnline.Application.Handlers.AuthenticationHandlers.Queries.GetValidToken
 {
     using System;
-    using TrainsOnline.Application.DTO;
+    using TrainsOnline.Desktop.Domain.DTO;
 
     public class JwtTokenModel : IDataTransferObject
     {

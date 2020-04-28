@@ -1,7 +1,7 @@
-﻿namespace TrainsOnline.Application.Handlers.StationHandlers.Commands.UpdateStation
+﻿namespace TrainsOnline.Desktop.Domain.Station
 {
     using System;
-    using TrainsOnline.Application.DTO;
+    using TrainsOnline.Desktop.Domain.DTO;
 
     public class UpdateStationRequest : IDataTransferObject
     {

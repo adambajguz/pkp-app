@@ -1,8 +1,8 @@
-﻿namespace TrainsOnline.Application.Handlers.UserHandlers.Queries.GetUsersList
+﻿namespace TrainsOnline.Desktop.Domain.User
 {
     using System;
     using System.Collections.Generic;
-    using TrainsOnline.Application.DTO;
+    using TrainsOnline.Desktop.Domain.DTO;
 
     public class GetUsersListResponse : IDataTransferObject
     {

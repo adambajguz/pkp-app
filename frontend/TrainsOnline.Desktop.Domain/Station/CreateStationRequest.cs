@@ -1,10 +1,10 @@
-﻿namespace TrainsOnline.Application.Handlers.StationHandlers.Commands.CreateStation
+﻿namespace TrainsOnline.Desktop.Domain.Station
 {
-    using TrainsOnline.Application.DTO;
+    using TrainsOnline.Desktop.Domain.DTO;
 
     public class CreateStationRequest : IDataTransferObject
     {
-        public string? Name { get; set; }
+        public string Name { get; set; }
 
         public double Latitude { get; set; }
         public double Longitude { get; set; }

@@ -1,6 +1,6 @@
 ﻿namespace TrainsOnline.Application.Handlers.AuthenticationHandlers.Commands.ResetPassword
 {
-    using TrainsOnline.Application.DTO;
+    using TrainsOnline.Desktop.Domain.DTO;
 
     public class ResetPasswordRequest : IDataTransferObject
     {

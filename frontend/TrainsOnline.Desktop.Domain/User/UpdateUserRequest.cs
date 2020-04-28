@@ -1,7 +1,7 @@
-﻿namespace TrainsOnline.Application.Handlers.UserHandlers.Commands.UpdateUser
+﻿namespace TrainsOnline.Desktop.Domain.User
 {
     using System;
-    using TrainsOnline.Application.DTO;
+    using TrainsOnline.Desktop.Domain.DTO;
 
     public class UpdateUserRequest : IDataTransferObject
     {

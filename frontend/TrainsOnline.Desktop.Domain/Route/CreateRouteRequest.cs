@@ -1,7 +1,7 @@
-﻿namespace TrainsOnline.Application.Handlers.RouteHandlers.Commands.CreateRoute
+﻿namespace TrainsOnline.Desktop.Domain.Route
 {
     using System;
-    using TrainsOnline.Application.DTO;
+    using TrainsOnline.Desktop.Domain.DTO;
 
     public class CreateRouteRequest : IDataTransferObject
     {

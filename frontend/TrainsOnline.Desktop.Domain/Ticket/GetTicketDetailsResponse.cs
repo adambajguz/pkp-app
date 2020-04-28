@@ -1,7 +1,7 @@
-﻿namespace TrainsOnline.Application.Handlers.TicketHandlers.Queries.GetTicketDetails
+﻿namespace TrainsOnline.Desktop.Domain.Ticket
 {
     using System;
-    using TrainsOnline.Application.DTO;
+    using TrainsOnline.Desktop.Domain.DTO;
 
     public class GetTicketDetailsResponse : IDataTransferObject
     {

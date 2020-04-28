@@ -1,9 +1,9 @@
-﻿namespace TrainsOnline.Application.Handlers.RouteHandlers.Queries.GetRoutesList
+﻿namespace TrainsOnline.Desktop.Domain.Route
 {
     using System;
     using System.Collections.Generic;
-    using TrainsOnline.Application.DTO;
-    using TrainsOnline.Application.Handlers.StationHandlers.Queries.GetStationsList;
+    using TrainsOnline.Desktop.Domain.DTO;
+    using TrainsOnline.Desktop.Domain.Station;
 
     public class GetRoutesListResponse : IDataTransferObject
     {

@@ -2,6 +2,7 @@
     x:Class="TrainsOnline.Desktop.Views.Home.ShellPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:constants="using:TrainsOnline.Desktop.Constants"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:helpers="using:TrainsOnline.Desktop.Helpers"
     xmlns:i="using:Microsoft.Xaml.Interactivity"
@@ -32,11 +33,15 @@
                 Edit String/en-US/Resources.resw: Add a menu item title for each page
             -->
             <winui:NavigationViewItem x:Uid="Shell_Main" helpers:NavHelper.NavigateTo="TrainsOnline.Desktop.ViewModels.Home.MainViewModel" />
+
+            <winui:NavigationViewItem x:Uid="Shell_Station_MasterDetail" helpers:NavHelper.NavigateTo="{x:Bind constants:NavigationConstants.Shell_Station_MasterDetail}" />
+
             <winui:NavigationViewItem x:Uid="Shell_Blank" helpers:NavHelper.NavigateTo="TrainsOnline.Desktop.ViewModels.Examples.BlankViewModel" />
             <winui:NavigationViewItem x:Uid="Shell_MasterDetail" helpers:NavHelper.NavigateTo="TrainsOnline.Desktop.ViewModels.Examples.MasterDetailViewModel" />
             <winui:NavigationViewItem x:Uid="Shell_TreeView" helpers:NavHelper.NavigateTo="TrainsOnline.Desktop.ViewModels.Examples.TreeViewViewModel" />
             <winui:NavigationViewItem x:Uid="Shell_DataGrid" helpers:NavHelper.NavigateTo="TrainsOnline.Desktop.ViewModels.Examples.DataGridViewModel" />
             <winui:NavigationViewItem x:Uid="Shell_Map" helpers:NavHelper.NavigateTo="TrainsOnline.Desktop.ViewModels.Examples.MapViewModel" />
+
         </winui:NavigationView.MenuItems>
         <i:Interaction.Behaviors>
             <ic:EventTriggerBehavior EventName="ItemInvoked">

@@ -1,7 +1,7 @@
 ﻿namespace TrainsOnline.Application.Handlers.UserHandlers.Commands.ChangePassword
 {
     using System;
-    using TrainsOnline.Application.DTO;
+    using TrainsOnline.Desktop.Domain.DTO;
 
     public class ChangePasswordRequest : IDataTransferObject
     {
