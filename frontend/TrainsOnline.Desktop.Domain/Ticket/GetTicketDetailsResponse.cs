@@ -1,12 +1,9 @@
 ﻿namespace TrainsOnline.Application.Handlers.TicketHandlers.Queries.GetTicketDetails
 {
     using System;
-    using Application.Interfaces.Mapping;
-    using AutoMapper;
-    using Domain.Entities;
     using TrainsOnline.Application.DTO;
 
-    public class GetTicketDetailsResponse : IDataTransferObject, ICustomMapping
+    public class GetTicketDetailsResponse : IDataTransferObject
     {
         public Guid Id { get; set; }
 
@@ -18,46 +15,31 @@
         public Guid UserId { get; set; }
         //public Guid RouteId { get; set; }
 
-        public TicketRouteDetailsModel Route { get; set; } = default!;
+        public TicketRouteDetailsModel Route { get; set; }
 
-        void ICustomMapping.CreateMappings(Profile configuration)
-        {
-            configuration.CreateMap<Ticket, GetTicketDetailsResponse>();
-        }
-
-        public class TicketRouteDetailsModel : IDataTransferObject, ICustomMapping
+        public class TicketRouteDetailsModel : IDataTransferObject
         {
             public Guid Id { get; set; }
 
             //public Guid FromId { get; set; }
             //public Guid ToId { get; set; }
 
-            public TicketStationDetailsModel From { get; set; } = default!;
-            public TicketStationDetailsModel To { get; set; } = default!;
+            public TicketStationDetailsModel From { get; set; }
+            public TicketStationDetailsModel To { get; set; }
 
-            public DateTime DepartureTime { get; set; } = default!;
-            public TimeSpan Duration { get; set; } = default!;
+            public DateTime DepartureTime { get; set; }
+            public TimeSpan Duration { get; set; }
             public double Distance { get; set; }
             public double TicketPrice { get; set; }
 
-            void ICustomMapping.CreateMappings(Profile configuration)
-            {
-                configuration.CreateMap<Route, TicketRouteDetailsModel>();
-            }
-
-            public class TicketStationDetailsModel : IDataTransferObject, ICustomMapping
+            public class TicketStationDetailsModel : IDataTransferObject
             {
                 public Guid Id { get; set; }
 
-                public string Name { get; set; } = default!;
+                public string Name { get; set; }
 
-                public double Latitude { get; set; } = default!;
-                public double Longitude { get; set; } = default!;
-
-                void ICustomMapping.CreateMappings(Profile configuration)
-                {
-                    configuration.CreateMap<Station, TicketStationDetailsModel>();
-                }
+                public double Latitude { get; set; }
+                public double Longitude { get; set; }
             }
         }
     }

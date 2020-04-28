@@ -2,62 +2,44 @@
 {
     using System;
     using System.Collections.Generic;
-    using AutoMapper;
     using TrainsOnline.Application.DTO;
-    using TrainsOnline.Application.Interfaces.Mapping;
-    using TrainsOnline.Domain.Entities;
 
     public class GetUserTicketsListResponse : IDataTransferObject
     {
-        public List<UserTicketLookupModel> Ticket { get; set; } = default!;
+        public List<UserTicketLookupModel> Ticket { get; set; }
 
-        public class UserTicketLookupModel : IDataTransferObject, ICustomMapping
+        public class UserTicketLookupModel : IDataTransferObject
         {
             public Guid Id { get; set; }
 
             public Guid UserId { get; set; }
             //public Guid RouteId { get; set; }
 
-            public UserTicketRouteLookupModel Route { get; set; } = default!;
+            public UserTicketRouteLookupModel Route { get; set; }
 
-            void ICustomMapping.CreateMappings(Profile configuration)
-            {
-                configuration.CreateMap<Ticket, UserTicketLookupModel>();
-            }
-
-            public class UserTicketRouteLookupModel : IDataTransferObject, ICustomMapping
+            public class UserTicketRouteLookupModel : IDataTransferObject
             {
                 public Guid Id { get; set; }
 
                 //public Guid FromId { get; set; }
                 //public Guid ToId { get; set; }
 
-                public UserTicketRouteStationLookupModel From { get; set; } = default!;
-                public UserTicketRouteStationLookupModel To { get; set; } = default!;
+                public UserTicketRouteStationLookupModel From { get; set; }
+                public UserTicketRouteStationLookupModel To { get; set; }
 
-                public DateTime DepartureTime { get; set; } = default!;
-                public TimeSpan Duration { get; set; } = default!;
+                public DateTime DepartureTime { get; set; }
+                public TimeSpan Duration { get; set; }
                 public double Distance { get; set; }
                 public double TicketPrice { get; set; }
 
-                void ICustomMapping.CreateMappings(Profile configuration)
-                {
-                    configuration.CreateMap<Route, UserTicketRouteLookupModel>();
-                }
-
-                public class UserTicketRouteStationLookupModel : IDataTransferObject, ICustomMapping
+                public class UserTicketRouteStationLookupModel : IDataTransferObject
                 {
                     public Guid Id { get; set; }
 
-                    public string Name { get; set; } = default!;
+                    public string Name { get; set; }
 
-                    public double Latitude { get; set; } = default!;
-                    public double Longitude { get; set; } = default!;
-
-                    void ICustomMapping.CreateMappings(Profile configuration)
-                    {
-                        configuration.CreateMap<Station, UserTicketRouteStationLookupModel>();
-                    }
+                    public double Latitude { get; set; }
+                    public double Longitude { get; set; }
                 }
             }
         }

@@ -3,7 +3,6 @@
     using System;
     using System.Threading.Tasks;
     using Microsoft.Toolkit.Uwp.Helpers;
-    using TrainsOnline.Desktop.Views;
     using TrainsOnline.Desktop.Views.Home;
     using Windows.ApplicationModel.Core;
     using Windows.UI.Core;

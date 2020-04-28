@@ -2,26 +2,18 @@
 {
     using System;
     using System.Collections.Generic;
-    using AutoMapper;
     using TrainsOnline.Application.DTO;
-    using TrainsOnline.Application.Interfaces.Mapping;
-    using TrainsOnline.Domain.Entities;
 
     public class GetTicketsListResponse : IDataTransferObject
     {
-        public List<TicketLookupModel> Ticket { get; set; } = default!;
+        public List<TicketLookupModel> Ticket { get; set; }
 
-        public class TicketLookupModel : IDataTransferObject, ICustomMapping
+        public class TicketLookupModel : IDataTransferObject
         {
             public Guid Id { get; set; }
 
             public Guid UserId { get; set; }
             public Guid RouteId { get; set; }
-
-            void ICustomMapping.CreateMappings(Profile configuration)
-            {
-                configuration.CreateMap<Ticket, TicketLookupModel>();
-            }
         }
     }
 }

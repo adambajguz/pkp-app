@@ -2,25 +2,17 @@
 {
     using System;
     using System.Collections.Generic;
-    using Application.Interfaces.Mapping;
-    using AutoMapper;
     using TrainsOnline.Application.DTO;
-    using TrainsOnline.Domain.Entities;
 
     public class GetUsersListResponse : IDataTransferObject
     {
-        public List<UserLookupModel> Users { get; set; } = default!;
+        public List<UserLookupModel> Users { get; set; }
 
-        public class UserLookupModel : IDataTransferObject, ICustomMapping
+        public class UserLookupModel : IDataTransferObject
         {
             public Guid Id { get; set; }
 
-            public string Email { get; set; } = default!;
-
-            void ICustomMapping.CreateMappings(Profile configuration)
-            {
-                configuration.CreateMap<User, UserLookupModel>();
-            }
+            public string Email { get; set; }
         }
     }
 }

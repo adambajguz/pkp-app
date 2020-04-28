@@ -2,12 +2,9 @@
 {
     using System;
     using System.Collections.Generic;
-    using Application.Interfaces.Mapping;
-    using AutoMapper;
-    using Domain.Entities;
     using TrainsOnline.Application.DTO;
 
-    public class GetStationDetailsResponse : IDataTransferObject, ICustomMapping
+    public class GetStationDetailsResponse : IDataTransferObject
     {
         public Guid Id { get; set; }
 
@@ -16,48 +13,33 @@
         public DateTime LastSavedOn { get; set; }
         public Guid? LastSavedBy { get; set; }
 
-        public string Name { get; set; } = default!;
+        public string Name { get; set; }
 
-        public double Latitude { get; set; } = default!;
-        public double Longitude { get; set; } = default!;
+        public double Latitude { get; set; }
+        public double Longitude { get; set; }
 
-        public List<RouteDeparturesLookupModel> Departures { get; set; } = default!;
+        public List<RouteDeparturesLookupModel> Departures { get; set; }
 
-        void ICustomMapping.CreateMappings(Profile configuration)
-        {
-            configuration.CreateMap<Station, GetStationDetailsResponse>();
-        }
-
-        public class RouteDeparturesLookupModel : IDataTransferObject, ICustomMapping
+        public class RouteDeparturesLookupModel : IDataTransferObject
         {
             public Guid Id { get; set; }
 
             //public Guid ToId { get; set; }
-            public RouteDeparturesToLookupModel To { get; set; } = default!;
+            public RouteDeparturesToLookupModel To { get; set; }
 
-            public DateTime DepartureTime { get; set; } = default!;
-            public TimeSpan Duration { get; set; } = default!;
+            public DateTime DepartureTime { get; set; }
+            public TimeSpan Duration { get; set; }
             public double Distance { get; set; }
             public double TicketPrice { get; set; }
 
-            void ICustomMapping.CreateMappings(Profile configuration)
-            {
-                configuration.CreateMap<Route, RouteDeparturesLookupModel>();
-            }
-
-            public class RouteDeparturesToLookupModel : IDataTransferObject, ICustomMapping
+            public class RouteDeparturesToLookupModel : IDataTransferObject
             {
                 public Guid Id { get; set; }
 
-                public string Name { get; set; } = default!;
+                public string Name { get; set; }
 
-                public double Latitude { get; set; } = default!;
-                public double Longitude { get; set; } = default!;
-
-                void ICustomMapping.CreateMappings(Profile configuration)
-                {
-                    configuration.CreateMap<Station, RouteDeparturesToLookupModel>();
-                }
+                public double Latitude { get; set; }
+                public double Longitude { get; set; }
             }
         }
     }
