@@ -1,4 +1,4 @@
-﻿namespace TrainsOnline.Desktop.ViewModels.Home
+﻿namespace TrainsOnline.Desktop.ViewModels.Examples
 {
     using System.Collections.ObjectModel;
     using System.Linq;

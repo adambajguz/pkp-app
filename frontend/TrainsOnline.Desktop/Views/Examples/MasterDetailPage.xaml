@@ -6,7 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:model="using:TrainsOnline.Desktop.Application.Models"
-    xmlns:views="using:TrainsOnline.Desktop.Views"
+    xmlns:views="using:TrainsOnline.Desktop.Views.Examples"
     Style="{StaticResource PageStyle}"
     mc:Ignorable="d">
     <Page.Resources>
@@ -51,7 +51,7 @@
         <DataTemplate x:Key="MasterHeaderTemplate">
             <Grid Height="40">
                 <TextBlock
-                    x:Name="headerText"
+                    x:Name="HeaderText"
                     VerticalAlignment="Center"
                     Style="{StaticResource ListTitleStyle}"
                     Text="{Binding}" />

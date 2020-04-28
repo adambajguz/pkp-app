@@ -45,7 +45,7 @@
 
         private UIElement CreateShell()
         {
-            return new Views.ShellPage();
+            return new Views.Home.ShellPage();
         }
 
         private async void OnLoggedOut(object sender, EventArgs e)

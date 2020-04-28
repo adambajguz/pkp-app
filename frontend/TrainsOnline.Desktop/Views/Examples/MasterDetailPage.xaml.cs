@@ -1,7 +1,7 @@
 ﻿namespace TrainsOnline.Desktop.Views.Examples
 {
     using TrainsOnline.Desktop.ViewModels;
-    using TrainsOnline.Desktop.ViewModels.Home;
+    using TrainsOnline.Desktop.ViewModels.Examples;
     using Windows.UI.Xaml;
     using Windows.UI.Xaml.Controls;
     using Windows.UI.Xaml.Navigation;

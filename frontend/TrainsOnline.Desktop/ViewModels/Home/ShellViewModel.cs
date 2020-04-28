@@ -11,6 +11,7 @@
     using TrainsOnline.Desktop.Helpers;
     using TrainsOnline.Desktop.Services;
     using TrainsOnline.Desktop.Views;
+    using TrainsOnline.Desktop.Views.Home;
     using Windows.System;
     using Windows.UI.Xaml.Controls;
     using Windows.UI.Xaml.Input;

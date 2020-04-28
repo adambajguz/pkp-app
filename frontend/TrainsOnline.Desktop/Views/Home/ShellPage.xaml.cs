@@ -13,7 +13,7 @@
         {
             InitializeComponent();
             DataContext = ViewModel;
-            ViewModel.Initialize(shellFrame, navigationView, KeyboardAccelerators);
+            ViewModel.Initialize(ShellFrame, navigationView, KeyboardAccelerators);
         }
     }
 }
