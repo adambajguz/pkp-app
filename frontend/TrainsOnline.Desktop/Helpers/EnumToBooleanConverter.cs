@@ -1,9 +1,9 @@
-﻿using System;
-
-using Windows.UI.Xaml.Data;
-
-namespace TrainsOnline.Desktop.Helpers
+﻿namespace TrainsOnline.Desktop.Helpers
 {
+    using System;
+    using TrainsOnline.Desktop.Extensions;
+    using Windows.UI.Xaml.Data;
+
     public class EnumToBooleanConverter : IValueConverter
     {
         public Type EnumType { get; set; }

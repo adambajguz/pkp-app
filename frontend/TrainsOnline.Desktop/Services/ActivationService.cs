@@ -1,19 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-using TrainsOnline.Desktop.Activation;
-using TrainsOnline.Desktop.Application.Helpers;
-using TrainsOnline.Desktop.Application.Services;
-using TrainsOnline.Desktop.ViewModels;
-
-using Windows.ApplicationModel.Activation;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-
-namespace TrainsOnline.Desktop.Services
+﻿namespace TrainsOnline.Desktop.Services
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using TrainsOnline.Desktop.Activation;
+    using TrainsOnline.Desktop.Application.Helpers;
+    using TrainsOnline.Desktop.Application.Services;
+    using TrainsOnline.Desktop.ViewModels;
+    using Windows.ApplicationModel.Activation;
+    using Windows.UI.Xaml;
+    using Windows.UI.Xaml.Controls;
+
     // For more information on understanding and extending activation flow see
     // https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/activation.md
     internal class ActivationService

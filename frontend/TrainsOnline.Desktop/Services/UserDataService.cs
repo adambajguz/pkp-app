@@ -1,16 +1,15 @@
-﻿using System;
-using System.Threading.Tasks;
-
-using TrainsOnline.Desktop.Application.Helpers;
-using TrainsOnline.Desktop.Application.Models;
-using TrainsOnline.Desktop.Application.Services;
-using TrainsOnline.Desktop.Helpers;
-using TrainsOnline.Desktop.ViewModels;
-
-using Windows.Storage;
-
-namespace TrainsOnline.Desktop.Services
+﻿namespace TrainsOnline.Desktop.Services
 {
+    using System;
+    using System.Threading.Tasks;
+    using TrainsOnline.Desktop.Application.Helpers;
+    using TrainsOnline.Desktop.Application.Models;
+    using TrainsOnline.Desktop.Application.Services;
+    using TrainsOnline.Desktop.Extensions;
+    using TrainsOnline.Desktop.Helpers;
+    using TrainsOnline.Desktop.ViewModels;
+    using Windows.Storage;
+
     public class UserDataService
     {
         private const string _userSettingsKey = "IdentityUser";

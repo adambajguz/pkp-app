@@ -1,16 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-using TrainsOnline.Desktop.Helpers;
-
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Media.Animation;
-using Windows.UI.Xaml.Navigation;
-
-namespace TrainsOnline.Desktop.Services
+﻿namespace TrainsOnline.Desktop.Services
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using TrainsOnline.Desktop.Extensions;
+    using Windows.UI.Xaml;
+    using Windows.UI.Xaml.Controls;
+    using Windows.UI.Xaml.Media.Animation;
+    using Windows.UI.Xaml.Navigation;
+
     public class NavigationServiceEx
     {
         public event NavigatedEventHandler Navigated;

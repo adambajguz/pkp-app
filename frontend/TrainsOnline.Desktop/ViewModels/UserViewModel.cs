@@ -1,10 +1,8 @@
-﻿
-using GalaSoft.MvvmLight;
-
-using Windows.UI.Xaml.Media.Imaging;
-
-namespace TrainsOnline.Desktop.ViewModels
+﻿namespace TrainsOnline.Desktop.ViewModels
 {
+    using GalaSoft.MvvmLight;
+    using Windows.UI.Xaml.Media.Imaging;
+
     public class UserViewModel : ViewModelBase
     {
         private string _name;

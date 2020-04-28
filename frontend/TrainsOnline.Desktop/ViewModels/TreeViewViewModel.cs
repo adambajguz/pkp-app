@@ -1,17 +1,14 @@
-﻿using System.Collections.ObjectModel;
-using System.Threading.Tasks;
-using System.Windows.Input;
-
-using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
-
-using TrainsOnline.Desktop.Application.Models;
-using TrainsOnline.Desktop.Application.Services;
-
-using WinUI = Microsoft.UI.Xaml.Controls;
-
-namespace TrainsOnline.Desktop.ViewModels
+﻿namespace TrainsOnline.Desktop.ViewModels
 {
+    using System.Collections.ObjectModel;
+    using System.Threading.Tasks;
+    using System.Windows.Input;
+    using GalaSoft.MvvmLight;
+    using GalaSoft.MvvmLight.Command;
+    using TrainsOnline.Desktop.Application.Models;
+    using TrainsOnline.Desktop.Application.Services;
+    using WinUI = Microsoft.UI.Xaml.Controls;
+
     public class TreeViewViewModel : ViewModelBase
     {
         private ICommand _itemInvokedCommand;

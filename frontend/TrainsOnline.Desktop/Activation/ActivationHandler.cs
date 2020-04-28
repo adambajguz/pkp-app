@@ -1,7 +1,7 @@
-﻿using System.Threading.Tasks;
-
-namespace TrainsOnline.Desktop.Activation
+﻿namespace TrainsOnline.Desktop.Activation
 {
+    using System.Threading.Tasks;
+
     // For more information on understanding and extending activation flow see
     // https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/activation.md
     internal abstract class ActivationHandler

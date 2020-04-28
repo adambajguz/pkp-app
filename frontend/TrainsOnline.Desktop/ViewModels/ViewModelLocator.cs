@@ -1,11 +1,9 @@
-﻿
-using GalaSoft.MvvmLight.Ioc;
-
-using TrainsOnline.Desktop.Services;
-using TrainsOnline.Desktop.Views;
-
-namespace TrainsOnline.Desktop.ViewModels
+﻿namespace TrainsOnline.Desktop.ViewModels
 {
+    using GalaSoft.MvvmLight.Ioc;
+    using TrainsOnline.Desktop.Services;
+    using TrainsOnline.Desktop.Views;
+
     [Windows.UI.Xaml.Data.Bindable]
     public class ViewModelLocator
     {

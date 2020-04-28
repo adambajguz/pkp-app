@@ -1,18 +1,15 @@
-﻿using System;
-using System.Threading.Tasks;
-
-using GalaSoft.MvvmLight;
-
-using TrainsOnline.Desktop.Helpers;
-using TrainsOnline.Desktop.Services;
-
-using Windows.Devices.Geolocation;
-using Windows.Foundation;
-using Windows.Storage.Streams;
-using Windows.UI.Xaml.Controls.Maps;
-
-namespace TrainsOnline.Desktop.ViewModels
+﻿namespace TrainsOnline.Desktop.ViewModels
 {
+    using System;
+    using System.Threading.Tasks;
+    using GalaSoft.MvvmLight;
+    using TrainsOnline.Desktop.Extensions;
+    using TrainsOnline.Desktop.Services;
+    using Windows.Devices.Geolocation;
+    using Windows.Foundation;
+    using Windows.Storage.Streams;
+    using Windows.UI.Xaml.Controls.Maps;
+
     public class MapViewModel : ViewModelBase
     {
         // TODO WTS: Set your preferred default zoom level

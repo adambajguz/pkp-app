@@ -1,14 +1,11 @@
-﻿using System.Collections.Generic;
-using System.Windows.Input;
-
-using GalaSoft.MvvmLight.Command;
-
-using Microsoft.Xaml.Interactivity;
-
-using WinUI = Microsoft.UI.Xaml.Controls;
-
-namespace TrainsOnline.Desktop.Behaviors
+﻿namespace TrainsOnline.Desktop.Behaviors
 {
+    using System.Collections.Generic;
+    using System.Windows.Input;
+    using GalaSoft.MvvmLight.Command;
+    using Microsoft.Xaml.Interactivity;
+    using WinUI = Microsoft.UI.Xaml.Controls;
+
     public class TreeViewCollapseBehavior : Behavior<WinUI.TreeView>
     {
         public ICommand CollapseAllCommand { get; }

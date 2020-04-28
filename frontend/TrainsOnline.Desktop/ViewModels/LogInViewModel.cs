@@ -1,13 +1,11 @@
-﻿
-using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
-
-using TrainsOnline.Desktop.Application.Helpers;
-using TrainsOnline.Desktop.Application.Services;
-using TrainsOnline.Desktop.Helpers;
-
-namespace TrainsOnline.Desktop.ViewModels
+﻿namespace TrainsOnline.Desktop.ViewModels
 {
+    using GalaSoft.MvvmLight;
+    using GalaSoft.MvvmLight.Command;
+    using TrainsOnline.Desktop.Application.Helpers;
+    using TrainsOnline.Desktop.Application.Services;
+    using TrainsOnline.Desktop.Extensions;
+
     public class LogInViewModel : ViewModelBase
     {
         private string _statusMessage;

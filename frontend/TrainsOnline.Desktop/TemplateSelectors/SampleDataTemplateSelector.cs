@@ -1,10 +1,9 @@
-﻿using TrainsOnline.Desktop.Application.Models;
-
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-
-namespace TrainsOnline.Desktop.TemplateSelectors
+﻿namespace TrainsOnline.Desktop.TemplateSelectors
 {
+    using TrainsOnline.Desktop.Application.Models;
+    using Windows.UI.Xaml;
+    using Windows.UI.Xaml.Controls;
+
     public class SampleDataTemplateSelector : DataTemplateSelector
     {
         public DataTemplate CompanyTemplate { get; set; }

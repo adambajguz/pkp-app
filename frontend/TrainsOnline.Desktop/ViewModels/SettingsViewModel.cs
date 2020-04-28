@@ -1,20 +1,17 @@
-﻿using System;
-using System.Threading.Tasks;
-using System.Windows.Input;
-
-using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
-
-using TrainsOnline.Desktop.Application.Helpers;
-using TrainsOnline.Desktop.Application.Services;
-using TrainsOnline.Desktop.Helpers;
-using TrainsOnline.Desktop.Services;
-
-using Windows.ApplicationModel;
-using Windows.UI.Xaml;
-
-namespace TrainsOnline.Desktop.ViewModels
+﻿namespace TrainsOnline.Desktop.ViewModels
 {
+    using System;
+    using System.Threading.Tasks;
+    using System.Windows.Input;
+    using GalaSoft.MvvmLight;
+    using GalaSoft.MvvmLight.Command;
+    using TrainsOnline.Desktop.Application.Helpers;
+    using TrainsOnline.Desktop.Application.Services;
+    using TrainsOnline.Desktop.Extensions;
+    using TrainsOnline.Desktop.Services;
+    using Windows.ApplicationModel;
+    using Windows.UI.Xaml;
+
     // TODO WTS: Add other settings as necessary. For help see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/pages/settings.md
     public class SettingsViewModel : ViewModelBase
     {

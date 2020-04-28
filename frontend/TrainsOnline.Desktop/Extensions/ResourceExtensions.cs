@@ -1,8 +1,7 @@
-﻿
-using Windows.ApplicationModel.Resources;
-
-namespace TrainsOnline.Desktop.Helpers
+﻿namespace TrainsOnline.Desktop.Extensions
 {
+    using Windows.ApplicationModel.Resources;
+
     internal static class ResourceExtensions
     {
         private static readonly ResourceLoader _resLoader = new ResourceLoader();

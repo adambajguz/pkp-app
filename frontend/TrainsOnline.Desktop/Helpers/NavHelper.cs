@@ -1,10 +1,8 @@
-﻿
-using Microsoft.UI.Xaml.Controls;
-
-using Windows.UI.Xaml;
-
-namespace TrainsOnline.Desktop.Helpers
+﻿namespace TrainsOnline.Desktop.Helpers
 {
+    using Microsoft.UI.Xaml.Controls;
+    using Windows.UI.Xaml;
+
     public class NavHelper
     {
         // This helper class allows to specify the page that will be shown when you click on a NavigationViewItem

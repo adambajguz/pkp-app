@@ -149,7 +149,8 @@
     <Compile Include="Helpers\EnumToBooleanConverter.cs" />
     <Compile Include="Helpers\ImageHelper.cs" />
     <Compile Include="Helpers\NavHelper.cs" />
-    <Compile Include="Helpers\SettingsStorageExtensions.cs" />
+    <Compile Include="Extensions\SettingsStorageExtensions.cs" />
+    <Compile Include="Extensions\ResourceExtensions.cs" />
     <Compile Include="Services\ActivationService.cs" />
     <Compile Include="Activation\DefaultActivationHandler.cs" />
     <Compile Include="Services\FirstRunDisplayService.cs" />
@@ -287,9 +288,6 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Helpers\ResourceExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\DefaultIcon.png" />

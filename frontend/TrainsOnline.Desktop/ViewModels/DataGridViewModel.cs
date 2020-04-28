@@ -1,13 +1,11 @@
-﻿using System.Collections.ObjectModel;
-using System.Threading.Tasks;
-
-using GalaSoft.MvvmLight;
-
-using TrainsOnline.Desktop.Application.Models;
-using TrainsOnline.Desktop.Application.Services;
-
-namespace TrainsOnline.Desktop.ViewModels
+﻿namespace TrainsOnline.Desktop.ViewModels
 {
+    using System.Collections.ObjectModel;
+    using System.Threading.Tasks;
+    using GalaSoft.MvvmLight;
+    using TrainsOnline.Desktop.Application.Models;
+    using TrainsOnline.Desktop.Application.Services;
+
     public class DataGridViewModel : ViewModelBase
     {
         public ObservableCollection<SampleOrder> Source { get; } = new ObservableCollection<SampleOrder>();

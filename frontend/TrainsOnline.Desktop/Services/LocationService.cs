@@ -1,14 +1,12 @@
-﻿using System;
-using System.Threading.Tasks;
-
-using TrainsOnline.Desktop.Helpers;
-
-using Windows.ApplicationModel.Core;
-using Windows.Devices.Geolocation;
-using Windows.UI.Core;
-
-namespace TrainsOnline.Desktop.Services
+﻿namespace TrainsOnline.Desktop.Services
 {
+    using System;
+    using System.Threading.Tasks;
+    using TrainsOnline.Desktop.Extensions;
+    using Windows.ApplicationModel.Core;
+    using Windows.Devices.Geolocation;
+    using Windows.UI.Core;
+
     public class LocationService
     {
         private Geolocator _geolocator;

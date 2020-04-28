@@ -1,12 +1,11 @@
-﻿using System;
-using System.Runtime.InteropServices.WindowsRuntime;
-using System.Threading.Tasks;
-
-using Windows.Storage.Streams;
-using Windows.UI.Xaml.Media.Imaging;
-
-namespace TrainsOnline.Desktop.Helpers
+﻿namespace TrainsOnline.Desktop.Helpers
 {
+    using System;
+    using System.Runtime.InteropServices.WindowsRuntime;
+    using System.Threading.Tasks;
+    using Windows.Storage.Streams;
+    using Windows.UI.Xaml.Media.Imaging;
+
     public static class ImageHelper
     {
         public static async Task<BitmapImage> ImageFromStringAsync(string data)

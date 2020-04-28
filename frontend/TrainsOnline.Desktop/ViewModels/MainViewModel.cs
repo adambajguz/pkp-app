@@ -1,8 +1,7 @@
-﻿
-using GalaSoft.MvvmLight;
-
-namespace TrainsOnline.Desktop.ViewModels
+﻿namespace TrainsOnline.Desktop.ViewModels
 {
+    using GalaSoft.MvvmLight;
+
     public class MainViewModel : ViewModelBase
     {
         public MainViewModel()

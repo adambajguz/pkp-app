@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace TrainsOnline.Desktop.Domain
+﻿namespace TrainsOnline.Desktop.Domain
 {
     public class Class1
     {

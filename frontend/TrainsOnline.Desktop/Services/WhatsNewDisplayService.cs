@@ -1,15 +1,12 @@
-﻿using System;
-using System.Threading.Tasks;
-
-using Microsoft.Toolkit.Uwp.Helpers;
-
-using TrainsOnline.Desktop.Views;
-
-using Windows.ApplicationModel.Core;
-using Windows.UI.Core;
-
-namespace TrainsOnline.Desktop.Services
+﻿namespace TrainsOnline.Desktop.Services
 {
+    using System;
+    using System.Threading.Tasks;
+    using Microsoft.Toolkit.Uwp.Helpers;
+    using TrainsOnline.Desktop.Views;
+    using Windows.ApplicationModel.Core;
+    using Windows.UI.Core;
+
     // For instructions on testing this service see https://github.com/Microsoft/WindowsTemplateStudio/tree/master/docs/features/whats-new-prompt.md
     public static class WhatsNewDisplayService
     {

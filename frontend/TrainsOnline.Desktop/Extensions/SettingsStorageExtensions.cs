@@ -1,14 +1,13 @@
-﻿using System;
-using System.IO;
-using System.Threading.Tasks;
-
-using TrainsOnline.Desktop.Application.Helpers;
-
-using Windows.Storage;
-using Windows.Storage.Streams;
-
-namespace TrainsOnline.Desktop.Helpers
+﻿namespace TrainsOnline.Desktop.Extensions
 {
+    using System;
+    using System.IO;
+    using System.Threading.Tasks;
+
+    using TrainsOnline.Desktop.Application.Helpers;
+    using Windows.Storage;
+    using Windows.Storage.Streams;
+
     // Use these extension methods to store and retrieve local and roaming app data
     // More details regarding storing and retrieving app data at https://docs.microsoft.com/windows/uwp/app-settings/store-and-retrieve-app-data
     public static class SettingsStorageExtensions
@@ -23,7 +22,7 @@ namespace TrainsOnline.Desktop.Helpers
         public static async Task SaveAsync<T>(this StorageFolder folder, string name, T content)
         {
             StorageFile file = await folder.CreateFileAsync(GetFileName(name), CreationCollisionOption.ReplaceExisting);
-            string fileContent = await Json.StringifyAsync(content);
+            string fileContent = await content.StringifyAsync();
 
             await FileIO.WriteTextAsync(file, fileContent);
         }
@@ -31,9 +30,7 @@ namespace TrainsOnline.Desktop.Helpers
         public static async Task<T> ReadAsync<T>(this StorageFolder folder, string name)
         {
             if (!File.Exists(Path.Combine(folder.Path, GetFileName(name))))
-            {
-                return default(T);
-            }
+                return default;
 
             StorageFile file = await folder.GetFileAsync($"{name}.json");
             string fileContent = await FileIO.ReadTextAsync(file);
@@ -43,7 +40,7 @@ namespace TrainsOnline.Desktop.Helpers
 
         public static async Task SaveAsync<T>(this ApplicationDataContainer settings, string key, T value)
         {
-            settings.SaveString(key, await Json.StringifyAsync(value));
+            settings.SaveString(key, await value.StringifyAsync());
         }
 
         public static void SaveString(this ApplicationDataContainer settings, string key, string value)
@@ -55,9 +52,7 @@ namespace TrainsOnline.Desktop.Helpers
         {
 
             if (settings.Values.TryGetValue(key, out object obj) && obj is string str)
-            {
                 return await str.ToObjectAsync<T>();
-            }
 
             return default;
         }
@@ -65,14 +60,10 @@ namespace TrainsOnline.Desktop.Helpers
         public static async Task<StorageFile> SaveFileAsync(this StorageFolder folder, byte[] content, string fileName, CreationCollisionOption options = CreationCollisionOption.ReplaceExisting)
         {
             if (content == null)
-            {
                 throw new ArgumentNullException(nameof(content));
-            }
 
             if (string.IsNullOrEmpty(fileName))
-            {
                 throw new ArgumentException("ExceptionSettingsStorageExtensionsFileNameIsNullOrEmpty".GetLocalized(), nameof(fileName));
-            }
 
             StorageFile storageFile = await folder.CreateFileAsync(fileName, options);
             await FileIO.WriteBytesAsync(storageFile, content);
@@ -83,7 +74,7 @@ namespace TrainsOnline.Desktop.Helpers
         {
             IStorageItem item = await folder.TryGetItemAsync(fileName).AsTask().ConfigureAwait(false);
 
-            if ((item != null) && item.IsOfType(StorageItemTypes.File))
+            if (item != null && item.IsOfType(StorageItemTypes.File))
             {
                 StorageFile storageFile = await folder.GetFileAsync(fileName);
                 byte[] content = await storageFile.ReadBytesAsync();
@@ -96,18 +87,14 @@ namespace TrainsOnline.Desktop.Helpers
         public static async Task<byte[]> ReadBytesAsync(this StorageFile file)
         {
             if (file != null)
-            {
                 using (IRandomAccessStream stream = await file.OpenReadAsync())
+                using (DataReader reader = new DataReader(stream.GetInputStreamAt(0)))
                 {
-                    using (DataReader reader = new DataReader(stream.GetInputStreamAt(0)))
-                    {
-                        await reader.LoadAsync((uint)stream.Size);
-                        byte[] bytes = new byte[stream.Size];
-                        reader.ReadBytes(bytes);
-                        return bytes;
-                    }
+                    await reader.LoadAsync((uint)stream.Size);
+                    byte[] bytes = new byte[stream.Size];
+                    reader.ReadBytes(bytes);
+                    return bytes;
                 }
-            }
 
             return null;
         }

@@ -1,16 +1,13 @@
-﻿using System.Collections.ObjectModel;
-using System.Linq;
-using System.Threading.Tasks;
-
-using GalaSoft.MvvmLight;
-
-using Microsoft.Toolkit.Uwp.UI.Controls;
-
-using TrainsOnline.Desktop.Application.Models;
-using TrainsOnline.Desktop.Application.Services;
-
-namespace TrainsOnline.Desktop.ViewModels
+﻿namespace TrainsOnline.Desktop.ViewModels
 {
+    using System.Collections.ObjectModel;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using GalaSoft.MvvmLight;
+    using Microsoft.Toolkit.Uwp.UI.Controls;
+    using TrainsOnline.Desktop.Application.Models;
+    using TrainsOnline.Desktop.Application.Services;
+
     public class MasterDetailViewModel : ViewModelBase
     {
         private SampleOrder _selected;
