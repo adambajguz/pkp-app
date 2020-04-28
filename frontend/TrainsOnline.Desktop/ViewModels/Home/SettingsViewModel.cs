@@ -1,4 +1,4 @@
-﻿namespace TrainsOnline.Desktop.ViewModels
+﻿namespace TrainsOnline.Desktop.ViewModels.Home
 {
     using System;
     using System.Threading.Tasks;
@@ -44,14 +44,12 @@
             get
             {
                 if (_switchThemeCommand == null)
-                {
                     _switchThemeCommand = new RelayCommand<ElementTheme>(
                         async (param) =>
                         {
                             ElementTheme = param;
                             await ThemeSelectorService.SetThemeAsync(param);
                         });
-                }
 
                 return _switchThemeCommand;
             }
@@ -71,6 +69,7 @@
 
         public SettingsViewModel()
         {
+
         }
 
         public async Task InitializeAsync()

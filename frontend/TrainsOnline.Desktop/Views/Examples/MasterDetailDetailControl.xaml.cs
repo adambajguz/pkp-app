@@ -1,11 +1,9 @@
-﻿
-using TrainsOnline.Desktop.Application.Models;
-
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-
-namespace TrainsOnline.Desktop.Views
+﻿namespace TrainsOnline.Desktop.Views
 {
+    using TrainsOnline.Desktop.Application.Models;
+    using Windows.UI.Xaml;
+    using Windows.UI.Xaml.Controls;
+
     public sealed partial class MasterDetailDetailControl : UserControl
     {
         public SampleOrder MasterMenuItem

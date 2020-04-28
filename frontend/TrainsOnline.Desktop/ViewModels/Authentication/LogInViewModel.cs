@@ -34,6 +34,7 @@
 
         public LogInViewModel()
         {
+
         }
 
         private async void OnLogin()

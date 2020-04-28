@@ -1,4 +1,4 @@
-﻿namespace TrainsOnline.Desktop.ViewModels
+﻿namespace TrainsOnline.Desktop.ViewModels.Home
 {
     using System;
     using System.Collections.Generic;
@@ -63,6 +63,7 @@
 
         public ShellViewModel()
         {
+
         }
 
         public void Initialize(Frame frame, WinUI.NavigationView navigationView, IList<KeyboardAccelerator> keyboardAccelerators)
@@ -156,9 +157,7 @@
         {
             KeyboardAccelerator keyboardAccelerator = new KeyboardAccelerator() { Key = key };
             if (modifiers.HasValue)
-            {
                 keyboardAccelerator.Modifiers = modifiers.Value;
-            }
 
             keyboardAccelerator.Invoked += OnKeyboardAcceleratorInvoked;
             return keyboardAccelerator;

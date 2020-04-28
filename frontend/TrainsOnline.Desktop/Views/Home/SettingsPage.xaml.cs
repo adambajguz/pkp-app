@@ -1,11 +1,10 @@
-﻿
-using TrainsOnline.Desktop.ViewModels;
-
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Navigation;
-
-namespace TrainsOnline.Desktop.Views
+﻿namespace TrainsOnline.Desktop.Views
 {
+    using TrainsOnline.Desktop.ViewModels;
+    using TrainsOnline.Desktop.ViewModels.Home;
+    using Windows.UI.Xaml.Controls;
+    using Windows.UI.Xaml.Navigation;
+
     // TODO WTS: Change the URL for your privacy policy in the Resource File, currently set to https://YourPrivacyUrlGoesHere
     public sealed partial class SettingsPage : Page
     {

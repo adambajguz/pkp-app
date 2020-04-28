@@ -37,7 +37,6 @@
             GeolocationAccessStatus access = await Geolocator.RequestAccessAsync();
 
             bool result;
-
             switch (access)
             {
                 case GeolocationAccessStatus.Allowed:

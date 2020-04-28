@@ -1,4 +1,4 @@
-﻿namespace TrainsOnline.Desktop.ViewModels
+﻿namespace TrainsOnline.Desktop.ViewModels.Examples
 {
     using System.Collections.ObjectModel;
     using System.Threading.Tasks;
@@ -22,9 +22,7 @@
             System.Collections.Generic.IEnumerable<SampleOrder> data = await SampleDataService.GetGridDataAsync();
 
             foreach (SampleOrder item in data)
-            {
                 Source.Add(item);
-            }
         }
     }
 }

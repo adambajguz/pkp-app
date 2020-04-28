@@ -1,12 +1,11 @@
-﻿
-using TrainsOnline.Desktop.ViewModels;
-
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Navigation;
-
-namespace TrainsOnline.Desktop.Views
+﻿namespace TrainsOnline.Desktop.Views
 {
+    using TrainsOnline.Desktop.ViewModels;
+    using TrainsOnline.Desktop.ViewModels.Home;
+    using Windows.UI.Xaml;
+    using Windows.UI.Xaml.Controls;
+    using Windows.UI.Xaml.Navigation;
+
     public sealed partial class MasterDetailPage : Page
     {
         private MasterDetailViewModel ViewModel => ViewModelLocator.Current.MasterDetailViewModel;

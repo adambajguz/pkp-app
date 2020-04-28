@@ -1,11 +1,10 @@
-﻿
-using TrainsOnline.Desktop.ViewModels;
-
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Navigation;
-
-namespace TrainsOnline.Desktop.Views
+﻿namespace TrainsOnline.Desktop.Views
 {
+    using TrainsOnline.Desktop.ViewModels;
+    using TrainsOnline.Desktop.ViewModels.Examples;
+    using Windows.UI.Xaml.Controls;
+    using Windows.UI.Xaml.Navigation;
+
     // For more info about the TreeView Control see
     // https://docs.microsoft.com/windows/uwp/design/controls-and-patterns/tree-view
     // For other samples, get the XAML Controls Gallery app http://aka.ms/XamlControlsGallery

@@ -1,4 +1,4 @@
-﻿namespace TrainsOnline.Desktop.ViewModels
+﻿namespace TrainsOnline.Desktop.ViewModels.Home
 {
     using GalaSoft.MvvmLight;
     using Windows.UI.Xaml.Media.Imaging;

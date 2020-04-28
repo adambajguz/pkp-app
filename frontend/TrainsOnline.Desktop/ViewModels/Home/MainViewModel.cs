@@ -1,4 +1,4 @@
-﻿namespace TrainsOnline.Desktop.ViewModels
+﻿namespace TrainsOnline.Desktop.ViewModels.Home
 {
     using GalaSoft.MvvmLight;
 
@@ -6,6 +6,7 @@
     {
         public MainViewModel()
         {
+
         }
     }
 }

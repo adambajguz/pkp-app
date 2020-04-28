@@ -1,4 +1,4 @@
-﻿namespace TrainsOnline.Desktop.ViewModels
+﻿namespace TrainsOnline.Desktop.ViewModels.Home
 {
     using System.Collections.ObjectModel;
     using System.Linq;
@@ -22,6 +22,7 @@
 
         public MasterDetailViewModel()
         {
+
         }
 
         public async Task LoadDataAsync(MasterDetailsViewState viewState)
@@ -31,14 +32,10 @@
             System.Collections.Generic.IEnumerable<SampleOrder> data = await SampleDataService.GetMasterDetailDataAsync();
 
             foreach (SampleOrder item in data)
-            {
                 SampleItems.Add(item);
-            }
 
             if (viewState == MasterDetailsViewState.Both)
-            {
                 Selected = SampleItems.First();
-            }
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace TrainsOnline.Desktop.ViewModels
+﻿namespace TrainsOnline.Desktop.ViewModels.Examples
 {
     using System;
     using System.Threading.Tasks;
@@ -56,34 +56,24 @@
                 bool initializationSuccessful = await _locationService.InitializeAsync();
 
                 if (initializationSuccessful)
-                {
                     await _locationService.StartListeningAsync();
-                }
 
                 if (initializationSuccessful && _locationService.CurrentPosition != null)
-                {
                     Center = _locationService.CurrentPosition.Coordinate.Point;
-                }
                 else
-                {
                     Center = new Geopoint(_defaultPosition);
-                }
             }
 
             if (map != null)
-            {
                 // TODO WTS: Set your map service token. If you don't have one, request from https://www.bingmapsportal.com/
                 // map.MapServiceToken = string.Empty;
                 AddMapIcon(map, Center, "Map_YourLocation".GetLocalized());
-            }
         }
 
         private void LocationService_PositionChanged(object sender, Geoposition geoposition)
         {
             if (geoposition != null)
-            {
                 Center = geoposition.Coordinate.Point;
-            }
         }
 
         private void AddMapIcon(MapControl map, Geopoint position, string title)

@@ -1,14 +1,13 @@
-﻿using System;
-
-using TrainsOnline.Desktop.Application.Helpers;
-using TrainsOnline.Desktop.Application.Services;
-using TrainsOnline.Desktop.Services;
-
-using Windows.ApplicationModel.Activation;
-using Windows.UI.Xaml;
-
-namespace TrainsOnline.Desktop
+﻿namespace TrainsOnline.Desktop
 {
+    using System;
+    using TrainsOnline.Desktop.Application.Helpers;
+    using TrainsOnline.Desktop.Application.Services;
+    using TrainsOnline.Desktop.Services;
+    using TrainsOnline.Desktop.ViewModels.Home;
+    using Windows.ApplicationModel.Activation;
+    using Windows.UI.Xaml;
+
     public sealed partial class App : Windows.UI.Xaml.Application
     {
         private IdentityService IdentityService => Singleton<IdentityService>.Instance;
@@ -41,7 +40,7 @@ namespace TrainsOnline.Desktop
 
         private ActivationService CreateActivationService()
         {
-            return new ActivationService(this, typeof(ViewModels.MainViewModel), new Lazy<UIElement>(CreateShell));
+            return new ActivationService(this, typeof(MainViewModel), new Lazy<UIElement>(CreateShell));
         }
 
         private UIElement CreateShell()

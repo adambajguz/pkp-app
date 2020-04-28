@@ -1,13 +1,11 @@
-﻿using System;
-using System.Threading.Tasks;
-
-using TrainsOnline.Desktop.Services;
-using TrainsOnline.Desktop.ViewModels;
-
-using Windows.ApplicationModel.Activation;
-
-namespace TrainsOnline.Desktop.Activation
+﻿namespace TrainsOnline.Desktop.Activation
 {
+    using System;
+    using System.Threading.Tasks;
+    using TrainsOnline.Desktop.Services;
+    using TrainsOnline.Desktop.ViewModels;
+    using Windows.ApplicationModel.Activation;
+
     internal class DefaultActivationHandler : ActivationHandler<IActivatedEventArgs>
     {
         private readonly string _navElement;

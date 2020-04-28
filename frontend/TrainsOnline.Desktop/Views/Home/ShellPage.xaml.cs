@@ -1,6 +1,6 @@
 ﻿
 using TrainsOnline.Desktop.ViewModels;
-
+using TrainsOnline.Desktop.ViewModels.Home;
 using Windows.UI.Xaml.Controls;
 
 namespace TrainsOnline.Desktop.Views

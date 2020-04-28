@@ -7,7 +7,7 @@
     using TrainsOnline.Desktop.Application.Services;
     using TrainsOnline.Desktop.Extensions;
     using TrainsOnline.Desktop.Helpers;
-    using TrainsOnline.Desktop.ViewModels;
+    using TrainsOnline.Desktop.ViewModels.Home;
     using Windows.Storage;
 
     public class UserDataService

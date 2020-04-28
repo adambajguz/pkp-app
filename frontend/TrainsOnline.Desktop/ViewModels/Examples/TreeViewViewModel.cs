@@ -1,4 +1,4 @@
-﻿namespace TrainsOnline.Desktop.ViewModels
+﻿namespace TrainsOnline.Desktop.ViewModels.Examples
 {
     using System.Collections.ObjectModel;
     using System.Threading.Tasks;
@@ -32,9 +32,7 @@
         {
             System.Collections.Generic.IEnumerable<SampleCompany> data = await SampleDataService.GetTreeViewDataAsync();
             foreach (SampleCompany item in data)
-            {
                 SampleItems.Add(item);
-            }
         }
 
         private void OnItemInvoked(WinUI.TreeViewItemInvokedEventArgs args)

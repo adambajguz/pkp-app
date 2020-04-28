@@ -1,10 +1,9 @@
-﻿
-using TrainsOnline.Desktop.ViewModels;
-
-using Windows.UI.Xaml.Controls;
-
-namespace TrainsOnline.Desktop.Views
+﻿namespace TrainsOnline.Desktop.Views
 {
+    using TrainsOnline.Desktop.ViewModels;
+    using TrainsOnline.Desktop.ViewModels.Examples;
+    using Windows.UI.Xaml.Controls;
+
     public sealed partial class BlankPage : Page
     {
         private BlankViewModel ViewModel => ViewModelLocator.Current.BlankViewModel;

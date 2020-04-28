@@ -2,6 +2,8 @@
 {
     using GalaSoft.MvvmLight.Ioc;
     using TrainsOnline.Desktop.Services;
+    using TrainsOnline.Desktop.ViewModels.Examples;
+    using TrainsOnline.Desktop.ViewModels.Home;
     using TrainsOnline.Desktop.Views;
 
     [Windows.UI.Xaml.Data.Bindable]
