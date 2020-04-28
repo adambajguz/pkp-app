@@ -1,4 +1,4 @@
-﻿namespace TrainsOnline.Desktop.Views.Examples
+﻿namespace TrainsOnline.Desktop.Views.Station
 {
     using TrainsOnline.Desktop.ViewModels;
     using TrainsOnline.Desktop.ViewModels.Examples;

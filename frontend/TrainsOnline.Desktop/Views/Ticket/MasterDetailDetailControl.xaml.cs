@@ -1,4 +1,4 @@
-﻿namespace TrainsOnline.Desktop.Views.Examples
+﻿namespace TrainsOnline.Desktop.Views.Ticket
 {
     using TrainsOnline.Desktop.Application.Models;
     using Windows.UI.Xaml;
