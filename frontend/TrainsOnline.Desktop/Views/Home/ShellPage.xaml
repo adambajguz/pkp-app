@@ -32,15 +32,15 @@
                 Or to use an IconElement instead of a Symbol see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/projectTypes/navigationpane.md
                 Edit String/en-US/Resources.resw: Add a menu item title for each page
             -->
-            <winui:NavigationViewItem x:Uid="Shell_Main" helpers:NavHelper.NavigateTo="TrainsOnline.Desktop.ViewModels.Home.MainViewModel" />
+            <winui:NavigationViewItem x:Uid="Shell_Home_Main" helpers:NavHelper.NavigateTo="{x:Bind constants:NavigationConstants.Shell_Home_Main}" />
 
             <winui:NavigationViewItem x:Uid="Shell_Station_MasterDetail" helpers:NavHelper.NavigateTo="{x:Bind constants:NavigationConstants.Shell_Station_MasterDetail}" />
 
-            <winui:NavigationViewItem x:Uid="Shell_Blank" helpers:NavHelper.NavigateTo="TrainsOnline.Desktop.ViewModels.Examples.BlankViewModel" />
-            <winui:NavigationViewItem x:Uid="Shell_MasterDetail" helpers:NavHelper.NavigateTo="TrainsOnline.Desktop.ViewModels.Examples.MasterDetailViewModel" />
-            <winui:NavigationViewItem x:Uid="Shell_TreeView" helpers:NavHelper.NavigateTo="TrainsOnline.Desktop.ViewModels.Examples.TreeViewViewModel" />
-            <winui:NavigationViewItem x:Uid="Shell_DataGrid" helpers:NavHelper.NavigateTo="TrainsOnline.Desktop.ViewModels.Examples.DataGridViewModel" />
-            <winui:NavigationViewItem x:Uid="Shell_Map" helpers:NavHelper.NavigateTo="TrainsOnline.Desktop.ViewModels.Examples.MapViewModel" />
+            <winui:NavigationViewItem x:Uid="Shell_Examples_Blank" helpers:NavHelper.NavigateTo="{x:Bind constants:NavigationConstants.Shell_Examples_Blank}" />
+            <winui:NavigationViewItem x:Uid="Shell_Examples_MasterDetail" helpers:NavHelper.NavigateTo="{x:Bind constants:NavigationConstants.Shell_Examples_MasterDetail}" />
+            <winui:NavigationViewItem x:Uid="Shell_Examples_TreeView" helpers:NavHelper.NavigateTo="{x:Bind constants:NavigationConstants.Shell_Examples_TreeView}" />
+            <winui:NavigationViewItem x:Uid="Shell_Examples_DataGrid" helpers:NavHelper.NavigateTo="{x:Bind constants:NavigationConstants.Shell_Examples_DataGrid}" />
+            <winui:NavigationViewItem x:Uid="Shell_Examples_Map" helpers:NavHelper.NavigateTo="{x:Bind constants:NavigationConstants.Shell_Examples_Map}" />
 
         </winui:NavigationView.MenuItems>
         <i:Interaction.Behaviors>

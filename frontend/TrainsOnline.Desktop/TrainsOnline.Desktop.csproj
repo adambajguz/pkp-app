@@ -404,6 +404,10 @@
       <Project>{ef2e2b04-bceb-4c79-8678-c2ab2662c413}</Project>
       <Name>TrainsOnline.Desktop.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\TrainsOnline.Desktop.Domain\TrainsOnline.Desktop.Domain.csproj">
+      <Project>{BEFDA458-2237-4B12-B2E8-521B34AB34D6}</Project>
+      <Name>TrainsOnline.Desktop.Domain</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TrainsOnline.Desktop.Infrastructure\TrainsOnline.Desktop.Infrastructure.csproj">
       <Project>{7f1470ea-2179-4623-8ba4-4eeeb02413e3}</Project>
       <Name>TrainsOnline.Desktop.Infrastructure</Name>

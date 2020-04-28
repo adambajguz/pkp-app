@@ -30,7 +30,7 @@
 
             //Route
             //Register<Station.MasterDetailViewModel, Views.Station.MasterDetailPage>();
-            
+
             //Station
             Register<Station.MasterDetailViewModel, Views.Station.MasterDetailPage>();
 

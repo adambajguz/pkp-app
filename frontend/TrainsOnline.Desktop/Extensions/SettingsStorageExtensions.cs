@@ -3,8 +3,7 @@
     using System;
     using System.IO;
     using System.Threading.Tasks;
-
-    using TrainsOnline.Desktop.Application.Helpers;
+    using TrainsOnline.Desktop.Core.Extensions;
     using Windows.Storage;
     using Windows.Storage.Streams;
 

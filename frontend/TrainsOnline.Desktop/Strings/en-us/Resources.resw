@@ -141,11 +141,11 @@
     <value>The page '{0}' is unknown by the NavigationService</value>
     <comment>The page is unknown or not registered in navigation service</comment>
   </data>
-  <data name="Shell_Main.Content" xml:space="preserve">
+  <data name="Shell_Home_Main.Content" xml:space="preserve">
     <value>Main</value>
     <comment>Navigation view item name for Main</comment>
   </data>
-  <data name="Shell_Blank.Content" xml:space="preserve">
+  <data name="Shell_Examples_Blank.Content" xml:space="preserve">
     <value>Blank</value>
     <comment>Navigation view item name for Blank</comment>
   </data>
@@ -157,7 +157,7 @@
     <value>MasterDetail</value>
     <comment>Title for MasterDetailPage</comment>
   </data>
-  <data name="Shell_MasterDetail.Content" xml:space="preserve">
+  <data name="Shell_Examples_MasterDetail.Content" xml:space="preserve">
     <value>MasterDetail</value>
     <comment>Navigation view item name for MasterDetail</comment>
   </data>
@@ -165,11 +165,11 @@
     <value>TreeView</value>
     <comment>Title for TreeViewPage</comment>
   </data>
-  <data name="Shell_TreeView.Content" xml:space="preserve">
+  <data name="Shell_Examples_TreeView.Content" xml:space="preserve">
     <value>TreeView</value>
     <comment>Navigation view item name for TreeView</comment>
   </data>
-  <data name="Shell_DataGrid.Content" xml:space="preserve">
+  <data name="Shell_Examples_DataGrid.Content" xml:space="preserve">
     <value>DataGrid</value>
     <comment>Navigation view item name for DataGrid</comment>
   </data>
@@ -181,7 +181,7 @@
     <value>The StartListening method cannot be called before the InitializeAsync method.</value>
     <comment>Start listening cannot be called before the initialize in location service</comment>
   </data>
-  <data name="Shell_Map.Content" xml:space="preserve">
+  <data name="Shell_Examples_Map.Content" xml:space="preserve">
     <value>Map</value>
     <comment>Navigation view item name for Map</comment>
   </data>

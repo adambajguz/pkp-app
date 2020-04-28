@@ -1,4 +1,4 @@
-﻿namespace TrainsOnline.Desktop.Application.Helpers
+﻿namespace TrainsOnline.Desktop.Common.Extensions
 {
     using System;
     using System.IO;

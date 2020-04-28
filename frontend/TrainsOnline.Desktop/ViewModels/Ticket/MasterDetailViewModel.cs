@@ -5,8 +5,8 @@
     using System.Threading.Tasks;
     using GalaSoft.MvvmLight;
     using Microsoft.Toolkit.Uwp.UI.Controls;
-    using TrainsOnline.Desktop.Application.Models;
     using TrainsOnline.Desktop.Application.Services;
+    using TrainsOnline.Desktop.Domain.Models;
 
     public class MasterDetailViewModel : ViewModelBase
     {

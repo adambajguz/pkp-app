@@ -3,8 +3,8 @@
     using System.Collections.ObjectModel;
     using System.Threading.Tasks;
     using GalaSoft.MvvmLight;
-    using TrainsOnline.Desktop.Application.Models;
     using TrainsOnline.Desktop.Application.Services;
+    using TrainsOnline.Desktop.Domain.Models;
 
     public class DataGridViewModel : ViewModelBase
     {

@@ -5,8 +5,8 @@
     using System.Windows.Input;
     using GalaSoft.MvvmLight;
     using GalaSoft.MvvmLight.Command;
-    using TrainsOnline.Desktop.Application.Models;
     using TrainsOnline.Desktop.Application.Services;
+    using TrainsOnline.Desktop.Domain.Models;
     using WinUI = Microsoft.UI.Xaml.Controls;
 
     public class TreeViewViewModel : ViewModelBase

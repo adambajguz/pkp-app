@@ -1,4 +1,4 @@
-﻿namespace TrainsOnline.Desktop.Application.Models
+﻿namespace TrainsOnline.Desktop.Domain.Models
 {
     using System.Collections.Generic;
 

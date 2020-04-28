@@ -4,9 +4,9 @@
     using System.Net.Http;
     using System.Net.Http.Headers;
     using System.Threading.Tasks;
-
-    using TrainsOnline.Desktop.Application.Helpers;
-    using TrainsOnline.Desktop.Application.Models;
+    using TrainsOnline.Desktop.Common.Extensions;
+    using TrainsOnline.Desktop.Core.Extensions;
+    using TrainsOnline.Desktop.Domain.Models;
 
     public class MicrosoftGraphService
     {
