@@ -2,7 +2,7 @@
 using System.IO;
 using System.Threading.Tasks;
 
-using TrainsOnline.Desktop.Core.Helpers;
+using TrainsOnline.Desktop.Application.Helpers;
 
 using Windows.Storage;
 using Windows.Storage.Streams;
@@ -38,7 +38,7 @@ namespace TrainsOnline.Desktop.Helpers
             StorageFile file = await folder.GetFileAsync($"{name}.json");
             string fileContent = await FileIO.ReadTextAsync(file);
 
-            return await Json.ToObjectAsync<T>(fileContent);
+            return await fileContent.ToObjectAsync<T>();
         }
 
         public static async Task SaveAsync<T>(this ApplicationDataContainer settings, string key, T value)
@@ -54,12 +54,12 @@ namespace TrainsOnline.Desktop.Helpers
         public static async Task<T> ReadAsync<T>(this ApplicationDataContainer settings, string key)
         {
 
-            if (settings.Values.TryGetValue(key, out object obj))
+            if (settings.Values.TryGetValue(key, out object obj) && obj is string str)
             {
-                return await Json.ToObjectAsync<T>((string)obj);
+                return await str.ToObjectAsync<T>();
             }
 
-            return default(T);
+            return default;
         }
 
         public static async Task<StorageFile> SaveFileAsync(this StorageFolder folder, byte[] content, string fileName, CreationCollisionOption options = CreationCollisionOption.ReplaceExisting)

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-using TrainsOnline.Desktop.Core.Helpers;
-using TrainsOnline.Desktop.Core.Models;
-using TrainsOnline.Desktop.Core.Services;
+using TrainsOnline.Desktop.Application.Helpers;
+using TrainsOnline.Desktop.Application.Models;
+using TrainsOnline.Desktop.Application.Services;
 using TrainsOnline.Desktop.Helpers;
 using TrainsOnline.Desktop.ViewModels;
 

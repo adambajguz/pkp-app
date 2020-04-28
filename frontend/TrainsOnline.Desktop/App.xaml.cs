@@ -1,7 +1,7 @@
 ﻿using System;
 
-using TrainsOnline.Desktop.Core.Helpers;
-using TrainsOnline.Desktop.Core.Services;
+using TrainsOnline.Desktop.Application.Helpers;
+using TrainsOnline.Desktop.Application.Services;
 using TrainsOnline.Desktop.Services;
 
 using Windows.ApplicationModel.Activation;
@@ -9,7 +9,7 @@ using Windows.UI.Xaml;
 
 namespace TrainsOnline.Desktop
 {
-    public sealed partial class App : Application
+    public sealed partial class App : Windows.UI.Xaml.Application
     {
         private IdentityService IdentityService => Singleton<IdentityService>.Instance;
 

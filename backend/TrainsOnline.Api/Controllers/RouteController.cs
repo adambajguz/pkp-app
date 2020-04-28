@@ -1,5 +1,6 @@
 ﻿namespace TrainsOnline.Api.Controllers
 {
+    using System;
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Http;
@@ -30,15 +31,15 @@
             return Ok(await Mediator.Send(new CreateRouteCommand(route)));
         }
 
-        [HttpPost("/api/route/get")]
+        [HttpGet("/api/route/get/{id}")]
         [SwaggerOperation(
             Summary = "Get route details",
             Description = "Gets route details")]
         [SwaggerResponse(StatusCodes.Status200OK, null, typeof(GetRouteDetailsResponse))]
         [SwaggerResponse(StatusCodes.Status400BadRequest, null, typeof(ExceptionResponse))]
-        public async Task<IActionResult> GetRouteDetails([FromBody]IdRequest id)
+        public async Task<IActionResult> GetRouteDetails([FromRoute]Guid id)
         {
-            return Ok(await Mediator.Send(new GetRouteDetailsQuery(id)));
+            return Ok(await Mediator.Send(new GetRouteDetailsQuery(new IdRequest(id))));
         }
 
         [Authorize(Roles = Roles.Admin)]
@@ -55,16 +56,16 @@
         }
 
         [Authorize(Roles = Roles.Admin)]
-        [HttpDelete("/api/route/delete")]
+        [HttpDelete("/api/route/delete/{id}")]
         [SwaggerOperation(
             Summary = "Delete route [" + Roles.Admin + "]",
             Description = "Deletes route")]
         [SwaggerResponse(StatusCodes.Status200OK, "Route deleted")]
         [SwaggerResponse(StatusCodes.Status400BadRequest, null, typeof(ExceptionResponse))]
         [SwaggerResponse(StatusCodes.Status401Unauthorized, null, typeof(ExceptionResponse))]
-        public async Task<IActionResult> DeleteRoute([FromBody]IdRequest id)
+        public async Task<IActionResult> DeleteRoute([FromRoute]Guid id)
         {
-            return Ok(await Mediator.Send(new DeleteRouteCommand(id)));
+            return Ok(await Mediator.Send(new DeleteRouteCommand(new IdRequest(id))));
         }
 
         [HttpGet("/api/route/get-all")]

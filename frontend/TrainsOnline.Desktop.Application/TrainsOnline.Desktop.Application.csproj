@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>TrainsOnline.Desktop.Core</RootNamespace>
+    <Platforms>AnyCPU;x64;x86</Platforms>
   </PropertyGroup>
 
    <ItemGroup>
@@ -13,5 +14,10 @@
      <PackageReference Include="Microsoft.Identity.Client" Version="4.4.0" />
      <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
      <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.6.0" />
+   </ItemGroup>
+
+   <ItemGroup>
+     <ProjectReference Include="..\TrainsOnline.Desktop.Common\TrainsOnline.Desktop.Common.csproj" />
+     <ProjectReference Include="..\TrainsOnline.Desktop.Domain\TrainsOnline.Desktop.Domain.csproj" />
    </ItemGroup>
 </Project>

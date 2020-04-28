@@ -6,8 +6,8 @@ using GalaSoft.MvvmLight;
 
 using Microsoft.Toolkit.Uwp.UI.Controls;
 
-using TrainsOnline.Desktop.Core.Models;
-using TrainsOnline.Desktop.Core.Services;
+using TrainsOnline.Desktop.Application.Models;
+using TrainsOnline.Desktop.Application.Services;
 
 namespace TrainsOnline.Desktop.ViewModels
 {

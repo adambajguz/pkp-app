@@ -35,32 +35,32 @@
         }
 
         [Authorize(Roles = Roles.User)]
-        [HttpPost("/api/ticket/get")]
+        [HttpGet("/api/ticket/get/{id}")]
         [SwaggerOperation(
             Summary = "Get ticket details [User]",
             Description = "Gets ticket details")]
         [SwaggerResponse(StatusCodes.Status200OK, null, typeof(GetTicketDetailsResponse))]
         [SwaggerResponse(StatusCodes.Status400BadRequest, null, typeof(ExceptionResponse))]
         [SwaggerResponse(StatusCodes.Status401Unauthorized, null, typeof(ExceptionResponse))]
-        public async Task<IActionResult> GetTicketDetails([FromBody]IdRequest id)
+        public async Task<IActionResult> GetTicketDetails([FromRoute]Guid id)
         {
-            return Ok(await Mediator.Send(new GetTicketDetailsQuery(id)));
+            return Ok(await Mediator.Send(new GetTicketDetailsQuery(new IdRequest(id))));
         }
 
         [Authorize(Roles = Roles.User)]
-        [HttpPost("/api/ticket/get-document")]
+        [HttpGet("/api/ticket/get-document/{id}")]
         [SwaggerOperation(
             Summary = "Get ticket document [User]",
             Description = "Gets ticket document")]
         [SwaggerResponse(StatusCodes.Status200OK, null, typeof(GetTicketDocumentResponse))]
         [SwaggerResponse(StatusCodes.Status400BadRequest, null, typeof(ExceptionResponse))]
         [SwaggerResponse(StatusCodes.Status401Unauthorized, null, typeof(ExceptionResponse))]
-        public async Task<IActionResult> GetTicketDocument([FromBody]IdRequest id)
+        public async Task<IActionResult> GetTicketDocument([FromRoute]Guid id)
         {
-            return Ok(await Mediator.Send(new GetTicketDocumentQuery(id)));
+            return Ok(await Mediator.Send(new GetTicketDocumentQuery(new IdRequest(id))));
         }
 
-        [HttpGet("/api/ticket/validate-document")]
+        [HttpGet("/api/ticket/validate-document")] // ?tid={}&uid={}&rid={}
         [SwaggerOperation(
             Summary = "Validate ticket document",
             Description = "Gets ticket document validation result")]
@@ -85,16 +85,16 @@
         }
 
         [Authorize(Roles = Roles.Admin)]
-        [HttpDelete("/api/ticket/delete")]
+        [HttpDelete("/api/ticket/delete/{id}")]
         [SwaggerOperation(
             Summary = "Delete ticket [" + Roles.Admin + "]",
             Description = "Deletes ticket")]
         [SwaggerResponse(StatusCodes.Status200OK, "Ticket deleted")]
         [SwaggerResponse(StatusCodes.Status400BadRequest, null, typeof(ExceptionResponse))]
         [SwaggerResponse(StatusCodes.Status401Unauthorized, null, typeof(ExceptionResponse))]
-        public async Task<IActionResult> DeleteTicket([FromBody]IdRequest id)
+        public async Task<IActionResult> DeleteTicket([FromRoute]Guid id)
         {
-            return Ok(await Mediator.Send(new DeleteTicketCommand(id)));
+            return Ok(await Mediator.Send(new DeleteTicketCommand(new IdRequest(id))));
         }
 
         [Authorize(Roles = Roles.User)]
@@ -112,15 +112,15 @@
         }
 
         [Authorize(Roles = Roles.User)]
-        [HttpPost("/api/ticket/get-all-user")]
+        [HttpGet("/api/ticket/get-all-user/{id}")]
         [SwaggerOperation(
             Summary = "Get all user tickets [" + Roles.User + "]",
             Description = "Gets a list of all user tickets")]
         [SwaggerResponse(StatusCodes.Status200OK, null, typeof(GetUserTicketsListResponse))]
         [SwaggerResponse(StatusCodes.Status401Unauthorized, null, typeof(ExceptionResponse))]
-        public async Task<IActionResult> GetUserTicketsList([FromBody]IdRequest id)
+        public async Task<IActionResult> GetUserTicketsList([FromRoute]Guid id)
         {
-            return Ok(await Mediator.Send(new GetUserTicketsListQuery(id)));
+            return Ok(await Mediator.Send(new GetUserTicketsListQuery(new IdRequest(id))));
         }
 
         [Authorize(Roles = Roles.Admin)]
