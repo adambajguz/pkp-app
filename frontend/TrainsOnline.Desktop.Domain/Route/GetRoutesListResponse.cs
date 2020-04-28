@@ -15,8 +15,8 @@
 
             //public Guid FromId { get; set; }
             //public Guid ToId { get; set; }
-            public GetStationsListResponse.StationLookupModel From { get; set; }
-            public GetStationsListResponse.StationLookupModel To { get; set; }
+            public StationLookupModel From { get; set; }
+            public StationLookupModel To { get; set; }
 
             public DateTime DepartureTime { get; set; }
             public TimeSpan Duration { get; set; }
