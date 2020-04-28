@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-
-namespace TrainsOnline.Desktop.Core.Models
+﻿namespace TrainsOnline.Desktop.Application.Models
 {
+    using System.Collections.Generic;
+
     // This class contains user members to download user information from Microsoft Graph
     // https://docs.microsoft.com/graph/api/resources/user?view=graph-rest-1.0
     public class User

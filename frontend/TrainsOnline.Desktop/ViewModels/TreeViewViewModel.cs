@@ -5,8 +5,8 @@ using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 
-using TrainsOnline.Desktop.Core.Models;
-using TrainsOnline.Desktop.Core.Services;
+using TrainsOnline.Desktop.Application.Models;
+using TrainsOnline.Desktop.Application.Services;
 
 using WinUI = Microsoft.UI.Xaml.Controls;
 

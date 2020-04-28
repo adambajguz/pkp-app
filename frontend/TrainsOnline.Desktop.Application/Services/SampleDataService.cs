@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-using TrainsOnline.Desktop.Core.Models;
-
-namespace TrainsOnline.Desktop.Core.Services
+﻿namespace TrainsOnline.Desktop.Application.Services
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+
+    using TrainsOnline.Desktop.Application.Models;
+
     // This class holds sample data used by some generated pages to show how they can be used.
     // TODO WTS: Delete this file once your app is using real data.
     public static class SampleDataService

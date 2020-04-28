@@ -1,8 +1,8 @@
-﻿using System;
-using System.IO;
-
-namespace TrainsOnline.Desktop.Core.Helpers
+﻿namespace TrainsOnline.Desktop.Application.Helpers
 {
+    using System;
+    using System.IO;
+
     public static class StreamExtensions
     {
         public static string ToBase64String(this Stream stream)

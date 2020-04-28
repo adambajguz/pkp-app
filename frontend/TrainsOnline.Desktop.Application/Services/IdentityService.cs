@@ -1,13 +1,13 @@
-﻿using System;
-using System.Net.NetworkInformation;
-using System.Threading.Tasks;
-
-using Microsoft.Identity.Client;
-
-using TrainsOnline.Desktop.Core.Helpers;
-
-namespace TrainsOnline.Desktop.Core.Services
+﻿namespace TrainsOnline.Desktop.Application.Services
 {
+    using System;
+    using System.Net.NetworkInformation;
+    using System.Threading.Tasks;
+
+    using Microsoft.Identity.Client;
+
+    using TrainsOnline.Desktop.Application.Helpers;
+
     public class IdentityService
     {
         public event EventHandler LoggedIn;

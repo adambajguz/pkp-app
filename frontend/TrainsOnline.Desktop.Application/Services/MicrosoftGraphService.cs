@@ -1,13 +1,13 @@
-﻿using System;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Threading.Tasks;
-
-using TrainsOnline.Desktop.Core.Helpers;
-using TrainsOnline.Desktop.Core.Models;
-
-namespace TrainsOnline.Desktop.Core.Services
+﻿namespace TrainsOnline.Desktop.Application.Services
 {
+    using System;
+    using System.Net.Http;
+    using System.Net.Http.Headers;
+    using System.Threading.Tasks;
+
+    using TrainsOnline.Desktop.Application.Helpers;
+    using TrainsOnline.Desktop.Application.Models;
+
     public class MicrosoftGraphService
     {
         //// For more information about Get-User Service, refer to the following documentation

@@ -1,9 +1,8 @@
-﻿using System.Threading.Tasks;
-
-using Newtonsoft.Json;
-
-namespace TrainsOnline.Desktop.Core.Helpers
+﻿namespace TrainsOnline.Desktop.Application.Helpers
 {
+    using System.Threading.Tasks;
+    using Newtonsoft.Json;
+
     public static class Json
     {
         public static async Task<T> ToObjectAsync<T>(string value)

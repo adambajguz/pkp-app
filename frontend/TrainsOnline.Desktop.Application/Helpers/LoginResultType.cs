@@ -1,4 +1,4 @@
-﻿namespace TrainsOnline.Desktop.Core.Helpers
+﻿namespace TrainsOnline.Desktop.Application.Helpers
 {
     public enum LoginResultType
     {

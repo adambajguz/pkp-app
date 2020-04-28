@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Concurrent;
-
-namespace TrainsOnline.Desktop.Core.Helpers
+﻿namespace TrainsOnline.Desktop.Application.Helpers
 {
+    using System;
+    using System.Collections.Concurrent;
+
     public static class Singleton<T>
         where T : new()
     {

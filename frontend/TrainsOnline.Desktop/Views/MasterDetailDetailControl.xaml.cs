@@ -1,5 +1,5 @@
 ﻿
-using TrainsOnline.Desktop.Core.Models;
+using TrainsOnline.Desktop.Application.Models;
 
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;

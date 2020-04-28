@@ -5,8 +5,8 @@ using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 
-using TrainsOnline.Desktop.Core.Helpers;
-using TrainsOnline.Desktop.Core.Services;
+using TrainsOnline.Desktop.Application.Helpers;
+using TrainsOnline.Desktop.Application.Services;
 using TrainsOnline.Desktop.Helpers;
 using TrainsOnline.Desktop.Services;
 
