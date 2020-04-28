@@ -1,10 +1,9 @@
-﻿
-using TrainsOnline.Desktop.ViewModels;
-using TrainsOnline.Desktop.ViewModels.Home;
-using Windows.UI.Xaml.Controls;
-
-namespace TrainsOnline.Desktop.Views
+﻿namespace TrainsOnline.Desktop.Views.Home
 {
+    using TrainsOnline.Desktop.ViewModels;
+    using TrainsOnline.Desktop.ViewModels.Home;
+    using Windows.UI.Xaml.Controls;
+
     // TODO WTS: Change the icons and titles for all NavigationViewItems in ShellPage.xaml.
     public sealed partial class ShellPage : Page
     {

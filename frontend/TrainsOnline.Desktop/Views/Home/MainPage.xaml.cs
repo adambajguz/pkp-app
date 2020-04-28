@@ -1,4 +1,4 @@
-﻿namespace TrainsOnline.Desktop.Views
+﻿namespace TrainsOnline.Desktop.Views.Home
 {
     using TrainsOnline.Desktop.ViewModels;
     using TrainsOnline.Desktop.ViewModels.Home;

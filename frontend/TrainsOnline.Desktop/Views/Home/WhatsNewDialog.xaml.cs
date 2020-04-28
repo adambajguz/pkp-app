@@ -1,4 +1,4 @@
-﻿namespace TrainsOnline.Desktop.Views
+﻿namespace TrainsOnline.Desktop.Views.Home
 {
     using Windows.UI.Xaml;
     using Windows.UI.Xaml.Controls;

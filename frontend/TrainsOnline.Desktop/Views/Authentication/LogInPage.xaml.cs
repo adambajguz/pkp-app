@@ -1,4 +1,4 @@
-﻿namespace TrainsOnline.Desktop.Views
+﻿namespace TrainsOnline.Desktop.Views.Authentication
 {
     using TrainsOnline.Desktop.ViewModels;
     using Windows.UI.Xaml.Controls;

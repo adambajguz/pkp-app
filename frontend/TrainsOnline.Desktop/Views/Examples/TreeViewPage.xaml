@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="TrainsOnline.Desktop.Views.TreeViewPage"
+    x:Class="TrainsOnline.Desktop.Views.Examples.TreeViewPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:behaviors="using:TrainsOnline.Desktop.Behaviors"
