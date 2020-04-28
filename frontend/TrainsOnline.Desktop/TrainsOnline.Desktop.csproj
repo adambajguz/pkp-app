@@ -160,51 +160,51 @@
     <Compile Include="Services\UserDataService.cs" />
     <Compile Include="Services\WhatsNewDisplayService.cs" />
     <Compile Include="TemplateSelectors\SampleDataTemplateSelector.cs" />
-    <Compile Include="ViewModels\BlankViewModel.cs" />
-    <Compile Include="ViewModels\DataGridViewModel.cs" />
-    <Compile Include="ViewModels\LogInViewModel.cs" />
-    <Compile Include="ViewModels\MainViewModel.cs" />
-    <Compile Include="ViewModels\MapViewModel.cs" />
-    <Compile Include="ViewModels\MasterDetailViewModel.cs" />
-    <Compile Include="ViewModels\SettingsViewModel.cs" />
-    <Compile Include="ViewModels\ShellViewModel.cs" />
-    <Compile Include="ViewModels\TreeViewViewModel.cs" />
-    <Compile Include="ViewModels\UserViewModel.cs" />
+    <Compile Include="ViewModels\Examples\BlankViewModel.cs" />
+    <Compile Include="ViewModels\Examples\DataGridViewModel.cs" />
+    <Compile Include="ViewModels\Authentication\LogInViewModel.cs" />
+    <Compile Include="ViewModels\Home\MainViewModel.cs" />
+    <Compile Include="ViewModels\Examples\MapViewModel.cs" />
+    <Compile Include="ViewModels\Home\MasterDetailViewModel.cs" />
+    <Compile Include="ViewModels\Home\SettingsViewModel.cs" />
+    <Compile Include="ViewModels\Home\ShellViewModel.cs" />
+    <Compile Include="ViewModels\Examples\TreeViewViewModel.cs" />
+    <Compile Include="ViewModels\Home\UserViewModel.cs" />
     <Compile Include="ViewModels\ViewModelLocator.cs" />
-    <Compile Include="Views\BlankPage.xaml.cs">
+    <Compile Include="Views\Examples\BlankPage.xaml.cs">
       <DependentUpon>BlankPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\DataGridPage.xaml.cs">
+    <Compile Include="Views\Examples\DataGridPage.xaml.cs">
       <DependentUpon>DataGridPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\FirstRunDialog.xaml.cs">
+    <Compile Include="Views\Home\FirstRunDialog.xaml.cs">
       <DependentUpon>FirstRunDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\LogInPage.xaml.cs">
+    <Compile Include="Views\Authentication\LogInPage.xaml.cs">
       <DependentUpon>LogInPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\MainPage.xaml.cs">
+    <Compile Include="Views\Home\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\MapPage.xaml.cs">
+    <Compile Include="Views\Examples\MapPage.xaml.cs">
       <DependentUpon>MapPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\MasterDetailDetailControl.xaml.cs">
+    <Compile Include="Views\Examples\MasterDetailDetailControl.xaml.cs">
       <DependentUpon>MasterDetailDetailControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\MasterDetailPage.xaml.cs">
+    <Compile Include="Views\Examples\MasterDetailPage.xaml.cs">
       <DependentUpon>MasterDetailPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\SettingsPage.xaml.cs">
+    <Compile Include="Views\Home\SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ShellPage.xaml.cs">
+    <Compile Include="Views\Home\ShellPage.xaml.cs">
       <DependentUpon>ShellPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\TreeViewPage.xaml.cs">
+    <Compile Include="Views\Examples\TreeViewPage.xaml.cs">
       <DependentUpon>TreeViewPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\WhatsNewDialog.xaml.cs">
+    <Compile Include="Views\Home\WhatsNewDialog.xaml.cs">
       <DependentUpon>WhatsNewDialog.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -235,51 +235,51 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\BlankPage.xaml">
+    <Page Include="Views\Examples\BlankPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\DataGridPage.xaml">
+    <Page Include="Views\Examples\DataGridPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\FirstRunDialog.xaml">
+    <Page Include="Views\Home\FirstRunDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\LogInPage.xaml">
+    <Page Include="Views\Authentication\LogInPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\MainPage.xaml">
+    <Page Include="Views\Home\MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\MapPage.xaml">
+    <Page Include="Views\Examples\MapPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\MasterDetailDetailControl.xaml">
+    <Page Include="Views\Examples\MasterDetailDetailControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\MasterDetailPage.xaml">
+    <Page Include="Views\Examples\MasterDetailPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\SettingsPage.xaml">
+    <Page Include="Views\Home\SettingsPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\ShellPage.xaml">
+    <Page Include="Views\Home\ShellPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\TreeViewPage.xaml">
+    <Page Include="Views\Examples\TreeViewPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\WhatsNewDialog.xaml">
+    <Page Include="Views\Home\WhatsNewDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
