@@ -46,16 +46,16 @@
         }
 
         [Authorize(Roles = Roles.User)]
-        [HttpPost("/api/user/get")]
+        [HttpGet("/api/user/get/{id}")]
         [SwaggerOperation(
             Summary = "Get user details [" + Roles.User + "]",
             Description = "Gets user details")]
         [SwaggerResponse(StatusCodes.Status200OK, null, typeof(GetUserDetailsResponse))]
         [SwaggerResponse(StatusCodes.Status400BadRequest, null, typeof(ExceptionResponse))]
         [SwaggerResponse(StatusCodes.Status401Unauthorized, null, typeof(ExceptionResponse))]
-        public async Task<IActionResult> GetUserDetails([FromBody]IdRequest id)
+        public async Task<IActionResult> GetUserDetails([FromRoute] Guid id)
         {
-            return Ok(await Mediator.Send(new GetUserDetailsQuery(id)));
+            return Ok(await Mediator.Send(new GetUserDetailsQuery(new IdRequest(id))));
         }
 
         [Authorize(Roles = Roles.User)]
@@ -72,16 +72,16 @@
         }
 
         [Authorize(Roles = Roles.User)]
-        [HttpDelete("/api/user/delete")]
+        [HttpGet("/api/user/delete/{id}")]
         [SwaggerOperation(
             Summary = "Delete user [" + Roles.User + "]",
             Description = "Deletes user")]
         [SwaggerResponse(StatusCodes.Status200OK, "User deleted")]
         [SwaggerResponse(StatusCodes.Status400BadRequest, null, typeof(ExceptionResponse))]
         [SwaggerResponse(StatusCodes.Status401Unauthorized, null, typeof(ExceptionResponse))]
-        public async Task<IActionResult> DeleteUser([FromBody]IdRequest id)
+        public async Task<IActionResult> DeleteUser([FromRoute] Guid id)
         {
-            return Ok(await Mediator.Send(new DeleteUserCommand(id)));
+            return Ok(await Mediator.Send(new DeleteUserCommand(new IdRequest(id))));
         }
 
         [Authorize(Roles = Roles.User)]

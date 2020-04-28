@@ -32,7 +32,7 @@
                 string userData = await httpContent.ReadAsStringAsync();
                 if (!string.IsNullOrEmpty(userData))
                 {
-                    user = await Json.ToObjectAsync<User>(userData);
+                    user = await userData.ToObjectAsync<User>();
                 }
             }
 

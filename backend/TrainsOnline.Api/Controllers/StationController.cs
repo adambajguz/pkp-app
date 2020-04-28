@@ -1,5 +1,6 @@
 ﻿namespace TrainsOnline.Api.Controllers
 {
+    using System;
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Http;
@@ -30,15 +31,15 @@
             return Ok(await Mediator.Send(new CreateStationCommand(station)));
         }
 
-        [HttpPost("/api/station/get")]
+        [HttpGet("/api/station/get/{id}")]
         [SwaggerOperation(
             Summary = "Get station details",
             Description = "Gets station details")]
         [SwaggerResponse(StatusCodes.Status200OK, null, typeof(GetStationDetailsResponse))]
         [SwaggerResponse(StatusCodes.Status400BadRequest, null, typeof(ExceptionResponse))]
-        public async Task<IActionResult> GetStationDetails([FromBody]IdRequest id)
+        public async Task<IActionResult> GetStationDetails([FromRoute]Guid id)
         {
-            return Ok(await Mediator.Send(new GetStationDetailsQuery(id)));
+            return Ok(await Mediator.Send(new GetStationDetailsQuery(new IdRequest(id))));
         }
 
         [Authorize(Roles = Roles.Admin)]
@@ -55,16 +56,16 @@
         }
 
         [Authorize(Roles = Roles.Admin)]
-        [HttpDelete("/api/station/delete")]
+        [HttpDelete("/api/station/delete/{id}")]
         [SwaggerOperation(
             Summary = "Delete station [" + Roles.Admin + "]",
             Description = "Deletes station")]
         [SwaggerResponse(StatusCodes.Status200OK, "Station deleted")]
         [SwaggerResponse(StatusCodes.Status400BadRequest, null, typeof(ExceptionResponse))]
         [SwaggerResponse(StatusCodes.Status401Unauthorized, null, typeof(ExceptionResponse))]
-        public async Task<IActionResult> DeleteStation([FromBody]IdRequest id)
+        public async Task<IActionResult> DeleteStation([FromRoute]Guid id)
         {
-            return Ok(await Mediator.Send(new DeleteStationCommand(id)));
+            return Ok(await Mediator.Send(new DeleteStationCommand(new IdRequest(id))));
         }
 
         [HttpGet("/api/station/get-all")]
