@@ -1,11 +1,13 @@
-﻿namespace TrainsOnline.Desktop.Core.Interfaces
+﻿namespace TrainsOnline.Desktop.Application.Interfaces
 {
+    using System;
     using System.Threading.Tasks;
     using TrainsOnline.Desktop.Domain.Station;
 
-    internal interface IRemoteDataProviderService
+    public interface IRemoteDataProviderService
     {
         bool UseSoapApi { get; set; }
         Task<GetStationsListResponse> GetStations();
+        Task<GetStationDetailsResponse> GetStation(Guid id);
     }
 }

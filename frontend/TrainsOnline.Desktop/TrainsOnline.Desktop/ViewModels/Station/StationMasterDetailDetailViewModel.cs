@@ -1,15 +1,16 @@
 ﻿namespace TrainsOnline.Desktop.ViewModels.Station
 {
     using Caliburn.Micro;
-    using TrainsOnline.Desktop.Domain.Models;
+    using TrainsOnline.Desktop.Domain.Station;
 
     public class StationMasterDetailDetailViewModel : Screen
     {
-        public StationMasterDetailDetailViewModel(SampleOrder item)
+        public StationMasterDetailDetailViewModel(StationLookupModel item)
         {
             Item = item;
         }
 
-        public SampleOrder Item { get; }
+        public StationLookupModel Item { get; }
+        public GetStationDetailsResponse Details { get; set; }
     }
 }

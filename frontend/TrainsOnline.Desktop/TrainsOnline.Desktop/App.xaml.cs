@@ -6,11 +6,6 @@
     using TrainsOnline.Desktop.Core;
     using TrainsOnline.Desktop.Infrastructure;
     using TrainsOnline.Desktop.Services;
-    using TrainsOnline.Desktop.ViewModels;
-    using TrainsOnline.Desktop.ViewModels.Example;
-    using TrainsOnline.Desktop.ViewModels.Route;
-    using TrainsOnline.Desktop.ViewModels.Station;
-    using TrainsOnline.Desktop.ViewModels.Ticket;
     using Windows.ApplicationModel.Activation;
     using Windows.UI.Xaml;
 
@@ -58,8 +53,8 @@
             ViewLocator.ConfigureTypeMappings(config);
             ViewModelLocator.ConfigureTypeMappings(config);
 
-           // ViewLocator.AddNamespaceMapping("TrainsOnline.Desktop.Views.*", "TrainsOnline.Desktop.Views");
-           // ViewModelLocator.AddNamespaceMapping("TrainsOnline.Desktop.ViewModels.*", "TrainsOnline.Desktop.ViewModels");
+            // ViewLocator.AddNamespaceMapping("TrainsOnline.Desktop.Views.*", "TrainsOnline.Desktop.Views");
+            // ViewModelLocator.AddNamespaceMapping("TrainsOnline.Desktop.ViewModels.*", "TrainsOnline.Desktop.ViewModels");
 
             _container = new WinRTContainer();
             _container.AddPresentation();

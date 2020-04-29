@@ -18,13 +18,13 @@
             Grid.Column="0"
             VerticalAlignment="Center"
             FontSize="32"
-            Glyph="{x:Bind ViewModel.Item.Symbol}" />
+            Glyph="&#xE7C0;" />
         <StackPanel
             Grid.Column="1"
             Margin="{StaticResource SmallLeftMargin}"
             VerticalAlignment="Center">
-            <TextBlock Style="{ThemeResource ListTitleStyle}" Text="{x:Bind ViewModel.Item.Company}" />
-            <TextBlock Style="{StaticResource ListSubTitleStyle}" Text="{x:Bind ViewModel.Item.Status}" />
+            <TextBlock Style="{ThemeResource ListTitleStyle}" Text="{x:Bind ViewModel.Item.Name}" />
+            <TextBlock Style="{StaticResource ListSubTitleStyle}" Text="{x:Bind ViewModel.Item.Id}" />
         </StackPanel>
     </Grid>
 </UserControl>

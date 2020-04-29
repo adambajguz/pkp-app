@@ -1,6 +1,5 @@
 ﻿namespace TrainsOnline.Desktop.Views.Ticket
 {
-    using TrainsOnline.Desktop.ViewModels.Example;
     using TrainsOnline.Desktop.ViewModels.Ticket;
     using Windows.UI.Xaml.Controls;
     using Windows.UI.Xaml.Navigation;

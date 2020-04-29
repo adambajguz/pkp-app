@@ -12,5 +12,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TrainsOnline.Desktop.Application\TrainsOnline.Desktop.Application.csproj" />
+    <ProjectReference Include="..\TrainsOnline.Desktop.Common\TrainsOnline.Desktop.Common.csproj" />
   </ItemGroup>
 </Project>

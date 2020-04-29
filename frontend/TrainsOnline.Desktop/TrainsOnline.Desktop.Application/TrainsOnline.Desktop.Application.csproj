@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <RootNamespace>TrainsOnline.Desktop.Core</RootNamespace>
+    <RootNamespace>TrainsOnline.Desktop.Application</RootNamespace>
     <Platforms>AnyCPU;x64;x86</Platforms>
   </PropertyGroup>
 
@@ -13,6 +13,7 @@
    </ItemGroup>
 
    <ItemGroup>
+     <ProjectReference Include="..\TrainsOnline.Desktop.Common\TrainsOnline.Desktop.Common.csproj" />
      <ProjectReference Include="..\TrainsOnline.Desktop.Domain\TrainsOnline.Desktop.Domain.csproj" />
    </ItemGroup>
 </Project>
