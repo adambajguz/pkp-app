@@ -1,3 +1,2 @@
-﻿# Presentation Layer
-
-This layer contains API (controllers .etc)
+# TrainsOnline.Desktop
+Desktop/UWP application for TrainsOnline.Api
