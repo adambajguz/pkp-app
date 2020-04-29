@@ -25,7 +25,7 @@
                         Margin="{StaticResource SmallLeftMargin}"
                         VerticalAlignment="Center"
                         Style="{ThemeResource TitleTextBlockStyle}"
-                        Text="{x:Bind ViewModel.Item.Id, Mode=OneWay}" />
+                        Text="{x:Bind ViewModel.Details.Name, Mode=OneWay}" />
                 </StackPanel>
                 <StackPanel Name="block" Padding="0,15,0,0">
                     <TextBlock Style="{StaticResource DetailSubTitleStyle}" Text="Status" />
@@ -39,12 +39,12 @@
                         Margin="{StaticResource SmallTopMargin}"
                         Style="{StaticResource DetailSubTitleStyle}"
                         Text="Company" />
-                    <TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}" Text="{x:Bind ViewModel.Item.Id, Mode=OneWay}" />
+                    <TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}" Text="{x:Bind ViewModel.Details.Id, Mode=OneWay}" />
                     <TextBlock
                         Margin="{StaticResource SmallTopMargin}"
                         Style="{StaticResource DetailSubTitleStyle}"
                         Text="Ship to" />
-                    <TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}" Text="{x:Bind ViewModel.Item.Name, Mode=OneWay}" />
+                    <TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}" Text="{x:Bind ViewModel.Details.Name, Mode=OneWay}" />
                     <TextBlock
                         Margin="{StaticResource SmallTopMargin}"
                         Style="{StaticResource DetailSubTitleStyle}"

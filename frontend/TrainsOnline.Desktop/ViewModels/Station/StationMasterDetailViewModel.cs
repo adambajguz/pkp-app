@@ -41,6 +41,7 @@
 
             GetStationDetailsResponse data = await RemoteDataProvider.GetStation(item.Item.Id);
             item.Details = data;
+            item.Refresh();
         }
     }
 }
