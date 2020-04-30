@@ -1,42 +1,40 @@
-﻿using System;
-using System.Threading.Tasks;
-
-using TrainsOnline.Desktop.Services;
-using TrainsOnline.Desktop.ViewModels;
-
-using Windows.ApplicationModel.Activation;
-
-namespace TrainsOnline.Desktop.Activation
+﻿namespace TrainsOnline.Desktop.Activation
 {
+    using System;
+    using System.Threading.Tasks;
+    using Caliburn.Micro;
+    using Windows.ApplicationModel.Activation;
+
     internal class DefaultActivationHandler : ActivationHandler<IActivatedEventArgs>
     {
-        private readonly string _navElement;
+        private readonly Type _navElement;
+        private readonly INavigationService _navigationService;
 
-        public NavigationServiceEx NavigationService => ViewModelLocator.Current.NavigationService;
-
-        public DefaultActivationHandler(Type navElement)
+        public DefaultActivationHandler(Type navElement, INavigationService navigationService)
         {
-            _navElement = navElement.FullName;
+            _navElement = navElement;
+            _navigationService = navigationService;
         }
 
         protected override async Task HandleInternalAsync(IActivatedEventArgs args)
         {
-            // When the navigation stack isn't restored, navigate to the first page and configure
-            // the new page by passing required information in the navigation parameter
+            // When the navigation stack isn't restored navigate to the first page,
+            // configuring the new page by passing required information as a navigation
+            // parameter
             object arguments = null;
             if (args is LaunchActivatedEventArgs launchArgs)
             {
                 arguments = launchArgs.Arguments;
             }
 
-            NavigationService.Navigate(_navElement, arguments);
+            _navigationService.NavigateToViewModel(_navElement, arguments);
             await Task.CompletedTask;
         }
 
         protected override bool CanHandleInternal(IActivatedEventArgs args)
         {
             // None of the ActivationHandlers has handled the app activation
-            return NavigationService.Frame.Content == null && _navElement != null;
+            return _navigationService.SourcePageType == null && _navElement != null;
         }
     }
 }

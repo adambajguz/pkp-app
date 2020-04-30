@@ -4,13 +4,14 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-
-    using TrainsOnline.Desktop.Application.Models;
+    using TrainsOnline.Desktop.Domain.Models;
 
     // This class holds sample data used by some generated pages to show how they can be used.
     // TODO WTS: Delete this file once your app is using real data.
     public static class SampleDataService
     {
+        private static IEnumerable<SampleOrder> _allOrders;
+
         private static IEnumerable<SampleOrder> AllOrders()
         {
             // The following is order summary data
@@ -481,6 +482,18 @@
             };
         }
 
+        // TODO WTS: Remove this once your ContentGrid page is displaying real data.
+        public static async Task<IEnumerable<SampleOrder>> GetContentGridDataAsync()
+        {
+            if (_allOrders == null)
+            {
+                _allOrders = AllOrders();
+            }
+
+            await Task.CompletedTask;
+            return _allOrders;
+        }
+
         // TODO WTS: Remove this once your grid page is displaying real data.
         public static async Task<IEnumerable<SampleOrder>> GetGridDataAsync()
         {
@@ -493,13 +506,6 @@
         {
             await Task.CompletedTask;
             return AllOrders();
-        }
-
-        // TODO WTS: Remove this once your TreeView page is displaying real data.
-        public static async Task<IEnumerable<SampleCompany>> GetTreeViewDataAsync()
-        {
-            await Task.CompletedTask;
-            return AllCompanies();
         }
     }
 }

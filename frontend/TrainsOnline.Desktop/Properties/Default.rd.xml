@@ -33,12 +33,5 @@
       <Event Name="ItemInvoked" Dynamic="Required"/>
     </Type>
 
-    <Type Name="Windows.Foundation.TypedEventHandler{Microsoft.UI.Xaml.Controls.TreeView,Microsoft.UI.Xaml.Controls.TreeViewItemInvokedEventArgs}" MarshalObject="Public" />
-
-    <Type Name="Microsoft.UI.Xaml.Controls.TreeView">
-      <Event Name="ItemInvoked" Dynamic="Required"/>
-    </Type>
-
-    <Namespace Name="System.Configuration" Serialize="Required PublicAndInternal" />
   </Application>
 </Directives>

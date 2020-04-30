@@ -1,14 +1,12 @@
-﻿using System;
-using System.IO;
-using System.Threading.Tasks;
-
-using TrainsOnline.Desktop.Application.Helpers;
-
-using Windows.Storage;
-using Windows.Storage.Streams;
-
-namespace TrainsOnline.Desktop.Helpers
+﻿namespace TrainsOnline.Desktop.Helpers
 {
+    using System;
+    using System.IO;
+    using System.Threading.Tasks;
+    using TrainsOnline.Desktop.Application.Extensions;
+    using Windows.Storage;
+    using Windows.Storage.Streams;
+
     // Use these extension methods to store and retrieve local and roaming app data
     // More details regarding storing and retrieving app data at https://docs.microsoft.com/windows/uwp/app-settings/store-and-retrieve-app-data
     public static class SettingsStorageExtensions
@@ -32,7 +30,7 @@ namespace TrainsOnline.Desktop.Helpers
         {
             if (!File.Exists(Path.Combine(folder.Path, GetFileName(name))))
             {
-                return default(T);
+                return default;
             }
 
             StorageFile file = await folder.GetFileAsync($"{name}.json");
@@ -54,9 +52,9 @@ namespace TrainsOnline.Desktop.Helpers
         public static async Task<T> ReadAsync<T>(this ApplicationDataContainer settings, string key)
         {
 
-            if (settings.Values.TryGetValue(key, out object obj) && obj is string str)
+            if (settings.Values.TryGetValue(key, out object obj))
             {
-                return await str.ToObjectAsync<T>();
+                return await Json.ToObjectAsync<T>((string)obj);
             }
 
             return default;

@@ -1,14 +1,12 @@
-﻿using System;
-using System.Threading.Tasks;
-
-using TrainsOnline.Desktop.Helpers;
-
-using Windows.ApplicationModel.Core;
-using Windows.Devices.Geolocation;
-using Windows.UI.Core;
-
-namespace TrainsOnline.Desktop.Services
+﻿namespace TrainsOnline.Desktop.Services
 {
+    using System;
+    using System.Threading.Tasks;
+    using TrainsOnline.Desktop.Helpers;
+    using Windows.ApplicationModel.Core;
+    using Windows.Devices.Geolocation;
+    using Windows.UI.Core;
+
     public class LocationService
     {
         private Geolocator _geolocator;
@@ -32,7 +30,7 @@ namespace TrainsOnline.Desktop.Services
             // More about getting location at https://docs.microsoft.com/windows/uwp/maps-and-location/get-location
             if (_geolocator != null)
             {
-                _geolocator.PositionChanged -= Geolocator_PositionChanged;
+                _geolocator.PositionChanged -= GeolocatorOnPositionChanged;
                 _geolocator = null;
             }
 
@@ -67,7 +65,7 @@ namespace TrainsOnline.Desktop.Services
                 throw new InvalidOperationException("ExceptionLocationServiceStartListeningCanNotBeCalled".GetLocalized());
             }
 
-            _geolocator.PositionChanged += Geolocator_PositionChanged;
+            _geolocator.PositionChanged += GeolocatorOnPositionChanged;
 
             CurrentPosition = await _geolocator.GetGeopositionAsync();
         }
@@ -79,10 +77,10 @@ namespace TrainsOnline.Desktop.Services
                 return;
             }
 
-            _geolocator.PositionChanged -= Geolocator_PositionChanged;
+            _geolocator.PositionChanged -= GeolocatorOnPositionChanged;
         }
 
-        private async void Geolocator_PositionChanged(Geolocator sender, PositionChangedEventArgs args)
+        private async void GeolocatorOnPositionChanged(Geolocator sender, PositionChangedEventArgs args)
         {
             if (args == null)
             {

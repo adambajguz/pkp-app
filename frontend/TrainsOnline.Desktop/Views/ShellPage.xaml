@@ -2,27 +2,27 @@
     x:Class="TrainsOnline.Desktop.Views.ShellPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:behaviors="using:TrainsOnline.Desktop.Behaviors"
+    xmlns:cm="using:Caliburn.Micro"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:helpers="using:TrainsOnline.Desktop.Helpers"
     xmlns:i="using:Microsoft.Xaml.Interactivity"
-    xmlns:ic="using:Microsoft.Xaml.Interactions.Core"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:views="using:TrainsOnline.Desktop.Views"
+    xmlns:viewsexample="using:TrainsOnline.Desktop.Views.Example"
+    xmlns:viewsroute="using:TrainsOnline.Desktop.Views.Route"
+    xmlns:viewsstation="using:TrainsOnline.Desktop.Views.Station"
+    xmlns:viewsticket="using:TrainsOnline.Desktop.Views.Ticket"
     xmlns:winui="using:Microsoft.UI.Xaml.Controls"
     mc:Ignorable="d">
 
-    <i:Interaction.Behaviors>
-        <ic:EventTriggerBehavior EventName="Loaded">
-            <ic:InvokeCommandAction Command="{x:Bind ViewModel.LoadedCommand}" />
-        </ic:EventTriggerBehavior>
-    </i:Interaction.Behaviors>
-
     <winui:NavigationView
         x:Name="navigationView"
+        cm:Message.Attach="[Event ItemInvoked] = [Action OnItemInvoked($eventArgs)]"
         Background="{ThemeResource SystemControlBackgroundAltHighBrush}"
         IsBackButtonVisible="Visible"
         IsBackEnabled="{x:Bind ViewModel.IsBackEnabled, Mode=OneWay}"
         IsSettingsVisible="True"
-        PaneDisplayMode="Top"
         SelectedItem="{x:Bind ViewModel.Selected, Mode=OneWay}">
         <winui:NavigationView.MenuItems>
             <!--
@@ -31,37 +31,63 @@
                 Or to use an IconElement instead of a Symbol see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/projectTypes/navigationpane.md
                 Edit String/en-US/Resources.resw: Add a menu item title for each page
             -->
-            <winui:NavigationViewItem x:Uid="Shell_Main" helpers:NavHelper.NavigateTo="TrainsOnline.Desktop.ViewModels.MainViewModel" />
-            <winui:NavigationViewItem x:Uid="Shell_Blank" helpers:NavHelper.NavigateTo="TrainsOnline.Desktop.ViewModels.BlankViewModel" />
-            <winui:NavigationViewItem x:Uid="Shell_MasterDetail" helpers:NavHelper.NavigateTo="TrainsOnline.Desktop.ViewModels.MasterDetailViewModel" />
-            <winui:NavigationViewItem x:Uid="Shell_TreeView" helpers:NavHelper.NavigateTo="TrainsOnline.Desktop.ViewModels.TreeViewViewModel" />
-            <winui:NavigationViewItem x:Uid="Shell_DataGrid" helpers:NavHelper.NavigateTo="TrainsOnline.Desktop.ViewModels.DataGridViewModel" />
-            <winui:NavigationViewItem x:Uid="Shell_Map" helpers:NavHelper.NavigateTo="TrainsOnline.Desktop.ViewModels.MapViewModel" />
+            <winui:NavigationViewItem
+                x:Uid="Shell_Home"
+                helpers:NavHelper.NavigateTo="views:HomePage"
+                Icon="Document" />
+
+            <winui:NavigationViewItem
+                x:Uid="Shell_ExampleBlank"
+                helpers:NavHelper.NavigateTo="viewsexample:ExampleBlankPage"
+                Icon="Document" />
+            <winui:NavigationViewItem
+                x:Uid="Shell_ExampleMasterDetail"
+                helpers:NavHelper.NavigateTo="viewsexample:ExampleMasterDetailPage"
+                Icon="Document" />
+            <winui:NavigationViewItem
+                x:Uid="Shell_ExampleContentGrid"
+                helpers:NavHelper.NavigateTo="viewsexample:ExampleContentGridPage"
+                Icon="Document" />
+            <winui:NavigationViewItem
+                x:Uid="Shell_ExampleDataGrid"
+                helpers:NavHelper.NavigateTo="viewsexample:ExampleDataGridPage"
+                Icon="Document" />
+            <winui:NavigationViewItem
+                x:Uid="Shell_ExampleMap"
+                helpers:NavHelper.NavigateTo="viewsexample:ExampleMapPage"
+                Icon="Document" />
+
+            <winui:NavigationViewItem
+                x:Uid="Shell_StationMasterDetail"
+                helpers:NavHelper.NavigateTo="viewsstation:StationMasterDetailPage"
+                Icon="Document" />
+
+            <winui:NavigationViewItem
+                x:Uid="Shell_RouteDataGrid"
+                helpers:NavHelper.NavigateTo="viewsroute:RouteDataGridPage"
+                Icon="Document" />
+
+            <winui:NavigationViewItem
+                x:Uid="Shell_TicketContentGrid"
+                helpers:NavHelper.NavigateTo="viewsticket:TicketContentGridPage"
+                Icon="Document" />
         </winui:NavigationView.MenuItems>
         <i:Interaction.Behaviors>
-            <ic:EventTriggerBehavior EventName="ItemInvoked">
-                <ic:InvokeCommandAction Command="{x:Bind ViewModel.ItemInvokedCommand}" />
-            </ic:EventTriggerBehavior>
+            <behaviors:NavigationViewHeaderBehavior x:Name="navigationViewHeaderBehavior" DefaultHeader="{x:Bind ViewModel.Selected.Content, Mode=OneWay}">
+                <behaviors:NavigationViewHeaderBehavior.DefaultHeaderTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <TextBlock
+                                Margin="{StaticResource SmallLeftRightMargin}"
+                                Style="{ThemeResource TitleTextBlockStyle}"
+                                Text="{Binding}" />
+                        </Grid>
+                    </DataTemplate>
+                </behaviors:NavigationViewHeaderBehavior.DefaultHeaderTemplate>
+            </behaviors:NavigationViewHeaderBehavior>
         </i:Interaction.Behaviors>
-        <winui:NavigationView.PaneFooter>
-            <Button
-                x:Uid="Shell_UserInfoButton"
-                Width="48"
-                Height="40"
-                Margin="0"
-                HorizontalAlignment="Stretch"
-                HorizontalContentAlignment="Left"
-                Background="Transparent"
-                Command="{x:Bind ViewModel.UserProfileCommand}">
-                <Ellipse Width="24" Height="24">
-                    <Ellipse.Fill>
-                        <ImageBrush ImageSource="{x:Bind ViewModel.User.Photo, Mode=OneWay}" Stretch="UniformToFill" />
-                    </Ellipse.Fill>
-                </Ellipse>
-            </Button>
-        </winui:NavigationView.PaneFooter>
         <Grid>
-            <Frame x:Name="shellFrame" />
+            <Frame x:Name="ShellFrame" DataContext="{x:Null}" />
         </Grid>
     </winui:NavigationView>
 </Page>

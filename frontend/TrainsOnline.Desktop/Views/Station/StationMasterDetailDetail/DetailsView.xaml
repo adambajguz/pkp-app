@@ -1,0 +1,96 @@
+﻿<UserControl
+    x:Class="TrainsOnline.Desktop.Views.Station.StationMasterDetailDetail.DetailsView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="300"
+    d:DesignWidth="400"
+    mc:Ignorable="d">
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <ScrollViewer
+            Name="ForegroundElement"
+            Padding="{StaticResource DetailPageMargin}"
+            HorizontalAlignment="Stretch"
+            Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+            VerticalScrollMode="Enabled">
+            <StackPanel HorizontalAlignment="Left">
+                <StackPanel HorizontalAlignment="Stretch" Orientation="Horizontal">
+                    <FontIcon
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        FontSize="48"
+                        Glyph="&#xE7C0;" />
+                    <TextBlock
+                        Margin="{StaticResource SmallLeftMargin}"
+                        VerticalAlignment="Center"
+                        Style="{ThemeResource TitleTextBlockStyle}"
+                        Text="{x:Bind ViewModel.Details.Name, Mode=OneWay}" />
+                </StackPanel>
+                <StackPanel Name="block" Padding="0,15,0,0">
+                    <TextBlock Style="{StaticResource DetailSubTitleStyle}" Text="SUI" />
+                    <TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}" Text="{x:Bind ViewModel.Item.Id, Mode=OneWay}" />
+                    <TextBlock
+                        Margin="{StaticResource SmallTopMargin}"
+                        Style="{StaticResource DetailSubTitleStyle}"
+                        Text="Order date" />
+                    <TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}" Text="{x:Bind ViewModel.Details.Latitude, Mode=OneWay}" />
+                    <TextBlock
+                        Margin="{StaticResource SmallTopMargin}"
+                        Style="{StaticResource DetailSubTitleStyle}"
+                        Text="Company" />
+                    <TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}" Text="{x:Bind ViewModel.Details.Longitude, Mode=OneWay}" />
+                    <TextBlock
+                        Margin="{StaticResource SmallTopMargin}"
+                        Style="{StaticResource DetailSubTitleStyle}"
+                        Text="Ship to" />
+                    <TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}" Text="{x:Bind ViewModel.Details.Name, Mode=OneWay}" />
+                    <TextBlock
+                        Margin="{StaticResource SmallTopMargin}"
+                        Style="{StaticResource DetailSubTitleStyle}"
+                        Text="Order total" />
+                    <TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}" Text="{x:Bind ViewModel.Details.Departures.Count, Mode=OneWay}" />
+
+                    <TextBlock
+                        Margin="{StaticResource MediumTopMargin}"
+                        Style="{StaticResource DetailSubTitleStyle}"
+                        Text="Note 1" />
+                    <TextBlock Style="{StaticResource DetailBodyStyle}" Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis quis hendrerit nulla, vel molestie libero. In nec ultricies magna, ultricies molestie ipsum. Mauris non dignissim velit. Etiam malesuada blandit mauris eu maximus. Quisque ornare, felis nec scelerisque mollis, risus dolor posuere magna, in gravida quam mi id nisi. Nullam mattis consequat ex. Cras nulla neque, dictum ac urna et, vestibulum feugiat ex. Pellentesque malesuada accumsan ligula, vel fringilla lacus facilisis sit amet. Proin convallis tempor arcu, ac placerat libero pretium ut. Praesent hendrerit nisl at lobortis viverra. Fusce vitae velit odio. Nam ut tortor sed purus finibus sollicitudin quis at ante. Ut sodales dolor vel eros mollis suscipit. Donec eu nulla id urna ultricies consequat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;" />
+
+
+
+                    <controls:DataGrid
+                        AutoGenerateColumns="False"
+                        GridLinesVisibility="Horizontal"
+                        ItemsSource="{x:Bind ViewModel.Details.Departures, Mode=OneWay}">
+                        <controls:DataGrid.Columns>
+                            <!--
+                                TODO WTS:
+                                Remove this column definitions and define columns for your data.
+                                Consider adding header properties to Resources.resw
+                            -->
+                            <controls:DataGridTextColumn Binding="{Binding To.Id}" Header="Id" />
+                            <controls:DataGridTextColumn Binding="{Binding To.Name}" Header="Name" />
+                            <controls:DataGridTextColumn Binding="{Binding To.Latitude}" Header="Latitude" />
+                            <controls:DataGridTextColumn Binding="{Binding To.Longitude}" Header="Longitude" />
+                            <controls:DataGridTextColumn Binding="{Binding DepartureTime}" Header="DepartureTime" />
+                            <controls:DataGridTextColumn Binding="{Binding Duration}" Header="Duration" />
+                            <controls:DataGridTextColumn Binding="{Binding Distance}" Header="Distance" />
+                            <controls:DataGridTextColumn Binding="{Binding TicketPrice}" Header="TicketPrice" />
+                        </controls:DataGrid.Columns>
+                    </controls:DataGrid>
+
+                    <TextBlock
+                        Margin="{StaticResource SmallTopMargin}"
+                        Style="{StaticResource DetailSubTitleStyle}"
+                        Text="Note 2" />
+                    <TextBlock
+                        Margin="{StaticResource MediumBottomMargin}"
+                        Style="{StaticResource DetailBodyStyle}"
+                        Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis quis hendrerit nulla, vel molestie libero. In nec ultricies magna, ultricies molestie ipsum. Mauris non dignissim velit. Etiam malesuada blandit mauris eu maximus. Quisque ornare, felis nec scelerisque mollis, risus dolor posuere magna, in gravida quam mi id nisi. Nullam mattis consequat ex. Cras nulla neque, dictum ac urna et, vestibulum feugiat ex. Pellentesque malesuada accumsan ligula, vel fringilla lacus facilisis sit amet. Proin convallis tempor arcu, ac placerat libero pretium ut. Praesent hendrerit nisl at lobortis viverra. Fusce vitae velit odio. Nam ut tortor sed purus finibus sollicitudin quis at ante. Ut sodales dolor vel eros mollis suscipit. Donec eu nulla id urna ultricies consequat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;" />
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

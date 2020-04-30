@@ -1,39 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-using TrainsOnline.Desktop.Activation;
-using TrainsOnline.Desktop.Application.Helpers;
-using TrainsOnline.Desktop.Application.Services;
-using TrainsOnline.Desktop.ViewModels;
-
-using Windows.ApplicationModel.Activation;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-
-namespace TrainsOnline.Desktop.Services
+﻿namespace TrainsOnline.Desktop.Services
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using Caliburn.Micro;
+    using TrainsOnline.Desktop.Activation;
+    using Windows.ApplicationModel.Activation;
+    using Windows.UI.Xaml;
+    using Windows.UI.Xaml.Controls;
+
     // For more information on understanding and extending activation flow see
     // https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/activation.md
     internal class ActivationService
     {
-        private readonly App _app;
+        private readonly WinRTContainer _container;
         private readonly Type _defaultNavItem;
-        private Lazy<UIElement> _shell;
+        private readonly Lazy<UIElement> _shell;
 
-        private object _lastActivationArgs;
-
-        private IdentityService IdentityService => Singleton<IdentityService>.Instance;
-
-        private UserDataService UserDataService => Singleton<UserDataService>.Instance;
-
-        public ActivationService(App app, Type defaultNavItem, Lazy<UIElement> shell = null)
+        public ActivationService(WinRTContainer container, Type defaultNavItem, Lazy<UIElement> shell = null)
         {
-            _app = app;
+            _container = container;
             _shell = shell;
             _defaultNavItem = defaultNavItem;
-            IdentityService.LoggedIn += OnLoggedIn;
         }
 
         public async Task ActivateAsync(object activationArgs)
@@ -43,67 +32,32 @@ namespace TrainsOnline.Desktop.Services
                 // Initialize services that you need before app activation
                 // take into account that the splash screen is shown while this code runs.
                 await InitializeAsync();
-                UserDataService.Initialize();
-                IdentityService.InitializeWithAadAndPersonalMsAccounts();
-#warning test
-                bool silentLoginSuccess = true;//await IdentityService.AcquireTokenSilentAsync();
-                if (!silentLoginSuccess || !IdentityService.IsAuthorized())
-                {
-                    await RedirectLoginPageAsync();
-                }
 
                 // Do not repeat app initialization when the Window already has content,
                 // just ensure that the window is active
                 if (Window.Current.Content == null)
                 {
                     // Create a Shell or Frame to act as the navigation context
-                    Window.Current.Content = _shell?.Value ?? new Frame();
+                    if (_shell?.Value == null)
+                    {
+                        Frame frame = new Frame();
+                        NavigationService = _container.RegisterNavigationService(frame);
+                        Window.Current.Content = frame;
+                    }
+                    else
+                    {
+                        object viewModel = ViewModelLocator.LocateForView(_shell.Value);
+
+                        ViewModelBinder.Bind(viewModel, _shell.Value, null);
+
+                        ScreenExtensions.TryActivate(viewModel);
+
+                        NavigationService = _container.GetInstance<INavigationService>();
+                        Window.Current.Content = _shell?.Value;
+                    }
                 }
             }
 
-            // Depending on activationArgs one of ActivationHandlers or DefaultActivationHandler
-            // will navigate to the first page
-            if (IdentityService.IsLoggedIn())
-            {
-                await HandleActivationAsync(activationArgs);
-            }
-
-            _lastActivationArgs = activationArgs;
-
-            if (IsInteractive(activationArgs))
-            {
-                // Ensure the current window is active
-                Window.Current.Activate();
-
-                // Tasks after activation
-                await StartupAsync();
-            }
-        }
-
-        private async void OnLoggedIn(object sender, EventArgs e)
-        {
-            if (_shell?.Value != null)
-            {
-                Window.Current.Content = _shell.Value;
-            }
-            else
-            {
-                Frame frame = new Frame();
-                Window.Current.Content = frame;
-                NavigationService.Frame = frame;
-            }
-
-            await ThemeSelectorService.SetRequestedThemeAsync();
-            await HandleActivationAsync(_lastActivationArgs);
-        }
-
-        private async Task InitializeAsync()
-        {
-            await ThemeSelectorService.InitializeAsync().ConfigureAwait(false);
-        }
-
-        private async Task HandleActivationAsync(object activationArgs)
-        {
             ActivationHandler activationHandler = GetActivationHandlers()
                                                 .FirstOrDefault(h => h.CanHandle(activationArgs));
 
@@ -114,19 +68,31 @@ namespace TrainsOnline.Desktop.Services
 
             if (IsInteractive(activationArgs))
             {
-                DefaultActivationHandler defaultHandler = new DefaultActivationHandler(_defaultNavItem);
+                DefaultActivationHandler defaultHandler = new DefaultActivationHandler(_defaultNavItem, NavigationService);
                 if (defaultHandler.CanHandle(activationArgs))
                 {
                     await defaultHandler.HandleAsync(activationArgs);
                 }
+
+                // Ensure the current window is active
+                Window.Current.Activate();
+
+                // Tasks after activation
+                await StartupAsync();
             }
+        }
+
+        private INavigationService NavigationService { get; set; }
+
+        private async Task InitializeAsync()
+        {
+            await ThemeSelectorService.InitializeAsync().ConfigureAwait(false);
         }
 
         private async Task StartupAsync()
         {
             await ThemeSelectorService.SetRequestedThemeAsync();
             await FirstRunDisplayService.ShowIfAppropriateAsync();
-            await WhatsNewDisplayService.ShowIfAppropriateAsync();
         }
 
         private IEnumerable<ActivationHandler> GetActivationHandlers()
@@ -137,22 +103,6 @@ namespace TrainsOnline.Desktop.Services
         private bool IsInteractive(object args)
         {
             return args is IActivatedEventArgs;
-        }
-
-        public async Task RedirectLoginPageAsync()
-        {
-            Frame frame = new Frame();
-            NavigationService.Frame = frame;
-            Window.Current.Content = frame;
-            await ThemeSelectorService.SetRequestedThemeAsync();
-            NavigationService.Navigate(typeof(LogInViewModel).FullName);
-        }
-
-        public static NavigationServiceEx NavigationService => ViewModelLocator.Current.NavigationService;
-
-        public void SetShell(Lazy<UIElement> shell)
-        {
-            _shell = shell;
         }
     }
 }

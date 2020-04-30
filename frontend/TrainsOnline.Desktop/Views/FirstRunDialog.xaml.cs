@@ -1,9 +1,9 @@
-﻿
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-
-namespace TrainsOnline.Desktop.Views
+﻿namespace TrainsOnline.Desktop.Views
 {
+
+    using Windows.UI.Xaml;
+    using Windows.UI.Xaml.Controls;
+
     public sealed partial class FirstRunDialog : ContentDialog
     {
         public FirstRunDialog()

@@ -125,65 +125,44 @@
     <value>TrainsOnline</value>
     <comment>Application description</comment>
   </data>
-  <data name="ExceptionNavigationServiceExPageNotFound" xml:space="preserve">
-    <value>Page not found: {0}. Did you forget to call NavigationService.Configure?</value>
-    <comment>Page to navigate not found in navigation service</comment>
+  <data name="Shell_Home.Content" xml:space="preserve">
+    <value>Home</value>
+    <comment>Navigation view item name for Home</comment>
   </data>
-  <data name="ExceptionNavigationServiceExKeyIsInNavigationService" xml:space="preserve">
-    <value>The key {0} is already configured in NavigationService</value>
-    <comment>The page is already configured in navigation service</comment>
+  <data name="Shell_ExampleBlank.Content" xml:space="preserve">
+    <value>ExampleBlank</value>
+    <comment>Navigation view item name for ExampleBlank</comment>
   </data>
-  <data name="ExceptionNavigationServiceExTypeAlreadyConfigured" xml:space="preserve">
-    <value>This type is already configured with key {0}</value>
-    <comment>The page type is already configured with page key in navigation service</comment>
-  </data>
-  <data name="ExceptionNavigationServiceExPageUnknown" xml:space="preserve">
-    <value>The page '{0}' is unknown by the NavigationService</value>
-    <comment>The page is unknown or not registered in navigation service</comment>
-  </data>
-  <data name="Shell_Main.Content" xml:space="preserve">
-    <value>Main</value>
-    <comment>Navigation view item name for Main</comment>
-  </data>
-  <data name="Shell_Blank.Content" xml:space="preserve">
-    <value>Blank</value>
-    <comment>Navigation view item name for Blank</comment>
-  </data>
-  <data name="MasterDetail_NoSelection.Text" xml:space="preserve">
+  <data name="ExampleMasterDetail_NoSelection.Text" xml:space="preserve">
     <value>Select an item from the list.</value>
-    <comment>No selection text for MasterDetail</comment>
+    <comment>No selection text for ExampleMasterDetail</comment>
   </data>
-  <data name="MasterDetail.MasterHeader" xml:space="preserve">
-    <value>MasterDetail</value>
-    <comment>Title for MasterDetailPage</comment>
+  <data name="ExampleMasterDetail.MasterHeader" xml:space="preserve">
+    <value>ExampleMasterDetail</value>
+    <comment>Title for ExampleMasterDetailPage</comment>
   </data>
-  <data name="Shell_MasterDetail.Content" xml:space="preserve">
-    <value>MasterDetail</value>
-    <comment>Navigation view item name for MasterDetail</comment>
+  <data name="Shell_ExampleMasterDetail.Content" xml:space="preserve">
+    <value>ExampleMasterDetail</value>
+    <comment>Navigation view item name for ExampleMasterDetail</comment>
   </data>
-  <data name="TreeViewTitle.Text" xml:space="preserve">
-    <value>TreeView</value>
-    <comment>Title for TreeViewPage</comment>
+  <data name="Shell_ExampleContentGrid.Content" xml:space="preserve">
+    <value>ExampleContentGrid</value>
+    <comment>Navigation view item name for ExampleContentGrid</comment>
   </data>
-  <data name="Shell_TreeView.Content" xml:space="preserve">
-    <value>TreeView</value>
-    <comment>Navigation view item name for TreeView</comment>
-  </data>
-  <data name="Shell_DataGrid.Content" xml:space="preserve">
-    <value>DataGrid</value>
-    <comment>Navigation view item name for DataGrid</comment>
+  <data name="Shell_ExampleDataGrid.Content" xml:space="preserve">
+    <value>ExampleDataGrid</value>
+    <comment>Navigation view item name for ExampleDataGrid</comment>
   </data>
   <data name="Map_YourLocation" xml:space="preserve">
     <value>Your location</value>
-    <comment>Your location text on map page</comment>
   </data>
   <data name="ExceptionLocationServiceStartListeningCanNotBeCalled" xml:space="preserve">
     <value>The StartListening method cannot be called before the InitializeAsync method.</value>
     <comment>Start listening cannot be called before the initialize in location service</comment>
   </data>
-  <data name="Shell_Map.Content" xml:space="preserve">
-    <value>Map</value>
-    <comment>Navigation view item name for Map</comment>
+  <data name="Shell_ExampleMap.Content" xml:space="preserve">
+    <value>ExampleMap</value>
+    <comment>Navigation view item name for ExampleMap</comment>
   </data>
   <data name="ExceptionSettingsStorageExtensionsFileNameIsNullOrEmpty" xml:space="preserve">
     <value>File name is null or empty. Specify a valid file name</value>
@@ -191,45 +170,36 @@
   </data>
   <data name="Settings_Theme.Text" xml:space="preserve">
     <value>Choose Theme</value>
-    <comment>Choose theme text for Settings</comment>
   </data>
   <data name="Settings_Theme_Dark.Content" xml:space="preserve">
     <value>Dark</value>
-    <comment>Dark theme text for Settings</comment>
   </data>
   <data name="Settings_Theme_Default.Content" xml:space="preserve">
     <value>Windows default</value>
-    <comment>Windows default theme text for Settings</comment>
   </data>
   <data name="Settings_Theme_Light.Content" xml:space="preserve">
     <value>Light</value>
-    <comment>Light theme text for Settings</comment>
   </data>
-  <data name="Settings_About.Text" xml:space="preserve">    
+  <data name="Settings_About.Text" xml:space="preserve">
     <value>About this application</value>
-    <comment>About this application title for Settings</comment>
   </data>
-  <data name="Settings_AboutDescription.Text" xml:space="preserve">    
+  <data name="Settings_AboutDescription.Text" xml:space="preserve">
     <value>Settings page placeholder text.  Your app description goes here.</value>
-    <comment>About this application description for Settings</comment>
   </data>
-  <data name="Settings_PrivacyTermsLink.Content" xml:space="preserve">    
+  <data name="Settings_PrivacyTermsLink.Content" xml:space="preserve">
     <value>Privacy Statement</value>
-    <comment>Privacy Statement link content for Settings</comment>
   </data>
-  <data name="Settings_PrivacyTermsLink.NavigateUri" xml:space="preserve">  
+  <data name="Settings_PrivacyTermsLink.NavigateUri" xml:space="preserve">
     <value>https://YourPrivacyUrlGoesHere/</value>
-    <comment>Here is your Privacy Statement url for Settings</comment>
   </data>
-  <data name="Settings_Personalization.Text" xml:space="preserve">   
+  <data name="Settings_Personalization.Text" xml:space="preserve">
     <value>Personalization</value>
-    <comment>Personalization text for Settings</comment>
   </data>
-  <data name="ExceptionEnumToBooleanConverterValueMustBeAnEnum" xml:space="preserve">   
+  <data name="ExceptionEnumToBooleanConverterValueMustBeAnEnum" xml:space="preserve">
     <value>value must be an Enum!</value>
     <comment>Value must be an Enum in enum to boolean converter</comment>
   </data>
-  <data name="ExceptionEnumToBooleanConverterParameterMustBeAnEnumName" xml:space="preserve">   
+  <data name="ExceptionEnumToBooleanConverterParameterMustBeAnEnumName" xml:space="preserve">
     <value>parameter must be an Enum name!</value>
     <comment>Parameter must be an Enum name in enum to boolean converter</comment>
   </data>
@@ -255,59 +225,13 @@ Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Ma
     <value>Ok</value>
     <comment>First use prompt message primary button text</comment>
   </data>
-  <data name="WhatsNew_Body.Text" xml:space="preserve">
-    <value>Replace the content of this dialog with whatever content is appropriate to your app.
-You might want to consider lists of bug fixes and new features.
-Don't feel restricted to just text. You can also include images and animations if you wish too.
-
-Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.
-Nunc viverra imperdiet enim. Fusce est. Vivamus a tellus.
-Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci.
-Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy.</value>
-    <comment>What's new prompt message body</comment>
+  <data name="Shell_RouteDataGrid.Content" xml:space="preserve">
+    <value>Routes</value>
   </data>
-  <data name="WhatsNewDialog.Title" xml:space="preserve">
-    <value>What's new in this version</value>
-    <comment>What's new prompt message title</comment>
+  <data name="Shell_StationMasterDetail.Content" xml:space="preserve">
+    <value>Stations</value>
   </data>
-  <data name="WhatsNewDialog.PrimaryButtonText" xml:space="preserve">
-    <value>Ok</value>
-    <comment>What's new prompt message primary button text</comment>
-  </data>
-  <data name="Shell_UserInfoButton.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
-    <value>User info</value>
-    <comment>Shell UserInfo button automation name property</comment>
-  </data>
-  <data name="Shell_UserInfoButton.[using:Windows.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve">
-    <value>User info</value>
-    <comment>Shell UserInfo button tooltip property</comment>
-  </data>
-  <data name="LogInPageTitle.Text" xml:space="preserve">
-    <value>LogIn</value>
-    <comment>Title for LogIn page</comment>
-  </data>
-  <data name="LogInButton.Content" xml:space="preserve">
-    <value>Click to log in</value>
-    <comment>LogIn Button content in LogIn page</comment>
-  </data>
-  <data name="StatusUnauthorized" xml:space="preserve">
-    <value>User is unauthorized</value>
-    <comment>Status message for unauthorized login result</comment>
-  </data>
-  <data name="StatusNoNetworkAvailable" xml:space="preserve">
-    <value>There is no internet connection, please connect to the internet and try again.</value>
-    <comment>Status message for no network login result</comment>
-  </data>
-  <data name="StatusLoginFails" xml:space="preserve">
-    <value>Something went wrong during the login, please try again.</value>
-    <comment>Status message for login fails result</comment>
-  </data>
-  <data name="Settings_User.Text" xml:space="preserve">
-    <value>User</value>
-    <comment>Settings section title for User</comment>
-  </data>
-  <data name="Settings_LogOut.Content" xml:space="preserve">
-    <value>Log out</value>
-    <comment>Settings LogOut user content</comment>
+  <data name="Shell_TicketContentGrid.Content" xml:space="preserve">
+    <value>Tickets</value>
   </data>
 </root>

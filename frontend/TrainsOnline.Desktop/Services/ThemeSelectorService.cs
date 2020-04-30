@@ -1,15 +1,13 @@
-﻿using System;
-using System.Threading.Tasks;
-
-using TrainsOnline.Desktop.Helpers;
-
-using Windows.ApplicationModel.Core;
-using Windows.Storage;
-using Windows.UI.Core;
-using Windows.UI.Xaml;
-
-namespace TrainsOnline.Desktop.Services
+﻿namespace TrainsOnline.Desktop.Services
 {
+    using System;
+    using System.Threading.Tasks;
+    using TrainsOnline.Desktop.Helpers;
+    using Windows.ApplicationModel.Core;
+    using Windows.Storage;
+    using Windows.UI.Core;
+    using Windows.UI.Xaml;
+
     public static class ThemeSelectorService
     {
         private const string SettingsKey = "AppBackgroundRequestedTheme";

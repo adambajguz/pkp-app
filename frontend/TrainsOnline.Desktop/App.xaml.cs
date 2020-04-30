@@ -1,18 +1,17 @@
-﻿using System;
-
-using TrainsOnline.Desktop.Application.Helpers;
-using TrainsOnline.Desktop.Application.Services;
-using TrainsOnline.Desktop.Services;
-
-using Windows.ApplicationModel.Activation;
-using Windows.UI.Xaml;
-
-namespace TrainsOnline.Desktop
+﻿namespace TrainsOnline.Desktop
 {
-    public sealed partial class App : Windows.UI.Xaml.Application
-    {
-        private IdentityService IdentityService => Singleton<IdentityService>.Instance;
+    using System;
+    using System.Collections.Generic;
+    using Caliburn.Micro;
+    using TrainsOnline.Desktop.Core;
+    using TrainsOnline.Desktop.Infrastructure;
+    using TrainsOnline.Desktop.Services;
+    using Windows.ApplicationModel.Activation;
+    using Windows.UI.Xaml;
 
+    [Windows.UI.Xaml.Data.Bindable]
+    public sealed partial class App
+    {
         private readonly Lazy<ActivationService> _activationService;
 
         private ActivationService ActivationService => _activationService.Value;
@@ -21,9 +20,10 @@ namespace TrainsOnline.Desktop
         {
             InitializeComponent();
 
+            Initialize();
+
             // Deferred execution until used. Check https://msdn.microsoft.com/library/dd642331(v=vs.110).aspx for further info on Lazy<T> class.
             _activationService = new Lazy<ActivationService>(CreateActivationService);
-            IdentityService.LoggedOut += OnLoggedOut;
         }
 
         protected override async void OnLaunched(LaunchActivatedEventArgs args)
@@ -39,20 +39,54 @@ namespace TrainsOnline.Desktop
             await ActivationService.ActivateAsync(args);
         }
 
+        private WinRTContainer _container;
+
+        protected override void Configure()
+        {
+            // This configures the framework to map between MainViewModel and MainPage
+            // Normally it would map between MainPageViewModel and MainPage
+            TypeMappingConfiguration config = new TypeMappingConfiguration
+            {
+                IncludeViewSuffixInViewModelNames = false
+            };
+
+            ViewLocator.ConfigureTypeMappings(config);
+            ViewModelLocator.ConfigureTypeMappings(config);
+
+            // ViewLocator.AddNamespaceMapping("TrainsOnline.Desktop.Views.*", "TrainsOnline.Desktop.Views");
+            // ViewModelLocator.AddNamespaceMapping("TrainsOnline.Desktop.ViewModels.*", "TrainsOnline.Desktop.ViewModels");
+
+            _container = new WinRTContainer();
+            _container.AddPresentation();
+            _container.AddApplication();
+            _container.AddInfrastructure();
+        }
+
+        protected override object GetInstance(Type service, string key)
+        {
+            return _container.GetInstance(service, key);
+        }
+
+        protected override IEnumerable<object> GetAllInstances(Type service)
+        {
+            return _container.GetAllInstances(service);
+        }
+
+        protected override void BuildUp(object instance)
+        {
+            _container.BuildUp(instance);
+        }
+
         private ActivationService CreateActivationService()
         {
-            return new ActivationService(this, typeof(ViewModels.MainViewModel), new Lazy<UIElement>(CreateShell));
+            return new ActivationService(_container, typeof(ViewModels.HomeViewModel), new Lazy<UIElement>(CreateShell));
         }
 
         private UIElement CreateShell()
         {
-            return new Views.ShellPage();
-        }
-
-        private async void OnLoggedOut(object sender, EventArgs e)
-        {
-            ActivationService.SetShell(new Lazy<UIElement>(CreateShell));
-            await ActivationService.RedirectLoginPageAsync();
+            Views.ShellPage shellPage = new Views.ShellPage();
+            _container.RegisterInstance(typeof(IConnectedAnimationService), nameof(IConnectedAnimationService), new ConnectedAnimationService(shellPage.GetFrame()));
+            return shellPage;
         }
     }
 }
