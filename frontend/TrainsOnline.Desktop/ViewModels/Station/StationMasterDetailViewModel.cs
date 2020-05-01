@@ -31,7 +31,7 @@
 
             IEnumerable<StationMasterDetailDetailViewModel> items = data.Stations.OrderBy(x => x.Name)
                                                                                  .Select(d => new StationMasterDetailDetailViewModel(d));
-                                                                                
+
             Items.AddRange(items);
         }
 

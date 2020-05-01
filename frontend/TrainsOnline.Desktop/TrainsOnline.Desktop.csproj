@@ -181,6 +181,7 @@
     <Compile Include="ViewModels\Example\ExampleMapViewModel.cs" />
     <Compile Include="ViewModels\Example\ExampleMasterDetailDetailViewModel.cs" />
     <Compile Include="ViewModels\Example\ExampleMasterDetailViewModel.cs" />
+    <Compile Include="ViewModels\General\GeneralMapViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="Helpers\GroupInfoCollection.cs" />
     <Compile Include="ViewModels\Route\RouteDataGridViewModel.cs" />
@@ -217,12 +218,17 @@
     <Compile Include="Views\FirstRunDialog.xaml.cs">
       <DependentUpon>FirstRunDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\General\GeneralMapPage.xaml.cs">
+      <DependentUpon>GeneralMapPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\General\IGeneralMapView.cs" />
     <Compile Include="Views\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Example\IExampleMapView.cs" />
     <Compile Include="Views\IShellView.cs" />
     <Compile Include="Views\Route\IRouteDataGridView.cs" />
+    <Compile Include="Views\Route\IRouteDataGridViewEvents.cs" />
     <Compile Include="Views\Route\RouteDataGridPage.xaml.cs">
       <DependentUpon>RouteDataGridPage.xaml</DependentUpon>
     </Compile>
@@ -232,7 +238,7 @@
     <Compile Include="Views\ShellPage.xaml.cs">
       <DependentUpon>ShellPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Station\StationMasterDetailDetail\IStationMasterDetailDetailView.cs" />
+    <Compile Include="Views\Station\StationMasterDetailDetail\IStationMasterDetailDetailViewEvents.cs" />
     <Compile Include="Views\Station\StationMasterDetailDetail\DetailsView.xaml.cs">
       <DependentUpon>DetailsView.xaml</DependentUpon>
     </Compile>
@@ -309,6 +315,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\FirstRunDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\General\GeneralMapPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

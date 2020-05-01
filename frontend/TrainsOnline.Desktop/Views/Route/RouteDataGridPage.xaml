@@ -104,7 +104,7 @@
             </Grid.Resources>
 
             <controls:DataGrid
-                micro:Message.Attach="[LoadingRowGroup] = [Action LoadingRowGroup($this, $eventargs)];"
+                micro:Message.Attach="[LoadingRowGroup] = [Action LoadingRowGroup($eventargs)];"
                 AreRowDetailsFrozen="True"
                 AutoGenerateColumns="False"
                 CanUserSortColumns="True"

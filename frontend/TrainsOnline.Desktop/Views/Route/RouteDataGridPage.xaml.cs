@@ -4,7 +4,7 @@
     using Windows.UI.Xaml.Controls;
     using Windows.UI.Xaml.Navigation;
 
-    public sealed partial class RouteDataGridPage : Page
+    public sealed partial class RouteDataGridPage : Page, IRouteDataGridView
     {
         // TODO WTS: Change the grid as appropriate to your app, adjust the column definitions on ExampleDataGridPage.xaml.
         // For more details see the documentation at https://docs.microsoft.com/windows/communitytoolkit/controls/datagrid

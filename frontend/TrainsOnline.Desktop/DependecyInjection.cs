@@ -1,11 +1,7 @@
 ﻿namespace TrainsOnline.Desktop
 {
     using Caliburn.Micro;
-    using TrainsOnline.Desktop.ViewModels;
-    using TrainsOnline.Desktop.ViewModels.Example;
-    using TrainsOnline.Desktop.ViewModels.Route;
-    using TrainsOnline.Desktop.ViewModels.Station;
-    using TrainsOnline.Desktop.ViewModels.Ticket;
+    using VM = ViewModels;
 
     public static class DependecyInjection
     {
@@ -13,23 +9,25 @@
         {
             _container.RegisterWinRTServices();
 
-            _container.PerRequest<ShellViewModel>();
-            _container.PerRequest<HomeViewModel>();
-            _container.PerRequest<SettingsViewModel>();
+            _container.PerRequest<VM.ShellViewModel>();
+            _container.PerRequest<VM.HomeViewModel>();
+            _container.PerRequest<VM.SettingsViewModel>();
 
-            _container.PerRequest<ExampleBlankViewModel>();
-            _container.PerRequest<ExampleMasterDetailViewModel>();
-            _container.PerRequest<ExampleContentGridDetailViewModel>();
-            _container.PerRequest<ExampleContentGridViewModel>();
-            _container.PerRequest<ExampleDataGridViewModel>();
-            _container.PerRequest<ExampleMapViewModel>();
+            _container.PerRequest<VM.General.GeneralMapViewModel>();
 
-            _container.PerRequest<RouteDataGridViewModel>();
+            _container.PerRequest<VM.Example.ExampleBlankViewModel>();
+            _container.PerRequest<VM.Example.ExampleMasterDetailViewModel>();
+            _container.PerRequest<VM.Example.ExampleContentGridDetailViewModel>();
+            _container.PerRequest<VM.Example.ExampleContentGridViewModel>();
+            _container.PerRequest<VM.Example.ExampleDataGridViewModel>();
+            _container.PerRequest<VM.Example.ExampleMapViewModel>();
 
-            _container.PerRequest<StationMasterDetailViewModel>();
+            _container.PerRequest<VM.Route.RouteDataGridViewModel>();
 
-            _container.PerRequest<TicketContentGridDetailViewModel>();
-            _container.PerRequest<TicketContentGridViewModel>();
+            _container.PerRequest<VM.Station.StationMasterDetailViewModel>();
+
+            _container.PerRequest<VM.Ticket.TicketContentGridDetailViewModel>();
+            _container.PerRequest<VM.Ticket.TicketContentGridViewModel>();
         }
     }
 }

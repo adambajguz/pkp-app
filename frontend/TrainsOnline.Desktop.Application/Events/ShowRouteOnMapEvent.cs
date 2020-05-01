@@ -3,8 +3,8 @@
     public class ShowRouteOnMapEvent
     {
         public double LatitudeStart { get; }
-        public double LongitudeStart { get; }      
-        
+        public double LongitudeStart { get; }
+
         public double LatitudeEnd { get; }
         public double LongitudeEnd { get; }
 

@@ -12,7 +12,7 @@
     using Windows.UI.Xaml.Data;
     using static TrainsOnline.Desktop.Domain.DTO.Route.GetRoutesListResponse;
 
-    public class RouteDataGridViewModel : Screen, IRouteDataGridView
+    public class RouteDataGridViewModel : Screen, IRouteDataGridViewEvents
     {
         private IEventAggregator Events { get; }
         private IRemoteDataProviderService RemoteDataProvider { get; }
@@ -64,15 +64,14 @@
             GroupedSource.Source = Source;
         }
 
-        public void ShowDestinationOnMap(GetRouteDetailsResponse route)
+        public async void ShowDestinationOnMap(GetRouteDetailsResponse route)
         {
-            Events.Publish(new ShowOnMapEvent(route.To.Latitude, route.To.Longitude));
+            await Events.PublishOnUIThreadAsync(new ShowOnMapEvent(route.To.Latitude, route.To.Longitude));
         }
 
-        public void ShowRouteOnMap(GetRouteDetailsResponse route)
+        public async void ShowRouteOnMap(GetRouteDetailsResponse route)
         {
-            Events.Publish(new ShowRouteOnMapEvent(route.From.Latitude, route.From.Longitude, route.To.Latitude, route.To.Longitude));
-
+            await Events.PublishOnUIThreadAsync(new ShowRouteOnMapEvent(route.From.Latitude, route.From.Longitude, route.To.Latitude, route.To.Longitude));
         }
 
         public void DeleteRoute(GetRouteDetailsResponse route)
@@ -90,7 +89,7 @@
 
         }
 
-        public void LoadingRowGroup(object sender, DataGridRowGroupHeaderEventArgs e)
+        public void LoadingRowGroup(DataGridRowGroupHeaderEventArgs e)
         {
             ICollectionViewGroup group = e.RowGroupHeader.CollectionViewGroup;
             GetRouteDetailsResponse item = group.GroupItems[0] as GetRouteDetailsResponse;
