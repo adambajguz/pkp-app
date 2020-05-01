@@ -4,8 +4,8 @@
     using System.Threading.Tasks;
     using RestSharp;
     using TrainsOnline.Desktop.Application.Interfaces;
-    using TrainsOnline.Desktop.Domain.Route;
-    using TrainsOnline.Desktop.Domain.Station;
+    using TrainsOnline.Desktop.Domain.DTO.Route;
+    using TrainsOnline.Desktop.Domain.DTO.Station;
 
     public class RemoteDataProviderService : IRemoteDataProviderService
     {

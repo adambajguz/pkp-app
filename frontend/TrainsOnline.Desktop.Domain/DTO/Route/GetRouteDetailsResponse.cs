@@ -1,4 +1,4 @@
-﻿namespace TrainsOnline.Desktop.Domain.Route
+﻿namespace TrainsOnline.Desktop.Domain.DTO.Route
 {
     using System;
     using TrainsOnline.Desktop.Common.GeoHelpers;

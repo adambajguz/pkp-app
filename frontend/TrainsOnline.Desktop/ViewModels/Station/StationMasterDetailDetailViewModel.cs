@@ -1,8 +1,9 @@
 ﻿namespace TrainsOnline.Desktop.ViewModels.Station
 {
     using Caliburn.Micro;
-    using TrainsOnline.Desktop.Domain.Station;
+    using TrainsOnline.Desktop.Domain.DTO.Station;
     using TrainsOnline.Desktop.Views.Route;
+    using static TrainsOnline.Desktop.Domain.DTO.Station.GetStationsListResponse;
 
     public class StationMasterDetailDetailViewModel : Screen, IStationMasterDetailDetailView
     {

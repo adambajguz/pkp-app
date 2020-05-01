@@ -5,22 +5,26 @@
     using System.Threading.Tasks;
     using Caliburn.Micro;
     using Microsoft.Toolkit.Uwp.UI.Controls;
+    using TrainsOnline.Desktop.Application.Events;
     using TrainsOnline.Desktop.Application.Interfaces;
-    using TrainsOnline.Desktop.Domain.Route;
+    using TrainsOnline.Desktop.Domain.DTO.Route;
     using TrainsOnline.Desktop.Views.Route;
     using Windows.UI.Xaml.Data;
-    using static TrainsOnline.Desktop.Domain.Route.GetRoutesListResponse;
+    using static TrainsOnline.Desktop.Domain.DTO.Route.GetRoutesListResponse;
 
     public class RouteDataGridViewModel : Screen, IRouteDataGridView
     {
+        private IEventAggregator Events { get; }
         private IRemoteDataProviderService RemoteDataProvider { get; }
 
         public ObservableCollection<GroupInfoCollection<GetRouteDetailsResponse>> Source { get; } = new ObservableCollection<GroupInfoCollection<GetRouteDetailsResponse>>();
         public CollectionViewSource GroupedSource { get; } = new CollectionViewSource();
 
-        public RouteDataGridViewModel(IRemoteDataProviderService remoteDataProvider)
+        public RouteDataGridViewModel(IEventAggregator events,
+                                      IRemoteDataProviderService remoteDataProvider)
         {
             RemoteDataProvider = remoteDataProvider;
+            Events = events;
         }
 
         public async Task LoadDataAsync()
@@ -62,11 +66,12 @@
 
         public void ShowDestinationOnMap(GetRouteDetailsResponse route)
         {
-
+            Events.Publish(new ShowOnMapEvent(route.To.Latitude, route.To.Longitude));
         }
 
         public void ShowRouteOnMap(GetRouteDetailsResponse route)
         {
+            Events.Publish(new ShowRouteOnMapEvent(route.From.Latitude, route.From.Longitude, route.To.Latitude, route.To.Longitude));
 
         }
 

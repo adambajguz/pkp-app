@@ -1,12 +1,10 @@
-﻿namespace TrainsOnline.Desktop.Domain.Route
+﻿namespace TrainsOnline.Desktop.Domain.DTO.Route
 {
     using System;
     using TrainsOnline.Desktop.Domain.DTO;
 
-    public class UpdateRouteRequest : IDataTransferObject
+    public class CreateRouteRequest : IDataTransferObject
     {
-        public Guid Id { get; set; }
-
         public Guid FromId { get; set; }
         public Guid ToId { get; set; }
 

@@ -1,4 +1,4 @@
-﻿namespace TrainsOnline.Desktop.Domain.Station
+﻿namespace TrainsOnline.Desktop.Domain.DTO.Station
 {
     using TrainsOnline.Desktop.Domain.DTO;
 

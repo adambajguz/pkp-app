@@ -1,7 +1,7 @@
 ﻿namespace TrainsOnline.Desktop.Converters
 {
-    using TrainsOnline.Desktop.Helpers;
     using System;
+    using TrainsOnline.Desktop.Helpers;
     using Windows.UI.Xaml.Data;
 
     public class EnumToBooleanConverter : IValueConverter

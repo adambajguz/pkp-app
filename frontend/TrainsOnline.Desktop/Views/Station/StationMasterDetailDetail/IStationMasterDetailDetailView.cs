@@ -1,6 +1,6 @@
 ﻿namespace TrainsOnline.Desktop.Views.Route
 {
-    using TrainsOnline.Desktop.Domain.Station;
+    using TrainsOnline.Desktop.Domain.DTO.Station;
 
     internal interface IStationMasterDetailDetailView
     {

@@ -1,10 +1,11 @@
 ﻿namespace TrainsOnline.Desktop.ViewModels.Station
 {
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
     using Caliburn.Micro;
     using TrainsOnline.Desktop.Application.Interfaces;
-    using TrainsOnline.Desktop.Domain.Station;
+    using TrainsOnline.Desktop.Domain.DTO.Station;
 
     public class StationMasterDetailViewModel : Conductor<StationMasterDetailDetailViewModel>.Collection.OneActive
     {
@@ -28,7 +29,10 @@
 
             GetStationsListResponse data = await RemoteDataProvider.GetStations();
 
-            Items.AddRange(data.Stations.Select(d => new StationMasterDetailDetailViewModel(d)));
+            IEnumerable<StationMasterDetailDetailViewModel> items = data.Stations.OrderBy(x => x.Name)
+                                                                                 .Select(d => new StationMasterDetailDetailViewModel(d));
+                                                                                
+            Items.AddRange(items);
         }
 
         public override async void ActivateItem(StationMasterDetailDetailViewModel item)

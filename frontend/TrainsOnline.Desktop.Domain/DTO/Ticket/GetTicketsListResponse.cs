@@ -1,4 +1,4 @@
-﻿namespace TrainsOnline.Desktop.Domain.Ticket
+﻿namespace TrainsOnline.Desktop.Domain.DTO.Ticket
 {
     using System;
     using System.Collections.Generic;

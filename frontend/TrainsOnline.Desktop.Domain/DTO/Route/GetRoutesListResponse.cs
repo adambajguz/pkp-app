@@ -1,9 +1,9 @@
-﻿namespace TrainsOnline.Desktop.Domain.Route
+﻿namespace TrainsOnline.Desktop.Domain.DTO.Route
 {
     using System;
     using System.Collections.Generic;
     using TrainsOnline.Desktop.Domain.DTO;
-    using TrainsOnline.Desktop.Domain.Station;
+    using static TrainsOnline.Desktop.Domain.DTO.Station.GetStationsListResponse;
 
     public class GetRoutesListResponse : IDataTransferObject
     {

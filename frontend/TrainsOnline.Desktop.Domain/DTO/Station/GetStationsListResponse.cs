@@ -1,4 +1,4 @@
-﻿namespace TrainsOnline.Desktop.Domain.Station
+﻿namespace TrainsOnline.Desktop.Domain.DTO.Station
 {
     using System;
     using System.Collections.Generic;
@@ -8,12 +8,11 @@
     {
         public List<StationLookupModel> Stations { get; set; }
 
-    }
+        public class StationLookupModel : IDataTransferObject
+        {
+            public Guid Id { get; set; }
 
-    public class StationLookupModel : IDataTransferObject
-    {
-        public Guid Id { get; set; }
-
-        public string Name { get; set; }
+            public string Name { get; set; }
+        }
     }
 }
