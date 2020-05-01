@@ -33,21 +33,16 @@
             GetStationsListResponse data = await RemoteDataProvider.GetStations();
 
             IEnumerable<StationMasterDetailDetailViewModel> items = data.Stations.OrderBy(x => x.Name)
-                                                                                 .Select(d => new StationMasterDetailDetailViewModel(NavService, d));
+                                                                                 .Select(d => new StationMasterDetailDetailViewModel(NavService, RemoteDataProvider, d));
 
             Items.AddRange(items);
         }
 
-        public override async void ActivateItem(StationMasterDetailDetailViewModel item)
+        public override async void ActivateItem(StationMasterDetailDetailViewModel detailsView)
         {
-            base.ActivateItem(item);
+            base.ActivateItem(detailsView);
 
-            if (item?.Item is null)
-                return;
-
-            GetStationDetailsResponse data = await RemoteDataProvider.GetStation(item.Item.Id);
-            item.Details = data;
-            item.Refresh();
+            await detailsView?.LoadDetails();
         }
     }
 }

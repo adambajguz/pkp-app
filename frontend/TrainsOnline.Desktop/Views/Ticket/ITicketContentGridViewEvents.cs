@@ -4,6 +4,6 @@
 
     public interface ITicketContentGridViewEvents
     {
-        void OnItemSelected(UserTicketLookupModel clickedItem
+        void OnItemSelected(UserTicketLookupModel clickedItem);
     }
 }

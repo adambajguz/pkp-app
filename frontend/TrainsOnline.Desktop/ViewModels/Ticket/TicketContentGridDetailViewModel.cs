@@ -1,34 +1,36 @@
 ﻿namespace TrainsOnline.Desktop.ViewModels.Ticket
 {
-    using System.Linq;
+    using System;
     using System.Threading.Tasks;
     using Caliburn.Micro;
-    using TrainsOnline.Desktop.Application.Services;
-    using TrainsOnline.Desktop.Domain.Models;
+    using TrainsOnline.Desktop.Application.Interfaces;
+    using TrainsOnline.Desktop.Domain.DTO.Ticket;
     using TrainsOnline.Desktop.Services;
 
     public class TicketContentGridDetailViewModel : Screen
     {
         private readonly IConnectedAnimationService _connectedAnimationService;
+        private IRemoteDataProviderService RemoteDataProvider { get; }
 
-        private SampleOrder _item;
-
-        public SampleOrder Item
+        private GetTicketDetailsResponse _item;
+        public GetTicketDetailsResponse Item
         {
             get => _item;
             set => Set(ref _item, value);
         }
 
-        public TicketContentGridDetailViewModel(IConnectedAnimationService connectedAnimationService)
+        public TicketContentGridDetailViewModel(IConnectedAnimationService connectedAnimationService,
+                                                IRemoteDataProviderService remoteDataProvider)
         {
             _connectedAnimationService = connectedAnimationService;
+            RemoteDataProvider = remoteDataProvider;
         }
 
-        public async Task InitializeAsync(long orderID)
+        public async Task InitializeAsync(Guid orderID)
         {
-            // TODO WTS: Replace this with your actual data
-            System.Collections.Generic.IEnumerable<SampleOrder> data = await SampleDataService.GetContentGridDataAsync();
-            Item = data.First(i => i.OrderID == orderID);
+            GetTicketDetailsResponse data = await RemoteDataProvider.GetTicket(orderID);
+
+            Item = data;
         }
 
         public void SetListDataItemForNextConnectedAnimation()

@@ -30,6 +30,12 @@
         {
             Source.Clear();
 
+            Domain.DTO.Authentication.JwtTokenModel jwtTokenModel = await RemoteDataProvider.Login(new Domain.DTO.Authentication.LoginRequest
+            {
+                Email = "test0@test.pl",
+                Password = "test1234"
+            });
+
             GetUserTicketsListResponse data = await RemoteDataProvider.GetCurrentUserTickets();
 
             if (data is null)

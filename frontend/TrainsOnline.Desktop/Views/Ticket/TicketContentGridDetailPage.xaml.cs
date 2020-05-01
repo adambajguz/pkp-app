@@ -1,5 +1,6 @@
 ﻿namespace TrainsOnline.Desktop.Views.Ticket
 {
+    using System;
     using TrainsOnline.Desktop.ViewModels.Ticket;
     using Windows.UI.Xaml.Controls;
     using Windows.UI.Xaml.Navigation;
@@ -16,9 +17,9 @@
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            if (e.Parameter is long orderID)
+            if (e.Parameter is Guid ticketId)
             {
-                await ViewModel.InitializeAsync(orderID);
+                await ViewModel.InitializeAsync(ticketId);
             }
         }
 

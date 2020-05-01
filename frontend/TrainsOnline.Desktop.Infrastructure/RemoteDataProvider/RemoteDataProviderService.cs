@@ -138,7 +138,8 @@
                 return null;
             }
 
-            RestRequest request = new RestRequest("api/tickets/get-all-current-user", DataFormat.Json);
+            RestRequest request = new RestRequest("api/ticket/get-all-current-user", DataFormat.Json);
+            request.AddHeader("Authorization", $"Bearer {Token}");
 
             return await Client.GetAsync<GetUserTicketsListResponse>(request);
         }

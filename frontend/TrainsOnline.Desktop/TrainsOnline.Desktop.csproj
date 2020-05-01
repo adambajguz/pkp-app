@@ -252,6 +252,7 @@
     <Compile Include="Views\Station\StationMasterDetailPage.xaml.cs">
       <DependentUpon>StationMasterDetailPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Ticket\ITicketContentGridViewEvents.cs" />
     <Compile Include="Views\Ticket\TicketContentGridDetailPage.xaml.cs">
       <DependentUpon>TicketContentGridDetailPage.xaml</DependentUpon>
     </Compile>

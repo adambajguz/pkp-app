@@ -31,7 +31,7 @@
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
                         FontSize="70"
-                        Glyph="{x:Bind ViewModel.Item.Symbol}" />
+                        Glyph="&#xE963;" />
                 </Grid>
 
                 <TextBlock
@@ -40,29 +40,49 @@
                     RelativePanel.AlignTopWithPanel="True"
                     RelativePanel.RightOf="itemHero"
                     Style="{ThemeResource TitleTextBlockStyle}"
-                    Text="{x:Bind ViewModel.Item.Company, Mode=OneWay}" />
+                    Text="{x:Bind ViewModel.Item.Id, Mode=OneWay}" />
 
                 <StackPanel x:Name="propertiesGroup1" RelativePanel.Below="itemHero">
                     <StackPanel x:Name="statusGroup" Margin="{StaticResource SmallTopMargin}">
                         <TextBlock Style="{StaticResource DetailSubTitleStyle}" Text="Status" />
-                        <TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}" Text="{x:Bind ViewModel.Item.Status}" />
+                        <TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}" Text="{x:Bind ViewModel.Item.UserId}" />
                     </StackPanel>
 
                     <StackPanel x:Name="orderDateGroup" Margin="{StaticResource SmallTopMargin}">
                         <TextBlock Style="{StaticResource DetailSubTitleStyle}" Text="Order date" />
-                        <TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}" Text="{x:Bind ViewModel.Item.OrderDate}" />
+                        <TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}" Text="{x:Bind ViewModel.Item.CreatedOn}" />
                     </StackPanel>
                 </StackPanel>
 
                 <StackPanel x:Name="propertiesGroup2" RelativePanel.Below="propertiesGroup1">
                     <StackPanel x:Name="shipToGroup" Margin="{StaticResource SmallTopMargin}">
                         <TextBlock Style="{StaticResource DetailSubTitleStyle}" Text="Ship to" />
-                        <TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}" Text="{x:Bind ViewModel.Item.ShipTo}" />
+                        <TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}" Text="{x:Bind ViewModel.Item.LastSavedOn}" />
                     </StackPanel>
 
                     <StackPanel x:Name="orderTotalGroup" Margin="{StaticResource SmallTopMargin}">
                         <TextBlock Style="{StaticResource DetailSubTitleStyle}" Text="Order total" />
-                        <TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}" Text="{x:Bind ViewModel.Item.OrderTotal}" />
+                        <TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}" Text="{x:Bind ViewModel.Item.Route.Id}" />
+                    </StackPanel>
+
+                    <StackPanel x:Name="orderTotalGroup2" Margin="{StaticResource SmallTopMargin}">
+                        <TextBlock Style="{StaticResource DetailSubTitleStyle}" Text="Order total" />
+                        <TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}" Text="{x:Bind ViewModel.Item.Route.From.Name}" />
+                    </StackPanel>
+
+                    <StackPanel x:Name="shipToGroup2" Margin="{StaticResource SmallTopMargin}">
+                        <TextBlock Style="{StaticResource DetailSubTitleStyle}" Text="Ship to" />
+                        <TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}" Text="{x:Bind ViewModel.Item.Route.To.Name}" />
+                    </StackPanel>
+
+                    <StackPanel x:Name="orderTotalGroup3" Margin="{StaticResource SmallTopMargin}">
+                        <TextBlock Style="{StaticResource DetailSubTitleStyle}" Text="Order total" />
+                        <TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}" Text="{x:Bind ViewModel.Item.Route.TicketPrice}" />
+                    </StackPanel>
+
+                    <StackPanel x:Name="orderTotalGroup4" Margin="{StaticResource SmallTopMargin}">
+                        <TextBlock Style="{StaticResource DetailSubTitleStyle}" Text="Order total" />
+                        <TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}" Text="{x:Bind ViewModel.Item.Route.Distance}" />
                     </StackPanel>
                 </StackPanel>
 
