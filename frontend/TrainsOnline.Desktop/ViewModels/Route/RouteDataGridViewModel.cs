@@ -1,6 +1,5 @@
 ﻿namespace TrainsOnline.Desktop.ViewModels.Route
 {
-    using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Linq;
     using System.Threading.Tasks;
@@ -14,17 +13,6 @@
 
     public class RouteDataGridViewModel : Screen, IRouteDataGridView
     {
-        private GetRouteDetailsResponse _selecteditem;
-        public GetRouteDetailsResponse Selecteditem
-        {
-            get => _selecteditem;
-            set
-            {
-                _selecteditem = value;
-                NotifyOfPropertyChange(() => Selecteditem);
-            }
-        }
-
         private IRemoteDataProviderService RemoteDataProvider { get; }
 
         public ObservableCollection<GroupInfoCollection<GetRouteDetailsResponse>> Source { get; } = new ObservableCollection<GroupInfoCollection<GetRouteDetailsResponse>>();
@@ -101,32 +89,19 @@
         {
             ICollectionViewGroup group = e.RowGroupHeader.CollectionViewGroup;
             GetRouteDetailsResponse item = group.GroupItems[0] as GetRouteDetailsResponse;
-            e.RowGroupHeader.PropertyValue = item.From.Id.ToString();
-            e.RowGroupHeader.PropertyValue = item.From.Name;
+            e.RowGroupHeader.PropertyValue = item?.From?.Name;
         }
     }
 
-
-
-    public class GroupInfoCollection<T> : ObservableCollection<T>
-    {
-        public object Key { get; set; }
-
-        public new IEnumerator<T> GetEnumerator()
-        {
-            return base.GetEnumerator();
-        }
-    }
-
-    // Filtering implementation using LINQ
-    public enum FilterOptions
-    {
-        All = -1,
-        Rank_Low = 0,
-        Rank_High = 1,
-        Height_Low = 2,
-        Height_High = 3
-    }
+    //// Filtering implementation using LINQ
+    //public enum FilterOptions
+    //{
+    //    All = -1,
+    //    Rank_Low = 0,
+    //    Rank_High = 1,
+    //    Height_Low = 2,
+    //    Height_High = 3
+    //}
 
     //public ObservableCollection<DataGridDataItem> FilterData(FilterOptions filterBy)
     //{

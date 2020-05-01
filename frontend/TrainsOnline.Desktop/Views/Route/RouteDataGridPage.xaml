@@ -26,6 +26,7 @@
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
@@ -66,11 +67,37 @@
                         <StackPanel
                             Grid.Row="3"
                             Grid.Column="0"
+                            Margin="0,24,0,0"
                             Orientation="Horizontal">
-                            <TextBlock Text="Departure station coordinates: '" />
-                            <TextBlock Text="{Binding From.Coordinates}" />
-                            <TextBlock Text="Arrival station coordinates: '" />
-                            <TextBlock Text="{Binding To.Coordinates}" />
+                            <TextBlock Margin="0,1,0,0" Text="Departure station coordinates: '" />
+                            <TextBlock Margin="0,1,0,0" Text="{Binding From.Coordinates}" />
+
+                            <Button
+                                x:Name="ShowDepartureOnMapButton"
+                                Margin="8,0,0,0"
+                                VerticalAlignment="Top"
+                                micro:Message.Attach="[Event Click]=[ShowDepartureOnMap($dataContext)]"
+                                Content="&#xE819;"
+                                FontFamily="Segoe MDL2 Assets"
+                                ToolTipService.ToolTip="Show departure on map" />
+                        </StackPanel>
+
+                        <StackPanel
+                            Grid.Row="4"
+                            Grid.Column="0"
+                            Margin="0,12,0,0"
+                            Orientation="Horizontal">
+                            <TextBlock Margin="0,1,0,0" Text="Arrival station coordinates: '" />
+                            <TextBlock Margin="0,1,0,0" Text="{Binding To.Coordinates}" />
+
+                            <Button
+                                x:Name="ShowDestinationOnMapButton"
+                                Margin="8,0,0,0"
+                                VerticalAlignment="Top"
+                                micro:Message.Attach="[Event Click]=[ShowDestinationOnMap($dataContext)]"
+                                Content="&#xE81A;"
+                                FontFamily="Segoe MDL2 Assets"
+                                ToolTipService.ToolTip="Show destination on map" />
                         </StackPanel>
                     </Grid>
                 </DataTemplate>
@@ -86,8 +113,7 @@
                 ItemsSource="{x:Bind ViewModel.GroupedSource.View, Mode=OneWay}"
                 RowDetailsTemplate="{StaticResource RowDetailsTemplate}"
                 RowDetailsVisibilityMode="VisibleWhenSelected"
-                RowGroupHeaderPropertyNameAlternative="From"
-                SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
+                RowGroupHeaderPropertyNameAlternative="Departure from">
                 <controls:DataGrid.Columns>
                     <!--
                         TODO WTS:
@@ -114,22 +140,6 @@
                         <controls:DataGridTemplateColumn.CellTemplate>
                             <DataTemplate xmlns:cal="http://www.caliburnproject.org">
                                 <StackPanel Orientation="Horizontal">
-                                    <Button
-                                        x:Name="ShowDepartureOnMapButton"
-                                        Margin="0,4,4,4"
-                                        VerticalAlignment="Top"
-                                        micro:Message.Attach="[Event Click]=[ShowDepartureOnMap($dataContext)]"
-                                        Content="&#xE81A;"
-                                        FontFamily="Segoe MDL2 Assets"
-                                        ToolTipService.ToolTip="Show departure on map" />
-                                    <Button
-                                        x:Name="ShowDestinationOnMapButton"
-                                        Margin="0,4,4,4"
-                                        VerticalAlignment="Top"
-                                        micro:Message.Attach="[Event Click]=[ShowDestinationOnMap($dataContext)]"
-                                        Content="&#xE81A;"
-                                        FontFamily="Segoe MDL2 Assets"
-                                        ToolTipService.ToolTip="Show destination on map" />
                                     <Button
                                         x:Name="ShowRouteOnMapButton"
                                         Margin="0,4,4,4"

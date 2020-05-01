@@ -1,5 +1,6 @@
-﻿namespace TrainsOnline.Desktop.Helpers
+﻿namespace TrainsOnline.Desktop.Converters
 {
+    using TrainsOnline.Desktop.Helpers;
     using System;
     using Windows.UI.Xaml.Data;
 
@@ -12,9 +13,7 @@
             if (parameter is string enumString)
             {
                 if (!Enum.IsDefined(EnumType, value))
-                {
                     throw new ArgumentException("ExceptionEnumToBooleanConverterValueMustBeAnEnum".GetLocalized());
-                }
 
                 object enumValue = Enum.Parse(EnumType, enumString);
 
@@ -27,9 +26,7 @@
         public object ConvertBack(object value, Type targetType, object parameter, string language)
         {
             if (parameter is string enumString)
-            {
                 return Enum.Parse(EnumType, enumString);
-            }
 
             throw new ArgumentException("ExceptionEnumToBooleanConverterParameterMustBeAnEnumName".GetLocalized());
         }
