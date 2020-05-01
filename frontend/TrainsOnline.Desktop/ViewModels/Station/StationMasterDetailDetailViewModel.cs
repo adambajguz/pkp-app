@@ -14,6 +14,11 @@
         public StationLookupModel Item { get; }
         public GetStationDetailsResponse Details { get; set; }
 
+        public void ShowStationOnMap()
+        {
+
+        }
+
         public void ShowDestinationOnMap(GetStationDetailsResponse stationDetails)
         {
 

@@ -4,6 +4,7 @@
 
     internal interface IStationMasterDetailDetailView
     {
+        void ShowStationOnMap();
         void ShowDestinationOnMap(GetStationDetailsResponse stationDetails);
         void ShowRouteOnMap(GetStationDetailsResponse stationDetails);
         void BuyTicket(GetStationDetailsResponse stationDetails);

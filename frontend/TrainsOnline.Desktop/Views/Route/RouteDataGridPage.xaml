@@ -115,7 +115,7 @@
                             <DataTemplate xmlns:cal="http://www.caliburnproject.org">
                                 <StackPanel Orientation="Horizontal">
                                     <Button
-                                        x:Name="ShowOnMapButton"
+                                        x:Name="ShowDepartureOnMapButton"
                                         Margin="0,4,4,4"
                                         VerticalAlignment="Top"
                                         micro:Message.Attach="[Event Click]=[ShowDepartureOnMap($dataContext)]"
@@ -123,7 +123,7 @@
                                         FontFamily="Segoe MDL2 Assets"
                                         ToolTipService.ToolTip="Show departure on map" />
                                     <Button
-                                        x:Name="ShowOnMapButton"
+                                        x:Name="ShowDestinationOnMapButton"
                                         Margin="0,4,4,4"
                                         VerticalAlignment="Top"
                                         micro:Message.Attach="[Event Click]=[ShowDestinationOnMap($dataContext)]"

@@ -46,8 +46,17 @@
                         Margin="{StaticResource SmallTopMargin}"
                         Style="{StaticResource DetailSubTitleStyle}"
                         Text="Coordinates" />
-                    <TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}" Text="{x:Bind ViewModel.Details.Coordinates, Mode=OneWay}" />
-
+                    <StackPanel Orientation="Horizontal"
+                        <TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}" Text="{x:Bind ViewModel.Details.Coordinates, Mode=OneWay}" />
+                        <Button
+                            x:Name="ShowStationOnMapButton"
+                            Margin="0,4,4,4"
+                            VerticalAlignment="Top"
+                            micro:Message.Attach="[Event Click]=[ShowStationOnMap()]"
+                            Content="&#xE819;"
+                            FontFamily="Segoe MDL2 Assets"
+                            ToolTipService.ToolTip="Show station on map" />
+                    </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock
                             Margin="{StaticResource SmallTopMargin}"
@@ -87,7 +96,7 @@
                                     <DataTemplate xmlns:cal="http://www.caliburnproject.org">
                                         <StackPanel Orientation="Horizontal">
                                             <Button
-                                                x:Name="ShowOnMapButton"
+                                                x:Name="ShowDestinationOnMapButton"
                                                 Margin="0,4,4,4"
                                                 VerticalAlignment="Top"
                                                 micro:Message.Attach="[Event Click]=[ShowDestinationOnMap($dataContext)]"
