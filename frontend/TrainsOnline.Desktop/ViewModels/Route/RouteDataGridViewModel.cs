@@ -3,27 +3,32 @@
     using System.Collections.ObjectModel;
     using System.Threading.Tasks;
     using Caliburn.Micro;
-    using TrainsOnline.Desktop.Application.Services;
-    using TrainsOnline.Desktop.Domain.Models;
+    using TrainsOnline.Desktop.Application.Interfaces;
+    using TrainsOnline.Desktop.Domain.Route;
+    using static TrainsOnline.Desktop.Domain.Route.GetRoutesListResponse;
 
     public class RouteDataGridViewModel : Screen
     {
-        public ObservableCollection<SampleOrder> Source { get; } = new ObservableCollection<SampleOrder>();
+        private IRemoteDataProviderService RemoteDataProvider { get; }
 
-        public RouteDataGridViewModel()
+        public ObservableCollection<GetRouteDetailsResponse> Source { get; } = new ObservableCollection<GetRouteDetailsResponse>();
+
+        public RouteDataGridViewModel(IRemoteDataProviderService remoteDataProvider)
         {
+            RemoteDataProvider = remoteDataProvider;
         }
 
         public async Task LoadDataAsync()
         {
             Source.Clear();
 
-            // TODO WTS: Replace this with your actual data
-            System.Collections.Generic.IEnumerable<SampleOrder> data = await SampleDataService.GetGridDataAsync();
+            GetRoutesListResponse data = await RemoteDataProvider.GetRoutes();
 
-            foreach (SampleOrder item in data)
+            foreach (RouteLookupModel route in data.Routes)
             {
-                Source.Add(item);
+                GetRouteDetailsResponse details = await RemoteDataProvider.GetRoute(route.Id);
+
+                Source.Add(details);
             }
         }
     }
