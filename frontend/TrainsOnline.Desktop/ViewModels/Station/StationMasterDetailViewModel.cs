@@ -5,14 +5,17 @@
     using System.Threading.Tasks;
     using Caliburn.Micro;
     using TrainsOnline.Desktop.Application.Interfaces;
-    using TrainsOnline.Desktop.Domain.Station;
+    using TrainsOnline.Desktop.Domain.DTO.Station;
 
     public class StationMasterDetailViewModel : Conductor<StationMasterDetailDetailViewModel>.Collection.OneActive
     {
+        private INavigationService NavService { get; }
         private IRemoteDataProviderService RemoteDataProvider { get; }
 
-        public StationMasterDetailViewModel(IRemoteDataProviderService remoteDataProvider)
+        public StationMasterDetailViewModel(INavigationService navigationService,
+                                            IRemoteDataProviderService remoteDataProvider)
         {
+            NavService = navigationService;
             RemoteDataProvider = remoteDataProvider;
         }
 
@@ -29,7 +32,10 @@
 
             GetStationsListResponse data = await RemoteDataProvider.GetStations();
 
-            Items.AddRange(data.Stations.Select(d => new StationMasterDetailDetailViewModel(d)));
+            IEnumerable<StationMasterDetailDetailViewModel> items = data.Stations.OrderBy(x => x.Name)
+                                                                                 .Select(d => new StationMasterDetailDetailViewModel(NavService, d));
+
+            Items.AddRange(items);
         }
 
         public override async void ActivateItem(StationMasterDetailDetailViewModel item)

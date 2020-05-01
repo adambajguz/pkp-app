@@ -3,7 +3,8 @@
     using System.Collections.ObjectModel;
     using System.Threading.Tasks;
     using Caliburn.Micro;
-    using TrainsOnline.Desktop.Application.Services;
+    using TrainsOnline.Desktop.Application.Interfaces;
+    using TrainsOnline.Desktop.Domain.DTO.Ticket;
     using TrainsOnline.Desktop.Domain.Models;
     using TrainsOnline.Desktop.Services;
     using TrainsOnline.Desktop.Views.Example;
@@ -12,24 +13,29 @@
     {
         private readonly INavigationService _navigationService;
         private readonly IConnectedAnimationService _connectedAnimationService;
+        private IRemoteDataProviderService RemoteDataProvider { get; }
 
-        public ObservableCollection<SampleOrder> Source { get; } = new ObservableCollection<SampleOrder>();
+        public ObservableCollection<UserTicketLookupModel> Source { get; } = new ObservableCollection<UserTicketLookupModel>();
 
-        public TicketContentGridViewModel(INavigationService navigationService, IConnectedAnimationService connectedAnimationService)
+        public TicketContentGridViewModel(INavigationService navigationService,
+                                          IConnectedAnimationService connectedAnimationService,
+                                          IRemoteDataProviderService remoteDataProvider)
         {
             _navigationService = navigationService;
             _connectedAnimationService = connectedAnimationService;
+            RemoteDataProvider = remoteDataProvider;
         }
 
         public async Task LoadDataAsync()
         {
             Source.Clear();
 
+            GetUserTicketsListResponse data = await RemoteDataProvider.GetCurrentUserTickets();
+
             // TODO WTS: Replace this with your actual data
-            System.Collections.Generic.IEnumerable<SampleOrder> data = await SampleDataService.GetContentGridDataAsync();
-            foreach (SampleOrder item in data)
+            foreach (UserTicketLookupModel ticket in data.Tickets)
             {
-                Source.Add(item);
+                Source.Add(ticket);
             }
         }
 

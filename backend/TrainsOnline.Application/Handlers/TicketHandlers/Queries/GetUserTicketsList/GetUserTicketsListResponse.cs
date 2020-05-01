@@ -9,7 +9,7 @@
 
     public class GetUserTicketsListResponse : IDataTransferObject
     {
-        public List<UserTicketLookupModel> Ticket { get; set; } = default!;
+        public List<UserTicketLookupModel> Tickets { get; set; } = default!;
 
         public class UserTicketLookupModel : IDataTransferObject, ICustomMapping
         {

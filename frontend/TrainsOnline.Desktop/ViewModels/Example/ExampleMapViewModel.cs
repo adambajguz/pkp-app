@@ -77,7 +77,7 @@
             }
 
             // TODO WTS: Set your map service token. If you don't have one, request from https://www.bingmapsportal.com/
-            // MapServiceToken = string.Empty;
+            MapServiceToken = "ioTqhTtWjH1AHQSTdqM3~cwrvRdJBaUYH_uufKdr50g~Au3dHttbUXjJxBL8I9fV6ItiDau37iX6PKfggfU9nq2VgR8IsSoOVYICu88E93in"; //TODO: add to some sort of config
             IExampleMapView view = GetView() as IExampleMapView;
 
             view?.AddMapIcon(Center, "Map_YourLocation".GetLocalized());
