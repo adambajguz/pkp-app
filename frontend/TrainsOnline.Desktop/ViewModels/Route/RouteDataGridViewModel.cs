@@ -114,7 +114,7 @@
 
         public new IEnumerator<T> GetEnumerator()
         {
-            return (IEnumerator<T>)base.GetEnumerator();
+            return base.GetEnumerator();
         }
     }
 

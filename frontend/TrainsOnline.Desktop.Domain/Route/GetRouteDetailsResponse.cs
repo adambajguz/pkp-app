@@ -34,7 +34,7 @@
             public double Latitude { get; set; }
             public double Longitude { get; set; }
 
-            public GeoCoordinate Coordinates { get => GeoCoordinate.FromDouble(Latitude, Longitude); }
+            public GeoCoordinate Coordinates => GeoCoordinate.FromDouble(Latitude, Longitude);
         }
     }
 }
