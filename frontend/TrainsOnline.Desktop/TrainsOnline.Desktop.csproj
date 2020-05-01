@@ -231,6 +231,7 @@
     <Compile Include="Views\ShellPage.xaml.cs">
       <DependentUpon>ShellPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Station\StationMasterDetailDetail\IStationMasterDetailDetailView.cs" />
     <Compile Include="Views\Station\StationMasterDetailDetail\DetailsView.xaml.cs">
       <DependentUpon>DetailsView.xaml</DependentUpon>
     </Compile>

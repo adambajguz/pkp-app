@@ -1,20 +1,16 @@
 ﻿namespace TrainsOnline.Desktop.ViewModels.Route
 {
+    using System.Collections.Generic;
     using System.Collections.ObjectModel;
+    using System.Linq;
     using System.Threading.Tasks;
     using Caliburn.Micro;
+    using Microsoft.Toolkit.Uwp.UI.Controls;
     using TrainsOnline.Desktop.Application.Interfaces;
     using TrainsOnline.Desktop.Domain.Route;
     using TrainsOnline.Desktop.Views.Route;
-    using static TrainsOnline.Desktop.Domain.Route.GetRoutesListResponse;
-    using Microsoft.Toolkit.Collections;
-    using System.Linq;
-    using Microsoft.Toolkit.Uwp.UI.Controls;
-    using Microsoft.Toolkit.Uwp.UI.Extensions;
-    using Windows.UI.Xaml;
-    using Windows.UI.Xaml.Controls;
     using Windows.UI.Xaml.Data;
-    using System.Collections.Generic;
+    using static TrainsOnline.Desktop.Domain.Route.GetRoutesListResponse;
 
     public class RouteDataGridViewModel : Screen, IRouteDataGridView
     {
@@ -39,7 +35,7 @@
             RemoteDataProvider = remoteDataProvider;
         }
 
-            public async Task LoadDataAsync()
+        public async Task LoadDataAsync()
         {
             Source.Clear();
 
@@ -76,19 +72,29 @@
             GroupedSource.Source = Source;
         }
 
-        public void DeleteRoute(GetRouteDetailsResponse user)
+        public void ShowDestinationOnMap(GetRouteDetailsResponse route)
         {
-            // Do work
+
         }
 
-        public void EditRoute(GetRouteDetailsResponse user)
+        public void ShowRouteOnMap(GetRouteDetailsResponse route)
         {
-            // Do work
+
         }
 
-        public void BuyTicket(GetRouteDetailsResponse user)
+        public void DeleteRoute(GetRouteDetailsResponse route)
         {
-            // Do work
+
+        }
+
+        public void EditRoute(GetRouteDetailsResponse route)
+        {
+
+        }
+
+        public void BuyTicket(GetRouteDetailsResponse route)
+        {
+
         }
 
         public void LoadingRowGroup(object sender, DataGridRowGroupHeaderEventArgs e)

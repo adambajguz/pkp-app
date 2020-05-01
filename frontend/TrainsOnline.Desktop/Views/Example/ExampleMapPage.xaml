@@ -14,6 +14,7 @@
         <maps:MapControl
             x:Name="mapControl"
             Center="{x:Bind ViewModel.Center, Mode=OneWay}"
+            MapServiceToken="{x:Bind ViewModel.MapServiceToken, Mode=OneWay}"
             ZoomLevel="{x:Bind ViewModel.ZoomLevel, Mode=OneWay}" />
     </Grid>
 </Page>

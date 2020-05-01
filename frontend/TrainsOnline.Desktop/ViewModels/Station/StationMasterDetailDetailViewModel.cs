@@ -2,8 +2,9 @@
 {
     using Caliburn.Micro;
     using TrainsOnline.Desktop.Domain.Station;
+    using TrainsOnline.Desktop.Views.Route;
 
-    public class StationMasterDetailDetailViewModel : Screen
+    public class StationMasterDetailDetailViewModel : Screen, IStationMasterDetailDetailView
     {
         public StationMasterDetailDetailViewModel(StationLookupModel item)
         {
@@ -12,5 +13,20 @@
 
         public StationLookupModel Item { get; }
         public GetStationDetailsResponse Details { get; set; }
+
+        public void ShowDestinationOnMap(GetStationDetailsResponse stationDetails)
+        {
+
+        }
+
+        public void ShowRouteOnMap(GetStationDetailsResponse stationDetails)
+        {
+
+        }
+
+        public void BuyTicket(GetStationDetailsResponse stationDetails)
+        {
+
+        }
     }
 }

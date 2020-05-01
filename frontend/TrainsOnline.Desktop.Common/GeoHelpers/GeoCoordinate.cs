@@ -39,8 +39,8 @@
         public override string ToString()
         {
             return ToString(GeoCoordinatePart.Latitude) + "; " + ToString(GeoCoordinatePart.Longitude);
-        }      
-        
+        }
+
         public string ToString(string separator)
         {
             return ToString(GeoCoordinatePart.Latitude) + separator + ToString(GeoCoordinatePart.Longitude);

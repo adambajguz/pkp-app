@@ -115,26 +115,53 @@
                             <DataTemplate xmlns:cal="http://www.caliburnproject.org">
                                 <StackPanel Orientation="Horizontal">
                                     <Button
+                                        x:Name="ShowOnMapButton"
+                                        Margin="0,4,4,4"
+                                        VerticalAlignment="Top"
+                                        micro:Message.Attach="[Event Click]=[ShowDepartureOnMap($dataContext)]"
+                                        Content="&#xE81A;"
+                                        FontFamily="Segoe MDL2 Assets"
+                                        ToolTipService.ToolTip="Show departure on map" />
+                                    <Button
+                                        x:Name="ShowOnMapButton"
+                                        Margin="0,4,4,4"
+                                        VerticalAlignment="Top"
+                                        micro:Message.Attach="[Event Click]=[ShowDestinationOnMap($dataContext)]"
+                                        Content="&#xE81A;"
+                                        FontFamily="Segoe MDL2 Assets"
+                                        ToolTipService.ToolTip="Show destination on map" />
+                                    <Button
+                                        x:Name="ShowRouteOnMapButton"
+                                        Margin="0,4,4,4"
+                                        VerticalAlignment="Top"
+                                        micro:Message.Attach="[Event Click]=[ShowRouteOnMap($dataContext)]"
+                                        Content="&#xF22C;"
+                                        FontFamily="Segoe MDL2 Assets"
+                                        ToolTipService.ToolTip="Show route on map" />
+                                    <Button
                                         x:Name="DeleteButton"
                                         Margin="0,4,4,0"
                                         VerticalAlignment="Top"
                                         micro:Message.Attach="[Event Click]=[DeleteRoute($dataContext)]"
                                         Content="&#xE74D;"
-                                        FontFamily="Segoe MDL2 Assets" />
-                                    <Button
+                                        FontFamily="Segoe MDL2 Assets"
+                                        ToolTipService.ToolTip="Delete route" />
+                                    <!--<Button
                                         x:Name="EditButton"
                                         Margin="0,4,4,4"
                                         VerticalAlignment="Top"
                                         micro:Message.Attach="[Event Click]=[EditRoute($dataContext)]"
                                         Content="&#xE70F;"
-                                        FontFamily="Segoe MDL2 Assets" />
+                                        FontFamily="Segoe MDL2 Assets"
+                                        ToolTipService.ToolTip="Edit route" />-->
                                     <Button
                                         x:Name="BuyTicker"
                                         Margin="0,4,0,4"
                                         VerticalAlignment="Top"
                                         micro:Message.Attach="[Event Click]=[BuyTicket($dataContext)]"
                                         Content="&#xE7BF;"
-                                        FontFamily="Segoe MDL2 Assets" />
+                                        FontFamily="Segoe MDL2 Assets"
+                                        ToolTipService.ToolTip="Buy a ticket" />
                                 </StackPanel>
                             </DataTemplate>
                         </controls:DataGridTemplateColumn.CellTemplate>
