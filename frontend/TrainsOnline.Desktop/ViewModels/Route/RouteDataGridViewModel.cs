@@ -13,7 +13,7 @@
         private GetRouteDetailsResponse _selecteditem;
         public GetRouteDetailsResponse Selecteditem
         {
-            get { return _selecteditem; }
+            get => _selecteditem;
             set
             {
                 _selecteditem = value;
