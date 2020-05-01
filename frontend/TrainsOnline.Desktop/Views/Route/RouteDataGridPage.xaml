@@ -91,7 +91,7 @@
                                     Margin="{StaticResource SmallLeftRightMargin}"
                                     HorizontalAlignment="Left"
                                     FontFamily="{ThemeResource SymbolThemeFontFamily}"
-                                    Glyph="&#xE816;" />
+                                    Glyph="&#xE81B;" />
                             </DataTemplate>
                         </controls:DataGridTemplateColumn.CellTemplate>
                     </controls:DataGridTemplateColumn>

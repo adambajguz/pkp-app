@@ -57,20 +57,36 @@
                 helpers:NavHelper.NavigateTo="viewsexample:ExampleMapPage"
                 Icon="Document" />
 
-            <winui:NavigationViewItem
-                x:Uid="Shell_StationMasterDetail"
-                helpers:NavHelper.NavigateTo="viewsstation:StationMasterDetailPage"
-                Icon="Document" />
+            <winui:NavigationViewItem x:Uid="Shell_StationMasterDetail" helpers:NavHelper.NavigateTo="viewsstation:StationMasterDetailPage">
+                <winui:NavigationViewItem.Icon>
+                    <FontIcon
+                        Margin="{StaticResource SmallLeftRightMargin}"
+                        HorizontalAlignment="Left"
+                        FontFamily="{ThemeResource SymbolThemeFontFamily}"
+                        Glyph="&#xE7C0;" />
+                </winui:NavigationViewItem.Icon>
+            </winui:NavigationViewItem>
 
-            <winui:NavigationViewItem
-                x:Uid="Shell_RouteDataGrid"
-                helpers:NavHelper.NavigateTo="viewsroute:RouteDataGridPage"
-                Icon="Document" />
+            <winui:NavigationViewItem x:Uid="Shell_RouteDataGrid" helpers:NavHelper.NavigateTo="viewsroute:RouteDataGridPage">
+                <winui:NavigationViewItem.Icon>
+                    <FontIcon
+                        Margin="{StaticResource SmallLeftRightMargin}"
+                        HorizontalAlignment="Left"
+                        FontFamily="{ThemeResource SymbolThemeFontFamily}"
+                        Glyph="&#xE816;" />
+                </winui:NavigationViewItem.Icon>
+            </winui:NavigationViewItem>
 
-            <winui:NavigationViewItem
-                x:Uid="Shell_TicketContentGrid"
-                helpers:NavHelper.NavigateTo="viewsticket:TicketContentGridPage"
-                Icon="Document" />
+            <winui:NavigationViewItem x:Uid="Shell_TicketContentGrid" helpers:NavHelper.NavigateTo="viewsticket:TicketContentGridPage">
+                <winui:NavigationViewItem.Icon>
+                    <FontIcon
+                        Margin="{StaticResource SmallLeftRightMargin}"
+                        HorizontalAlignment="Left"
+                        FontFamily="{ThemeResource SymbolThemeFontFamily}"
+                        Glyph="&#xE963;" />
+                </winui:NavigationViewItem.Icon>
+            </winui:NavigationViewItem>
+
         </winui:NavigationView.MenuItems>
         <i:Interaction.Behaviors>
             <behaviors:NavigationViewHeaderBehavior x:Name="navigationViewHeaderBehavior" DefaultHeader="{x:Bind ViewModel.Selected.Content, Mode=OneWay}">
