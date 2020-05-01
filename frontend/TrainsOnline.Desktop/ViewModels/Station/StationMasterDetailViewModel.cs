@@ -9,10 +9,13 @@
 
     public class StationMasterDetailViewModel : Conductor<StationMasterDetailDetailViewModel>.Collection.OneActive
     {
+        private INavigationService NavService { get; }
         private IRemoteDataProviderService RemoteDataProvider { get; }
 
-        public StationMasterDetailViewModel(IRemoteDataProviderService remoteDataProvider)
+        public StationMasterDetailViewModel(INavigationService navigationService,
+                                            IRemoteDataProviderService remoteDataProvider)
         {
+            NavService = navigationService;
             RemoteDataProvider = remoteDataProvider;
         }
 
@@ -30,7 +33,7 @@
             GetStationsListResponse data = await RemoteDataProvider.GetStations();
 
             IEnumerable<StationMasterDetailDetailViewModel> items = data.Stations.OrderBy(x => x.Name)
-                                                                                 .Select(d => new StationMasterDetailDetailViewModel(d));
+                                                                                 .Select(d => new StationMasterDetailDetailViewModel(NavService, d));
 
             Items.AddRange(items);
         }
