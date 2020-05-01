@@ -5,6 +5,7 @@
 
     internal interface IRouteDataGridViewEvents
     {
+        void ShowDepartureOnMap(GetRouteDetailsResponse route);
         void ShowDestinationOnMap(GetRouteDetailsResponse route);
         void ShowRouteOnMap(GetRouteDetailsResponse route);
         void DeleteRoute(GetRouteDetailsResponse route);

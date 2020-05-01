@@ -5,26 +5,28 @@
     using System.Threading.Tasks;
     using Caliburn.Micro;
     using Microsoft.Toolkit.Uwp.UI.Controls;
-    using TrainsOnline.Desktop.Application.Events;
     using TrainsOnline.Desktop.Application.Interfaces;
+    using TrainsOnline.Desktop.Common.GeoHelpers;
     using TrainsOnline.Desktop.Domain.DTO.Route;
+    using TrainsOnline.Desktop.Domain.Models.General;
+    using TrainsOnline.Desktop.ViewModels.General;
     using TrainsOnline.Desktop.Views.Route;
     using Windows.UI.Xaml.Data;
     using static TrainsOnline.Desktop.Domain.DTO.Route.GetRoutesListResponse;
 
     public class RouteDataGridViewModel : Screen, IRouteDataGridViewEvents
     {
-        private IEventAggregator Events { get; }
+        private INavigationService NavService { get; }
         private IRemoteDataProviderService RemoteDataProvider { get; }
 
         public ObservableCollection<GroupInfoCollection<GetRouteDetailsResponse>> Source { get; } = new ObservableCollection<GroupInfoCollection<GetRouteDetailsResponse>>();
         public CollectionViewSource GroupedSource { get; } = new CollectionViewSource();
 
-        public RouteDataGridViewModel(IEventAggregator events,
+        public RouteDataGridViewModel(INavigationService navigationService,
                                       IRemoteDataProviderService remoteDataProvider)
         {
+            NavService = navigationService;
             RemoteDataProvider = remoteDataProvider;
-            Events = events;
         }
 
         public async Task LoadDataAsync()
@@ -64,14 +66,32 @@
             GroupedSource.Source = Source;
         }
 
-        public async void ShowDestinationOnMap(GetRouteDetailsResponse route)
+        public void ShowDepartureOnMap(GetRouteDetailsResponse route)
         {
-            await Events.PublishOnUIThreadAsync(new ShowOnMapEvent(route.To.Latitude, route.To.Longitude));
+            GeoCoordinate[] coords = new GeoCoordinate[] {
+                new GeoCoordinate(route.From.Latitude, route.From.Longitude)
+            };
+
+            NavService.NavigateToViewModel<GeneralMapViewModel>(new GeneralMapViewParameters(coords));
         }
 
-        public async void ShowRouteOnMap(GetRouteDetailsResponse route)
+        public void ShowDestinationOnMap(GetRouteDetailsResponse route)
         {
-            await Events.PublishOnUIThreadAsync(new ShowRouteOnMapEvent(route.From.Latitude, route.From.Longitude, route.To.Latitude, route.To.Longitude));
+            GeoCoordinate[] coords = new GeoCoordinate[] {
+                new GeoCoordinate(route.To.Latitude, route.To.Longitude)
+            };
+
+            NavService.NavigateToViewModel<GeneralMapViewModel>(new GeneralMapViewParameters(coords));
+        }
+
+        public void ShowRouteOnMap(GetRouteDetailsResponse route)
+        {
+            GeoCoordinate[] coords = new GeoCoordinate[] {
+                new GeoCoordinate(route.From.Latitude, route.From.Longitude),
+                new GeoCoordinate(route.To.Latitude, route.To.Longitude)
+            };
+
+            NavService.NavigateToViewModel<GeneralMapViewModel>(new GeneralMapViewParameters(coords));
         }
 
         public void DeleteRoute(GetRouteDetailsResponse route)

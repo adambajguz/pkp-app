@@ -4,21 +4,23 @@
 
     public class GeoCoordinate
     {
+        public double RawLatitude { get; }
+        public double RawLongitude { get; }
+
         public GeoAngle Latitude { get; }
         public GeoAngle Longitude { get; }
 
-        public GeoCoordinate(GeoAngle latitude, GeoAngle longitude)
+        public GeoCoordinate(double latitude, double longitude)
         {
-            Latitude = latitude;
-            Longitude = longitude;
+            RawLatitude = latitude;
+            RawLongitude = longitude;
+            Latitude = GeoAngle.FromDouble(latitude);
+            Longitude = GeoAngle.FromDouble(longitude);
         }
 
         public static GeoCoordinate FromDouble(double latitude, double longitude)
         {
-            GeoAngle lat = GeoAngle.FromDouble(latitude);
-            GeoAngle lon = GeoAngle.FromDouble(longitude);
-
-            return new GeoCoordinate(lat, lon);
+            return new GeoCoordinate(latitude, longitude);
         }
 
         public GeoAngle GetPart(GeoCoordinatePart type)

@@ -1,17 +1,18 @@
 ﻿namespace TrainsOnline.Desktop.ViewModels.General
 {
     using Caliburn.Micro;
-    using TrainsOnline.Desktop.Application.Events;
+    using TrainsOnline.Desktop.Common.GeoHelpers;
+    using TrainsOnline.Desktop.Domain.Models.General;
     using TrainsOnline.Desktop.Helpers;
     using TrainsOnline.Desktop.Views.Example;
+    using TrainsOnline.Desktop.Views.General;
     using Windows.Devices.Geolocation;
 
-    public class GeneralMapViewModel : Screen, IHandle<ShowOnMapEvent>, IHandle<ShowRouteOnMapEvent>
+    public class GeneralMapViewModel : Screen, IGeneralMapViewEvents
     {
-        private IEventAggregator Events { get; }
-
         // TODO WTS: Set your preferred default zoom level
         private const double DefaultZoomLevel = 17;
+        private const double DefaultZoomStep = 0.1;
 
         // TODO WTS: Set your preferred default location if a geolock can't be found.
         private readonly BasicGeoposition _defaultPosition = new BasicGeoposition()
@@ -44,37 +45,57 @@
             set => Set(ref _mapServiceToken, value);
         }
 
-        public GeneralMapViewModel(IEventAggregator events)
-        {
-            Events = events;
-            Events.Subscribe(this);
+        public GeneralMapViewParameters Parameter { get; set; }
 
+        public GeneralMapViewModel()
+        {
             Center = new Geopoint(_defaultPosition);
             ZoomLevel = DefaultZoomLevel;
-        }
-
-        void IHandle<ShowOnMapEvent>.Handle(ShowOnMapEvent message)
-        {
-
-        }
-
-        void IHandle<ShowRouteOnMapEvent>.Handle(ShowRouteOnMapEvent message)
-        {
-
         }
 
         protected override void OnInitialize()
         {
             base.OnInitialize();
 
-
-            Center = new Geopoint(_defaultPosition);
+            SetCenter();
 
             // TODO WTS: Set your map service token. If you don't have one, request from https://www.bingmapsportal.com/
             MapServiceToken = "ioTqhTtWjH1AHQSTdqM3~cwrvRdJBaUYH_uufKdr50g~Au3dHttbUXjJxBL8I9fV6ItiDau37iX6PKfggfU9nq2VgR8IsSoOVYICu88E93in"; //TODO: add to some sort of config
             IExampleMapView view = GetView() as IExampleMapView;
 
             view?.AddMapIcon(Center, "Map_YourLocation".GetLocalized());
+        }
+
+        private void SetCenter()
+        {
+            if (Parameter.GeoCoordinates.Length > 0)
+            {
+                Center = new Geopoint(new BasicGeoposition
+                {
+                    Latitude = Parameter.GeoCoordinates[0].RawLatitude,
+                    Longitude = Parameter.GeoCoordinates[0].RawLongitude
+                });
+            }
+        }
+
+        public void ResetView()
+        {
+            SetCenter();
+        }
+
+        public void ZoomOut()
+        {
+            ZoomLevel -= DefaultZoomStep;
+        }
+
+        public void ResetZoom()
+        {
+            ZoomLevel = DefaultZoomLevel;
+        }
+
+        public void ZoomIn()
+        {
+            ZoomLevel += DefaultZoomStep;
         }
     }
 }
