@@ -5,7 +5,7 @@
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:model="using:TrainsOnline.Desktop.Domain.Models"
+    xmlns:model="using:TrainsOnline.Desktop.Domain.Route"
     Style="{StaticResource PageStyle}"
     mc:Ignorable="d">
     <Grid x:Name="ContentArea" Margin="{StaticResource SmallLeftRightMargin}">
@@ -20,23 +20,24 @@
                         Remove this column definitions and define columns for your data.
                         Consider adding header properties to Resources.resw
                     -->
-                    <controls:DataGridTextColumn Binding="{Binding OrderID}" Header="OrderID" />
-                    <controls:DataGridTextColumn Binding="{Binding OrderDate}" Header="OrderDate" />
-                    <controls:DataGridTextColumn Binding="{Binding Company}" Header="Company" />
-                    <controls:DataGridTextColumn Binding="{Binding ShipTo}" Header="ShipTo" />
-                    <controls:DataGridTextColumn Binding="{Binding OrderTotal}" Header="OrderTotal" />
-                    <controls:DataGridTextColumn Binding="{Binding Status}" Header="Status" />
+                    <controls:DataGridTextColumn Binding="{Binding Id}" Header="RID" />
                     <controls:DataGridTemplateColumn Header="Symbol">
                         <controls:DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate x:DataType="model:SampleOrder">
+                            <DataTemplate x:DataType="model:GetRouteDetailsResponse">
                                 <FontIcon
                                     Margin="{StaticResource SmallLeftRightMargin}"
                                     HorizontalAlignment="Left"
                                     FontFamily="{ThemeResource SymbolThemeFontFamily}"
-                                    Glyph="{x:Bind Symbol}" />
+                                    Glyph="&#xE816;" />
                             </DataTemplate>
                         </controls:DataGridTemplateColumn.CellTemplate>
                     </controls:DataGridTemplateColumn>
+                    <controls:DataGridTextColumn Binding="{Binding From.Name}" Header="From" />
+                    <controls:DataGridTextColumn Binding="{Binding To.Name}" Header="To" />
+                    <controls:DataGridTextColumn Binding="{Binding DepartureTime}" Header="DepartureTime" />
+                    <controls:DataGridTextColumn Binding="{Binding Duration}" Header="Duration" />
+                    <controls:DataGridTextColumn Binding="{Binding Distance}" Header="Distance" />
+                    <controls:DataGridTextColumn Binding="{Binding TicketPrice}" Header="TicketPrice" />
                 </controls:DataGrid.Columns>
             </controls:DataGrid>
         </Grid>
