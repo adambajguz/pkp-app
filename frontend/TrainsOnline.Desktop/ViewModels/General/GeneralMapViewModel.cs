@@ -61,9 +61,18 @@
 
             // TODO WTS: Set your map service token. If you don't have one, request from https://www.bingmapsportal.com/
             MapServiceToken = "ioTqhTtWjH1AHQSTdqM3~cwrvRdJBaUYH_uufKdr50g~Au3dHttbUXjJxBL8I9fV6ItiDau37iX6PKfggfU9nq2VgR8IsSoOVYICu88E93in"; //TODO: add to some sort of config
-            IExampleMapView view = GetView() as IExampleMapView;
+            IGeneralMapView view = GetView() as IGeneralMapView;
 
-            view?.AddMapIcon(Center, "Map_YourLocation".GetLocalized());
+            view?.AddMapIcon(Center, "#1");
+
+            for (int i = 1; i < Parameter.GeoCoordinates.Length; ++i)
+            {
+                view?.AddMapIcon(new Geopoint(new BasicGeoposition
+                {
+                    Latitude = Parameter.GeoCoordinates[i].RawLatitude,
+                    Longitude = Parameter.GeoCoordinates[i].RawLongitude
+                }), $"#{i + 1}");
+            }
         }
 
         private void SetCenter()
