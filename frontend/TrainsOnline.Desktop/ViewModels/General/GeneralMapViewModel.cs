@@ -1,10 +1,7 @@
 ﻿namespace TrainsOnline.Desktop.ViewModels.General
 {
     using Caliburn.Micro;
-    using TrainsOnline.Desktop.Common.GeoHelpers;
     using TrainsOnline.Desktop.Domain.Models.General;
-    using TrainsOnline.Desktop.Helpers;
-    using TrainsOnline.Desktop.Views.Example;
     using TrainsOnline.Desktop.Views.General;
     using Windows.Devices.Geolocation;
 

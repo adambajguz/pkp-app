@@ -1,4 +1,4 @@
-﻿namespace TrainsOnline.Application.Handlers.UserHandlers.Commands.ChangePassword
+﻿namespace TrainsOnline.Desktop.Domain.DTO.Authentication
 {
     using System;
     using TrainsOnline.Desktop.Domain.DTO;
