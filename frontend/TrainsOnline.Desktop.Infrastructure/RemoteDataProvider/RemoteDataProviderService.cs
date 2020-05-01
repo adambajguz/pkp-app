@@ -10,6 +10,7 @@
     using TrainsOnline.Desktop.Domain.DTO.Station;
     using TrainsOnline.Desktop.Domain.DTO.Ticket;
     using TrainsOnline.Desktop.Domain.DTO.User;
+    using TrainsOnline.Desktop.Infrastructure.Extensions;
 
     public class RemoteDataProviderService : IRemoteDataProviderService
     {
@@ -17,7 +18,7 @@
 
         public bool UseSoapApi { get; set; }
 
-        public bool IsAuthenticated { get; private set; }
+        public bool IsAuthenticated { get => !string.IsNullOrWhiteSpace(Token); }
         protected string Token { get; private set; }
 
         private RestClient Client { get; }
@@ -35,15 +36,11 @@
             JwtTokenModel jwtTokenModel = await Client.PostAsync<JwtTokenModel>(request);
             Token = jwtTokenModel?.Token;
 
-            if (jwtTokenModel?.Token != null)
-                IsAuthenticated = true;
-
             return jwtTokenModel;
         }
 
         public void Logout()
         {
-            IsAuthenticated = false;
             Token = string.Empty;
         }
 
@@ -100,7 +97,8 @@
             }
 
             RestRequest request = new RestRequest("api/ticket/create}", DataFormat.Json);
-            request.AddJsonBody(data);
+            request.AddJsonBody(data)
+                   .AddBearerAuthentication(Token);
 
             return await Client.GetAsync<IdResponse>(request);
         }
@@ -113,7 +111,8 @@
             }
 
             RestRequest request = new RestRequest("api/ticket/get/{id}", DataFormat.Json);
-            request.AddParameter("id", id, ParameterType.UrlSegment);
+            request.AddParameter("id", id, ParameterType.UrlSegment)
+                   .AddBearerAuthentication(Token);
 
             return await Client.GetAsync<GetTicketDetailsResponse>(request);
         }
@@ -126,7 +125,8 @@
             }
 
             RestRequest request = new RestRequest("api/ticket/get-document/{id}", DataFormat.Json);
-            request.AddParameter("id", id, ParameterType.UrlSegment);
+            request.AddParameter("id", id, ParameterType.UrlSegment)
+                   .AddBearerAuthentication(Token);
 
             return await Client.GetAsync<GetTicketDocumentResponse>(request);
         }
@@ -139,7 +139,7 @@
             }
 
             RestRequest request = new RestRequest("api/ticket/get-all-current-user", DataFormat.Json);
-            request.AddHeader("Authorization", $"Bearer {Token}");
+            request.AddBearerAuthentication(Token);
 
             return await Client.GetAsync<GetUserTicketsListResponse>(request);
         }
