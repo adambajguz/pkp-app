@@ -41,7 +41,6 @@
             if (data is null)
                 return;
 
-            // TODO WTS: Replace this with your actual data
             foreach (UserTicketLookupModel ticket in data.Tickets)
             {
                 Source.Add(ticket);

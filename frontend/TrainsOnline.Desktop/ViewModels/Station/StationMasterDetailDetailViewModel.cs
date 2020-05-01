@@ -16,9 +16,12 @@
         private INavigationService NavService { get; }
         private IRemoteDataProviderService RemoteDataProvider { get; }
 
-        public StationMasterDetailDetailViewModel(INavigationService navigationService, IRemoteDataProviderService remoteDataProvider, StationLookupModel item)
+        public StationMasterDetailDetailViewModel(INavigationService navigationService,
+                                                  IRemoteDataProviderService remoteDataProvider,
+                                                  StationLookupModel item)
         {
             NavService = navigationService;
+            RemoteDataProvider = remoteDataProvider;
             Item = item;
         }
 

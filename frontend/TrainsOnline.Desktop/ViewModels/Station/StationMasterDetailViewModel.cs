@@ -38,11 +38,14 @@
             Items.AddRange(items);
         }
 
-        public override async void ActivateItem(StationMasterDetailDetailViewModel detailsView)
+        public override async void ActivateItem(StationMasterDetailDetailViewModel item)
         {
-            base.ActivateItem(detailsView);
+            if (item is null)
+                return;
 
-            await detailsView?.LoadDetails();
+            base.ActivateItem(item);
+
+            await item.LoadDetails();
         }
     }
 }
