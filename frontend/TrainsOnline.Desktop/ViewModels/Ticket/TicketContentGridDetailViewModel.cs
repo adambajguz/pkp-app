@@ -5,6 +5,7 @@
     using Caliburn.Micro;
     using TrainsOnline.Desktop.Application.Interfaces;
     using TrainsOnline.Desktop.Domain.DTO.Ticket;
+    using TrainsOnline.Desktop.Domain.Models.Ticket;
     using TrainsOnline.Desktop.Services;
 
     public class TicketContentGridDetailViewModel : Screen
@@ -19,6 +20,8 @@
             set => Set(ref _item, value);
         }
 
+        public TicketContentGridDetailsParameters Parameter { get; set; }
+
         public TicketContentGridDetailViewModel(IConnectedAnimationService connectedAnimationService,
                                                 IRemoteDataProviderService remoteDataProvider)
         {
@@ -26,9 +29,9 @@
             RemoteDataProvider = remoteDataProvider;
         }
 
-        public async Task InitializeAsync(Guid orderID)
+        public async Task InitializeAsync()
         {
-            GetTicketDetailsResponse data = await RemoteDataProvider.GetTicket(orderID);
+            GetTicketDetailsResponse data = await RemoteDataProvider.GetTicket(Parameter.TicketId);
 
             Item = data;
         }

@@ -5,8 +5,8 @@
     using Caliburn.Micro;
     using TrainsOnline.Desktop.Application.Interfaces;
     using TrainsOnline.Desktop.Domain.DTO.Ticket;
+    using TrainsOnline.Desktop.Domain.Models.Ticket;
     using TrainsOnline.Desktop.Services;
-    using TrainsOnline.Desktop.Views.Example;
     using TrainsOnline.Desktop.Views.Ticket;
 
     public class TicketContentGridViewModel : Screen, ITicketContentGridViewEvents
@@ -52,7 +52,7 @@
             if (clickedItem != null)
             {
                 _connectedAnimationService.SetListDataItemForNextConnectedAnimation(clickedItem);
-                _navigationService.Navigate(typeof(ExampleContentGridDetailPage), clickedItem.Id);
+                _navigationService.NavigateToViewModel<TicketContentGridDetailViewModel>(new TicketContentGridDetailsParameters(clickedItem.Id));
             }
         }
     }

@@ -15,7 +15,7 @@
 
             if (double.TryParse(text, NumberStyles.Float | NumberStyles.AllowThousands, CultureInfo.InvariantCulture, out double dbl))
             {
-                text = dbl.ToString("0.00 km", CultureInfo.InvariantCulture);
+                text = dbl.ToString("0.0 km", CultureInfo.InvariantCulture);
             }
 
             return text;
