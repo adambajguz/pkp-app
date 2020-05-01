@@ -3,24 +3,35 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    xmlns:converters="using:TrainsOnline.Desktop.Converters"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:micro="using:Caliburn.Micro"
     xmlns:model="using:TrainsOnline.Desktop.Domain.Route"
     Style="{StaticResource PageStyle}"
     mc:Ignorable="d">
+
+    <Page.Resources>
+        <converters:DateTimeFormatterConverter x:Key="DateTimeFormatterConverter" />
+        <converters:DistanceFormatterConverter x:Key="DistanceFormatterConverter" />
+        <converters:CurrencyFormatterConverter x:Key="CurrencyFormatterConverter" />
+    </Page.Resources>
+
     <Grid x:Name="ContentArea" Margin="{StaticResource SmallLeftRightMargin}">
         <Grid>
             <controls:DataGrid
                 AutoGenerateColumns="False"
+                CanUserSortColumns="False"
                 GridLinesVisibility="Horizontal"
-                ItemsSource="{x:Bind ViewModel.Source, Mode=OneWay}">
+                ItemsSource="{x:Bind ViewModel.Source, Mode=OneWay}"
+                SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
                 <controls:DataGrid.Columns>
                     <!--
                         TODO WTS:
                         Remove this column definitions and define columns for your data.
                         Consider adding header properties to Resources.resw
                     -->
-                    <controls:DataGridTextColumn Binding="{Binding Id}" Header="RID" />
+                    <!--<controls:DataGridTextColumn Binding="{Binding Id}" Header="RID" />-->
                     <controls:DataGridTemplateColumn Header="Symbol">
                         <controls:DataGridTemplateColumn.CellTemplate>
                             <DataTemplate x:DataType="model:GetRouteDetailsResponse">
@@ -34,10 +45,40 @@
                     </controls:DataGridTemplateColumn>
                     <controls:DataGridTextColumn Binding="{Binding From.Name}" Header="From" />
                     <controls:DataGridTextColumn Binding="{Binding To.Name}" Header="To" />
-                    <controls:DataGridTextColumn Binding="{Binding DepartureTime}" Header="DepartureTime" />
+                    <controls:DataGridTextColumn Binding="{Binding DepartureTime, Converter={StaticResource DateTimeFormatterConverter}}" Header="Departure" />
+                    <controls:DataGridTextColumn Binding="{Binding ArrivalTime, Converter={StaticResource DateTimeFormatterConverter}}" Header="Arrival" />
                     <controls:DataGridTextColumn Binding="{Binding Duration}" Header="Duration" />
-                    <controls:DataGridTextColumn Binding="{Binding Distance}" Header="Distance" />
-                    <controls:DataGridTextColumn Binding="{Binding TicketPrice}" Header="TicketPrice" />
+                    <controls:DataGridTextColumn Binding="{Binding Distance, Converter={StaticResource DistanceFormatterConverter}}" Header="Distance" />
+                    <controls:DataGridTextColumn Binding="{Binding TicketPrice, Converter={StaticResource CurrencyFormatterConverter}}" Header="Ticket price" />
+                    <controls:DataGridTemplateColumn Header="Actions">
+                        <controls:DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate xmlns:cal="http://www.caliburnproject.org" xmlns:i="using:Microsoft.Xaml.Interactivity">
+                                <StackPanel Orientation="Horizontal">
+                                    <Button
+                                        x:Name="DeleteButton"
+                                        Margin="0,5,5,0"
+                                        VerticalAlignment="Top"
+                                        micro:Message.Attach="[Event Click]=[DeleteRoute($dataContext)]"
+                                        Content="&#xE74D;"
+                                        FontFamily="Segoe MDL2 Assets" />
+                                    <Button
+                                        x:Name="EditButton"
+                                        Margin="0,5,5,0"
+                                        VerticalAlignment="Top"
+                                        micro:Message.Attach="[Event Click]=[EditRoute($dataContext)]"
+                                        Content="&#xE70F;"
+                                        FontFamily="Segoe MDL2 Assets" />
+                                    <Button
+                                        x:Name="BuyTicker"
+                                        Margin="0,5,0,0"
+                                        VerticalAlignment="Top"
+                                        micro:Message.Attach="[Event Click]=[BuyTicket($dataContext)]"
+                                        Content="&#xE7BF;"
+                                        FontFamily="Segoe MDL2 Assets" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </controls:DataGridTemplateColumn.CellTemplate>
+                    </controls:DataGridTemplateColumn>
                 </controls:DataGrid.Columns>
             </controls:DataGrid>
         </Grid>

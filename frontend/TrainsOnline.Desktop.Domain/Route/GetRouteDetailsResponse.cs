@@ -19,6 +19,7 @@
         public RouteStationLookupModel To { get; set; }
 
         public DateTime DepartureTime { get; set; }
+        public DateTime ArrivalTime { get => DepartureTime.Add(Duration); }
         public TimeSpan Duration { get; set; }
         public double Distance { get; set; }
         public double TicketPrice { get; set; }
