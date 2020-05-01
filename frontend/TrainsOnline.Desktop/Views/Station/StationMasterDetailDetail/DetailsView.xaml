@@ -46,7 +46,7 @@
                         Margin="{StaticResource SmallTopMargin}"
                         Style="{StaticResource DetailSubTitleStyle}"
                         Text="Coordinates" />
-                    <StackPanel Orientation="Horizontal"
+                    <StackPanel Orientation="Horizontal">
                         <TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}" Text="{x:Bind ViewModel.Details.Coordinates, Mode=OneWay}" />
                         <Button
                             x:Name="ShowStationOnMapButton"
