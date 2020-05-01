@@ -31,7 +31,7 @@
         <DataTemplate x:Key="NoSelectionContentTemplate">
             <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
                 <TextBlock
-                    x:Uid="ExampleMasterDetail_NoSelection"
+                    x:Uid="StationMasterDetail_NoSelection"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
                     Style="{StaticResource SubtitleTextBlockStyle}"
@@ -64,7 +64,7 @@
     <Grid x:Name="ContentArea">
         <controls:MasterDetailsView
             x:Name="MasterDetailsViewControl"
-            x:Uid="ExampleMasterDetail"
+            x:Uid="StationMasterDetail"
             BackButtonBehavior="Automatic"
             Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}"
             BorderBrush="Transparent"

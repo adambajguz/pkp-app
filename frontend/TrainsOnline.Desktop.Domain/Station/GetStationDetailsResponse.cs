@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using TrainsOnline.Desktop.Common.GeoHelpers;
     using TrainsOnline.Desktop.Domain.DTO;
 
     public class GetStationDetailsResponse : IDataTransferObject
@@ -17,6 +18,8 @@
 
         public double Latitude { get; set; }
         public double Longitude { get; set; }
+
+        public GeoCoordinate Coordinates { get => GeoCoordinate.FromDouble(Latitude, Longitude); }
 
         public List<RouteDeparturesLookupModel> Departures { get; set; }
 
@@ -40,6 +43,8 @@
 
                 public double Latitude { get; set; }
                 public double Longitude { get; set; }
+
+                public GeoCoordinate Coordinates { get => GeoCoordinate.FromDouble(Latitude, Longitude); }
             }
         }
     }

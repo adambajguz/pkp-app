@@ -34,56 +34,62 @@
             <winui:NavigationViewItem
                 x:Uid="Shell_Home"
                 helpers:NavHelper.NavigateTo="views:HomePage"
-                Icon="Document" />
+                Icon="Home" />
+            <winui:NavigationViewItemSeparator />
 
-            <winui:NavigationViewItem
-                x:Uid="Shell_ExampleBlank"
-                helpers:NavHelper.NavigateTo="viewsexample:ExampleBlankPage"
-                Icon="Document" />
-            <winui:NavigationViewItem
-                x:Uid="Shell_ExampleMasterDetail"
-                helpers:NavHelper.NavigateTo="viewsexample:ExampleMasterDetailPage"
-                Icon="Document" />
-            <winui:NavigationViewItem
-                x:Uid="Shell_ExampleContentGrid"
-                helpers:NavHelper.NavigateTo="viewsexample:ExampleContentGridPage"
-                Icon="Document" />
-            <winui:NavigationViewItem
-                x:Uid="Shell_ExampleDataGrid"
-                helpers:NavHelper.NavigateTo="viewsexample:ExampleDataGridPage"
-                Icon="Document" />
-            <winui:NavigationViewItem
-                x:Uid="Shell_ExampleMap"
-                helpers:NavHelper.NavigateTo="viewsexample:ExampleMapPage"
-                Icon="Document" />
+            <winui:NavigationViewItem x:Uid="Shell_ExampleBlank" helpers:NavHelper.NavigateTo="viewsexample:ExampleBlankPage">
+                <winui:NavigationViewItem.Icon>
+                    <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xE7C3;" />
+                </winui:NavigationViewItem.Icon>
+            </winui:NavigationViewItem>
+
+            <winui:NavigationViewItem x:Uid="Shell_ExampleMasterDetail" helpers:NavHelper.NavigateTo="viewsexample:ExampleMasterDetailPage">
+                <winui:NavigationViewItem.Icon>
+                    <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xE779;" />
+                </winui:NavigationViewItem.Icon>
+            </winui:NavigationViewItem>
+
+            <winui:NavigationViewItem x:Uid="Shell_ExampleContentGrid" helpers:NavHelper.NavigateTo="viewsexample:ExampleContentGridPage">
+                <winui:NavigationViewItem.Icon>
+                    <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xE74C;" />
+                </winui:NavigationViewItem.Icon>
+            </winui:NavigationViewItem>
+
+            <winui:NavigationViewItem x:Uid="Shell_ExampleDataGrid" helpers:NavHelper.NavigateTo="viewsexample:ExampleDataGridPage">
+                <winui:NavigationViewItem.Icon>
+                    <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xE80A;" />
+                </winui:NavigationViewItem.Icon>
+            </winui:NavigationViewItem>
+
+            <winui:NavigationViewItem x:Uid="Shell_ExampleMap" helpers:NavHelper.NavigateTo="viewsexample:ExampleMapPage">
+                <winui:NavigationViewItem.Icon>
+                    <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xE826;" />
+                </winui:NavigationViewItem.Icon>
+            </winui:NavigationViewItem>
+            <winui:NavigationViewItemSeparator />
 
             <winui:NavigationViewItem x:Uid="Shell_StationMasterDetail" helpers:NavHelper.NavigateTo="viewsstation:StationMasterDetailPage">
                 <winui:NavigationViewItem.Icon>
-                    <FontIcon
-                        Margin="{StaticResource SmallLeftRightMargin}"
-                        HorizontalAlignment="Left"
-                        FontFamily="{ThemeResource SymbolThemeFontFamily}"
-                        Glyph="&#xE7C0;" />
+                    <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xE7C0;" />
                 </winui:NavigationViewItem.Icon>
             </winui:NavigationViewItem>
 
             <winui:NavigationViewItem x:Uid="Shell_RouteDataGrid" helpers:NavHelper.NavigateTo="viewsroute:RouteDataGridPage">
                 <winui:NavigationViewItem.Icon>
-                    <FontIcon
-                        Margin="{StaticResource SmallLeftRightMargin}"
-                        HorizontalAlignment="Left"
-                        FontFamily="{ThemeResource SymbolThemeFontFamily}"
-                        Glyph="&#xE816;" />
+                    <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xE816;" />
                 </winui:NavigationViewItem.Icon>
             </winui:NavigationViewItem>
 
             <winui:NavigationViewItem x:Uid="Shell_TicketContentGrid" helpers:NavHelper.NavigateTo="viewsticket:TicketContentGridPage">
                 <winui:NavigationViewItem.Icon>
-                    <FontIcon
-                        Margin="{StaticResource SmallLeftRightMargin}"
-                        HorizontalAlignment="Left"
-                        FontFamily="{ThemeResource SymbolThemeFontFamily}"
-                        Glyph="&#xE963;" />
+                    <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xE963;" />
+                </winui:NavigationViewItem.Icon>
+            </winui:NavigationViewItem>
+            <winui:NavigationViewItemSeparator />
+
+            <winui:NavigationViewItem x:Uid="Shell_UserAccount" helpers:NavHelper.NavigateTo="viewsticket:TicketContentGridPage">
+                <winui:NavigationViewItem.Icon>
+                    <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xE77B;" />
                 </winui:NavigationViewItem.Icon>
             </winui:NavigationViewItem>
 

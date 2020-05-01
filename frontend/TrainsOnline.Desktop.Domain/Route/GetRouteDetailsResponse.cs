@@ -1,6 +1,7 @@
 ﻿namespace TrainsOnline.Desktop.Domain.Route
 {
     using System;
+    using TrainsOnline.Desktop.Common.GeoHelpers;
     using TrainsOnline.Desktop.Domain.DTO;
 
     public class GetRouteDetailsResponse : IDataTransferObject
@@ -32,6 +33,8 @@
 
             public double Latitude { get; set; }
             public double Longitude { get; set; }
+
+            public GeoCoordinate Coordinates { get => GeoCoordinate.FromDouble(Latitude, Longitude); }
         }
     }
 }

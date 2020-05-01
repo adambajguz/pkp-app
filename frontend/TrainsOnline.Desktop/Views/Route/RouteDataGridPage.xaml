@@ -25,6 +25,7 @@
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
@@ -41,11 +42,11 @@
                             Grid.Column="0"
                             Orientation="Horizontal">
                             <TextBlock Text="Departure from '" />
-                            <TextBlock HorizontalAlignment="Right" Text="{Binding From.Name}" />
+                            <TextBlock Text="{Binding From.Name}" />
                             <TextBlock Text="' at '" />
-                            <TextBlock HorizontalAlignment="Right" Text="{Binding DepartureTime, Converter={StaticResource DateTimeFormatterConverter}}" />
+                            <TextBlock Text="{Binding DepartureTime, Converter={StaticResource DateTimeFormatterConverter}}" />
                             <TextBlock Text="' to '" />
-                            <TextBlock HorizontalAlignment="Right" Text="{Binding To.Name}" />
+                            <TextBlock Text="{Binding To.Name}" />
                             <TextBlock Text="''" />
                         </StackPanel>
 
@@ -54,12 +55,22 @@
                             Grid.Column="0"
                             Orientation="Horizontal">
                             <TextBlock Text="Arrival in '" />
-                            <TextBlock HorizontalAlignment="Right" Text="{Binding To.Name}" />
+                            <TextBlock Text="{Binding To.Name}" />
                             <TextBlock Text="' at '" />
                             <TextBlock FontSize="13" Text="{Binding ArrivalTime, Converter={StaticResource DateTimeFormatterConverter}}" />
                             <TextBlock Text="' after '" />
-                            <TextBlock HorizontalAlignment="Right" Text="{Binding Duration}" />
+                            <TextBlock Text="{Binding Duration}" />
                             <TextBlock Text="''" />
+                        </StackPanel>
+
+                        <StackPanel
+                            Grid.Row="3"
+                            Grid.Column="0"
+                            Orientation="Horizontal">
+                            <TextBlock Text="Departure station coordinates: '" />
+                            <TextBlock Text="{Binding From.Coordinates}" />
+                            <TextBlock Text="Arrival station coordinates: '" />
+                            <TextBlock Text="{Binding To.Coordinates}" />
                         </StackPanel>
                     </Grid>
                 </DataTemplate>
