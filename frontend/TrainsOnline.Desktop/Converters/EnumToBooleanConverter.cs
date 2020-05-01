@@ -1,34 +1,12 @@
 ﻿namespace TrainsOnline.Desktop.Converters
 {
-    using System;
-    using TrainsOnline.Desktop.Helpers;
-    using Windows.UI.Xaml.Data;
-
-    public class EnumToBooleanConverter : IValueConverter
+    public class ElementThemeToBooleanConverter : AbstractEnumToBooleanConverter<Windows.UI.Xaml.ElementTheme>
     {
-        public Type EnumType { get; set; }
+        //Nothing to do!
+    }
 
-        public object Convert(object value, Type targetType, object parameter, string language)
-        {
-            if (parameter is string enumString)
-            {
-                if (!Enum.IsDefined(EnumType, value))
-                    throw new ArgumentException("ExceptionEnumToBooleanConverterValueMustBeAnEnum".GetLocalized());
-
-                object enumValue = Enum.Parse(EnumType, enumString);
-
-                return enumValue.Equals(value);
-            }
-
-            throw new ArgumentException("ExceptionEnumToBooleanConverterParameterMustBeAnEnumName".GetLocalized());
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, string language)
-        {
-            if (parameter is string enumString)
-                return Enum.Parse(EnumType, enumString);
-
-            throw new ArgumentException("ExceptionEnumToBooleanConverterParameterMustBeAnEnumName".GetLocalized());
-        }
+    public class WebApiTypesToBooleanConverter : AbstractEnumToBooleanConverter<Application.Interfaces.WebApiTypes>
+    {
+        //Nothing to do!
     }
 }

@@ -1,6 +1,7 @@
 ﻿namespace TrainsOnline.Desktop.ViewModels
 {
     using Caliburn.Micro;
+    using TrainsOnline.Desktop.Application.Interfaces;
     using TrainsOnline.Desktop.Helpers;
     using TrainsOnline.Desktop.Services;
     using Windows.ApplicationModel;
@@ -18,6 +19,16 @@
             set => Set(ref _elementTheme, value);
         }
 
+
+        private WebApiTypes _webApiType = WebApiTypes.SOAP;
+
+        public WebApiTypes WebApiType
+        {
+            get => _webApiType;
+
+            set => Set(ref _webApiType, value);
+        }
+
         private string _versionDescription;
 
         public string VersionDescription
@@ -27,13 +38,11 @@
             set => Set(ref _versionDescription, value);
         }
 
-        public async void SwitchTheme(ElementTheme theme)
-        {
-            await ThemeSelectorService.SetThemeAsync(theme);
-        }
+        private IRemoteDataProviderService RemoteDataProvider { get; }
 
-        public SettingsViewModel()
+        public SettingsViewModel(IRemoteDataProviderService remoteDataProvider)
         {
+            RemoteDataProvider = remoteDataProvider;
         }
 
         protected override void OnInitialize()
@@ -51,6 +60,16 @@
             PackageVersion version = packageId.Version;
 
             return $"{appName} - {version.Major}.{version.Minor}.{version.Build}.{version.Revision}";
+        }
+
+        public async void SwitchTheme(ElementTheme theme)
+        {
+            await ThemeSelectorService.SetThemeAsync(theme);
+        }
+
+        public void SwitchApiVersionTheme(WebApiTypes apiType)
+        {
+            RemoteDataProvider.ApiType = apiType;
         }
     }
 }
