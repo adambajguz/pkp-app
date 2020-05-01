@@ -41,7 +41,6 @@
         public string MapServiceToken
         {
             get => _mapServiceToken;
-            get => _mapServiceToken;
             set => Set(ref _mapServiceToken, value);
         }
 
