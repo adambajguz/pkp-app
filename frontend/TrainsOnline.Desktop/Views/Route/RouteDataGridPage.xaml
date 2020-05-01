@@ -19,11 +19,63 @@
 
     <Grid x:Name="ContentArea" Margin="{StaticResource SmallLeftRightMargin}">
         <Grid>
+            <Grid.Resources>
+                <DataTemplate x:Key="RowDetailsTemplate">
+                    <Grid Margin="0" Padding="12,8,12,8">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock
+                            Grid.Row="0"
+                            Text="Route details:"
+                            TextDecorations="Underline" />
+
+                        <StackPanel
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Orientation="Horizontal">
+                            <TextBlock Text="Departure from '" />
+                            <TextBlock HorizontalAlignment="Right" Text="{Binding From.Name}" />
+                            <TextBlock Text="' at '" />
+                            <TextBlock HorizontalAlignment="Right" Text="{Binding DepartureTime, Converter={StaticResource DateTimeFormatterConverter}}" />
+                            <TextBlock Text="' to '" />
+                            <TextBlock HorizontalAlignment="Right" Text="{Binding To.Name}" />
+                            <TextBlock Text="''" />
+                        </StackPanel>
+
+                        <StackPanel
+                            Grid.Row="2"
+                            Grid.Column="0"
+                            Orientation="Horizontal">
+                            <TextBlock Text="Arrival in '" />
+                            <TextBlock HorizontalAlignment="Right" Text="{Binding To.Name}" />
+                            <TextBlock Text="' at '" />
+                            <TextBlock FontSize="13" Text="{Binding ArrivalTime, Converter={StaticResource DateTimeFormatterConverter}}" />
+                            <TextBlock Text="' after '" />
+                            <TextBlock HorizontalAlignment="Right" Text="{Binding Duration}" />
+                            <TextBlock Text="''" />
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </Grid.Resources>
+
             <controls:DataGrid
+                micro:Message.Attach="[LoadingRowGroup] = [Action LoadingRowGroup($this, $eventargs)];"
+                AreRowDetailsFrozen="True"
                 AutoGenerateColumns="False"
-                CanUserSortColumns="False"
+                CanUserSortColumns="True"
                 GridLinesVisibility="Horizontal"
-                ItemsSource="{x:Bind ViewModel.Source, Mode=OneWay}"
+                IsReadOnly="True"
+                ItemsSource="{x:Bind ViewModel.GroupedSource.View, Mode=OneWay}"
+                RowDetailsTemplate="{StaticResource RowDetailsTemplate}"
+                RowDetailsVisibilityMode="VisibleWhenSelected"
+                RowGroupHeaderPropertyNameAlternative="From"
                 SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
                 <controls:DataGrid.Columns>
                     <!--
@@ -43,34 +95,31 @@
                             </DataTemplate>
                         </controls:DataGridTemplateColumn.CellTemplate>
                     </controls:DataGridTemplateColumn>
-                    <controls:DataGridTextColumn Binding="{Binding From.Name}" Header="From" />
-                    <controls:DataGridTextColumn Binding="{Binding To.Name}" Header="To" />
+                    <controls:DataGridTextColumn Binding="{Binding To.Name}" Header="Destination" />
                     <controls:DataGridTextColumn Binding="{Binding DepartureTime, Converter={StaticResource DateTimeFormatterConverter}}" Header="Departure" />
-                    <controls:DataGridTextColumn Binding="{Binding ArrivalTime, Converter={StaticResource DateTimeFormatterConverter}}" Header="Arrival" />
-                    <controls:DataGridTextColumn Binding="{Binding Duration}" Header="Duration" />
                     <controls:DataGridTextColumn Binding="{Binding Distance, Converter={StaticResource DistanceFormatterConverter}}" Header="Distance" />
                     <controls:DataGridTextColumn Binding="{Binding TicketPrice, Converter={StaticResource CurrencyFormatterConverter}}" Header="Ticket price" />
                     <controls:DataGridTemplateColumn Header="Actions">
                         <controls:DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate xmlns:cal="http://www.caliburnproject.org" xmlns:i="using:Microsoft.Xaml.Interactivity">
+                            <DataTemplate xmlns:cal="http://www.caliburnproject.org">
                                 <StackPanel Orientation="Horizontal">
                                     <Button
                                         x:Name="DeleteButton"
-                                        Margin="0,5,5,0"
+                                        Margin="0,4,4,0"
                                         VerticalAlignment="Top"
                                         micro:Message.Attach="[Event Click]=[DeleteRoute($dataContext)]"
                                         Content="&#xE74D;"
                                         FontFamily="Segoe MDL2 Assets" />
                                     <Button
                                         x:Name="EditButton"
-                                        Margin="0,5,5,0"
+                                        Margin="0,4,4,4"
                                         VerticalAlignment="Top"
                                         micro:Message.Attach="[Event Click]=[EditRoute($dataContext)]"
                                         Content="&#xE70F;"
                                         FontFamily="Segoe MDL2 Assets" />
                                     <Button
                                         x:Name="BuyTicker"
-                                        Margin="0,5,0,0"
+                                        Margin="0,4,0,4"
                                         VerticalAlignment="Top"
                                         micro:Message.Attach="[Event Click]=[BuyTicket($dataContext)]"
                                         Content="&#xE7BF;"
