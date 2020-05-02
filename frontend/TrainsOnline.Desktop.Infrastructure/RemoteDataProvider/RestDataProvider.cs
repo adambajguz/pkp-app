@@ -1,8 +1,11 @@
 ﻿namespace TrainsOnline.Desktop.Domain.RemoteDataProvider
 {
     using System;
+    using System.Net;
+    using System.Text;
     using System.Threading.Tasks;
     using RestSharp;
+    using TrainsOnline.Desktop.Application.Exceptions;
     using TrainsOnline.Desktop.Application.Interfaces.RemoteDataProvider;
     using TrainsOnline.Desktop.Domain.DTO;
     using TrainsOnline.Desktop.Domain.DTO.Authentication;
@@ -29,12 +32,24 @@
             Client = new RestClient(ApiUrl);
         }
 
+        private static void CheckResponseErrors(IRestResponse response)
+        {
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                string str = Encoding.UTF8.GetString(response.RawBytes);
+                throw new RemoteDataException(str);
+            }
+        }
+
         public async Task<JwtTokenModel> Login(LoginRequest data)
         {
             RestRequest request = new RestRequest("user/login", DataFormat.Json);
             request.AddJsonBody(data);
 
-            JwtTokenModel jwtTokenModel = await Client.PostAsync<JwtTokenModel>(request);
+            IRestResponse<JwtTokenModel> response = await Client.ExecutePostAsync<JwtTokenModel>(request);
+            CheckResponseErrors(response);
+
+            JwtTokenModel jwtTokenModel = response.Data;
             Token = jwtTokenModel?.Token;
 
             return jwtTokenModel;
@@ -50,7 +65,10 @@
             RestRequest request = new RestRequest("user/create", DataFormat.Json);
             request.AddJsonBody(data);
 
-            return await Client.GetAsync<IdResponse>(request);
+            IRestResponse<IdResponse> response = await Client.ExecutePostAsync<IdResponse>(request);
+            CheckResponseErrors(response);
+
+            return response.Data;
         }
 
         public async Task<GetUserDetailsResponse> GetCurrentUser()
@@ -65,14 +83,20 @@
             RestRequest request = new RestRequest("station/get/{id}", DataFormat.Json);
             request.AddParameter("id", id, ParameterType.UrlSegment);
 
-            return await Client.GetAsync<GetStationDetailsResponse>(request);
+            IRestResponse<GetStationDetailsResponse> response = await Client.ExecuteGetAsync<GetStationDetailsResponse>(request);
+            CheckResponseErrors(response);
+
+            return response.Data;
         }
 
         public async Task<GetStationsListResponse> GetStations()
         {
             RestRequest request = new RestRequest("station/get-all", DataFormat.Json);
 
-            return await Client.GetAsync<GetStationsListResponse>(request);
+            IRestResponse<GetStationsListResponse> response = await Client.ExecuteGetAsync<GetStationsListResponse>(request);
+            CheckResponseErrors(response);
+
+            return response.Data;
         }
 
         public async Task<GetRouteDetailsResponse> GetRoute(Guid id)
@@ -80,14 +104,20 @@
             RestRequest request = new RestRequest("route/get/{id}", DataFormat.Json);
             request.AddParameter("id", id, ParameterType.UrlSegment);
 
-            return await Client.GetAsync<GetRouteDetailsResponse>(request);
+            IRestResponse<GetRouteDetailsResponse> response = await Client.ExecuteGetAsync<GetRouteDetailsResponse>(request);
+            CheckResponseErrors(response);
+
+            return response.Data;
         }
 
         public async Task<GetRoutesListResponse> GetRoutes()
         {
             RestRequest request = new RestRequest("route/get-all", DataFormat.Json);
 
-            return await Client.GetAsync<GetRoutesListResponse>(request);
+            IRestResponse<GetRoutesListResponse> response = await Client.ExecuteGetAsync<GetRoutesListResponse>(request);
+            CheckResponseErrors(response);
+
+            return response.Data;
         }
 
         public async Task<IdResponse> CreateTicket(CreateTicketRequest data)
@@ -101,7 +131,10 @@
             request.AddJsonBody(data)
                    .AddBearerAuthentication(Token);
 
-            return await Client.GetAsync<IdResponse>(request);
+            IRestResponse<IdResponse> response = await Client.ExecutePostAsync<IdResponse>(request);
+            CheckResponseErrors(response);
+
+            return response.Data;
         }
 
         public async Task<GetTicketDetailsResponse> GetTicket(Guid id)
@@ -115,7 +148,10 @@
             request.AddParameter("id", id, ParameterType.UrlSegment)
                    .AddBearerAuthentication(Token);
 
-            return await Client.GetAsync<GetTicketDetailsResponse>(request);
+            IRestResponse<GetTicketDetailsResponse> response = await Client.ExecuteGetAsync<GetTicketDetailsResponse>(request);
+            CheckResponseErrors(response);
+
+            return response.Data;
         }
 
         public async Task<GetTicketDocumentResponse> GetTicketDocument(Guid id)
@@ -129,7 +165,11 @@
             request.AddParameter("id", id, ParameterType.UrlSegment)
                    .AddBearerAuthentication(Token);
 
-            return await Client.GetAsync<GetTicketDocumentResponse>(request);
+
+            IRestResponse<GetTicketDocumentResponse> response = await Client.ExecuteGetAsync<GetTicketDocumentResponse>(request);
+            CheckResponseErrors(response);
+
+            return response.Data;
         }
 
         public async Task<GetUserTicketsListResponse> GetCurrentUserTickets()
@@ -142,7 +182,10 @@
             RestRequest request = new RestRequest("ticket/get-all-current-user", DataFormat.Json);
             request.AddBearerAuthentication(Token);
 
-            return await Client.GetAsync<GetUserTicketsListResponse>(request);
+            IRestResponse<GetUserTicketsListResponse> response = await Client.ExecuteGetAsync<GetUserTicketsListResponse>(request);
+            CheckResponseErrors(response);
+
+            return response.Data;
         }
     }
 }

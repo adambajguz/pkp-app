@@ -7,6 +7,7 @@
     using TrainsOnline.Desktop.Domain.DTO.Station;
     using TrainsOnline.Desktop.Domain.Models.General;
     using TrainsOnline.Desktop.ViewModels.General;
+    using TrainsOnline.Desktop.ViewModels.User;
     using TrainsOnline.Desktop.Views.Route;
     using static TrainsOnline.Desktop.Domain.DTO.Station.GetStationDetailsResponse;
     using static TrainsOnline.Desktop.Domain.DTO.Station.GetStationsListResponse;
@@ -55,28 +56,34 @@
             NavService.NavigateToViewModel<GeneralMapViewModel>(new GeneralMapViewParameters(coords));
         }
 
-        public void ShowDestinationOnMap(RouteDeparturesLookupModel stationDetails)
+        public void ShowDestinationOnMap(RouteDeparturesLookupModel route)
         {
             GeoCoordinate[] coords = new GeoCoordinate[] {
-                new GeoCoordinate(stationDetails.To.Latitude, stationDetails.To.Longitude),
+                new GeoCoordinate(route.To.Latitude, route.To.Longitude),
             };
 
             NavService.NavigateToViewModel<GeneralMapViewModel>(new GeneralMapViewParameters(coords));
         }
 
-        public void ShowRouteOnMap(RouteDeparturesLookupModel stationDetails)
+        public void ShowRouteOnMap(RouteDeparturesLookupModel route)
         {
             GeoCoordinate[] coords = new GeoCoordinate[] {
                 new GeoCoordinate(Details.Latitude, Details.Longitude),
-                new GeoCoordinate(stationDetails.To.Latitude, stationDetails.To.Longitude)
+                new GeoCoordinate(route.To.Latitude, route.To.Longitude)
             };
 
             NavService.NavigateToViewModel<GeneralMapViewModel>(new GeneralMapViewParameters(coords));
         }
 
-        public void BuyTicket(RouteDeparturesLookupModel stationDetails)
+        public async void BuyTicket(RouteDeparturesLookupModel route)
         {
+            if (!RemoteDataProvider.IsAuthenticated)
+            {
+                NavService.NavigateToViewModel<LoginRegisterViewModel>();
+                return;
+            }
 
+            await RemoteDataProvider.CreateTicketForCurrentUser(route.Id);
         }
     }
 }

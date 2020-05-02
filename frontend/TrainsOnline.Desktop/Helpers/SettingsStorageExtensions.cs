@@ -21,7 +21,7 @@
         public static async Task SaveAsync<T>(this StorageFolder folder, string name, T content)
         {
             StorageFile file = await folder.CreateFileAsync(GetFileName(name), CreationCollisionOption.ReplaceExisting);
-            string fileContent = await Json.StringifyAsync(content);
+            string fileContent = await content.ToJsonAsync();
 
             await FileIO.WriteTextAsync(file, fileContent);
         }
@@ -41,7 +41,7 @@
 
         public static async Task SaveAsync<T>(this ApplicationDataContainer settings, string key, T value)
         {
-            settings.SaveString(key, await Json.StringifyAsync(value));
+            settings.SaveString(key, await value.ToJsonAsync());
         }
 
         public static void SaveString(this ApplicationDataContainer settings, string key, string value)
@@ -54,7 +54,7 @@
 
             if (settings.Values.TryGetValue(key, out object obj))
             {
-                return await Json.ToObjectAsync<T>((string)obj);
+                return await ((string)obj).ToObjectAsync<T>();
             }
 
             return default;

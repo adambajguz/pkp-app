@@ -10,15 +10,21 @@
     <Grid x:Name="ContentArea" Margin="{StaticResource MediumLeftRightMargin}">
         <Grid Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="480" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
             <Pivot Title="Authorization is required to access this page" SelectedIndex="{Binding Path=PivotIndex, Mode=TwoWay}">
+
                 <PivotItem Header="Login">
                     <StackPanel Orientation="Vertical">
+                        <TextBlock
+                            Margin="{StaticResource XSmallTopMargin}"
+                            Foreground="OrangeRed"
+                            Text="{Binding Path=LoginErrors, Mode=TwoWay}"
+                            TextWrapping="Wrap" />
                         <TextBox
                             Margin="{StaticResource XSmallTopMargin}"
                             Header="e-mail:"
@@ -27,8 +33,10 @@
                         <PasswordBox
                             Margin="{StaticResource XSmallTopMargin}"
                             Header="password:"
-                            PlaceholderText="password"
-                            Text="{Binding Path=LoginPassword, Mode=TwoWay}" />
+                            IsPasswordRevealButtonEnabled="False"
+                            Password="{Binding Path=LoginPassword, Mode=TwoWay}"
+                            PasswordRevealMode="Peek"
+                            PlaceholderText="password" />
                         <Button
                             x:Name="LoginButton"
                             Margin="{StaticResource SmallTopMargin}"
@@ -36,8 +44,14 @@
                             Content="Login" />
                     </StackPanel>
                 </PivotItem>
+
                 <PivotItem Header="Register">
                     <StackPanel Orientation="Vertical">
+                        <TextBlock
+                            Margin="{StaticResource XSmallTopMargin}"
+                            Foreground="OrangeRed"
+                            Text="{Binding Path=RegisterErrors, Mode=TwoWay}"
+                            TextWrapping="Wrap" />
                         <TextBox
                             Margin="{StaticResource XSmallTopMargin}"
                             Header="e-mail:"
@@ -46,8 +60,10 @@
                         <PasswordBox
                             Margin="{StaticResource XSmallTopMargin}"
                             Header="password:"
-                            PlaceholderText="password"
-                            Text="{Binding Path=RegisterPassword, Mode=TwoWay}" />
+                            IsPasswordRevealButtonEnabled="False"
+                            Password="{Binding Path=RegisterPassword, Mode=TwoWay}"
+                            PasswordRevealMode="Peek"
+                            PlaceholderText="password" />
                         <TextBox
                             Margin="{StaticResource XSmallTopMargin}"
                             Header="name:"
@@ -75,6 +91,7 @@
                             Content="Register" />
                     </StackPanel>
                 </PivotItem>
+
             </Pivot>
 
         </Grid>

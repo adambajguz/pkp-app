@@ -11,6 +11,7 @@
     using TrainsOnline.Desktop.Domain.Models.General;
     using TrainsOnline.Desktop.Domain.ValueObjects.RouteComponents;
     using TrainsOnline.Desktop.ViewModels.General;
+    using TrainsOnline.Desktop.ViewModels.User;
     using TrainsOnline.Desktop.Views.Route;
     using Windows.UI.Xaml.Data;
     using static TrainsOnline.Desktop.Domain.DTO.Route.GetRoutesListResponse;
@@ -67,7 +68,7 @@
             GroupedSource.Source = Source;
         }
 
-        public void ShowDepartureOnMap(RouteDetailsValueObject route)
+        public void ShowDepartureOnMap(GetRouteDetailsResponse route)
         {
             GeoCoordinate[] coords = new GeoCoordinate[] {
                 new GeoCoordinate(route.From.Latitude, route.From.Longitude)
@@ -76,7 +77,7 @@
             NavService.NavigateToViewModel<GeneralMapViewModel>(new GeneralMapViewParameters(coords));
         }
 
-        public void ShowDestinationOnMap(RouteDetailsValueObject route)
+        public void ShowDestinationOnMap(GetRouteDetailsResponse route)
         {
             GeoCoordinate[] coords = new GeoCoordinate[] {
                 new GeoCoordinate(route.To.Latitude, route.To.Longitude)
@@ -85,7 +86,7 @@
             NavService.NavigateToViewModel<GeneralMapViewModel>(new GeneralMapViewParameters(coords));
         }
 
-        public void ShowRouteOnMap(RouteDetailsValueObject route)
+        public void ShowRouteOnMap(GetRouteDetailsResponse route)
         {
             GeoCoordinate[] coords = new GeoCoordinate[] {
                 new GeoCoordinate(route.From.Latitude, route.From.Longitude),
@@ -95,19 +96,25 @@
             NavService.NavigateToViewModel<GeneralMapViewModel>(new GeneralMapViewParameters(coords));
         }
 
-        public void DeleteRoute(RouteDetailsValueObject route)
+        public void DeleteRoute(GetRouteDetailsResponse route)
         {
 
         }
 
-        public void EditRoute(RouteDetailsValueObject route)
+        public void EditRoute(GetRouteDetailsResponse route)
         {
 
         }
 
-        public void BuyTicket(RouteDetailsValueObject route)
+        public async void BuyTicket(GetRouteDetailsResponse route)
         {
+            if (!RemoteDataProvider.IsAuthenticated)
+            {
+                NavService.NavigateToViewModel<LoginRegisterViewModel>();
+                return;
+            }
 
+            await RemoteDataProvider.CreateTicketForCurrentUser(route.Id);
         }
 
         public void LoadingRowGroup(DataGridRowGroupHeaderEventArgs e)

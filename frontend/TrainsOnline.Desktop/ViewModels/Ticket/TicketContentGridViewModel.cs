@@ -60,18 +60,12 @@
 
         protected override void OnViewLoaded(object view)
         {
-            base.OnViewLoaded(view); if (!RemoteDataProvider.IsAuthenticated)
+            base.OnViewLoaded(view);
+
+            if (!RemoteDataProvider.IsAuthenticated)
             {
                 _navigationService.NavigateToViewModel<LoginRegisterViewModel>();
             }
         }
-
-        //protected override void OnViewReady(object view)
-        //{
-        //    base.OnViewReady(view); if (!RemoteDataProvider.IsAuthenticated)
-        //    {
-        //        _navigationService.NavigateToViewModel<LoginRegisterViewModel>();
-        //    }
-        //}
     }
 }

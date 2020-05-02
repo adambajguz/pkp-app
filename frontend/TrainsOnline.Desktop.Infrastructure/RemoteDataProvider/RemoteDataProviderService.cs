@@ -11,6 +11,7 @@
     using TrainsOnline.Desktop.Domain.DTO.Ticket;
     using TrainsOnline.Desktop.Domain.DTO.User;
     using TrainsOnline.Desktop.Domain.RemoteDataProvider.Interfaces;
+    using TrainsOnline.Desktop.Infrastructure.Helpers;
 
     public class RemoteDataProviderService : IRemoteDataProviderService
     {
@@ -21,6 +22,7 @@
         public bool IsAuthenticated => !string.IsNullOrWhiteSpace(Token);
         protected string Token { get; private set; }
 
+        private JwtTokenHelper JwtHelper { get; }
         private SoapDataProvider SoapProvider { get; }
         private RestDataProvider RestProvider { get; }
 
@@ -30,11 +32,27 @@
         {
             Mapper = mapper;
 
+            JwtHelper = new JwtTokenHelper();
             SoapProvider = new SoapDataProvider();
             RestProvider = new RestDataProvider();
         }
 
         #region User
+        public Guid GetUserId()
+        {
+            return JwtHelper.GetUserIdFromToken(Token);
+        }
+
+        public bool HasRole(string role)
+        {
+            return JwtHelper.IsRoleInToken(Token, role);
+        }
+
+        public bool HasAnyOfRoles(params string[] roles)
+        {
+            return JwtHelper.IsAnyOfRolesInToken(Token, roles);
+        }
+
         public async Task<bool> Login(string email, string password)
         {
             JwtTokenModel jwtTokenModel = await DataProvider.Login(new LoginRequest
@@ -94,6 +112,17 @@
         public async Task<Guid> CreateTicket(CreateTicketRequest data)
         {
             IdResponse response = await DataProvider.CreateTicket(data);
+
+            return response.Id;
+        }
+
+        public async Task<Guid> CreateTicketForCurrentUser(Guid routeId)
+        {
+            IdResponse response = await DataProvider.CreateTicket(new CreateTicketRequest
+            {
+                UserId = GetUserId(),
+                RouteId = routeId
+            });
 
             return response.Id;
         }

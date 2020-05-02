@@ -1,6 +1,7 @@
 ﻿namespace TrainsOnline.Desktop.ViewModels.User
 {
     using Caliburn.Micro;
+    using TrainsOnline.Desktop.Application.Exceptions;
     using TrainsOnline.Desktop.Application.Interfaces.RemoteDataProvider;
     using TrainsOnline.Desktop.Views.Ticket;
 
@@ -14,6 +15,13 @@
         }
 
         #region Login Properties
+        private string _loginErrors;
+        public string LoginErrors
+        {
+            get => _loginErrors;
+            set => Set(ref _loginErrors, value);
+        }
+
         private string _loginEmail;
         public string LoginEmail
         {
@@ -30,6 +38,13 @@
         #endregion
 
         #region Register Properties
+        private string _registerErrors;
+        public string RegisterErrors
+        {
+            get => _registerErrors;
+            set => Set(ref _registerErrors, value);
+        }
+
         private string _registerEmail;
         public string RegisterEmail
         {
@@ -85,24 +100,38 @@
 
         public async void Login()
         {
-            await RemoteDataProvider.Login(LoginEmail, LoginPassword);
+            try
+            {
+                await RemoteDataProvider.Login(LoginEmail, LoginPassword);
 
-            NavigationService.GoBack();
+                NavigationService.GoBack();
+            }
+            catch (RemoteDataException ex)
+            {
+                LoginErrors = ex.GetResponse().Message;
+            }
         }
 
         public async void Register()
         {
-            await RemoteDataProvider.Register(new Domain.DTO.User.CreateUserRequest
+            try
             {
-                Email = RegisterEmail,
-                Password = RegisterPassword,
-                Name = RegisterName,
-                Surname = RegisterSurname,
-                PhoneNumber = RegisterPhoneNumber,
-                Address = RegisterAddress
-            });
+                await RemoteDataProvider.Register(new Domain.DTO.User.CreateUserRequest
+                {
+                    Email = RegisterEmail,
+                    Password = RegisterPassword,
+                    Name = RegisterName,
+                    Surname = RegisterSurname,
+                    PhoneNumber = RegisterPhoneNumber,
+                    Address = RegisterAddress
+                });
 
-            PivotIndex = 0;
+                PivotIndex = 0;
+            }
+            catch (RemoteDataException ex)
+            {
+                RegisterErrors = ex.GetResponse().Message;
+            }
         }
     }
 }
