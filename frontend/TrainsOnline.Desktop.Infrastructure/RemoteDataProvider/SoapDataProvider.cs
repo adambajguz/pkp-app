@@ -1,16 +1,16 @@
-﻿namespace TrainsOnline.Desktop.Infrastructure.RemoteDataProvider
+﻿namespace TrainsOnline.Desktop.Domain.RemoteDataProvider
 {
     using System;
     using System.Threading.Tasks;
     using RestSharp;
-    using TrainsOnline.Desktop.Infrastructure.DTO;
-    using TrainsOnline.Desktop.Infrastructure.DTO.Authentication;
-    using TrainsOnline.Desktop.Infrastructure.DTO.Route;
-    using TrainsOnline.Desktop.Infrastructure.DTO.Station;
-    using TrainsOnline.Desktop.Infrastructure.DTO.Ticket;
-    using TrainsOnline.Desktop.Infrastructure.DTO.User;
-    using TrainsOnline.Desktop.Infrastructure.Extensions;
-    using TrainsOnline.Desktop.Infrastructure.RemoteDataProvider.Interfaces;
+    using TrainsOnline.Desktop.Domain.DTO;
+    using TrainsOnline.Desktop.Domain.DTO.Authentication;
+    using TrainsOnline.Desktop.Domain.DTO.Route;
+    using TrainsOnline.Desktop.Domain.DTO.Station;
+    using TrainsOnline.Desktop.Domain.DTO.Ticket;
+    using TrainsOnline.Desktop.Domain.DTO.User;
+    using TrainsOnline.Desktop.Domain.Extensions;
+    using TrainsOnline.Desktop.Domain.RemoteDataProvider.Interfaces;
 
     public class SoapDataProvider : IDataProvider
     {

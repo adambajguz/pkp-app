@@ -23,7 +23,7 @@
             yield return Name;
             yield return Surname;
             yield return PhoneNumber;
-            yield return Address
+            yield return Address;
         }
     }
 }

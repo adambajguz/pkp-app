@@ -2,7 +2,7 @@
 {
     public enum WebApiTypes
     {
-        SOAP,
-        REST
+        REST,
+        SOAP
     }
 }

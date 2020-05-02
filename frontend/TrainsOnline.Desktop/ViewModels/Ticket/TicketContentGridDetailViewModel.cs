@@ -3,6 +3,7 @@
     using System.Threading.Tasks;
     using Caliburn.Micro;
     using TrainsOnline.Desktop.Application.Interfaces.RemoteDataProvider;
+    using TrainsOnline.Desktop.Domain.DTO.Ticket;
     using TrainsOnline.Desktop.Domain.Models.Ticket;
     using TrainsOnline.Desktop.Domain.ValueObjects.TicketComponents;
     using TrainsOnline.Desktop.Services;
@@ -12,8 +13,8 @@
         private readonly IConnectedAnimationService _connectedAnimationService;
         private IRemoteDataProviderService RemoteDataProvider { get; }
 
-        private TicketDetailsValueObject _item;
-        public TicketDetailsValueObject Item
+        private GetTicketDetailsResponse _item;
+        public GetTicketDetailsResponse Item
         {
             get => _item;
             set => Set(ref _item, value);
@@ -30,7 +31,7 @@
 
         public async Task InitializeAsync()
         {
-            TicketDetailsValueObject data = await RemoteDataProvider.GetTicket(Parameter.TicketId);
+            GetTicketDetailsResponse data = await RemoteDataProvider.GetTicket(Parameter.TicketId);
 
             Item = data;
         }

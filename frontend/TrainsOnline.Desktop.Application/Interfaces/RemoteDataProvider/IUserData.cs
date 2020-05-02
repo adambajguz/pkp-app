@@ -2,7 +2,8 @@
 {
     using System;
     using System.Threading.Tasks;
-    using TrainsOnline.Desktop.Domain.ValueObjects.UserComponents;
+    using TrainsOnline.Desktop.Domain;
+    using TrainsOnline.Desktop.Domain.DTO.User;
 
     public interface IUserData
     {
@@ -10,8 +11,9 @@
 
         Task<bool> Login(string email, string password);
         void Logout();
-        Task<Guid> Register(NewUser data);
+        Task<Guid> Register(CreateUserRequest data);
 
-        Task<UserDetailsValueObject> GetCurrentUser();
+        //Task<UserDetailsValueObject> GetCurrentUser();
+        Task<GetUserDetailsResponse> GetCurrentUser();
     }
 }

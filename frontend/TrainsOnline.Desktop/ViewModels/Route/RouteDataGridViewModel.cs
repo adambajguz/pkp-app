@@ -8,18 +8,20 @@
     using Microsoft.Toolkit.Uwp.UI.Controls;
     using TrainsOnline.Desktop.Application.Interfaces.RemoteDataProvider;
     using TrainsOnline.Desktop.Common.GeoHelpers;
+    using TrainsOnline.Desktop.Domain.DTO.Route;
     using TrainsOnline.Desktop.Domain.Models.General;
     using TrainsOnline.Desktop.Domain.ValueObjects.RouteComponents;
     using TrainsOnline.Desktop.ViewModels.General;
     using TrainsOnline.Desktop.Views.Route;
     using Windows.UI.Xaml.Data;
+    using static TrainsOnline.Desktop.Domain.DTO.Route.GetRoutesListResponse;
 
     public class RouteDataGridViewModel : Screen, IRouteDataGridViewEvents
     {
         private INavigationService NavService { get; }
         private IRemoteDataProviderService RemoteDataProvider { get; }
 
-        public ObservableCollection<GroupInfoCollection<RouteDetailsValueObject>> Source { get; } = new ObservableCollection<GroupInfoCollection<RouteDetailsValueObject>>();
+        public ObservableCollection<GroupInfoCollection<GetRouteDetailsResponse>> Source { get; } = new ObservableCollection<GroupInfoCollection<GetRouteDetailsResponse>>();
         public CollectionViewSource GroupedSource { get; } = new CollectionViewSource();
 
         public RouteDataGridViewModel(INavigationService navigationService,
@@ -33,7 +35,7 @@
         {
             Source.Clear();
 
-            IList<RouteDetailsValueObject> data = await RemoteDataProvider.GetRoutes();
+            GetRoutesListResponse data = await RemoteDataProvider.GetRoutes();
 
             //foreach (RouteLookupModel route in data.Routes)
             //{
@@ -48,14 +50,14 @@
 
             foreach (var g in query)
             {
-                GroupInfoCollection<RouteDetailsValueObject> info = new GroupInfoCollection<RouteDetailsValueObject>
+                GroupInfoCollection<GetRouteDetailsResponse> info = new GroupInfoCollection<GetRouteDetailsResponse>
                 {
                     Key = g.GroupName
                 };
 
                 foreach (RouteLookupModel item in g.Items)
                 {
-                    RouteDetailsValueObject details = await RemoteDataProvider.GetRoute(item.Id);
+                    GetRouteDetailsResponse details = await RemoteDataProvider.GetRoute(item.Id);
                     info.Add(details);
                 }
 

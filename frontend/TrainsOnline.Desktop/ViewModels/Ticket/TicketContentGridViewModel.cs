@@ -4,6 +4,7 @@
     using System.Threading.Tasks;
     using Caliburn.Micro;
     using TrainsOnline.Desktop.Application.Interfaces.RemoteDataProvider;
+    using TrainsOnline.Desktop.Domain.DTO.Ticket;
     using TrainsOnline.Desktop.Domain.Models.Ticket;
     using TrainsOnline.Desktop.Services;
     using TrainsOnline.Desktop.Views.Ticket;
@@ -29,11 +30,7 @@
         {
             Source.Clear();
 
-            Domain.DTO.Authentication.JwtTokenModel jwtTokenModel = await RemoteDataProvider.Login(new Domain.DTO.Authentication.LoginRequest
-            {
-                Email = "test0@test.pl",
-                Password = "test1234"
-            });
+            await RemoteDataProvider.Login("test0@test.pl", "test1234");
 
             GetUserTicketsListResponse data = await RemoteDataProvider.GetCurrentUserTickets();
 

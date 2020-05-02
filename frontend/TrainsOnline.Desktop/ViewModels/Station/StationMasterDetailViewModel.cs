@@ -5,6 +5,7 @@
     using System.Threading.Tasks;
     using Caliburn.Micro;
     using TrainsOnline.Desktop.Application.Interfaces.RemoteDataProvider;
+    using TrainsOnline.Desktop.Domain.DTO.Station;
 
     public class StationMasterDetailViewModel : Conductor<StationMasterDetailDetailViewModel>.Collection.OneActive
     {

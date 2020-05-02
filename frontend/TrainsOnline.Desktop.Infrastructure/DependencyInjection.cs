@@ -1,8 +1,8 @@
-﻿namespace TrainsOnline.Desktop.Infrastructure
+﻿namespace TrainsOnline.Desktop.Domain
 {
     using Caliburn.Micro;
     using TrainsOnline.Desktop.Application.Interfaces.RemoteDataProvider;
-    using TrainsOnline.Desktop.Infrastructure.RemoteDataProvider;
+    using TrainsOnline.Desktop.Domain.RemoteDataProvider;
 
     public static class DependencyInjection
     {

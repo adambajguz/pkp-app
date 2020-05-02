@@ -1,13 +1,13 @@
-﻿namespace TrainsOnline.Desktop.Infrastructure.RemoteDataProvider.Interfaces
+﻿namespace TrainsOnline.Desktop.Domain.RemoteDataProvider.Interfaces
 {
     using System;
     using System.Threading.Tasks;
-    using TrainsOnline.Desktop.Infrastructure.DTO;
-    using TrainsOnline.Desktop.Infrastructure.DTO.Authentication;
-    using TrainsOnline.Desktop.Infrastructure.DTO.Route;
-    using TrainsOnline.Desktop.Infrastructure.DTO.Station;
-    using TrainsOnline.Desktop.Infrastructure.DTO.Ticket;
-    using TrainsOnline.Desktop.Infrastructure.DTO.User;
+    using TrainsOnline.Desktop.Domain.DTO;
+    using TrainsOnline.Desktop.Domain.DTO.Authentication;
+    using TrainsOnline.Desktop.Domain.DTO.Route;
+    using TrainsOnline.Desktop.Domain.DTO.Station;
+    using TrainsOnline.Desktop.Domain.DTO.Ticket;
+    using TrainsOnline.Desktop.Domain.DTO.User;
 
     public interface IDataProvider
     {
