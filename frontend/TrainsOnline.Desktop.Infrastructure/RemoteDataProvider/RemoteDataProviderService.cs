@@ -5,10 +5,10 @@
     using System.Threading.Tasks;
     using AutoMapper;
     using TrainsOnline.Desktop.Application.Interfaces.RemoteDataProvider;
-    using TrainsOnline.Desktop.Domain.ValueObjects.Route;
-    using TrainsOnline.Desktop.Domain.ValueObjects.Station;
-    using TrainsOnline.Desktop.Domain.ValueObjects.Ticket;
-    using TrainsOnline.Desktop.Domain.ValueObjects.User;
+    using TrainsOnline.Desktop.Domain.ValueObjects.RouteComponents;
+    using TrainsOnline.Desktop.Domain.ValueObjects.StationComponents;
+    using TrainsOnline.Desktop.Domain.ValueObjects.TicketComponents;
+    using TrainsOnline.Desktop.Domain.ValueObjects.UserComponents;
     using TrainsOnline.Desktop.Infrastructure.DTO;
     using TrainsOnline.Desktop.Infrastructure.DTO.Authentication;
     using TrainsOnline.Desktop.Infrastructure.DTO.Route;

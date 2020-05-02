@@ -2,7 +2,7 @@
 {
     using System;
     using System.Threading.Tasks;
-    using TrainsOnline.Desktop.Domain.ValueObjects.User;
+    using TrainsOnline.Desktop.Domain.ValueObjects.UserComponents;
 
     public interface IUserData
     {

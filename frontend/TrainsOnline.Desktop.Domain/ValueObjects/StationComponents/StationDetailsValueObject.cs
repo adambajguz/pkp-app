@@ -1,10 +1,11 @@
-﻿namespace TrainsOnline.Desktop.Domain.ValueObjects.Station
+﻿namespace TrainsOnline.Desktop.Domain.ValueObjects.StationComponents
 {
     using System;
     using System.Collections.Generic;
     using TrainsOnline.Desktop.Common.GeoHelpers;
+    using TrainsOnline.Desktop.Domain.ValueObjects.Base;
 
-    public class StationDetailsValueObject
+    public class StationDetailsValueObject : ValueObject
     {
         public Guid Id { get; set; }
 
@@ -21,6 +22,12 @@
         public GeoCoordinate Coordinates => GeoCoordinate.FromDouble(Latitude, Longitude);
 
         public List<RouteDeparturesLookupModel> Departures { get; set; }
+
+        protected override IEnumerable<object> GetEqualityComponents()
+        {
+            yield return Id;
+            yield return CreatedOn;
+        }
 
         public class RouteDeparturesLookupModel
         {

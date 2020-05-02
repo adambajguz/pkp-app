@@ -1,8 +1,10 @@
-﻿namespace TrainsOnline.Desktop.Domain.ValueObjects.User
+﻿namespace TrainsOnline.Desktop.Domain.ValueObjects.UserComponents
 {
     using System;
+    using System.Collections.Generic;
+    using TrainsOnline.Desktop.Domain.ValueObjects.Base;
 
-    public class UserDetailsValueObject
+    public class UserDetailsValueObject : ValueObject
     {
         public Guid Id { get; set; }
         public DateTime CreatedOn { get; set; }
@@ -18,5 +20,10 @@
         public string Address { get; set; }
 
         public bool IsAdmin { get; set; }
+
+        protected override IEnumerable<object> GetEqualityComponents()
+        {
+            yield return Id;
+        }
     }
 }

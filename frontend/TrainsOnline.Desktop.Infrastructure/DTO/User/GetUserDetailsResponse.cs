@@ -3,7 +3,7 @@
     using System;
     using AutoMapper;
     using TrainsOnline.Desktop.Application.Interfaces;
-    using TrainsOnline.Desktop.Domain.ValueObjects.User;
+    using TrainsOnline.Desktop.Domain.ValueObjects.UserComponents;
     using TrainsOnline.Desktop.Infrastructure.DTO;
 
     public class GetUserDetailsResponse : IDataTransferObject, ICustomMapping

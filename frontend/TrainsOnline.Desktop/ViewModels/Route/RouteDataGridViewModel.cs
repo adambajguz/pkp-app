@@ -1,5 +1,6 @@
 ﻿namespace TrainsOnline.Desktop.ViewModels.Route
 {
+    using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Linq;
     using System.Threading.Tasks;
@@ -8,6 +9,7 @@
     using TrainsOnline.Desktop.Application.Interfaces.RemoteDataProvider;
     using TrainsOnline.Desktop.Common.GeoHelpers;
     using TrainsOnline.Desktop.Domain.Models.General;
+    using TrainsOnline.Desktop.Domain.ValueObjects.RouteComponents;
     using TrainsOnline.Desktop.ViewModels.General;
     using TrainsOnline.Desktop.Views.Route;
     using Windows.UI.Xaml.Data;
@@ -17,7 +19,7 @@
         private INavigationService NavService { get; }
         private IRemoteDataProviderService RemoteDataProvider { get; }
 
-        public ObservableCollection<GroupInfoCollection<GetRouteDetailsResponse>> Source { get; } = new ObservableCollection<GroupInfoCollection<GetRouteDetailsResponse>>();
+        public ObservableCollection<GroupInfoCollection<RouteDetailsValueObject>> Source { get; } = new ObservableCollection<GroupInfoCollection<RouteDetailsValueObject>>();
         public CollectionViewSource GroupedSource { get; } = new CollectionViewSource();
 
         public RouteDataGridViewModel(INavigationService navigationService,
@@ -31,7 +33,7 @@
         {
             Source.Clear();
 
-            GetRoutesListResponse data = await RemoteDataProvider.GetRoutes();
+            IList<RouteDetailsValueObject> data = await RemoteDataProvider.GetRoutes();
 
             //foreach (RouteLookupModel route in data.Routes)
             //{
@@ -46,14 +48,14 @@
 
             foreach (var g in query)
             {
-                GroupInfoCollection<GetRouteDetailsResponse> info = new GroupInfoCollection<GetRouteDetailsResponse>
+                GroupInfoCollection<RouteDetailsValueObject> info = new GroupInfoCollection<RouteDetailsValueObject>
                 {
                     Key = g.GroupName
                 };
 
                 foreach (RouteLookupModel item in g.Items)
                 {
-                    GetRouteDetailsResponse details = await RemoteDataProvider.GetRoute(item.Id);
+                    RouteDetailsValueObject details = await RemoteDataProvider.GetRoute(item.Id);
                     info.Add(details);
                 }
 
@@ -64,7 +66,7 @@
             GroupedSource.Source = Source;
         }
 
-        public void ShowDepartureOnMap(GetRouteDetailsResponse route)
+        public void ShowDepartureOnMap(RouteDetailsValueObject route)
         {
             GeoCoordinate[] coords = new GeoCoordinate[] {
                 new GeoCoordinate(route.From.Latitude, route.From.Longitude)
@@ -73,7 +75,7 @@
             NavService.NavigateToViewModel<GeneralMapViewModel>(new GeneralMapViewParameters(coords));
         }
 
-        public void ShowDestinationOnMap(GetRouteDetailsResponse route)
+        public void ShowDestinationOnMap(RouteDetailsValueObject route)
         {
             GeoCoordinate[] coords = new GeoCoordinate[] {
                 new GeoCoordinate(route.To.Latitude, route.To.Longitude)
@@ -82,7 +84,7 @@
             NavService.NavigateToViewModel<GeneralMapViewModel>(new GeneralMapViewParameters(coords));
         }
 
-        public void ShowRouteOnMap(GetRouteDetailsResponse route)
+        public void ShowRouteOnMap(RouteDetailsValueObject route)
         {
             GeoCoordinate[] coords = new GeoCoordinate[] {
                 new GeoCoordinate(route.From.Latitude, route.From.Longitude),
@@ -92,17 +94,17 @@
             NavService.NavigateToViewModel<GeneralMapViewModel>(new GeneralMapViewParameters(coords));
         }
 
-        public void DeleteRoute(GetRouteDetailsResponse route)
+        public void DeleteRoute(RouteDetailsValueObject route)
         {
 
         }
 
-        public void EditRoute(GetRouteDetailsResponse route)
+        public void EditRoute(RouteDetailsValueObject route)
         {
 
         }
 
-        public void BuyTicket(GetRouteDetailsResponse route)
+        public void BuyTicket(RouteDetailsValueObject route)
         {
 
         }
@@ -110,7 +112,7 @@
         public void LoadingRowGroup(DataGridRowGroupHeaderEventArgs e)
         {
             ICollectionViewGroup group = e.RowGroupHeader.CollectionViewGroup;
-            GetRouteDetailsResponse item = group.GroupItems[0] as GetRouteDetailsResponse;
+            RouteDetailsValueObject item = group.GroupItems[0] as RouteDetailsValueObject;
             e.RowGroupHeader.PropertyValue = item?.From?.Name;
         }
     }

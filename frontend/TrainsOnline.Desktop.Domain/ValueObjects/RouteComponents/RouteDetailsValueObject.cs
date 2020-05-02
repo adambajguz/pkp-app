@@ -1,9 +1,11 @@
-﻿namespace TrainsOnline.Desktop.Domain.ValueObjects.Route
+﻿namespace TrainsOnline.Desktop.Domain.ValueObjects.RouteComponents
 {
     using System;
+    using System.Collections.Generic;
     using TrainsOnline.Desktop.Common.GeoHelpers;
+    using TrainsOnline.Desktop.Domain.ValueObjects.Base;
 
-    public class RouteDetailsValueObject
+    public class RouteDetailsValueObject : ValueObject
     {
         public Guid Id { get; set; }
 
@@ -23,6 +25,12 @@
         public TimeSpan Duration { get; set; }
         public double Distance { get; set; }
         public double TicketPrice { get; set; }
+
+        protected override IEnumerable<object> GetEqualityComponents()
+        {
+            yield return Id;
+            yield return CreatedOn;
+        }
 
         public class RouteStationLookupModel
         {

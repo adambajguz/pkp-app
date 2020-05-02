@@ -3,8 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using TrainsOnline.Desktop.Domain.ValueObjects.Route;
-    using TrainsOnline.Desktop.Domain.ValueObjects.Ticket;
+    using TrainsOnline.Desktop.Domain.ValueObjects.TicketComponents;
 
     public interface ITicketData
     {

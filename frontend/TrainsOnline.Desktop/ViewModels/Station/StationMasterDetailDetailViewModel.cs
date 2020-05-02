@@ -5,6 +5,7 @@
     using TrainsOnline.Desktop.Application.Interfaces.RemoteDataProvider;
     using TrainsOnline.Desktop.Common.GeoHelpers;
     using TrainsOnline.Desktop.Domain.Models.General;
+    using TrainsOnline.Desktop.Domain.ValueObjects.StationComponents;
     using TrainsOnline.Desktop.ViewModels.General;
     using TrainsOnline.Desktop.Views.Route;
 
@@ -29,8 +30,8 @@
             set => Set(ref _item, value);
         }
 
-        private GetStationDetailsResponse _details;
-        public GetStationDetailsResponse Details
+        private StationDetailsValueObject _details;
+        public StationDetailsValueObject Details
         {
             get => _details;
             set => Set(ref _details, value);
@@ -38,7 +39,7 @@
 
         public async Task LoadDetails()
         {
-            GetStationDetailsResponse data = await RemoteDataProvider.GetStation(Item.Id);
+            StationDetailsValueObject data = await RemoteDataProvider.GetStation(Item.Id);
             Details = data;
             //Refresh();
         }

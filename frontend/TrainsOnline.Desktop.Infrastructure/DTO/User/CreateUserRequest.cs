@@ -2,7 +2,6 @@
 {
     using AutoMapper;
     using TrainsOnline.Desktop.Application.Interfaces;
-    using TrainsOnline.Desktop.Domain.ValueObjects.User;
     using TrainsOnline.Desktop.Infrastructure.DTO;
 
     public class CreateUserRequest : IDataTransferObject, ICustomMapping
