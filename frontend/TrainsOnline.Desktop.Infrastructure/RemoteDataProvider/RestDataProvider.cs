@@ -3,14 +3,15 @@
     using System;
     using System.Threading.Tasks;
     using RestSharp;
-    using TrainsOnline.Desktop.Application.Interfaces;
-    using TrainsOnline.Desktop.Domain.DTO;
-    using TrainsOnline.Desktop.Domain.DTO.Authentication;
-    using TrainsOnline.Desktop.Domain.DTO.Route;
-    using TrainsOnline.Desktop.Domain.DTO.Station;
-    using TrainsOnline.Desktop.Domain.DTO.Ticket;
-    using TrainsOnline.Desktop.Domain.DTO.User;
+    using TrainsOnline.Desktop.Application.Interfaces.RemoteDataProvider;
+    using TrainsOnline.Desktop.Infrastructure.DTO;
+    using TrainsOnline.Desktop.Infrastructure.DTO.Authentication;
+    using TrainsOnline.Desktop.Infrastructure.DTO.Route;
+    using TrainsOnline.Desktop.Infrastructure.DTO.Station;
+    using TrainsOnline.Desktop.Infrastructure.DTO.Ticket;
+    using TrainsOnline.Desktop.Infrastructure.DTO.User;
     using TrainsOnline.Desktop.Infrastructure.Extensions;
+    using TrainsOnline.Desktop.Infrastructure.RemoteDataProvider.Interfaces;
 
     public class RestDataProvider : IDataProvider
     {
@@ -18,7 +19,7 @@
 
         public WebApiTypes ApiType { get; set; }
 
-        public bool IsAuthenticated { get => !string.IsNullOrWhiteSpace(Token); }
+        public bool IsAuthenticated => !string.IsNullOrWhiteSpace(Token);
         protected string Token { get; private set; }
 
         private RestClient Client { get; }

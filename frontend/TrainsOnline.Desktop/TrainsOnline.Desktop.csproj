@@ -167,7 +167,7 @@
     <Compile Include="Converters\DateTimeFormatterConverter.cs" />
     <Compile Include="Converters\DistanceFormatterConverter.cs" />
     <Compile Include="Converters\CurrencyFormatterConverter.cs" />
-    <Compile Include="DependecyInjection.cs" />
+    <Compile Include="DependencyInjection.cs" />
     <Compile Include="Converters\EnumToBooleanConverter.cs" />
     <Compile Include="Helpers\NavHelper.cs" />
     <Compile Include="Helpers\SettingsStorageExtensions.cs" />

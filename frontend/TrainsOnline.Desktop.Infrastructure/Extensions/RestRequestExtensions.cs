@@ -9,8 +9,8 @@
             request.AddParameter("Authorization", $"Bearer {token}", ParameterType.HttpHeader);
 
             return request;
-        }      
-        
+        }
+
         public static IRestRequest AddBearerAuthentication(this IRestRequest request, string token)
         {
             request.AddParameter("Authorization", $"Bearer {token}", ParameterType.HttpHeader);

@@ -4,8 +4,7 @@
     using System.Linq;
     using System.Threading.Tasks;
     using Caliburn.Micro;
-    using TrainsOnline.Desktop.Application.Interfaces;
-    using TrainsOnline.Desktop.Domain.DTO.Station;
+    using TrainsOnline.Desktop.Application.Interfaces.RemoteDataProvider;
 
     public class StationMasterDetailViewModel : Conductor<StationMasterDetailDetailViewModel>.Collection.OneActive
     {

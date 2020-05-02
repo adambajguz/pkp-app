@@ -1,7 +1,7 @@
 ﻿namespace TrainsOnline.Desktop.ViewModels
 {
     using Caliburn.Micro;
-    using TrainsOnline.Desktop.Application.Interfaces;
+    using TrainsOnline.Desktop.Application.Interfaces.RemoteDataProvider;
     using TrainsOnline.Desktop.Helpers;
     using TrainsOnline.Desktop.Services;
     using Windows.ApplicationModel;

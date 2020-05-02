@@ -1,22 +1,29 @@
 ﻿namespace TrainsOnline.Desktop.Infrastructure.RemoteDataProvider
 {
     using System;
+    using System.Collections.Generic;
     using System.Threading.Tasks;
-    using RestSharp;
-    using TrainsOnline.Desktop.Application.Interfaces;
-    using TrainsOnline.Desktop.Domain.DTO;
-    using TrainsOnline.Desktop.Domain.DTO.Authentication;
-    using TrainsOnline.Desktop.Domain.DTO.Route;
-    using TrainsOnline.Desktop.Domain.DTO.Station;
-    using TrainsOnline.Desktop.Domain.DTO.Ticket;
-    using TrainsOnline.Desktop.Domain.DTO.User;
-    using TrainsOnline.Desktop.Infrastructure.Extensions;
+    using AutoMapper;
+    using TrainsOnline.Desktop.Application.Interfaces.RemoteDataProvider;
+    using TrainsOnline.Desktop.Domain.ValueObjects.Route;
+    using TrainsOnline.Desktop.Domain.ValueObjects.Station;
+    using TrainsOnline.Desktop.Domain.ValueObjects.Ticket;
+    using TrainsOnline.Desktop.Domain.ValueObjects.User;
+    using TrainsOnline.Desktop.Infrastructure.DTO;
+    using TrainsOnline.Desktop.Infrastructure.DTO.Authentication;
+    using TrainsOnline.Desktop.Infrastructure.DTO.Route;
+    using TrainsOnline.Desktop.Infrastructure.DTO.Station;
+    using TrainsOnline.Desktop.Infrastructure.DTO.Ticket;
+    using TrainsOnline.Desktop.Infrastructure.DTO.User;
+    using TrainsOnline.Desktop.Infrastructure.RemoteDataProvider.Interfaces;
 
     public class RemoteDataProviderService : IRemoteDataProviderService
     {
+        private IMapper Mapper { get; set; }
+
         public WebApiTypes ApiType { get; set; }
 
-        public bool IsAuthenticated { get => !string.IsNullOrWhiteSpace(Token); }
+        public bool IsAuthenticated => !string.IsNullOrWhiteSpace(Token);
         protected string Token { get; private set; }
 
         private SoapDataProvider SoapProvider { get; }
@@ -24,18 +31,25 @@
 
         private IDataProvider DataProvider => (ApiType == WebApiTypes.SOAP ? (IDataProvider)SoapProvider : RestProvider);
 
-        public RemoteDataProviderService()
+        public RemoteDataProviderService(IMapper mapper)
         {
+            Mapper = mapper;
+
             SoapProvider = new SoapDataProvider();
             RestProvider = new RestDataProvider();
         }
 
-        public async Task<JwtTokenModel> Login(LoginRequest data)
+        public async Task<bool> Login(string email, string password)
         {
-            JwtTokenModel jwtTokenModel = await DataProvider.Login(data);
+            JwtTokenModel jwtTokenModel = await DataProvider.Login(new LoginRequest
+            {
+                Email = email,
+                Password = password
+            });
+
             Token = jwtTokenModel?.Token;
 
-            return jwtTokenModel;
+            return IsAuthenticated;
         }
 
         public void Logout()
@@ -43,54 +57,68 @@
             Token = string.Empty;
         }
 
-        public async Task<IdResponse> Register(CreateUserRequest data)
+        public async Task<Guid> Register(NewUser data)
         {
-            return await DataProvider.Register(data);
+            CreateUserRequest request = Mapper.Map<CreateUserRequest>(data);
+            IdResponse response = await DataProvider.Register(request);
+
+            return response.Id;
         }
 
-        public async Task<GetUserDetailsResponse> GetCurrentUser()
+        public async Task<UserDetailsValueObject> GetCurrentUser()
         {
-            return await DataProvider.GetCurrentUser();
+            GetUserDetailsResponse response = await DataProvider.GetCurrentUser();
+            Mapper.Map<UserDetailsValueObject>(response);
+
+            return null;
         }
 
-        public async Task<GetStationDetailsResponse> GetStation(Guid id)
+        public async Task<StationDetailsValueObject> GetStation(Guid id)
         {
-            return await DataProvider.GetStation(id);
+            GetStationDetailsResponse response = await DataProvider.GetStation(id);
+            return null;
         }
 
-        public async Task<GetStationsListResponse> GetStations()
+        public async Task<IList<StationDetailsValueObject>> GetStations()
         {
-            return await DataProvider.GetStations();
+            GetStationsListResponse response = await DataProvider.GetStations();
+            return null;
         }
 
-        public async Task<GetRouteDetailsResponse> GetRoute(Guid id)
+        public async Task<RouteDetailsValueObject> GetRoute(Guid id)
         {
-            return await DataProvider.GetRoute(id);
+            GetRouteDetailsResponse response = await DataProvider.GetRoute(id);
+            return null;
         }
 
-        public async Task<GetRoutesListResponse> GetRoutes()
+        public async Task<IList<RouteDetailsValueObject>> GetRoutes()
         {
-            return await DataProvider.GetRoutes();
+            GetRoutesListResponse response = await DataProvider.GetRoutes();
+            return null;
         }
 
-        public async Task<IdResponse> CreateTicket(CreateTicketRequest data)
+        public async Task<Guid> CreateTicket(NewTicket data)
         {
-            return await DataProvider.CreateTicket(data);
+            IdResponse response = await DataProvider.CreateTicket(null);
+            return response.Id;
         }
 
-        public async Task<GetTicketDetailsResponse> GetTicket(Guid id)
+        public async Task<TicketDetailsValueObject> GetTicket(Guid id)
         {
-            return await DataProvider.GetTicket(id);
+            GetTicketDetailsResponse response = await DataProvider.GetTicket(id);
+            return null;
         }
 
-        public async Task<GetTicketDocumentResponse> GetTicketDocument(Guid id)
+        public async Task<TicketDocumentValueObject> GetTicketDocument(Guid id)
         {
-            return await DataProvider.GetTicketDocument(id);
+            GetTicketDocumentResponse response = await DataProvider.GetTicketDocument(id);
+            return null;
         }
 
-        public async Task<GetUserTicketsListResponse> GetCurrentUserTickets()
+        public async Task<IList<TicketDetailsValueObject>> GetCurrentUserTickets()
         {
-            return await DataProvider.GetCurrentUserTickets();
+            GetUserTicketsListResponse response = await DataProvider.GetCurrentUserTickets();
+            return null;
         }
     }
 }

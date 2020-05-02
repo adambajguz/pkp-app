@@ -1,7 +1,6 @@
 ﻿namespace TrainsOnline.Desktop.Views.Route
 {
     using Microsoft.Toolkit.Uwp.UI.Controls;
-    using TrainsOnline.Desktop.Domain.DTO.Route;
 
     internal interface IRouteDataGridViewEvents
     {

@@ -1,10 +1,8 @@
 ﻿namespace TrainsOnline.Desktop.ViewModels.Ticket
 {
-    using System;
     using System.Threading.Tasks;
     using Caliburn.Micro;
-    using TrainsOnline.Desktop.Application.Interfaces;
-    using TrainsOnline.Desktop.Domain.DTO.Ticket;
+    using TrainsOnline.Desktop.Application.Interfaces.RemoteDataProvider;
     using TrainsOnline.Desktop.Domain.Models.Ticket;
     using TrainsOnline.Desktop.Services;
 

@@ -2,14 +2,11 @@
 {
     using System.Threading.Tasks;
     using Caliburn.Micro;
-    using TrainsOnline.Desktop.Application.Interfaces;
+    using TrainsOnline.Desktop.Application.Interfaces.RemoteDataProvider;
     using TrainsOnline.Desktop.Common.GeoHelpers;
-    using TrainsOnline.Desktop.Domain.DTO.Station;
     using TrainsOnline.Desktop.Domain.Models.General;
     using TrainsOnline.Desktop.ViewModels.General;
     using TrainsOnline.Desktop.Views.Route;
-    using static TrainsOnline.Desktop.Domain.DTO.Station.GetStationDetailsResponse;
-    using static TrainsOnline.Desktop.Domain.DTO.Station.GetStationsListResponse;
 
     public class StationMasterDetailDetailViewModel : Screen, IStationMasterDetailDetailView
     {
