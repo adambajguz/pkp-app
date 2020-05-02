@@ -127,7 +127,7 @@
                 return null;
             }
 
-            RestRequest request = new RestRequest("ticket/create}", DataFormat.Json);
+            RestRequest request = new RestRequest("ticket/create", DataFormat.Json);
             request.AddJsonBody(data)
                    .AddBearerAuthentication(Token);
 

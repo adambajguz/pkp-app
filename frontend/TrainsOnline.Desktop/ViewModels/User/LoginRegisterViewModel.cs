@@ -35,6 +35,14 @@
             get => _loginPassword;
             set => Set(ref _loginPassword, value);
         }
+
+
+        private bool _loginInProgress;
+        public bool LoginInProgress
+        {
+            get => _loginInProgress;
+            set => Set(ref _loginInProgress, value);
+        }
         #endregion
 
         #region Register Properties
@@ -86,6 +94,13 @@
             get => _registerAddress;
             set => Set(ref _registerAddress, value);
         }
+
+        private bool _registerInProgress;
+        public bool RegisterInProgress
+        {
+            get => _registerInProgress;
+            set => Set(ref _registerInProgress, value);
+        }
         #endregion
 
         private IRemoteDataProviderService RemoteDataProvider { get; }
@@ -102,6 +117,7 @@
         {
             try
             {
+                LoginInProgress = true;
                 await RemoteDataProvider.Login(LoginEmail, LoginPassword);
 
                 NavigationService.GoBack();
@@ -110,12 +126,16 @@
             {
                 LoginErrors = ex.GetResponse().Message;
             }
+
+            LoginInProgress = false;
         }
 
         public async void Register()
         {
             try
             {
+                RegisterInProgress = true;
+
                 await RemoteDataProvider.Register(new Domain.DTO.User.CreateUserRequest
                 {
                     Email = RegisterEmail,
@@ -132,6 +152,8 @@
             {
                 RegisterErrors = ex.GetResponse().Message;
             }
+
+            RegisterInProgress = false;
         }
     }
 }

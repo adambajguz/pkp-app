@@ -37,11 +37,15 @@
                             Password="{Binding Path=LoginPassword, Mode=TwoWay}"
                             PasswordRevealMode="Peek"
                             PlaceholderText="password" />
-                        <Button
-                            x:Name="LoginButton"
-                            Margin="{StaticResource SmallTopMargin}"
-                            micro:Message.Attach="[Event Click]=[Login()]"
-                            Content="Login" />
+
+                        <StackPanel Orientation="Horizontal">
+                            <Button
+                                x:Name="LoginButton"
+                                Margin="{StaticResource SmallTopMargin}"
+                                micro:Message.Attach="[Event Click]=[Login()]"
+                                Content="Login" />
+                            <ProgressRing Margin="8,12,0,0" IsActive="{Binding Path=LoginInProgress, Mode=OneWay}" />
+                        </StackPanel>
                     </StackPanel>
                 </PivotItem>
 
@@ -84,11 +88,15 @@
                             Header="address:"
                             PlaceholderText="Address"
                             Text="{Binding Path=RegisterAddress, Mode=TwoWay}" />
-                        <Button
-                            x:Name="RegisterButton"
-                            Margin="{StaticResource SmallTopMargin}"
-                            micro:Message.Attach="[Event Click]=[Register()]"
-                            Content="Register" />
+
+                        <StackPanel Orientation="Horizontal">
+                            <Button
+                                x:Name="RegisterButton"
+                                Margin="{StaticResource SmallTopMargin}"
+                                micro:Message.Attach="[Event Click]=[Register()]"
+                                Content="Register" />
+                            <ProgressRing Margin="8,12,0,0" IsActive="{Binding Path=RegisterInProgress, Mode=OneWay}" />
+                        </StackPanel>
                     </StackPanel>
                 </PivotItem>
 
