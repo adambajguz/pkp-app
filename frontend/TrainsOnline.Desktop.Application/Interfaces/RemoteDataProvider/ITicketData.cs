@@ -1,11 +1,8 @@
 ﻿namespace TrainsOnline.Desktop.Application.Interfaces.RemoteDataProvider
 {
     using System;
-    using System.Collections.Generic;
     using System.Threading.Tasks;
-    using TrainsOnline.Desktop.Domain.DTO;
     using TrainsOnline.Desktop.Domain.DTO.Ticket;
-    using TrainsOnline.Desktop.Domain.ValueObjects.TicketComponents;
 
     public interface ITicketData
     {

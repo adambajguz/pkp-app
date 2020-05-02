@@ -2,7 +2,6 @@
 {
     using System;
     using System.Threading.Tasks;
-    using TrainsOnline.Desktop.Domain;
     using TrainsOnline.Desktop.Domain.DTO.User;
 
     public interface IUserData

@@ -6,7 +6,6 @@
     using TrainsOnline.Desktop.Common.GeoHelpers;
     using TrainsOnline.Desktop.Domain.DTO.Station;
     using TrainsOnline.Desktop.Domain.Models.General;
-    using TrainsOnline.Desktop.Domain.ValueObjects.StationComponents;
     using TrainsOnline.Desktop.ViewModels.General;
     using TrainsOnline.Desktop.Views.Route;
     using static TrainsOnline.Desktop.Domain.DTO.Station.GetStationDetailsResponse;
