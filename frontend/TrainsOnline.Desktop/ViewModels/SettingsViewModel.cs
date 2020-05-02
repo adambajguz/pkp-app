@@ -11,30 +11,23 @@
     public class SettingsViewModel : Screen
     {
         private ElementTheme _elementTheme = ThemeSelectorService.Theme;
-
         public ElementTheme ElementTheme
         {
             get => _elementTheme;
-
             set => Set(ref _elementTheme, value);
         }
 
-
         private WebApiTypes _webApiType = WebApiTypes.SOAP;
-
         public WebApiTypes WebApiType
         {
             get => _webApiType;
-
             set => Set(ref _webApiType, value);
         }
 
         private string _versionDescription;
-
         public string VersionDescription
         {
             get => _versionDescription;
-
             set => Set(ref _versionDescription, value);
         }
 

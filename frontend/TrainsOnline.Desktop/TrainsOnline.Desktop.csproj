@@ -195,6 +195,8 @@
     <Compile Include="ViewModels\Station\StationMasterDetailViewModel.cs" />
     <Compile Include="ViewModels\Ticket\TicketContentGridDetailViewModel.cs" />
     <Compile Include="ViewModels\Ticket\TicketContentGridViewModel.cs" />
+    <Compile Include="ViewModels\User\UserDetailsViewModel.cs" />
+    <Compile Include="ViewModels\User\LoginRegisterViewModel.cs" />
     <Compile Include="Views\Example\ExampleBlankPage.xaml.cs">
       <DependentUpon>ExampleBlankPage.xaml</DependentUpon>
     </Compile>
@@ -259,6 +261,13 @@
     </Compile>
     <Compile Include="Views\Ticket\TicketContentGridPage.xaml.cs">
       <DependentUpon>TicketContentGridPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\User\ILoginRegisterGridViewEvents.cs" />
+    <Compile Include="Views\User\UserDetailsPage.xaml.cs">
+      <DependentUpon>UserDetailsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\User\LoginRegisterPage.xaml.cs">
+      <DependentUpon>LoginRegisterPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -361,6 +370,14 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Ticket\TicketContentGridPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\User\UserDetailsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\User\LoginRegisterPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

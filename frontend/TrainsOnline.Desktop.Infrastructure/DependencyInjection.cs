@@ -8,7 +8,7 @@
     {
         public static void AddInfrastructure(this SimpleContainer _container)
         {
-            _container.Singleton<ITicketData, RemoteDataProviderService>();
+            _container.Singleton<IRemoteDataProviderService, RemoteDataProviderService>();
         }
     }
 }

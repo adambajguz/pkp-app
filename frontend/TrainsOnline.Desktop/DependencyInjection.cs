@@ -28,6 +28,9 @@
 
             _container.PerRequest<VM.Ticket.TicketContentGridDetailViewModel>();
             _container.PerRequest<VM.Ticket.TicketContentGridViewModel>();
+
+            _container.PerRequest<VM.User.LoginRegisterViewModel>();
+            _container.PerRequest<VM.User.UserDetailsViewModel>();
         }
     }
 }

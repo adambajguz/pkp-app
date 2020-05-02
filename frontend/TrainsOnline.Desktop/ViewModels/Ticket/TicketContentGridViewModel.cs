@@ -7,6 +7,7 @@
     using TrainsOnline.Desktop.Domain.DTO.Ticket;
     using TrainsOnline.Desktop.Domain.Models.Ticket;
     using TrainsOnline.Desktop.Services;
+    using TrainsOnline.Desktop.ViewModels.User;
     using TrainsOnline.Desktop.Views.Ticket;
 
     public class TicketContentGridViewModel : Screen, ITicketContentGridViewEvents
@@ -28,9 +29,14 @@
 
         public async Task LoadDataAsync()
         {
-            Source.Clear();
+            if (!RemoteDataProvider.IsAuthenticated)
+            {
+                _navigationService.NavigateToViewModel<LoginRegisterViewModel>();
 
-            await RemoteDataProvider.Login("test0@test.pl", "test1234");
+                return;
+            }
+
+            Source.Clear();
 
             GetUserTicketsListResponse data = await RemoteDataProvider.GetCurrentUserTickets();
 
@@ -51,5 +57,21 @@
                 _navigationService.NavigateToViewModel<TicketContentGridDetailViewModel>(new TicketContentGridDetailsParameters(clickedItem.Id));
             }
         }
+
+        protected override void OnViewLoaded(object view)
+        {
+            base.OnViewLoaded(view); if (!RemoteDataProvider.IsAuthenticated)
+            {
+                _navigationService.NavigateToViewModel<LoginRegisterViewModel>();
+            }
+        }
+
+        //protected override void OnViewReady(object view)
+        //{
+        //    base.OnViewReady(view); if (!RemoteDataProvider.IsAuthenticated)
+        //    {
+        //        _navigationService.NavigateToViewModel<LoginRegisterViewModel>();
+        //    }
+        //}
     }
 }
