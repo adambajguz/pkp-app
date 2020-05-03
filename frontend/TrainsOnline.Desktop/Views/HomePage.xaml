@@ -15,6 +15,7 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
+
             <!--
                 The SystemControlPageBackgroundChromeLowBrush background represents where you should place your content.
                 Place your content here.

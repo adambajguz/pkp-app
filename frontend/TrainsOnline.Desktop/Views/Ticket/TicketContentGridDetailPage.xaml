@@ -19,7 +19,6 @@
     <Grid Margin="{StaticResource MediumLeftRightMargin}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <ScrollViewer Grid.Row="0">
@@ -29,14 +28,33 @@
                     <TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}" Text="{x:Bind ViewModel.Item.CreatedOn, Converter={StaticResource DateTimeFormatterConverter}}" />
                 </StackPanel>-->
 
-                <StackPanel Margin="{StaticResource SmallTopMargin}">
-                    <TextBlock Style="{StaticResource DetailSubTitleStyle}" Text="From" />
-                    <TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}" Text="{Binding Item.Route.From.Name}" />
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel Margin="{StaticResource MediumRightMargin}">
+                        <TextBlock Style="{StaticResource DetailSubTitleStyle}" Text="From" />
+                        <TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}" Text="{Binding Item.Route.From.Name}" />
+                    </StackPanel>
+
+                    <StackPanel Margin="{StaticResource MediumLeftMargin}">
+                        <TextBlock Style="{StaticResource DetailSubTitleStyle}" Text="To" />
+                        <TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}" Text="{Binding Item.Route.To.Name}" />
+                    </StackPanel>
                 </StackPanel>
 
-                <StackPanel Margin="{StaticResource SmallTopMargin}">
-                    <TextBlock Style="{StaticResource DetailSubTitleStyle}" Text="To" />
-                    <TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}" Text="{Binding Item.Route.To.Name}" />
+                <StackPanel Margin="{StaticResource SmallTopMargin}" Orientation="Horizontal">
+                    <StackPanel Margin="{StaticResource MediumRightMargin}">
+                        <TextBlock Style="{StaticResource DetailSubTitleStyle}" Text="Departure" />
+                        <TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}" Text="{Binding Item.Route.DepartureTime, Converter={StaticResource DateTimeFormatterConverter}}" />
+                    </StackPanel>
+
+                    <StackPanel Margin="{StaticResource MediumLeftRightMargin}">
+                        <TextBlock Style="{StaticResource DetailSubTitleStyle}" Text="Arrival " />
+                        <TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}" Text="{Binding Item.Route.ArrivalTime, Converter={StaticResource DateTimeFormatterConverter}}" />
+                    </StackPanel>
+
+                    <StackPanel Margin="{StaticResource MediumLeftMargin}">
+                        <TextBlock Style="{StaticResource DetailSubTitleStyle}" Text="Duration" />
+                        <TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}" Text="{Binding Item.Route.Duration}" />
+                    </StackPanel>
                 </StackPanel>
 
                 <StackPanel Margin="{StaticResource SmallTopMargin}">
@@ -49,11 +67,14 @@
                     <TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}" Text="{Binding Item.Route.Distance, Converter={StaticResource DistanceFormatterConverter}}" />
                 </StackPanel>
 
-                <StackPanel Orientation="Horizontal">
-                    <Button
-                        Margin="8,0,0,0"
-                        micro:Message.Attach="[Event Click]=[PreviewTicketPDF()]"
-                        ToolTipService.ToolTip="Preview PDF">
+                <StackPanel
+                    Margin="{StaticResource MediumTopMargin}"
+                    HorizontalAlignment="Right"
+                    Orientation="Horizontal">
+
+                    <ProgressRing Margin="0,0,8,0" IsActive="{Binding Path=DownloadInProgress, Mode=OneWay}" />
+
+                    <Button micro:Message.Attach="[Event Click]=[PreviewTicketPDF()]" ToolTipService.ToolTip="Preview PDF">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock
                                 VerticalAlignment="Center"
@@ -83,23 +104,19 @@
                                 Text="Download PDF" />
                         </StackPanel>
                     </Button>
-
-                    <ProgressRing Margin="8,12,0,0" IsActive="{Binding Path=DownloadInProgress, Mode=OneWay}" />
                 </StackPanel>
             </StackPanel>
         </ScrollViewer>
 
 
-        <TextBlock
+        <!--<TextBlock
             Grid.Row="1"
-            Margin="{StaticResource SmallTopMargin}"
             Style="{StaticResource DetailSubTitleStyle}"
-            Text="PDF Preview" />
+            Text="PDF Preview" />-->
 
         <ScrollViewer
-            Grid.Row="2"
+            Grid.Row="1"
             Margin="{StaticResource XSmallTopMargin}"
-            Background="LightGray"
             ZoomMode="Enabled">
             <Image
                 x:Name="PdfRenderingImage"
