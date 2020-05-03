@@ -2,6 +2,7 @@
 {
     using System;
     using System.Drawing;
+    using System.Drawing.Drawing2D;
     using System.Drawing.Imaging;
     using System.Globalization;
     using System.IO;
@@ -87,15 +88,7 @@
             BitmapByteQRCode qrCode = new BitmapByteQRCode(qrCodeData);
             byte[] qrCodeAsBitmapByteArr = qrCode.GetGraphic(pixelsPerModule);
 
-            Bitmap bmp;
-            using (MemoryStream qrMemoryStream = new MemoryStream(qrCodeAsBitmapByteArr))
-            using (MemoryStream memoryStream = new MemoryStream())
-            {
-                bmp = new Bitmap(qrMemoryStream);
-                bmp.Save(memoryStream, ImageFormat.Jpeg);              
-
-                return memoryStream.ToArray();
-            }
+            return qrCodeAsBitmapByteArr;
         }
     }
 }
