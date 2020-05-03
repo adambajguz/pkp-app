@@ -9,60 +9,60 @@
 
 namespace TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket
 {
-    
-    
+
+
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket.ITicketSoapEndpo" +
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName = "TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket.ITicketSoapEndpo" +
         "intService")]
     public interface ITicketSoapEndpointService
     {
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITicketSoapEndpointService/CreateTicket", ReplyAction="*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+
+        [System.ServiceModel.OperationContractAttribute(Action = "https://tempuri.org/ITicketSoapEndpointService/CreateTicket", ReplyAction = "*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
         System.Threading.Tasks.Task<TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket.CreateTicketResponse> CreateTicketAsync(TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket.CreateTicketRequest1 request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITicketSoapEndpointService/GetTicketDetails", ReplyAction="*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+
+        [System.ServiceModel.OperationContractAttribute(Action = "https://tempuri.org/ITicketSoapEndpointService/GetTicketDetails", ReplyAction = "*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
         System.Threading.Tasks.Task<TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket.GetTicketDetailsResponse1> GetTicketDetailsAsync(TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket.GetTicketDetailsRequest request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITicketSoapEndpointService/GetTicketDocument", ReplyAction="*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+
+        [System.ServiceModel.OperationContractAttribute(Action = "https://tempuri.org/ITicketSoapEndpointService/GetTicketDocument", ReplyAction = "*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
         System.Threading.Tasks.Task<TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket.GetTicketDocumentResponse1> GetTicketDocumentAsync(TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket.GetTicketDocumentRequest request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITicketSoapEndpointService/UpdateTicket", ReplyAction="*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+
+        [System.ServiceModel.OperationContractAttribute(Action = "https://tempuri.org/ITicketSoapEndpointService/UpdateTicket", ReplyAction = "*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
         System.Threading.Tasks.Task<TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket.UpdateTicketResponse> UpdateTicketAsync(TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket.UpdateTicketRequest1 request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITicketSoapEndpointService/DeleteTicket", ReplyAction="*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+
+        [System.ServiceModel.OperationContractAttribute(Action = "https://tempuri.org/ITicketSoapEndpointService/DeleteTicket", ReplyAction = "*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
         System.Threading.Tasks.Task<TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket.DeleteTicketResponse> DeleteTicketAsync(TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket.DeleteTicketRequest request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITicketSoapEndpointService/GetCurrentUserTicketsList", ReplyAction="*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+
+        [System.ServiceModel.OperationContractAttribute(Action = "https://tempuri.org/ITicketSoapEndpointService/GetCurrentUserTicketsList", ReplyAction = "*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
         System.Threading.Tasks.Task<TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket.GetCurrentUserTicketsListResponse> GetCurrentUserTicketsListAsync(TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket.GetCurrentUserTicketsListRequest request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITicketSoapEndpointService/GetUserTicketsList", ReplyAction="*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+
+        [System.ServiceModel.OperationContractAttribute(Action = "https://tempuri.org/ITicketSoapEndpointService/GetUserTicketsList", ReplyAction = "*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
         System.Threading.Tasks.Task<TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket.GetUserTicketsListResponse1> GetUserTicketsListAsync(TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket.GetUserTicketsListRequest request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITicketSoapEndpointService/GetTicketsList", ReplyAction="*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+
+        [System.ServiceModel.OperationContractAttribute(Action = "https://tempuri.org/ITicketSoapEndpointService/GetTicketsList", ReplyAction = "*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
         System.Threading.Tasks.Task<TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket.GetTicketsListResponse1> GetTicketsListAsync(TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket.GetTicketsListRequest request);
     }
-    
+
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://tempuri.org/")]
     public partial class CreateTicketRequest
     {
-        
+
         private string userIdField;
-        
+
         private string routeIdField;
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
         public string UserId
         {
             get
@@ -74,9 +74,9 @@ namespace TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket
                 this.userIdField = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
         public string RouteId
         {
             get
@@ -89,22 +89,22 @@ namespace TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket
             }
         }
     }
-    
+
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://tempuri.org/")]
     public partial class TicketLookupModel
     {
-        
+
         private string idField;
-        
+
         private string userIdField;
-        
+
         private string routeIdField;
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
         public string Id
         {
             get
@@ -116,9 +116,9 @@ namespace TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket
                 this.idField = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
         public string UserId
         {
             get
@@ -130,9 +130,9 @@ namespace TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket
                 this.userIdField = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=2)]
+        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
         public string RouteId
         {
             get
@@ -145,19 +145,18 @@ namespace TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket
             }
         }
     }
-    
+
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://tempuri.org/")]
     public partial class GetTicketsListResponse
     {
-        
-        private TicketLookupModel ticketsField;
-        
+        private TicketLookupModel[] ticketsField;
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=0)]
-        public TicketLookupModel Tickets
+        [System.Xml.Serialization.XmlArrayItem(IsNullable = true)]
+        public TicketLookupModel[] Tickets
         {
             get
             {
@@ -169,24 +168,24 @@ namespace TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket
             }
         }
     }
-    
+
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://tempuri.org/")]
     public partial class UserTicketRouteStationLookupModel
     {
-        
+
         private string idField;
-        
+
         private string nameField;
-        
+
         private double latitudeField;
-        
+
         private double longitudeField;
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
         public string Id
         {
             get
@@ -198,9 +197,9 @@ namespace TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket
                 this.idField = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
         public string Name
         {
             get
@@ -212,9 +211,9 @@ namespace TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket
                 this.nameField = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=2)]
+        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
         public double Latitude
         {
             get
@@ -226,9 +225,9 @@ namespace TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket
                 this.latitudeField = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=3)]
+        [System.Xml.Serialization.XmlElementAttribute(Order = 3)]
         public double Longitude
         {
             get
@@ -241,30 +240,30 @@ namespace TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket
             }
         }
     }
-    
+
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://tempuri.org/")]
     public partial class UserTicketRouteLookupModel
     {
-        
+
         private string idField;
-        
+
         private UserTicketRouteStationLookupModel fromField;
-        
+
         private UserTicketRouteStationLookupModel toField;
-        
+
         private System.DateTime departureTimeField;
-        
+
         private string durationField;
-        
+
         private double distanceField;
-        
+
         private double ticketPriceField;
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
         public string Id
         {
             get
@@ -276,9 +275,9 @@ namespace TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket
                 this.idField = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
         public UserTicketRouteStationLookupModel From
         {
             get
@@ -290,9 +289,9 @@ namespace TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket
                 this.fromField = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=2)]
+        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
         public UserTicketRouteStationLookupModel To
         {
             get
@@ -304,9 +303,9 @@ namespace TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket
                 this.toField = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=3)]
+        [System.Xml.Serialization.XmlElementAttribute(Order = 3)]
         public System.DateTime DepartureTime
         {
             get
@@ -318,9 +317,9 @@ namespace TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket
                 this.departureTimeField = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType="duration", Order=4)]
+        [System.Xml.Serialization.XmlElementAttribute(DataType = "duration", Order = 4)]
         public string Duration
         {
             get
@@ -332,9 +331,9 @@ namespace TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket
                 this.durationField = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=5)]
+        [System.Xml.Serialization.XmlElementAttribute(Order = 5)]
         public double Distance
         {
             get
@@ -346,9 +345,9 @@ namespace TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket
                 this.distanceField = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=6)]
+        [System.Xml.Serialization.XmlElementAttribute(Order = 6)]
         public double TicketPrice
         {
             get
@@ -361,22 +360,22 @@ namespace TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket
             }
         }
     }
-    
+
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://tempuri.org/")]
     public partial class UserTicketLookupModel
     {
-        
+
         private string idField;
-        
+
         private string userIdField;
-        
+
         private UserTicketRouteLookupModel routeField;
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
         public string Id
         {
             get
@@ -388,9 +387,9 @@ namespace TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket
                 this.idField = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
         public string UserId
         {
             get
@@ -402,9 +401,9 @@ namespace TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket
                 this.userIdField = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=2)]
+        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
         public UserTicketRouteLookupModel Route
         {
             get
@@ -417,19 +416,19 @@ namespace TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket
             }
         }
     }
-    
+
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://tempuri.org/")]
     public partial class GetUserTicketsListResponse
     {
-        
-        private UserTicketLookupModel ticketsField;
-        
+
+        private UserTicketLookupModel[] ticketsField;
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=0)]
-        public UserTicketLookupModel Tickets
+        [System.Xml.Serialization.XmlArrayItem(IsNullable = true)]
+        public UserTicketLookupModel[] Tickets
         {
             get
             {
@@ -441,30 +440,30 @@ namespace TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket
             }
         }
     }
-    
+
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://tempuri.org/")]
     public partial class Unit
     {
     }
-    
+
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://tempuri.org/")]
     public partial class UpdateTicketRequest
     {
-        
+
         private string idField;
-        
+
         private string userIdField;
-        
+
         private string routeIdField;
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
         public string Id
         {
             get
@@ -476,9 +475,9 @@ namespace TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket
                 this.idField = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
         public string UserId
         {
             get
@@ -490,9 +489,9 @@ namespace TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket
                 this.userIdField = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=2)]
+        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
         public string RouteId
         {
             get
@@ -505,20 +504,20 @@ namespace TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket
             }
         }
     }
-    
+
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://tempuri.org/")]
     public partial class GetTicketDocumentResponse
     {
-        
+
         private string idField;
-        
+
         private byte[] documentField;
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
         public string Id
         {
             get
@@ -530,9 +529,9 @@ namespace TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket
                 this.idField = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType="base64Binary", Order=1)]
+        [System.Xml.Serialization.XmlElementAttribute(DataType = "base64Binary", Order = 1)]
         public byte[] Document
         {
             get
@@ -545,24 +544,24 @@ namespace TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket
             }
         }
     }
-    
+
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://tempuri.org/")]
     public partial class TicketStationDetailsModel
     {
-        
+
         private string idField;
-        
+
         private string nameField;
-        
+
         private double latitudeField;
-        
+
         private double longitudeField;
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
         public string Id
         {
             get
@@ -574,9 +573,9 @@ namespace TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket
                 this.idField = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
         public string Name
         {
             get
@@ -588,9 +587,9 @@ namespace TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket
                 this.nameField = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=2)]
+        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
         public double Latitude
         {
             get
@@ -602,9 +601,9 @@ namespace TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket
                 this.latitudeField = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=3)]
+        [System.Xml.Serialization.XmlElementAttribute(Order = 3)]
         public double Longitude
         {
             get
@@ -617,30 +616,30 @@ namespace TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket
             }
         }
     }
-    
+
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://tempuri.org/")]
     public partial class TicketRouteDetailsModel
     {
-        
+
         private string idField;
-        
+
         private TicketStationDetailsModel fromField;
-        
+
         private TicketStationDetailsModel toField;
-        
+
         private System.DateTime departureTimeField;
-        
+
         private string durationField;
-        
+
         private double distanceField;
-        
+
         private double ticketPriceField;
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
         public string Id
         {
             get
@@ -652,9 +651,9 @@ namespace TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket
                 this.idField = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
         public TicketStationDetailsModel From
         {
             get
@@ -666,9 +665,9 @@ namespace TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket
                 this.fromField = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=2)]
+        [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
         public TicketStationDetailsModel To
         {
             get
@@ -680,9 +679,9 @@ namespace TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket
                 this.toField = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=3)]
+        [System.Xml.Serialization.XmlElementAttribute(Order = 3)]
         public System.DateTime DepartureTime
         {
             get
@@ -694,9 +693,9 @@ namespace TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket
                 this.departureTimeField = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType="duration", Order=4)]
+        [System.Xml.Serialization.XmlElementAttribute(DataType = "duration", Order = 4)]
         public string Duration
         {
             get
@@ -708,9 +707,9 @@ namespace TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket
                 this.durationField = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=5)]
+        [System.Xml.Serialization.XmlElementAttribute(Order = 5)]
         public double Distance
         {
             get
@@ -722,9 +721,9 @@ namespace TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket
                 this.distanceField = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=6)]
+        [System.Xml.Serialization.XmlElementAttribute(Order = 6)]
         public double TicketPrice
         {
             get
@@ -737,30 +736,30 @@ namespace TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket
             }
         }
     }
-    
+
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://tempuri.org/")]
     public partial class GetTicketDetailsResponse
     {
-        
+
         private string idField;
-        
+
         private System.DateTime createdOnField;
-        
+
         private string createdByField;
-        
+
         private System.DateTime lastSavedOnField;
-        
+
         private string lastSavedByField;
-        
+
         private string userIdField;
-        
+
         private TicketRouteDetailsModel routeField;
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
         public string Id
         {
             get
@@ -772,9 +771,9 @@ namespace TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket
                 this.idField = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
         public System.DateTime CreatedOn
         {
             get
@@ -786,9 +785,9 @@ namespace TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket
                 this.createdOnField = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=2)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable = true, Order = 2)]
         public string CreatedBy
         {
             get
@@ -800,9 +799,9 @@ namespace TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket
                 this.createdByField = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=3)]
+        [System.Xml.Serialization.XmlElementAttribute(Order = 3)]
         public System.DateTime LastSavedOn
         {
             get
@@ -814,9 +813,9 @@ namespace TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket
                 this.lastSavedOnField = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=4)]
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable = true, Order = 4)]
         public string LastSavedBy
         {
             get
@@ -828,9 +827,9 @@ namespace TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket
                 this.lastSavedByField = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=5)]
+        [System.Xml.Serialization.XmlElementAttribute(Order = 5)]
         public string UserId
         {
             get
@@ -842,9 +841,9 @@ namespace TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket
                 this.userIdField = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=6)]
+        [System.Xml.Serialization.XmlElementAttribute(Order = 6)]
         public TicketRouteDetailsModel Route
         {
             get
@@ -857,18 +856,18 @@ namespace TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket
             }
         }
     }
-    
+
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://tempuri.org/")]
     public partial class IdRequest
     {
-        
+
         private string idField;
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
         public string Id
         {
             get
@@ -881,18 +880,18 @@ namespace TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket
             }
         }
     }
-    
+
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://tempuri.org/")]
     public partial class IdResponse
     {
-        
+
         private string idField;
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
         public string Id
         {
             get
@@ -905,400 +904,400 @@ namespace TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket
             }
         }
     }
-    
+
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="CreateTicket", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName = "CreateTicket", WrapperNamespace = "http://tempuri.org/", IsWrapped = true)]
     public partial class CreateTicketRequest1
     {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://tempuri.org/", Order = 0)]
         public TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket.CreateTicketRequest ticket;
-        
+
         public CreateTicketRequest1()
         {
         }
-        
+
         public CreateTicketRequest1(TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket.CreateTicketRequest ticket)
         {
             this.ticket = ticket;
         }
     }
-    
+
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="CreateTicketResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName = "CreateTicketResponse", WrapperNamespace = "http://tempuri.org/", IsWrapped = true)]
     public partial class CreateTicketResponse
     {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://tempuri.org/", Order = 0)]
         public TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket.IdResponse CreateTicketResult;
-        
+
         public CreateTicketResponse()
         {
         }
-        
+
         public CreateTicketResponse(TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket.IdResponse CreateTicketResult)
         {
             this.CreateTicketResult = CreateTicketResult;
         }
     }
-    
+
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="GetTicketDetails", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName = "GetTicketDetails", WrapperNamespace = "http://tempuri.org/", IsWrapped = true)]
     public partial class GetTicketDetailsRequest
     {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://tempuri.org/", Order = 0)]
         public TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket.IdRequest id;
-        
+
         public GetTicketDetailsRequest()
         {
         }
-        
+
         public GetTicketDetailsRequest(TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket.IdRequest id)
         {
             this.id = id;
         }
     }
-    
+
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="GetTicketDetailsResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName = "GetTicketDetailsResponse", WrapperNamespace = "http://tempuri.org/", IsWrapped = true)]
     public partial class GetTicketDetailsResponse1
     {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://tempuri.org/", Order = 0)]
         public TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket.GetTicketDetailsResponse GetTicketDetailsResult;
-        
+
         public GetTicketDetailsResponse1()
         {
         }
-        
+
         public GetTicketDetailsResponse1(TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket.GetTicketDetailsResponse GetTicketDetailsResult)
         {
             this.GetTicketDetailsResult = GetTicketDetailsResult;
         }
     }
-    
+
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="GetTicketDocument", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName = "GetTicketDocument", WrapperNamespace = "http://tempuri.org/", IsWrapped = true)]
     public partial class GetTicketDocumentRequest
     {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://tempuri.org/", Order = 0)]
         public TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket.IdRequest id;
-        
+
         public GetTicketDocumentRequest()
         {
         }
-        
+
         public GetTicketDocumentRequest(TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket.IdRequest id)
         {
             this.id = id;
         }
     }
-    
+
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="GetTicketDocumentResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName = "GetTicketDocumentResponse", WrapperNamespace = "http://tempuri.org/", IsWrapped = true)]
     public partial class GetTicketDocumentResponse1
     {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://tempuri.org/", Order = 0)]
         public TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket.GetTicketDocumentResponse GetTicketDocumentResult;
-        
+
         public GetTicketDocumentResponse1()
         {
         }
-        
+
         public GetTicketDocumentResponse1(TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket.GetTicketDocumentResponse GetTicketDocumentResult)
         {
             this.GetTicketDocumentResult = GetTicketDocumentResult;
         }
     }
-    
+
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="UpdateTicket", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName = "UpdateTicket", WrapperNamespace = "http://tempuri.org/", IsWrapped = true)]
     public partial class UpdateTicketRequest1
     {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://tempuri.org/", Order = 0)]
         public TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket.UpdateTicketRequest ticket;
-        
+
         public UpdateTicketRequest1()
         {
         }
-        
+
         public UpdateTicketRequest1(TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket.UpdateTicketRequest ticket)
         {
             this.ticket = ticket;
         }
     }
-    
+
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="UpdateTicketResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName = "UpdateTicketResponse", WrapperNamespace = "http://tempuri.org/", IsWrapped = true)]
     public partial class UpdateTicketResponse
     {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://tempuri.org/", Order = 0)]
         public TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket.Unit UpdateTicketResult;
-        
+
         public UpdateTicketResponse()
         {
         }
-        
+
         public UpdateTicketResponse(TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket.Unit UpdateTicketResult)
         {
             this.UpdateTicketResult = UpdateTicketResult;
         }
     }
-    
+
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="DeleteTicket", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName = "DeleteTicket", WrapperNamespace = "http://tempuri.org/", IsWrapped = true)]
     public partial class DeleteTicketRequest
     {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://tempuri.org/", Order = 0)]
         public TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket.IdRequest id;
-        
+
         public DeleteTicketRequest()
         {
         }
-        
+
         public DeleteTicketRequest(TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket.IdRequest id)
         {
             this.id = id;
         }
     }
-    
+
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="DeleteTicketResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName = "DeleteTicketResponse", WrapperNamespace = "http://tempuri.org/", IsWrapped = true)]
     public partial class DeleteTicketResponse
     {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://tempuri.org/", Order = 0)]
         public TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket.Unit DeleteTicketResult;
-        
+
         public DeleteTicketResponse()
         {
         }
-        
+
         public DeleteTicketResponse(TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket.Unit DeleteTicketResult)
         {
             this.DeleteTicketResult = DeleteTicketResult;
         }
     }
-    
+
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="GetCurrentUserTicketsList", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName = "GetCurrentUserTicketsList", WrapperNamespace = "http://tempuri.org/", IsWrapped = true)]
     public partial class GetCurrentUserTicketsListRequest
     {
-        
+
         public GetCurrentUserTicketsListRequest()
         {
         }
     }
-    
+
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="GetCurrentUserTicketsListResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName = "GetCurrentUserTicketsListResponse", WrapperNamespace = "http://tempuri.org/", IsWrapped = true)]
     public partial class GetCurrentUserTicketsListResponse
     {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://tempuri.org/", Order = 0)]
         public TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket.GetUserTicketsListResponse GetCurrentUserTicketsListResult;
-        
+
         public GetCurrentUserTicketsListResponse()
         {
         }
-        
+
         public GetCurrentUserTicketsListResponse(TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket.GetUserTicketsListResponse GetCurrentUserTicketsListResult)
         {
             this.GetCurrentUserTicketsListResult = GetCurrentUserTicketsListResult;
         }
     }
-    
+
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="GetUserTicketsList", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName = "GetUserTicketsList", WrapperNamespace = "http://tempuri.org/", IsWrapped = true)]
     public partial class GetUserTicketsListRequest
     {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://tempuri.org/", Order = 0)]
         public TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket.IdRequest id;
-        
+
         public GetUserTicketsListRequest()
         {
         }
-        
+
         public GetUserTicketsListRequest(TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket.IdRequest id)
         {
             this.id = id;
         }
     }
-    
+
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="GetUserTicketsListResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName = "GetUserTicketsListResponse", WrapperNamespace = "http://tempuri.org/", IsWrapped = true)]
     public partial class GetUserTicketsListResponse1
     {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://tempuri.org/", Order = 0)]
         public TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket.GetUserTicketsListResponse GetUserTicketsListResult;
-        
+
         public GetUserTicketsListResponse1()
         {
         }
-        
+
         public GetUserTicketsListResponse1(TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket.GetUserTicketsListResponse GetUserTicketsListResult)
         {
             this.GetUserTicketsListResult = GetUserTicketsListResult;
         }
     }
-    
+
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="GetTicketsList", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName = "GetTicketsList", WrapperNamespace = "http://tempuri.org/", IsWrapped = true)]
     public partial class GetTicketsListRequest
     {
-        
+
         public GetTicketsListRequest()
         {
         }
     }
-    
+
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="GetTicketsListResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName = "GetTicketsListResponse", WrapperNamespace = "http://tempuri.org/", IsWrapped = true)]
     public partial class GetTicketsListResponse1
     {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace = "http://tempuri.org/", Order = 0)]
         public TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket.GetTicketsListResponse GetTicketsListResult;
-        
+
         public GetTicketsListResponse1()
         {
         }
-        
+
         public GetTicketsListResponse1(TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket.GetTicketsListResponse GetTicketsListResult)
         {
             this.GetTicketsListResult = GetTicketsListResult;
         }
     }
-    
+
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
     public interface ITicketSoapEndpointServiceChannel : TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket.ITicketSoapEndpointService, System.ServiceModel.IClientChannel
     {
     }
-    
+
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.2")]
     public partial class TicketSoapEndpointServiceClient : System.ServiceModel.ClientBase<TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket.ITicketSoapEndpointService>, TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket.ITicketSoapEndpointService
     {
-        
+
         /// <summary>
         /// Implement this partial method to configure the service endpoint.
         /// </summary>
         /// <param name="serviceEndpoint">The endpoint to configure</param>
         /// <param name="clientCredentials">The client credentials</param>
         static partial void ConfigureEndpoint(System.ServiceModel.Description.ServiceEndpoint serviceEndpoint, System.ServiceModel.Description.ClientCredentials clientCredentials);
-        
-        public TicketSoapEndpointServiceClient() : 
+
+        public TicketSoapEndpointServiceClient() :
                 base(TicketSoapEndpointServiceClient.GetDefaultBinding(), TicketSoapEndpointServiceClient.GetDefaultEndpointAddress())
         {
             this.Endpoint.Name = EndpointConfiguration.BasicHttpsBinding.ToString();
             ConfigureEndpoint(this.Endpoint, this.ClientCredentials);
         }
-        
-        public TicketSoapEndpointServiceClient(EndpointConfiguration endpointConfiguration) : 
+
+        public TicketSoapEndpointServiceClient(EndpointConfiguration endpointConfiguration) :
                 base(TicketSoapEndpointServiceClient.GetBindingForEndpoint(endpointConfiguration), TicketSoapEndpointServiceClient.GetEndpointAddress(endpointConfiguration))
         {
             this.Endpoint.Name = endpointConfiguration.ToString();
             ConfigureEndpoint(this.Endpoint, this.ClientCredentials);
         }
-        
-        public TicketSoapEndpointServiceClient(EndpointConfiguration endpointConfiguration, string remoteAddress) : 
+
+        public TicketSoapEndpointServiceClient(EndpointConfiguration endpointConfiguration, string remoteAddress) :
                 base(TicketSoapEndpointServiceClient.GetBindingForEndpoint(endpointConfiguration), new System.ServiceModel.EndpointAddress(remoteAddress))
         {
             this.Endpoint.Name = endpointConfiguration.ToString();
             ConfigureEndpoint(this.Endpoint, this.ClientCredentials);
         }
-        
-        public TicketSoapEndpointServiceClient(EndpointConfiguration endpointConfiguration, System.ServiceModel.EndpointAddress remoteAddress) : 
+
+        public TicketSoapEndpointServiceClient(EndpointConfiguration endpointConfiguration, System.ServiceModel.EndpointAddress remoteAddress) :
                 base(TicketSoapEndpointServiceClient.GetBindingForEndpoint(endpointConfiguration), remoteAddress)
         {
             this.Endpoint.Name = endpointConfiguration.ToString();
             ConfigureEndpoint(this.Endpoint, this.ClientCredentials);
         }
-        
-        public TicketSoapEndpointServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+
+        public TicketSoapEndpointServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) :
                 base(binding, remoteAddress)
         {
         }
-        
+
         public System.Threading.Tasks.Task<TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket.CreateTicketResponse> CreateTicketAsync(TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket.CreateTicketRequest1 request)
         {
             return base.Channel.CreateTicketAsync(request);
         }
-        
+
         public System.Threading.Tasks.Task<TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket.GetTicketDetailsResponse1> GetTicketDetailsAsync(TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket.GetTicketDetailsRequest request)
         {
             return base.Channel.GetTicketDetailsAsync(request);
         }
-        
+
         public System.Threading.Tasks.Task<TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket.GetTicketDocumentResponse1> GetTicketDocumentAsync(TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket.GetTicketDocumentRequest request)
         {
             return base.Channel.GetTicketDocumentAsync(request);
         }
-        
+
         public System.Threading.Tasks.Task<TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket.UpdateTicketResponse> UpdateTicketAsync(TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket.UpdateTicketRequest1 request)
         {
             return base.Channel.UpdateTicketAsync(request);
         }
-        
+
         public System.Threading.Tasks.Task<TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket.DeleteTicketResponse> DeleteTicketAsync(TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket.DeleteTicketRequest request)
         {
             return base.Channel.DeleteTicketAsync(request);
         }
-        
+
         public System.Threading.Tasks.Task<TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket.GetCurrentUserTicketsListResponse> GetCurrentUserTicketsListAsync(TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket.GetCurrentUserTicketsListRequest request)
         {
             return base.Channel.GetCurrentUserTicketsListAsync(request);
         }
-        
+
         public System.Threading.Tasks.Task<TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket.GetUserTicketsListResponse1> GetUserTicketsListAsync(TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket.GetUserTicketsListRequest request)
         {
             return base.Channel.GetUserTicketsListAsync(request);
         }
-        
+
         public System.Threading.Tasks.Task<TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket.GetTicketsListResponse1> GetTicketsListAsync(TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket.GetTicketsListRequest request)
         {
             return base.Channel.GetTicketsListAsync(request);
         }
-        
+
         public virtual System.Threading.Tasks.Task OpenAsync()
         {
             return System.Threading.Tasks.Task.Factory.FromAsync(((System.ServiceModel.ICommunicationObject)(this)).BeginOpen(null, null), new System.Action<System.IAsyncResult>(((System.ServiceModel.ICommunicationObject)(this)).EndOpen));
         }
-        
+
         public virtual System.Threading.Tasks.Task CloseAsync()
         {
             return System.Threading.Tasks.Task.Factory.FromAsync(((System.ServiceModel.ICommunicationObject)(this)).BeginClose(null, null), new System.Action<System.IAsyncResult>(((System.ServiceModel.ICommunicationObject)(this)).EndClose));
         }
-        
+
         private static System.ServiceModel.Channels.Binding GetBindingForEndpoint(EndpointConfiguration endpointConfiguration)
         {
             if ((endpointConfiguration == EndpointConfiguration.BasicHttpsBinding))
             {
-                System.ServiceModel.BasicHttpBinding result = new System.ServiceModel.BasicHttpBinding();
+                System.ServiceModel.BasicHttpsBinding result = new System.ServiceModel.BasicHttpsBinding();
                 result.MaxBufferSize = int.MaxValue;
                 result.ReaderQuotas = System.Xml.XmlDictionaryReaderQuotas.Max;
                 result.MaxReceivedMessageSize = int.MaxValue;
@@ -1307,29 +1306,29 @@ namespace TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket
             }
             throw new System.InvalidOperationException(string.Format("Could not find endpoint with name \'{0}\'.", endpointConfiguration));
         }
-        
+
         private static System.ServiceModel.EndpointAddress GetEndpointAddress(EndpointConfiguration endpointConfiguration)
         {
             if ((endpointConfiguration == EndpointConfiguration.BasicHttpsBinding))
             {
-                return new System.ServiceModel.EndpointAddress("http://genericapi.francecentral.cloudapp.azure.com/soap-api/ticket");
+                return new System.ServiceModel.EndpointAddress("https://genericapi.francecentral.cloudapp.azure.com/soap-api/ticket");
             }
             throw new System.InvalidOperationException(string.Format("Could not find endpoint with name \'{0}\'.", endpointConfiguration));
         }
-        
+
         private static System.ServiceModel.Channels.Binding GetDefaultBinding()
         {
             return TicketSoapEndpointServiceClient.GetBindingForEndpoint(EndpointConfiguration.BasicHttpsBinding);
         }
-        
+
         private static System.ServiceModel.EndpointAddress GetDefaultEndpointAddress()
         {
             return TicketSoapEndpointServiceClient.GetEndpointAddress(EndpointConfiguration.BasicHttpsBinding);
         }
-        
+
         public enum EndpointConfiguration
         {
-            
+
             BasicHttpsBinding,
         }
     }
