@@ -8,10 +8,30 @@
     mc:Ignorable="d">
     <Grid x:Name="ContentArea" Margin="{StaticResource MediumLeftRightMargin}">
         <Grid Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
             <!--
                 The SystemControlPageBackgroundChromeLowBrush background represents where you should place your content.
                 Place your content here.
             -->
+            <Image
+                Grid.Row="0"
+                Margin="{StaticResource MediumLeftTopRightBottomMargin}"
+                Source="/Assets/app-header.png" />
+
+            <StackPanel
+                Grid.Row="1"
+                Margin="{StaticResource MediumLeftTopRightBottomMargin}"
+                Orientation="Vertical">
+                <TextBlock Style="{StaticResource DetailSubTitleStyle}" Text="Authors:" />
+                <TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}" Text="Adam Bajguz" />
+                <TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}" Text="Michał Kierzkowski" />
+            </StackPanel>
         </Grid>
     </Grid>
 </Page>
