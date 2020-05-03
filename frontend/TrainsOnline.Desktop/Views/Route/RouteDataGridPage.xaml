@@ -109,37 +109,44 @@
                 </DataTemplate>
             </Grid.Resources>
 
-            <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+            <StackPanel
+                Margin="{StaticResource MediumBottomMargin}"
+                HorizontalAlignment="Stretch"
+                Orientation="Horizontal">
                 <TextBox
-                    Margin="{StaticResource XSmallTopMargin}"
+                    Margin="{StaticResource SmallLeftRightMargin}"
                     Header="Departure station:"
-                    PlaceholderText=""
+                    PlaceholderText="unspecified"
                     Text="{Binding Path=SearchFrom, Mode=TwoWay}" />
                 <TextBox
-                    Margin="{StaticResource XSmallTopMargin}"
+                    Margin="{StaticResource SmallLeftRightMargin}"
                     Header="Arrival station:"
-                    PlaceholderText=""
+                    PlaceholderText="unspecified"
                     Text="{Binding Path=SearchTo, Mode=TwoWay}" />
                 <muxc:NumberBox
-                    Margin="{StaticResource XSmallTopMargin}"
+                    Margin="{StaticResource SmallLeftRightMargin}"
                     Header="Maximum price:"
-                    LargeChange="100"
-                    PlaceholderText="e-mail"
-                    SmallChange="10"
+                    LargeChange="25"
+                    PlaceholderText="unspecified"
+                    SmallChange="5"
                     SpinButtonPlacementMode="Compact"
                     Text="{Binding Path=SearchMaximumPrice, Mode=TwoWay}" />
 
 
                 <StackPanel Orientation="Horizontal">
                     <Button
-                        Margin="{StaticResource SmallTopMargin}"
+                        Margin="0,22,12,0"
                         micro:Message.Attach="[Event Click]=[Search()]"
-                        Content="E721" />
+                        Content="&#xE721;"
+                        FontFamily="Segoe MDL2 Assets"
+                        ToolTipService.ToolTip="Search" />
 
                     <Button
-                        Margin="{StaticResource SmallTopMargin}"
+                        Margin="0,22,0,0"
                         micro:Message.Attach="[Event Click]=[ResetView()]"
-                        Content="Reset view" />
+                        Content="&#xE711;"
+                        FontFamily="Segoe MDL2 Assets"
+                        ToolTipService.ToolTip="Reset search" />
                     <ProgressRing Margin="8,12,0,0" IsActive="{Binding Path=LoginInProgress, Mode=OneWay}" />
                 </StackPanel>
             </StackPanel>
