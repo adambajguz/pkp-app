@@ -11,6 +11,7 @@
     using TrainsOnline.Desktop.Domain.DTO.User;
     using TrainsOnline.Desktop.Domain.Extensions;
     using TrainsOnline.Desktop.Domain.RemoteDataProvider.Interfaces;
+    using SOAPS = Infrastructure.Services.SoapServices;
 
     public class SoapDataProvider : IDataProvider
     {
@@ -82,9 +83,17 @@
 
         public async Task<GetStationsListResponse> GetStations()
         {
-            RestRequest request = new RestRequest("station/get-all", DataFormat.Json);
+            try
+            {
+                SOAPS.Station.StationSoapEndpointServiceClient client = new SOAPS.Station.StationSoapEndpointServiceClient();
+                dynamic data = await client.GetStationsListAsync(new SOAPS.Station.GetStationsListRequest());
 
-            return await Client.GetAsync<GetStationsListResponse>(request);
+                return data as GetStationsListResponse;
+            }
+            catch(Exception ex)
+            {
+                return null;
+            }
         }
 
         public async Task<GetRouteDetailsResponse> GetRoute(Guid id)
