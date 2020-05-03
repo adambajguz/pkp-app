@@ -92,7 +92,7 @@
             using (MemoryStream memoryStream = new MemoryStream())
             {
                 bmp = new Bitmap(qrMemoryStream);
-                bmp.Save(memoryStream, ImageFormat.Emf);
+                bmp.Save(memoryStream, ImageFormat.Tiff);
                 return memoryStream.ToArray();
             }
         }
