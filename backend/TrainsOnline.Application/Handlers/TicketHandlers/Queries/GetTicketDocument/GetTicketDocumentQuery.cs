@@ -96,7 +96,9 @@
                                      .AddSection()
 
                                      .AddComplexParagraph()
-                                     //.AddImage(headerImageMemoryStream, DocumentImageFormats.Jpeg, 160, 30)
+#if DEBUG
+                                     .AddImage(headerImageMemoryStream, DocumentImageFormats.Jpeg, 160, 30)
+#endif
                                      .AddNewLine(2)
 
                                      .AddRunLine("────────────────────────────────┤ TICKET ├─────────────────────────────────", bold: true, fontColor: color)
@@ -129,12 +131,16 @@
                                      .FinishParagraph()
                                      .AddMultiColumn(2, paddingHorizontal: 4,
                                                      (x) => x.AddRunLine("Calendar event QR Code:")
-                                                             //.AddImage(qrCalendarCodeMemoryStream, DocumentImageFormats.Gif, 55, 55)
+#if DEBUG
+                                                              .AddImage(qrCalendarCodeMemoryStream, DocumentImageFormats.Jpeg, 55, 55)
+#endif
                                                              .AddNewLine()
                                                              .AddRunLine("This code allows you to add an event to calendar app on your device. The event will contain all crucial data from this ticket.", size: 8, italic: true),
 
                                                      (x) => x.AddRunLine("Verification QR Code:")
+#if DEBUG
                                                              .AddImage(qrCodeMemoryStream, DocumentImageFormats.Jpeg, 55, 55)
+#endif
                                                              .AddNewLine()
                                                              .AddRunLine("The verification QR Code allows you to verify authenticity of the ticket using a dedicated online service.", size: 8, italic: true))
 
