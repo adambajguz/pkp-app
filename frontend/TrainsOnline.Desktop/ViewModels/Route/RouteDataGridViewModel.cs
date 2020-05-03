@@ -5,11 +5,13 @@
     using System.Threading.Tasks;
     using Caliburn.Micro;
     using Microsoft.Toolkit.Uwp.UI.Controls;
-    using TrainsOnline.Desktop.Application.Interfaces;
+    using TrainsOnline.Desktop.Application.Interfaces.RemoteDataProvider;
     using TrainsOnline.Desktop.Common.GeoHelpers;
     using TrainsOnline.Desktop.Domain.DTO.Route;
     using TrainsOnline.Desktop.Domain.Models.General;
+    using TrainsOnline.Desktop.Domain.ValueObjects.RouteComponents;
     using TrainsOnline.Desktop.ViewModels.General;
+    using TrainsOnline.Desktop.ViewModels.User;
     using TrainsOnline.Desktop.Views.Route;
     using Windows.UI.Xaml.Data;
     using static TrainsOnline.Desktop.Domain.DTO.Route.GetRoutesListResponse;
@@ -31,8 +33,6 @@
 
         public async Task LoadDataAsync()
         {
-            Source.Clear();
-
             GetRoutesListResponse data = await RemoteDataProvider.GetRoutes();
 
             //foreach (RouteLookupModel route in data.Routes)
@@ -41,6 +41,13 @@
 
             //    Source.Add(info);
             //}
+
+            await LoadDataAsync(data);
+        }
+
+        private async Task LoadDataAsync(GetRoutesListResponse data)
+        {
+            Source.Clear();
 
             var query = from item in data.Routes
                         group item by item.From.Id.ToString() into g
@@ -104,58 +111,32 @@
 
         }
 
-        public void BuyTicket(GetRouteDetailsResponse route)
+        public async void BuyTicket(GetRouteDetailsResponse route)
         {
+            if (!RemoteDataProvider.IsAuthenticated)
+            {
+                NavService.NavigateToViewModel<LoginRegisterViewModel>();
+                return;
+            }
 
+            await RemoteDataProvider.CreateTicketForCurrentUser(route.Id);
         }
 
         public void LoadingRowGroup(DataGridRowGroupHeaderEventArgs e)
         {
             ICollectionViewGroup group = e.RowGroupHeader.CollectionViewGroup;
-            GetRouteDetailsResponse item = group.GroupItems[0] as GetRouteDetailsResponse;
+            RouteDetailsValueObject item = group.GroupItems[0] as RouteDetailsValueObject;
             e.RowGroupHeader.PropertyValue = item?.From?.Name;
         }
+
+        public async void Search()
+        {
+           await LoadDataAsync();
+        }
+
+        public async void ResetView()
+        {
+            await LoadDataAsync();
+        }
     }
-
-    //// Filtering implementation using LINQ
-    //public enum FilterOptions
-    //{
-    //    All = -1,
-    //    Rank_Low = 0,
-    //    Rank_High = 1,
-    //    Height_Low = 2,
-    //    Height_High = 3
-    //}
-
-    //public ObservableCollection<DataGridDataItem> FilterData(FilterOptions filterBy)
-    //{
-    //    switch (filterBy)
-    //    {
-    //        case FilterOptions.All:
-    //            return new ObservableCollection<DataGridDataItem>(_items);
-
-    //        case FilterOptions.Rank_Low:
-    //            return new ObservableCollection<DataGridDataItem>(from item in _items
-    //                                                              where item.Rank < 50
-    //                                                              select item);
-
-    //        case FilterOptions.Rank_High:
-    //            return new ObservableCollection<DataGridDataItem>(from item in _items
-    //                                                              where item.Rank > 50
-    //                                                              select item);
-
-    //        case FilterOptions.Height_High:
-    //            return new ObservableCollection<DataGridDataItem>(from item in _items
-    //                                                              where item.Height_m > 8000
-    //                                                              select item);
-
-    //        case FilterOptions.Height_Low:
-    //            return new ObservableCollection<DataGridDataItem>(from item in _items
-    //                                                              where item.Height_m < 8000
-    //                                                              select item);
-    //    }
-
-    //    return _items;
-    //}
-
 }

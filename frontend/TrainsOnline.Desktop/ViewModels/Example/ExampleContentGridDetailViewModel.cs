@@ -5,7 +5,7 @@
     using Caliburn.Micro;
     using TrainsOnline.Desktop.Application.Services;
     using TrainsOnline.Desktop.Domain.Models;
-    using TrainsOnline.Desktop.Services;
+    using TrainsOnline.Desktop.Interfaces;
 
     public class ExampleContentGridDetailViewModel : Screen
     {

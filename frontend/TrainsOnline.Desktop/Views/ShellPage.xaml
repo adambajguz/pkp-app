@@ -13,6 +13,7 @@
     xmlns:viewsroute="using:TrainsOnline.Desktop.Views.Route"
     xmlns:viewsstation="using:TrainsOnline.Desktop.Views.Station"
     xmlns:viewsticket="using:TrainsOnline.Desktop.Views.Ticket"
+    xmlns:viewsuser="using:TrainsOnline.Desktop.Views.User"
     xmlns:winui="using:Microsoft.UI.Xaml.Controls"
     mc:Ignorable="d">
 
@@ -87,7 +88,7 @@
             </winui:NavigationViewItem>
             <winui:NavigationViewItemSeparator />
 
-            <winui:NavigationViewItem x:Uid="Shell_UserAccount" helpers:NavHelper.NavigateTo="viewsticket:TicketContentGridPage">
+            <winui:NavigationViewItem x:Uid="Shell_UserAccount" helpers:NavHelper.NavigateTo="viewsuser:UserDetailsPage">
                 <winui:NavigationViewItem.Icon>
                     <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xE77B;" />
                 </winui:NavigationViewItem.Icon>

@@ -8,6 +8,7 @@
     using TrainsOnline.Application.DTO;
     using TrainsOnline.Application.Handlers.RouteHandlers.Commands.CreateRoute;
     using TrainsOnline.Application.Handlers.RouteHandlers.Commands.UpdateRoute;
+    using TrainsOnline.Application.Handlers.RouteHandlers.Queries.GetFilteredRoutesList;
     using TrainsOnline.Application.Handlers.RouteHandlers.Queries.GetRouteDetails;
     using TrainsOnline.Application.Handlers.RouteHandlers.Queries.GetRoutesList;
     using TrainsOnline.Domain.Jwt;
@@ -29,6 +30,9 @@
         [SoapAuthorize(Roles = Roles.Admin)]
         [OperationContract]
         Task<Unit> DeleteRoute(IdRequest id);
+
+        [OperationContract]
+        Task<GetRoutesListResponse> GetFilteredRoutesList(GetFilteredRoutesListRequest data);
 
         [OperationContract]
         Task<GetRoutesListResponse> GetRoutesList();

@@ -19,6 +19,11 @@
 
     <Grid x:Name="ContentArea" Margin="{StaticResource SmallLeftRightMargin}">
         <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
             <Grid.Resources>
                 <DataTemplate x:Key="RowDetailsTemplate">
                     <Grid Margin="0" Padding="12,8,12,8">
@@ -103,7 +108,44 @@
                 </DataTemplate>
             </Grid.Resources>
 
+            <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                <TextBlock
+                    Margin="{StaticResource XSmallTopMargin}"
+                    Foreground="OrangeRed"
+                    Text="{Binding Path=LoginErrors, Mode=TwoWay}"
+                    TextWrapping="Wrap" />
+                <TextBox
+                    Margin="{StaticResource XSmallTopMargin}"
+                    Header="e-mail:"
+                    PlaceholderText="e-mail"
+                    Text="{Binding Path=LoginEmail, Mode=TwoWay}" />
+                <TextBox
+                    Margin="{StaticResource XSmallTopMargin}"
+                    Header="e-mail:"
+                    PlaceholderText="e-mail"
+                    Text="{Binding Path=LoginEmail, Mode=TwoWay}" />
+                <TextBox
+                    Margin="{StaticResource XSmallTopMargin}"
+                    Header="e-mail:"
+                    PlaceholderText="e-mail"
+                    Text="{Binding Path=LoginEmail, Mode=TwoWay}" />
+
+
+                <StackPanel Orientation="Horizontal">
+                    <Button
+                        Margin="{StaticResource SmallTopMargin}"
+                        micro:Message.Attach="[Event Click]=[Search()]"
+                        Content="E721" />
+
+                    <Button
+                        Margin="{StaticResource SmallTopMargin}"
+                        micro:Message.Attach="[Event Click]=[ResetView()]"
+                        Content="Reset view" />
+                    <ProgressRing Margin="8,12,0,0" IsActive="{Binding Path=LoginInProgress, Mode=OneWay}" />
+                </StackPanel>
+            </StackPanel>
             <controls:DataGrid
+                Grid.Row="1"
                 micro:Message.Attach="[LoadingRowGroup] = [Action LoadingRowGroup($eventargs)];"
                 AreRowDetailsFrozen="True"
                 AutoGenerateColumns="False"
@@ -148,14 +190,14 @@
                                         Content="&#xF22C;"
                                         FontFamily="Segoe MDL2 Assets"
                                         ToolTipService.ToolTip="Show route on map" />
-                                    <Button
+                                    <!--<Button
                                         x:Name="DeleteButton"
                                         Margin="0,4,4,0"
                                         VerticalAlignment="Top"
                                         micro:Message.Attach="[Event Click]=[DeleteRoute($dataContext)]"
                                         Content="&#xE74D;"
                                         FontFamily="Segoe MDL2 Assets"
-                                        ToolTipService.ToolTip="Delete route" />
+                                        ToolTipService.ToolTip="Delete route" />-->
                                     <!--<Button
                                         x:Name="EditButton"
                                         Margin="0,4,4,4"

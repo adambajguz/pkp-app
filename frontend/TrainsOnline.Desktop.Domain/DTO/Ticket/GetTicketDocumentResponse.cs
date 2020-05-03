@@ -7,6 +7,6 @@
     {
         public Guid Id { get; set; }
 
-        public byte[] Document { get; set; }
+        public string Document { get; set; }
     }
 }

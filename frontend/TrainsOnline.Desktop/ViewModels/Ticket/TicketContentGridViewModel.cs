@@ -3,13 +3,14 @@
     using System.Collections.ObjectModel;
     using System.Threading.Tasks;
     using Caliburn.Micro;
-    using TrainsOnline.Desktop.Application.Interfaces;
+    using TrainsOnline.Desktop.Application.Interfaces.RemoteDataProvider;
     using TrainsOnline.Desktop.Domain.DTO.Ticket;
-    using TrainsOnline.Desktop.Domain.Models;
-    using TrainsOnline.Desktop.Services;
-    using TrainsOnline.Desktop.Views.Example;
+    using TrainsOnline.Desktop.Domain.Models.Ticket;
+    using TrainsOnline.Desktop.Interfaces;
+    using TrainsOnline.Desktop.ViewModels.User;
+    using TrainsOnline.Desktop.Views.Ticket;
 
-    public class TicketContentGridViewModel : Screen
+    public class TicketContentGridViewModel : Screen, ITicketContentGridViewEvents
     {
         private readonly INavigationService _navigationService;
         private readonly IConnectedAnimationService _connectedAnimationService;
@@ -28,23 +29,42 @@
 
         public async Task LoadDataAsync()
         {
+            if (!RemoteDataProvider.IsAuthenticated)
+            {
+                _navigationService.NavigateToViewModel<LoginRegisterViewModel>();
+
+                return;
+            }
+
             Source.Clear();
 
             GetUserTicketsListResponse data = await RemoteDataProvider.GetCurrentUserTickets();
 
-            // TODO WTS: Replace this with your actual data
+            if (data is null)
+                return;
+
             foreach (UserTicketLookupModel ticket in data.Tickets)
             {
                 Source.Add(ticket);
             }
         }
 
-        public void OnItemSelected(SampleOrder clickedItem)
+        public void OnItemSelected(UserTicketLookupModel clickedItem)
         {
             if (clickedItem != null)
             {
                 _connectedAnimationService.SetListDataItemForNextConnectedAnimation(clickedItem);
-                _navigationService.Navigate(typeof(ExampleContentGridDetailPage), clickedItem.OrderID);
+                _navigationService.NavigateToViewModel<TicketContentGridDetailViewModel>(new TicketContentGridDetailsParameters(clickedItem.Id));
+            }
+        }
+
+        protected override void OnViewLoaded(object view)
+        {
+            base.OnViewLoaded(view);
+
+            if (!RemoteDataProvider.IsAuthenticated)
+            {
+                _navigationService.NavigateToViewModel<LoginRegisterViewModel>();
             }
         }
     }

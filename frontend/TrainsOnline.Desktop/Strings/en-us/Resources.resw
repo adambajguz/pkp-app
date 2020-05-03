@@ -243,4 +243,19 @@ Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Ma
   <data name="StationMasterDetail_NoSelection.Text" xml:space="preserve">
     <value>Select a station from the list.</value>
   </data>
+  <data name="Settings_ApiVersion.Text" xml:space="preserve">
+    <value>Web API Version</value>
+  </data>
+  <data name="Settings_Integrations.Text" xml:space="preserve">
+    <value>Integrations</value>
+  </data>
+  <data name="Settings_WebApiVersion_Rest.Content" xml:space="preserve">
+    <value>REST API</value>
+  </data>
+  <data name="Settings_WebApiVersion_Soap.Content" xml:space="preserve">
+    <value>SOAP API</value>
+  </data>
+  <data name="Settings_ApiURL.Text" xml:space="preserve">
+    <value>API Url</value>
+  </data>
 </root>

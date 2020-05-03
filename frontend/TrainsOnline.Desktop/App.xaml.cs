@@ -4,7 +4,8 @@
     using System.Collections.Generic;
     using Caliburn.Micro;
     using TrainsOnline.Desktop.Core;
-    using TrainsOnline.Desktop.Infrastructure;
+    using TrainsOnline.Desktop.Domain;
+    using TrainsOnline.Desktop.Interfaces;
     using TrainsOnline.Desktop.Services;
     using Windows.ApplicationModel.Activation;
     using Windows.UI.Xaml;

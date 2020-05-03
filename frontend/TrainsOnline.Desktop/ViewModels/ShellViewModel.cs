@@ -9,7 +9,6 @@
     using Windows.UI.Xaml;
     using Windows.UI.Xaml.Input;
     using Windows.UI.Xaml.Navigation;
-
     using WinUI = Microsoft.UI.Xaml.Controls;
 
     public class ShellViewModel : Screen

@@ -1,146 +1,187 @@
-﻿namespace TrainsOnline.Desktop.Infrastructure.RemoteDataProvider
+﻿namespace TrainsOnline.Desktop.Domain.RemoteDataProvider
 {
     using System;
     using System.Threading.Tasks;
-    using RestSharp;
-    using TrainsOnline.Desktop.Application.Interfaces;
+    using AutoMapper;
+    using TrainsOnline.Desktop.Application.Interfaces.RemoteDataProvider;
     using TrainsOnline.Desktop.Domain.DTO;
     using TrainsOnline.Desktop.Domain.DTO.Authentication;
     using TrainsOnline.Desktop.Domain.DTO.Route;
     using TrainsOnline.Desktop.Domain.DTO.Station;
     using TrainsOnline.Desktop.Domain.DTO.Ticket;
     using TrainsOnline.Desktop.Domain.DTO.User;
+    using TrainsOnline.Desktop.Domain.RemoteDataProvider.Interfaces;
+    using TrainsOnline.Desktop.Infrastructure.Helpers;
 
     public class RemoteDataProviderService : IRemoteDataProviderService
     {
-        private const string ApiUrl = "https://genericapi.francecentral.cloudapp.azure.com/";
+        private bool useLocalUrl;
+        private string token;
 
-        public bool UseSoapApi { get; set; }
+        private IMapper Mapper { get; set; }
 
-        public bool IsAuthenticated { get; private set; }
-        protected string Token { get; private set; }
-
-        private RestClient Client { get; }
-
-        public RemoteDataProviderService()
+        public WebApiTypes ApiType { get; set; }
+        public bool UseLocalUrl
         {
-            Client = new RestClient(ApiUrl);
+            get => useLocalUrl;
+            set
+            {
+                useLocalUrl = value;
+                SoapProvider.UseLocalUrl = value;
+                RestProvider.UseLocalUrl = value;
+            }
         }
 
-        public async Task<JwtTokenModel> Login(LoginRequest data)
+        public bool IsAuthenticated => !string.IsNullOrWhiteSpace(Token);
+        protected string Token
         {
-            RestRequest request = new RestRequest("api/user/login", DataFormat.Json);
-            request.AddJsonBody(data);
+            get => token; private set
+            {
+                token = value;
+                SoapProvider.SetToken(value);
+                RestProvider.SetToken(value);
+            }
+        }
 
-            JwtTokenModel jwtTokenModel = await Client.PostAsync<JwtTokenModel>(request);
+        private JwtTokenHelper JwtHelper { get; }
+        private SoapDataProvider SoapProvider { get; }
+        private RestDataProvider RestProvider { get; }
+
+        private IDataProvider DataProvider => (ApiType == WebApiTypes.SOAP ? (IDataProvider)SoapProvider : RestProvider);
+
+        public RemoteDataProviderService(IMapper mapper)
+        {
+            Mapper = mapper;
+
+            JwtHelper = new JwtTokenHelper();
+            SoapProvider = new SoapDataProvider();
+            RestProvider = new RestDataProvider();
+        }
+
+        #region User
+        public Guid GetUserId()
+        {
+            return JwtHelper.GetUserIdFromToken(Token);
+        }
+
+        public bool HasRole(string role)
+        {
+            return JwtHelper.IsRoleInToken(Token, role);
+        }
+
+        public bool HasAnyOfRoles(params string[] roles)
+        {
+            return JwtHelper.IsAnyOfRolesInToken(Token, roles);
+        }
+
+        public async Task<bool> Login(string email, string password)
+        {
+            JwtTokenModel jwtTokenModel = await DataProvider.Login(new LoginRequest
+            {
+                Email = email ?? string.Empty,
+                Password = password ?? string.Empty
+            });
+
             Token = jwtTokenModel?.Token;
 
-            if (jwtTokenModel?.Token != null)
-                IsAuthenticated = true;
-
-            return jwtTokenModel;
+            return IsAuthenticated;
         }
 
         public void Logout()
         {
-            IsAuthenticated = false;
             Token = string.Empty;
         }
 
-        public async Task<IdResponse> Register(CreateUserRequest data)
+        public async Task<Guid> Register(CreateUserRequest data)
         {
-            RestRequest request = new RestRequest("api/user/create", DataFormat.Json);
-            request.AddJsonBody(data);
+            IdResponse response = await DataProvider.Register(data);
 
-            return await Client.GetAsync<IdResponse>(request);
+            return response.Id;
         }
 
         public async Task<GetUserDetailsResponse> GetCurrentUser()
         {
-            RestRequest request = new RestRequest("api/user/get-current", DataFormat.Json);
-
-            return await Client.GetAsync<GetUserDetailsResponse>(request);
+            return await DataProvider.GetCurrentUser();
         }
+        #endregion
 
+        #region Station
         public async Task<GetStationDetailsResponse> GetStation(Guid id)
         {
-            RestRequest request = new RestRequest("api/station/get/{id}", DataFormat.Json);
-            request.AddParameter("id", id, ParameterType.UrlSegment);
-
-            return await Client.GetAsync<GetStationDetailsResponse>(request);
+            return await DataProvider.GetStation(id);
         }
 
         public async Task<GetStationsListResponse> GetStations()
         {
-            RestRequest request = new RestRequest("api/station/get-all", DataFormat.Json);
-
-            return await Client.GetAsync<GetStationsListResponse>(request);
+            return await DataProvider.GetStations();
         }
+        #endregion
 
+        #region Route
         public async Task<GetRouteDetailsResponse> GetRoute(Guid id)
         {
-            RestRequest request = new RestRequest("api/route/get/{id}", DataFormat.Json);
-            request.AddParameter("id", id, ParameterType.UrlSegment);
+            return await DataProvider.GetRoute(id);
+        }
 
-            return await Client.GetAsync<GetRouteDetailsResponse>(request);
+        public async Task<GetStationsListResponse> GetFilteredStations(GetFilteredRoutesListRequest data)
+        {
+            return await DataProvider.GetFilteredStations(datas);
         }
 
         public async Task<GetRoutesListResponse> GetRoutes()
         {
-            RestRequest request = new RestRequest("api/route/get-all", DataFormat.Json);
+            return await DataProvider.GetRoutes();
+        }
+        #endregion
 
-            return await Client.GetAsync<GetRoutesListResponse>(request);
+        #region Ticket
+        public async Task<Guid> CreateTicket(CreateTicketRequest data)
+        {
+            IdResponse response = await DataProvider.CreateTicket(data);
+
+            return response.Id;
         }
 
-        public async Task<IdResponse> CreateTicket(CreateTicketRequest data)
+        public async Task<Guid> CreateTicketForCurrentUser(Guid routeId)
         {
-            if (!IsAuthenticated)
+            IdResponse response = await DataProvider.CreateTicket(new CreateTicketRequest
             {
-                return null;
-            }
+                UserId = GetUserId(),
+                RouteId = routeId
+            });
 
-            RestRequest request = new RestRequest("api/ticket/create}", DataFormat.Json);
-            request.AddJsonBody(data);
-
-            return await Client.GetAsync<IdResponse>(request);
+            return response.Id;
         }
 
         public async Task<GetTicketDetailsResponse> GetTicket(Guid id)
         {
-            if (!IsAuthenticated)
-            {
-                return null;
-            }
-
-            RestRequest request = new RestRequest("api/ticket/get/{id}", DataFormat.Json);
-            request.AddParameter("id", id, ParameterType.UrlSegment);
-
-            return await Client.GetAsync<GetTicketDetailsResponse>(request);
+            return await DataProvider.GetTicket(id);
         }
 
         public async Task<GetTicketDocumentResponse> GetTicketDocument(Guid id)
         {
-            if (!IsAuthenticated)
-            {
-                return null;
-            }
-
-            RestRequest request = new RestRequest("api/ticket/get-document/{id}", DataFormat.Json);
-            request.AddParameter("id", id, ParameterType.UrlSegment);
-
-            return await Client.GetAsync<GetTicketDocumentResponse>(request);
+            return await DataProvider.GetTicketDocument(id);
         }
 
         public async Task<GetUserTicketsListResponse> GetCurrentUserTickets()
         {
-            if (!IsAuthenticated)
-            {
-                return null;
-            }
-
-            RestRequest request = new RestRequest("api/tickets/get-all-current-user", DataFormat.Json);
-
-            return await Client.GetAsync<GetUserTicketsListResponse>(request);
+            return await DataProvider.GetCurrentUserTickets();
         }
+
+        public async Task UpdateUser(UpdateUserRequest data)
+        {
+            await DataProvider.UpdateUser(data);
+        }
+
+        public async Task ChangePassword(string currentPassword, string newPassword)
+        {
+            await DataProvider.ChangePassword(new ChangePasswordRequest
+            {
+                UserId = GetUserId(),
+                OldPassword = currentPassword ?? "",
+                NewPassword = newPassword ?? ""
+            });
+        }
+        #endregion
     }
 }

@@ -4,7 +4,7 @@
     using Windows.UI.Xaml.Controls;
     using Windows.UI.Xaml.Navigation;
 
-    public sealed partial class TicketContentGridDetailPage : Page
+    public sealed partial class TicketContentGridDetailPage : Page, ITicketContentGridDetailView
     {
         public TicketContentGridDetailPage()
         {
@@ -16,10 +16,8 @@
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            if (e.Parameter is long orderID)
-            {
-                await ViewModel.InitializeAsync(orderID);
-            }
+
+            await ViewModel.InitializeAsync();
         }
 
         protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
@@ -30,5 +28,10 @@
                 ViewModel.SetListDataItemForNextConnectedAnimation();
             }
         }
+
+        //public void SetImage(ImageSource imageSource)
+        //{
+        //    PdfRenderingImage.Source = imageSource;
+        //}
     }
 }

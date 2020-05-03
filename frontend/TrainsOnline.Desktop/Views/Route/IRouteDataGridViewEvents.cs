@@ -13,5 +13,8 @@
         void BuyTicket(GetRouteDetailsResponse route);
 
         void LoadingRowGroup(DataGridRowGroupHeaderEventArgs e);
+
+        void Search();
+        void ResetView();
     }
 }

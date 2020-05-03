@@ -1,39 +1,88 @@
 ﻿namespace TrainsOnline.Desktop.ViewModels.Ticket
 {
-    using System.Linq;
     using System.Threading.Tasks;
     using Caliburn.Micro;
-    using TrainsOnline.Desktop.Application.Services;
-    using TrainsOnline.Desktop.Domain.Models;
-    using TrainsOnline.Desktop.Services;
+    using TrainsOnline.Desktop.Application.Interfaces.RemoteDataProvider;
+    using TrainsOnline.Desktop.Common.Extensions;
+    using TrainsOnline.Desktop.Domain.DTO.Ticket;
+    using TrainsOnline.Desktop.Domain.Models.Ticket;
+    using TrainsOnline.Desktop.Interfaces;
+    using TrainsOnline.Desktop.Views.Ticket;
+    using Windows.UI.Xaml.Media.Imaging;
 
-    public class TicketContentGridDetailViewModel : Screen
+    public class TicketContentGridDetailViewModel : Screen, ITicketContentGridDetailViewEvents
     {
         private readonly IConnectedAnimationService _connectedAnimationService;
+        private IRemoteDataProviderService RemoteDataProvider { get; }
+        private IFileService FileService { get; }
 
-        private SampleOrder _item;
-
-        public SampleOrder Item
+        private GetTicketDetailsResponse _item;
+        public GetTicketDetailsResponse Item
         {
             get => _item;
             set => Set(ref _item, value);
         }
 
-        public TicketContentGridDetailViewModel(IConnectedAnimationService connectedAnimationService)
+        private BitmapImage _pdfRenderingImage;
+        public BitmapImage PdfRenderingImage
         {
-            _connectedAnimationService = connectedAnimationService;
+            get => _pdfRenderingImage;
+            set => Set(ref _pdfRenderingImage, value);
         }
 
-        public async Task InitializeAsync(long orderID)
+        private bool _downloadInProgress;
+        public bool DownloadInProgress
         {
-            // TODO WTS: Replace this with your actual data
-            System.Collections.Generic.IEnumerable<SampleOrder> data = await SampleDataService.GetContentGridDataAsync();
-            Item = data.First(i => i.OrderID == orderID);
+            get => _downloadInProgress;
+            set => Set(ref _downloadInProgress, value);
+        }
+
+        public TicketContentGridDetailsParameters Parameter { get; set; }
+
+        public TicketContentGridDetailViewModel(IConnectedAnimationService connectedAnimationService,
+                                                IRemoteDataProviderService remoteDataProvider,
+                                                IFileService fileService)
+        {
+            _connectedAnimationService = connectedAnimationService;
+            RemoteDataProvider = remoteDataProvider;
+            FileService = fileService;
+        }
+
+        public async Task InitializeAsync()
+        {
+            GetTicketDetailsResponse data = await RemoteDataProvider.GetTicket(Parameter.TicketId);
+
+            Item = data;
         }
 
         public void SetListDataItemForNextConnectedAnimation()
         {
             _connectedAnimationService.SetListDataItemForNextConnectedAnimation(Item);
+        }
+
+        public async void PreviewTicketPDF()
+        {
+            DownloadInProgress = true;
+            GetTicketDocumentResponse documentData = await RemoteDataProvider.GetTicketDocument(Item.Id);
+
+            PdfRenderingImage = await PdfRenderingHelper.RenderPdfToImage(documentData.Document);
+            //Refresh();
+            //if (GetView() is ITicketContentGridDetailView view)
+            //{
+            //    view.SetImage(PdfRenderingImage);
+            //}
+            DownloadInProgress = false;
+        }
+
+        public async void DownloadTicketPDF()
+        {
+            DownloadInProgress = true;
+
+            GetTicketDocumentResponse documentData = await RemoteDataProvider.GetTicketDocument(Item.Id);
+            byte[] data = await documentData.Document.DecodeBase64Async();
+
+            await FileService.SaveToPdfFile(data, documentData.Id.ToShortGuid() + ".pdf");
+            DownloadInProgress = false;
         }
     }
 }

@@ -16,6 +16,7 @@
     using TrainsOnline.Infrastructure.Jwt;
     using TrainsOnline.Infrastructure.Main.Email;
     using TrainsOnline.Infrastructure.QRCode;
+    using TrainsOnline.Infrastructure.StringSimilarityComparer;
     using TrainsOnline.Infrastructure.UserManager;
     using IConfiguration = Microsoft.Extensions.Configuration.IConfiguration;
 
@@ -28,6 +29,7 @@
             services.AddSingleton<IUserManagerService, UserManagerService>();
             services.AddSingleton<IDocumentsService, DocumentsService>();
             services.AddSingleton<IQRCodeService, QRCodeService>();
+            services.AddSingleton<IStringSimilarityComparerService, StringSimilarityComparerService>();
 
             services.AddScoped<ICurrentUserService, CurrentUserService>();
             services.AddScoped<IPKPAppDbUnitOfWork, PKPAppDbUnitOfWork>();
