@@ -8,6 +8,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:micro="using:Caliburn.Micro"
     xmlns:model="using:TrainsOnline.Desktop.Domain.DTO.Route"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
     Style="{StaticResource PageStyle}"
     mc:Ignorable="d">
 
@@ -109,26 +110,24 @@
             </Grid.Resources>
 
             <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
-                <TextBlock
-                    Margin="{StaticResource XSmallTopMargin}"
-                    Foreground="OrangeRed"
-                    Text="{Binding Path=LoginErrors, Mode=TwoWay}"
-                    TextWrapping="Wrap" />
                 <TextBox
                     Margin="{StaticResource XSmallTopMargin}"
-                    Header="e-mail:"
-                    PlaceholderText="e-mail"
-                    Text="{Binding Path=LoginEmail, Mode=TwoWay}" />
+                    Header="Departure station:"
+                    PlaceholderText=""
+                    Text="{Binding Path=SearchFrom, Mode=TwoWay}" />
                 <TextBox
                     Margin="{StaticResource XSmallTopMargin}"
-                    Header="e-mail:"
-                    PlaceholderText="e-mail"
-                    Text="{Binding Path=LoginEmail, Mode=TwoWay}" />
-                <TextBox
+                    Header="Arrival station:"
+                    PlaceholderText=""
+                    Text="{Binding Path=SearchTo, Mode=TwoWay}" />
+                <muxc:NumberBox
                     Margin="{StaticResource XSmallTopMargin}"
-                    Header="e-mail:"
+                    Header="Maximum price:"
+                    LargeChange="100"
                     PlaceholderText="e-mail"
-                    Text="{Binding Path=LoginEmail, Mode=TwoWay}" />
+                    SmallChange="10"
+                    SpinButtonPlacementMode="Compact"
+                    Text="{Binding Path=SearchMaximumPrice, Mode=TwoWay}" />
 
 
                 <StackPanel Orientation="Horizontal">

@@ -24,6 +24,27 @@
         public ObservableCollection<GroupInfoCollection<GetRouteDetailsResponse>> Source { get; } = new ObservableCollection<GroupInfoCollection<GetRouteDetailsResponse>>();
         public CollectionViewSource GroupedSource { get; } = new CollectionViewSource();
 
+        private string _searchFrom;
+        public string SearchFrom
+        {
+            get => _searchFrom;
+            set => Set(ref _searchFrom, value);
+        }
+
+        private string _searchTo;
+        public string SearchTo
+        {
+            get => _searchTo;
+            set => Set(ref _searchTo, value);
+        }
+
+        private string _searchMaximumPrice;
+        public string SearchMaximumPrice
+        {
+            get => _searchMaximumPrice;
+            set => Set(ref _searchMaximumPrice, value);
+        }
+
         public RouteDataGridViewModel(INavigationService navigationService,
                                       IRemoteDataProviderService remoteDataProvider)
         {
@@ -131,7 +152,16 @@
 
         public async void Search()
         {
-           await LoadDataAsync();
+            bool parsed = double.TryParse(SearchMaximumPrice, out double max);
+
+            GetRoutesListResponse data = await RemoteDataProvider.GetFilteredRoutes(new GetFilteredRoutesListRequest
+            {
+                FromPattern = string.IsNullOrWhiteSpace(SearchFrom) ? null : SearchFrom,
+                ToPattern = string.IsNullOrWhiteSpace(SearchTo) ? null : SearchFrom,
+                MaximumTicketPrice = parsed ? (double?)max : null
+            });
+
+            await LoadDataAsync();
         }
 
         public async void ResetView()

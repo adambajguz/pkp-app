@@ -4,6 +4,6 @@
     {
         public string FromPattern { get; set; }
         public string ToPattern { get; set; }
-        public double MaximumTicketPrice { get; set; }
+        public double? MaximumTicketPrice { get; set; }
     }
 }
