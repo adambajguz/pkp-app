@@ -26,37 +26,27 @@
 
                 <StackPanel Margin="{StaticResource SmallTopMargin}">
                     <TextBlock Style="{StaticResource DetailSubTitleStyle}" Text="Email" />
-                    <TextBox
-                        InputScope="EmailSmtpAddress"
-                        Text="{Binding Item.Email, Mode=TwoWay}" />
+                    <TextBox InputScope="EmailSmtpAddress" Text="{Binding Item.Email, Mode=TwoWay}" />
                 </StackPanel>
 
                 <StackPanel Margin="{StaticResource SmallTopMargin}">
                     <TextBlock Style="{StaticResource DetailSubTitleStyle}" Text="Name" />
-                    <TextBox
-                        InputScope="PersonalFullName"
-                        Text="{Binding Item.Name, Mode=TwoWay}" />
+                    <TextBox InputScope="PersonalFullName" Text="{Binding Item.Name, Mode=TwoWay}" />
                 </StackPanel>
 
                 <StackPanel Margin="{StaticResource SmallTopMargin}">
                     <TextBlock Style="{StaticResource DetailSubTitleStyle}" Text="Surname" />
-                    <TextBox
-                        InputScope="PersonalFullName"
-                        Text="{Binding Item.Surname, Mode=TwoWay}" />
+                    <TextBox InputScope="PersonalFullName" Text="{Binding Item.Surname, Mode=TwoWay}" />
                 </StackPanel>
 
                 <StackPanel Margin="{StaticResource SmallTopMargin}">
                     <TextBlock Style="{StaticResource DetailSubTitleStyle}" Text="PhoneNumber" />
-                    <TextBox
-                        InputScope="TelephoneNumber"
-                        Text="{Binding Item.PhoneNumber, Mode=TwoWay}" />
+                    <TextBox InputScope="TelephoneNumber" Text="{Binding Item.PhoneNumber, Mode=TwoWay}" />
                 </StackPanel>
 
                 <StackPanel Margin="{StaticResource SmallTopMargin}">
                     <TextBlock Style="{StaticResource DetailSubTitleStyle}" Text="Address" />
-                    <TextBox
-                        InputScope="Default"
-                        Text="{Binding Item.Address, Mode=TwoWay}" />
+                    <TextBox InputScope="Default" Text="{Binding Item.Address, Mode=TwoWay}" />
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal">
@@ -112,11 +102,11 @@
                     <PasswordBox
                         Margin="{StaticResource XSmallTopMargin}"
                         Header="current password:"
-                        InputScope="Current password"
+                        InputScope="Password"
                         IsPasswordRevealButtonEnabled="False"
                         Password="{Binding Path=CurrentPassword, Mode=TwoWay}"
                         PasswordRevealMode="Peek"
-                        PlaceholderText="password" />
+                        PlaceholderText="current password" />
                 </StackPanel>
 
                 <StackPanel Margin="{StaticResource SmallTopMargin}">
@@ -124,11 +114,11 @@
                     <PasswordBox
                         Margin="{StaticResource XSmallTopMargin}"
                         Header="current password:"
-                        InputScope="New password"
+                        InputScope="Password"
                         IsPasswordRevealButtonEnabled="False"
                         Password="{Binding Path=NewPassword, Mode=TwoWay}"
                         PasswordRevealMode="Peek"
-                        PlaceholderText="password" />
+                        PlaceholderText="new password" />
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal">
