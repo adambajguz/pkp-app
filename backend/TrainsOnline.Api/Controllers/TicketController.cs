@@ -2,6 +2,7 @@
 {
     using System;
     using System.Threading.Tasks;
+    using CSharpVitamins;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
@@ -66,7 +67,7 @@
             Description = "Gets ticket document validation result")]
         [SwaggerResponse(StatusCodes.Status200OK, null, typeof(bool))]
         [SwaggerResponse(StatusCodes.Status400BadRequest, null, typeof(ExceptionResponse))]
-        public async Task<IActionResult> GetValidateDocument([FromQuery]Guid tid, [FromQuery]Guid uid, [FromQuery]Guid rid)
+        public async Task<IActionResult> GetValidateDocument([FromQuery]ShortGuid tid, [FromQuery]ShortGuid uid, [FromQuery]ShortGuid rid)
         {
             return Ok(await Mediator.Send(new ValidateDocumentQuery(tid, uid, rid)));
         }
