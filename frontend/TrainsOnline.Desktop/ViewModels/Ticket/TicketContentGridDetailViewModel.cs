@@ -2,6 +2,7 @@
 {
     using System.Threading.Tasks;
     using Caliburn.Micro;
+    using TrainsOnline.Desktop.Application.Exceptions;
     using TrainsOnline.Desktop.Application.Interfaces.RemoteDataProvider;
     using TrainsOnline.Desktop.Common.Extensions;
     using TrainsOnline.Desktop.Domain.DTO.Ticket;
@@ -63,25 +64,38 @@
         public async void PreviewTicketPDF()
         {
             DownloadInProgress = true;
-            GetTicketDocumentResponse documentData = await RemoteDataProvider.GetTicketDocument(Item.Id);
+            try
+            {
+                GetTicketDocumentResponse documentData = await RemoteDataProvider.GetTicketDocument(Item.Id);
 
-            PdfRenderingImage = await PdfRenderingHelper.RenderPdfToImage(documentData.Document);
-            //Refresh();
-            //if (GetView() is ITicketContentGridDetailView view)
-            //{
-            //    view.SetImage(PdfRenderingImage);
-            //}
+                PdfRenderingImage = await PdfRenderingHelper.RenderPdfToImage(documentData.Document);
+                //Refresh();
+                //if (GetView() is ITicketContentGridDetailView view)
+                //{
+                //    view.SetImage(PdfRenderingImage);
+                //}
+            }
+            catch (RemoteDataException ex)
+            {
+
+            }
             DownloadInProgress = false;
         }
 
         public async void DownloadTicketPDF()
         {
             DownloadInProgress = true;
+            try
+            {
+                GetTicketDocumentResponse documentData = await RemoteDataProvider.GetTicketDocument(Item.Id);
+                byte[] data = await documentData.Document.DecodeBase64Async();
 
-            GetTicketDocumentResponse documentData = await RemoteDataProvider.GetTicketDocument(Item.Id);
-            byte[] data = await documentData.Document.DecodeBase64Async();
+                await FileService.SaveToPdfFile(data, documentData.Id.ToShortGuid() + ".pdf");
+            }
+            catch (RemoteDataException ex)
+            {
 
-            await FileService.SaveToPdfFile(data, documentData.Id.ToShortGuid() + ".pdf");
+            }
             DownloadInProgress = false;
         }
     }
