@@ -129,12 +129,12 @@
                                      .FinishParagraph()
                                      .AddMultiColumn(2, paddingHorizontal: 4,
                                                      (x) => x.AddRunLine("Calendar event QR Code:")
-                                                             //.AddImage(qrCalendarCodeMemoryStream, DocumentImageFormats.Png, 55, 55)
+                                                             .AddImage(qrCalendarCodeMemoryStream, DocumentImageFormats.Png, 55, 55)
                                                              .AddNewLine()
                                                              .AddRunLine("This code allows you to add an event to calendar app on your device. The event will contain all crucial data from this ticket.", size: 8, italic: true),
 
                                                      (x) => x.AddRunLine("Verification QR Code:")
-                                                             //.AddImage(qrCodeMemoryStream, DocumentImageFormats.Png, 55, 55)
+                                                             .AddImage(qrCodeMemoryStream, DocumentImageFormats.Png, 55, 55)
                                                              .AddNewLine()
                                                              .AddRunLine("The verification QR Code allows you to verify authenticity of the ticket using a dedicated online service.", size: 8, italic: true))
 
