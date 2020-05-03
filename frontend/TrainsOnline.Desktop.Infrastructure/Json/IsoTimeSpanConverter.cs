@@ -80,10 +80,10 @@
                     throw new JsonSerializationException("TimeSpan text should strat with PT");
                 }
 
-                if (!timeSpanText.Contains("H"))
-                {
-                    throw new JsonSerializationException("TimeSpan text should contain H");
-                }
+                //if (!timeSpanText.Contains("H"))
+                //{
+                //    throw new JsonSerializationException("TimeSpan text should contain H");
+                //}
                 //if (!timeSpanText.Contains("M"))
                 //{
                 //    throw new JsonSerializationException("TimeSpan text should contain M");
@@ -94,14 +94,20 @@
                 //}
 
                 var indexOfH = timeSpanText.IndexOf("H");
+                if (indexOfH < 0)
+                    indexOfH = 1;
+
                 var indexOfM = timeSpanText.IndexOf("M");
+
                 var indexOfS = timeSpanText.IndexOf("S");
 
-                int hours;
-
-                if (!Int32.TryParse(timeSpanText.Substring(2, indexOfH - 2), out hours))
+                int hours=0;
+                if (timeSpanText.Contains("H"))
                 {
-                    throw new JsonSerializationException("H could not be converted to Int32");
+                    if (!Int32.TryParse(timeSpanText.Substring(2, indexOfH - 2), out hours))
+                    {
+                        throw new JsonSerializationException("H could not be converted to Int32");
+                    }
                 }
 
                 int minutes = 0;
