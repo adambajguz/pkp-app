@@ -100,6 +100,21 @@
         {
             try
             {
+                SOAPS.Station.IdRequest request = new SOAPS.Station.IdRequest();
+                request.Id = "73b98be1-c55f-4c9c-f248-08d7e626224a";
+                SOAPS.Station.StationSoapEndpointServiceClient client = new SOAPS.Station.StationSoapEndpointServiceClient();
+                SOAPS.Station.GetStationDetailsResponse1 data = await client.GetStationDetailsAsync(new SOAPS.Station.GetStationDetailsRequest(request));
+
+                string json = await data.ToJsonAsync();
+                var x = await json.ToObjectAsync<GetStationDetailsResponse>();
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            try
+            {
                 SOAPS.Station.StationSoapEndpointServiceClient client = new SOAPS.Station.StationSoapEndpointServiceClient();
                 SOAPS.Station.GetStationsListResponse1 data = await client.GetStationsListAsync(new SOAPS.Station.GetStationsListRequest());
 
