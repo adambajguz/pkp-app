@@ -67,9 +67,13 @@
             Description = "Gets ticket document validation result")]
         [SwaggerResponse(StatusCodes.Status200OK, null, typeof(bool))]
         [SwaggerResponse(StatusCodes.Status400BadRequest, null, typeof(ExceptionResponse))]
-        public async Task<IActionResult> GetValidateDocument([FromQuery]ShortGuid tid, [FromQuery]ShortGuid uid, [FromQuery]ShortGuid rid)
+        public async Task<IActionResult> GetValidateDocument([FromQuery]string tid, [FromQuery]string uid, [FromQuery]string rid)
         {
-            return Ok(await Mediator.Send(new ValidateDocumentQuery(tid, uid, rid)));
+            ShortGuid tidSG = new ShortGuid(tid);
+            ShortGuid uidSG = new ShortGuid(uid);
+            ShortGuid ridSG = new ShortGuid(rid);
+
+            return base.Ok(await Mediator.Send(new ValidateDocumentQuery(tidSG, uidSG, ridSG)));
         }
 
         [Authorize(Roles = Roles.Admin)]
