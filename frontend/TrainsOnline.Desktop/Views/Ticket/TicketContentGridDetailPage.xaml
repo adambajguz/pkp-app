@@ -117,6 +117,7 @@
         <ScrollViewer
             Grid.Row="1"
             Margin="{StaticResource XSmallTopMargin}"
+            Background="#313335"
             ZoomMode="Enabled">
             <Image
                 x:Name="PdfRenderingImage"
