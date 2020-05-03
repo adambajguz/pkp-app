@@ -209,6 +209,7 @@ namespace TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Authenticati
         
         public LoginRequest1()
         {
+
         }
         
         public LoginRequest1(TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Authentication.LoginRequest model)

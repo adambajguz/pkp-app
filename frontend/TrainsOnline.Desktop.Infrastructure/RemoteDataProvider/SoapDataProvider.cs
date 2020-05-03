@@ -10,6 +10,7 @@
     using SoapHttpClient;
     using SoapHttpClient.Enums;
     using TrainsOnline.Desktop.Application.Extensions;
+    using TrainsOnline.Desktop.Common.Json;
     using TrainsOnline.Desktop.Domain.DTO;
     using TrainsOnline.Desktop.Domain.DTO.Authentication;
     using TrainsOnline.Desktop.Domain.DTO.Route;
@@ -54,13 +55,26 @@
         #region User
         public async Task<JwtTokenModel> Login(LoginRequest data)
         {
-            RestRequest request = new RestRequest("user/login", DataFormat.Json);
-            request.AddJsonBody(data);
+            try
+            {
+                SOAPS.Authentication.LoginRequest request = new SOAPS.Authentication.LoginRequest
+                {
+                    Email = data.Email,
+                    Password = data.Password
+                };
+                SOAPS.Authentication.AuthenticationSoapEndpointServiceClient client = new SOAPS.Authentication.AuthenticationSoapEndpointServiceClient();
+                SOAPS.Authentication.LoginResponse r = await client.LoginAsync(new SOAPS.Authentication.LoginRequest1(request));
 
-            JwtTokenModel jwtTokenModel = await Client.PostAsync<JwtTokenModel>(request);
-            Token = jwtTokenModel?.Token;
+                JwtTokenModel jwtTokenModel = await DeserializeCustom<JwtTokenModel>(r.LoginResult);
 
-            return jwtTokenModel;
+                Token = jwtTokenModel?.Token;
+
+                return jwtTokenModel;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
         }
 
         public void Logout()
@@ -70,17 +84,42 @@
 
         public async Task<IdResponse> Register(CreateUserRequest data)
         {
-            RestRequest request = new RestRequest("user/create", DataFormat.Json);
-            request.AddJsonBody(data);
+            try
+            {
+                SOAPS.User.CreateUserRequest request = new SOAPS.User.CreateUserRequest
+                {
+                    Email = data.Email,
+                    Name = data.Name,
+                    Surname = data.Surname,
+                    Address = data.Address,
+                    Password = data.Password,
+                    IsAdmin = data.IsAdmin,
+                    PhoneNumber = data.PhoneNumber
+                };
+                SOAPS.User.UserSoapEndpointServiceClient client = new SOAPS.User.UserSoapEndpointServiceClient();
+                SOAPS.User.CreateUserResponse r = await client.CreateUserAsync(new SOAPS.User.CreateUserRequest1(request));
 
-            return await Client.GetAsync<IdResponse>(request);
+                return await DeserializeCustom<IdResponse>(r.CreateUserResult);
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
         }
 
         public async Task<GetUserDetailsResponse> GetCurrentUser()
         {
-            RestRequest request = new RestRequest("user/get-current", DataFormat.Json);
+            try
+            {
+                SOAPS.User.UserSoapEndpointServiceClient client = new SOAPS.User.UserSoapEndpointServiceClient();
+                SOAPS.User.GetCurrentUserDetailsResponse data = await client.GetCurrentUserDetailsAsync(new SOAPS.User.GetCurrentUserDetailsRequest());
 
-            return await Client.GetAsync<GetUserDetailsResponse>(request);
+                return await DeserializeCustom<GetUserDetailsResponse>(data.GetCurrentUserDetailsResult);
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
         }
         #endregion
 
@@ -94,8 +133,7 @@
                 SOAPS.Station.StationSoapEndpointServiceClient client = new SOAPS.Station.StationSoapEndpointServiceClient();
                 SOAPS.Station.GetStationDetailsResponse1 data = await client.GetStationDetailsAsync(new SOAPS.Station.GetStationDetailsRequest(request));
 
-                string json = await data.ToJsonAsync();
-                return await json.ToObjectAsync<GetStationDetailsResponse>();
+                return await DeserializeCustom<GetStationDetailsResponse>(data.GetStationDetailsResult);
             }
             catch (Exception ex)
             {
@@ -110,8 +148,7 @@
                 SOAPS.Station.StationSoapEndpointServiceClient client = new SOAPS.Station.StationSoapEndpointServiceClient();
                 SOAPS.Station.GetStationsListResponse1 data = await client.GetStationsListAsync(new SOAPS.Station.GetStationsListRequest());
 
-                string json = await data.GetStationsListResult.ToJsonAsync();
-                return await json.ToObjectAsync<GetStationsListResponse>();
+                return await DeserializeCustom<GetStationsListResponse>(data.GetStationsListResult);
             }
             catch (Exception ex)
             {
@@ -129,8 +166,7 @@
                 SOAPS.Route.RouteSoapEndpointServiceClient client = new SOAPS.Route.RouteSoapEndpointServiceClient();
                 SOAPS.Route.GetRouteDetailsResponse1 data = await client.GetRouteDetailsAsync(new SOAPS.Route.GetRouteDetailsRequest(request));
 
-                string json = await data.ToJsonAsync();
-                return await json.ToObjectAsync<GetRouteDetailsResponse>();
+                return await DeserializeCustom<GetRouteDetailsResponse>(data.GetRouteDetailsResult);
             }
             catch (Exception ex)
             {
@@ -140,12 +176,24 @@
 
         public async Task<GetRoutesListResponse> GetFilteredRoutes(GetFilteredRoutesListRequest data)
         {
-            RestRequest request = new RestRequest("route/get-filtered", DataFormat.Json);
-            request.AddJsonBody(data);
+            try
+            {
+                SOAPS.Route.GetFilteredRoutesListRequest request = new SOAPS.Route.GetFilteredRoutesListRequest
+                {
+                    FromPattern = data.FromPattern,
+                    ToPattern = data.FromPattern,
+                    MaximumTicketPrice = data.MaximumTicketPrice
+                };
 
-            IRestResponse<GetRoutesListResponse> response = await Client.ExecutePostAsync<GetRoutesListResponse>(request);
+                SOAPS.Route.RouteSoapEndpointServiceClient client = new SOAPS.Route.RouteSoapEndpointServiceClient();
+                SOAPS.Route.GetFilteredRoutesListResponse r = await client.GetFilteredRoutesListAsync(new SOAPS.Route.GetFilteredRoutesListRequest1(request));
 
-            return response.Data;
+                return await DeserializeCustom<GetRoutesListResponse>(r);
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
         }
 
         public async Task<GetRoutesListResponse> GetRoutes()
@@ -155,12 +203,7 @@
                 SOAPS.Route.RouteSoapEndpointServiceClient client = new SOAPS.Route.RouteSoapEndpointServiceClient();
                 SOAPS.Route.GetRoutesListResponse1 data = await client.GetRoutesListAsync(new SOAPS.Route.GetRoutesListRequest());
 
-                string json = await data.GetRoutesListResult.ToJsonAsync();
-                var x = await json.ToObjectAsync<GetRoutesListResponse>();
-
-
-
-                return null;
+                return await DeserializeCustom<GetRoutesListResponse>(data.GetRoutesListResult);
             }
             catch (Exception ex)
             {
@@ -175,11 +218,22 @@
                 return null;
             }
 
-            RestRequest request = new RestRequest("ticket/create}", DataFormat.Json);
-            request.AddJsonBody(data)
-                   .AddBearerAuthentication(Token);
+            try
+            {
+                SOAPS.Ticket.CreateTicketRequest request = new SOAPS.Ticket.CreateTicketRequest
+                {
+                    RouteId = data.RouteId.ToString(),
+                    UserId = data.UserId.ToString()
+                };
+                SOAPS.Ticket.TicketSoapEndpointServiceClient client = new SOAPS.Ticket.TicketSoapEndpointServiceClient();
+                SOAPS.Ticket.CreateTicketResponse r = await client.CreateTicketAsync(new SOAPS.Ticket.CreateTicketRequest1(request));
 
-            return await Client.GetAsync<IdResponse>(request);
+                return await DeserializeCustom<IdResponse>(r.CreateTicketResult);
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
         }
 
         public async Task<GetTicketDetailsResponse> GetTicket(Guid id)
@@ -189,11 +243,21 @@
                 return null;
             }
 
-            RestRequest request = new RestRequest("ticket/get/{id}", DataFormat.Json);
-            request.AddParameter("id", id, ParameterType.UrlSegment)
-                   .AddBearerAuthentication(Token);
+            try
+            {
+                SOAPS.Ticket.IdRequest request = new SOAPS.Ticket.IdRequest
+                {
+                    Id = id.ToString()
+                };
+                SOAPS.Ticket.TicketSoapEndpointServiceClient client = new SOAPS.Ticket.TicketSoapEndpointServiceClient();
+                SOAPS.Ticket.GetTicketDetailsResponse1 r = await client.GetTicketDetailsAsync(new SOAPS.Ticket.GetTicketDetailsRequest(request));
 
-            return await Client.GetAsync<GetTicketDetailsResponse>(request);
+                return await DeserializeCustom<GetTicketDetailsResponse>(r.GetTicketDetailsResult);
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
         }
 
         public async Task<GetTicketDocumentResponse> GetTicketDocument(Guid id)
@@ -203,11 +267,21 @@
                 return null;
             }
 
-            RestRequest request = new RestRequest("ticket/get-document/{id}", DataFormat.Json);
-            request.AddParameter("id", id, ParameterType.UrlSegment)
-                   .AddBearerAuthentication(Token);
+            try
+            {
+                SOAPS.Ticket.IdRequest request = new SOAPS.Ticket.IdRequest
+                {
+                    Id = id.ToString()
+                };
+                SOAPS.Ticket.TicketSoapEndpointServiceClient client = new SOAPS.Ticket.TicketSoapEndpointServiceClient();
+                SOAPS.Ticket.GetTicketDocumentResponse1 r = await client.GetTicketDocumentAsync(new SOAPS.Ticket.GetTicketDocumentRequest(request));
 
-            return await Client.GetAsync<GetTicketDocumentResponse>(request);
+                return await DeserializeCustom<GetTicketDocumentResponse>(r.GetTicketDocumentResult);
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
         }
 
         public async Task<GetUserTicketsListResponse> GetCurrentUserTickets()
@@ -217,10 +291,17 @@
                 return null;
             }
 
-            RestRequest request = new RestRequest("ticket/get-all-current-user", DataFormat.Json);
-            request.AddBearerAuthentication(Token);
+            try
+            {
+                SOAPS.Ticket.TicketSoapEndpointServiceClient client = new SOAPS.Ticket.TicketSoapEndpointServiceClient();
+                SOAPS.Ticket.GetCurrentUserTicketsListResponse r = await client.GetCurrentUserTicketsListAsync(new SOAPS.Ticket.GetCurrentUserTicketsListRequest());
 
-            return await Client.GetAsync<GetUserTicketsListResponse>(request);
+                return await DeserializeCustom<GetUserTicketsListResponse>(r.GetCurrentUserTicketsListResult);
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
         }
 
         public async Task UpdateUser(UpdateUserRequest data)
@@ -230,13 +311,26 @@
                 return;
             }
 
-            RestRequest request = new RestRequest("user/change-password", DataFormat.Json);
-            request.AddJsonBody(data)
-                   .AddBearerAuthentication(Token);
+            try
+            {
+                SOAPS.User.UpdateUserRequest request = new SOAPS.User.UpdateUserRequest
+                {
+                    Id = data.Id.ToString(),
+                    Address = data.Address,
+                    Email = data.Email,
+                    IsAdmin = data.IsAdmin,
+                    Name = data.Name,
+                    PhoneNumber = data.PhoneNumber,
+                    Surname = data.Surname
+                };
+                SOAPS.User.UserSoapEndpointServiceClient client = new SOAPS.User.UserSoapEndpointServiceClient();
+                SOAPS.User.UpdateUserResponse r = await client.UpdateUserAsync(new SOAPS.User.UpdateUserRequest1(request));
 
-            IRestResponse response = await Client.ExecuteAsync(request, Method.PATCH);
+            }
+            catch (Exception ex)
+            {
 
-            return;
+            }
         }
 
         public async Task ChangePassword(ChangePasswordRequest data)
@@ -246,12 +340,36 @@
                 return;
             }
 
-            RestRequest request = new RestRequest("user/change-password", DataFormat.Json);
-            request.AddBearerAuthentication(Token);
+            try
+            {
+                SOAPS.User.ChangePasswordRequest request = new SOAPS.User.ChangePasswordRequest
+                {
+                    UserId = data.UserId.ToString(),
+                    NewPassword = data.NewPassword,
+                    OldPassword = data.OldPassword
+                };
+                SOAPS.User.UserSoapEndpointServiceClient client = new SOAPS.User.UserSoapEndpointServiceClient();
+                SOAPS.User.ChangePasswordResponse r = await client.ChangePasswordAsync(new SOAPS.User.ChangePasswordRequest1(request));
 
-            IRestResponse response = await Client.ExecuteAsync(request, Method.PATCH);
+            }
+            catch (Exception ex)
+            {
 
-            return;
+            }
+        }
+
+        public static async Task<T> DeserializeCustom<T>(object obj)
+        {
+            string json = obj.ToJson();
+            Newtonsoft.Json.JsonSerializerSettings jsonSerializerSettings = new Newtonsoft.Json.JsonSerializerSettings
+            {
+                DateFormatHandling = Newtonsoft.Json.DateFormatHandling.IsoDateFormat,
+            };
+            jsonSerializerSettings.Converters.Add(new IsoTimeSpanConverter());
+
+            T response = await json.ToObjectAsync<T>(jsonSerializerSettings);
+
+            return response;
         }
     }
 }

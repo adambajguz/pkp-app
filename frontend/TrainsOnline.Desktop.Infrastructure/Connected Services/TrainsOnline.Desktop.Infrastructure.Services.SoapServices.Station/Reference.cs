@@ -143,11 +143,11 @@ namespace TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Station
     public partial class GetStationsListResponse
     {
         
-        private List<StationLookupModel> stationsField;
+        private StationLookupModel[] stationsField;
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=0)]
-        public List<StationLookupModel> Stations
+        [System.Xml.Serialization.XmlArrayItem(IsNullable=true)]
+        public StationLookupModel[] Stations
         {
             get
             {
