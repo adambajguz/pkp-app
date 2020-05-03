@@ -65,7 +65,7 @@
                     Orientation="Horizontal">
                     <Button
                         Margin="8,0,0,0"
-                        micro:Message.Attach="[Event Click]=[Update()]"
+                        micro:Message.Attach="[Event Click]=[UpdateDetails()]"
                         ToolTipService.ToolTip="Update current user">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock

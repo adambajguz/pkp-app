@@ -163,6 +163,11 @@
             return await DataProvider.GetCurrentUserTickets();
         }
 
+        public async Task UpdateUser(UpdateUserRequest data)
+        {
+            await DataProvider.UpdateUser(data);
+        }
+
         public async Task ChangePassword(string currentPassword, string newPassword)
         {
             await DataProvider.ChangePassword(new ChangePasswordRequest

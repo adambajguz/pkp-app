@@ -32,7 +32,7 @@
         Task<GetTicketDetailsResponse> GetTicket(Guid id);
         Task<GetTicketDocumentResponse> GetTicketDocument(Guid id);
         Task<GetUserTicketsListResponse> GetCurrentUserTickets();
-
+        Task UpdateUser(UpdateUserRequest data);
         Task ChangePassword(ChangePasswordRequest data);
     }
 }

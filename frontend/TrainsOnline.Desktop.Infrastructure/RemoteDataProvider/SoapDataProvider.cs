@@ -157,6 +157,22 @@
             return await Client.GetAsync<GetUserTicketsListResponse>(request);
         }
 
+        public async Task UpdateUser(UpdateUserRequest data)
+        {
+            if (!IsAuthenticated)
+            {
+                return;
+            }
+
+            RestRequest request = new RestRequest("user/change-password", DataFormat.Json);
+            request.AddJsonBody(data)
+                   .AddBearerAuthentication(Token);
+
+            IRestResponse response = await Client.ExecuteAsync(request, Method.PATCH);
+
+            return;
+        }
+
         public async Task ChangePassword(ChangePasswordRequest data)
         {
             if (!IsAuthenticated)

@@ -201,6 +201,23 @@
             return response.Data;
         }
 
+        public async Task UpdateUser(UpdateUserRequest data)
+        {
+            if (!IsAuthenticated)
+            {
+                return;
+            }
+
+            RestRequest request = new RestRequest("user/update", DataFormat.Json);
+            request.AddJsonBody(data)
+                   .AddBearerAuthentication(Token);
+
+            IRestResponse response = await Client.ExecuteAsync(request, Method.PUT);
+            CheckResponseErrors(response);
+
+            return;
+        }
+
         public async Task ChangePassword(ChangePasswordRequest data)
         {
             if (!IsAuthenticated)
@@ -212,7 +229,7 @@
             request.AddJsonBody(data)
                    .AddBearerAuthentication(Token);
 
-            IRestResponse response = await Client.ExecuteAsync(request, Method.PATCH);
+            IRestResponse response = await Client.ExecuteAsync(request, Method.PUT);
             CheckResponseErrors(response);
 
             return;

@@ -15,6 +15,7 @@
         //Task<UserDetailsValueObject> GetCurrentUser();
         Task<GetUserDetailsResponse> GetCurrentUser();
 
+        Task UpdateUser(UpdateUserRequest data);
         Task ChangePassword(string currentPassword, string newPassword);
     }
 }

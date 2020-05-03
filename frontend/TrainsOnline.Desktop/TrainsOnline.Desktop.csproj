@@ -163,6 +163,7 @@
     <Compile Include="Activation\ActivationHandler.cs" />
     <Compile Include="Behaviors\NavigationViewHeaderBehavior.cs" />
     <Compile Include="Behaviors\NavigationViewHeaderMode.cs" />
+    <Compile Include="Constants\SettingKeys.cs" />
     <Compile Include="Converters\AbstractEnumToBooleanConverter.cs" />
     <Compile Include="Converters\DateTimeFormatterConverter.cs" />
     <Compile Include="Converters\DistanceFormatterConverter.cs" />

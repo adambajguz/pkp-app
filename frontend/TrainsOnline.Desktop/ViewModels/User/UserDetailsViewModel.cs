@@ -87,10 +87,27 @@
             }
         }
 
-        public void Update()
+        public async void UpdateDetails()
         {
             EditInProgress = true;
-
+            try
+            {
+                await RemoteDataProvider.UpdateUser(new UpdateUserRequest
+                {
+                    Id = Item.Id,
+                    Email = Item.Email,
+                    Name = Item.Name,
+                    Surname = Item.Surname,
+                    Address = Item.Address,
+                    PhoneNumber = Item.PhoneNumber,
+                    IsAdmin = Item.IsAdmin
+                });
+                EditErrors = "";
+            }
+            catch (RemoteDataException ex)
+            {
+                EditErrors = ex.GetResponse().Message;
+            }
             EditInProgress = false;
         }
 

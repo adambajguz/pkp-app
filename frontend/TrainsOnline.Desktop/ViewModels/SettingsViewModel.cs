@@ -2,6 +2,7 @@
 {
     using Caliburn.Micro;
     using TrainsOnline.Desktop.Application.Interfaces.RemoteDataProvider;
+    using TrainsOnline.Desktop.Constants;
     using TrainsOnline.Desktop.Helpers;
     using TrainsOnline.Desktop.Interfaces;
     using TrainsOnline.Desktop.Services;
@@ -11,9 +12,6 @@
     // TODO WTS: Add other settings as necessary. For help see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/pages/settings.md
     public class SettingsViewModel : Screen, ISettingsViewModel
     {
-        private const string ApiUseRestSettingKey = "ApiTypeSetting";
-        private const string ApiUseLocalSettingKey = "ApiUrlTypeSetting";
-
         private ElementTheme _elementTheme = ThemeSelectorService.Theme;
         public ElementTheme ElementTheme
         {
@@ -67,14 +65,17 @@
 
             VersionDescription = GetVersionDescription();
 
-            string apiType = await SettingsStorage.LoadFromSettingsAsync(ApiUseRestSettingKey);
-            string apiUrltype = await SettingsStorage.LoadFromSettingsAsync(ApiUseLocalSettingKey);
+            string apiType = await SettingsStorage.LoadFromSettingsAsync(SettingKeys.ApiUseRestSettingKey);
+            string apiUrltype = await SettingsStorage.LoadFromSettingsAsync(SettingKeys.ApiUseLocalSettingKey);
 
             bool.TryParse(apiType, out bool useRestApi);
             bool.TryParse(apiUrltype, out bool useLocalApi);
 
             _useRestApi = useRestApi;
             _useLocalApi = useLocalApi;
+
+            RemoteDataProvider.ApiType = useRestApi ? WebApiTypes.REST : WebApiTypes.SOAP;
+            RemoteDataProvider.UseLocalUrl = useLocalApi;
 
             Refresh();
 
@@ -114,7 +115,7 @@
 
             bool value = UseRestApi;
             RemoteDataProvider.ApiType = value ? WebApiTypes.REST : WebApiTypes.SOAP;
-            await SettingsStorage.SaveInSettingsAsync(ApiUseRestSettingKey, value.ToString());
+            await SettingsStorage.SaveInSettingsAsync(SettingKeys.ApiUseRestSettingKey, value.ToString());
         }
 
         public async void SwitchApiUrl()
@@ -124,7 +125,7 @@
 
             bool value = UseLocalApi;
             RemoteDataProvider.UseLocalUrl = value;
-            await SettingsStorage.SaveInSettingsAsync(ApiUseLocalSettingKey, value.ToString());
+            await SettingsStorage.SaveInSettingsAsync(SettingKeys.ApiUseLocalSettingKey, value.ToString());
         }
     }
 }

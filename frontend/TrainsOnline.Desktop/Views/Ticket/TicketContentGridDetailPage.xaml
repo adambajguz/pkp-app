@@ -80,6 +80,9 @@
                                 Text="Download PDF" />
                         </StackPanel>
                     </Button>
+
+
+                    <ProgressRing Margin="8,12,0,0" IsActive="{Binding Path=DownloadInProgress, Mode=OneWay}" />
                 </StackPanel>
 
                 <Image

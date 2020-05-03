@@ -11,6 +11,7 @@
     using TrainsOnline.Application.Handlers.RouteHandlers.Commands.CreateRoute;
     using TrainsOnline.Application.Handlers.RouteHandlers.Commands.DeleteRoute;
     using TrainsOnline.Application.Handlers.RouteHandlers.Commands.UpdateRoute;
+    using TrainsOnline.Application.Handlers.RouteHandlers.Queries.GetFilteredRoutesList;
     using TrainsOnline.Application.Handlers.RouteHandlers.Queries.GetRouteDetails;
     using TrainsOnline.Application.Handlers.RouteHandlers.Queries.GetRoutesList;
     using TrainsOnline.Domain.Jwt;
@@ -68,6 +69,16 @@
             return Ok(await Mediator.Send(new DeleteRouteCommand(new IdRequest(id))));
         }
 
+        [HttpGet("/api/route/get-filtered")]
+        [SwaggerOperation(
+            Summary = "Get filtered routes",
+            Description = "Gets a filtered list of routes")]
+        [SwaggerResponse(StatusCodes.Status200OK, null, typeof(GetRoutesListResponse))]
+        public async Task<IActionResult> GetFilteredRoutesList()
+        {
+            return Ok(await Mediator.Send(new GetFilteredRoutesListQuery()));
+        }
+        
         [HttpGet("/api/route/get-all")]
         [SwaggerOperation(
             Summary = "Get all routes",

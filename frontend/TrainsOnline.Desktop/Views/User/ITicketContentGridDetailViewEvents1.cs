@@ -2,7 +2,7 @@
 {
     public interface IUserDetailsViewEvents
     {
-        void Update();
+        void UpdateDetails();
         void UpdatePassword();
         void Logout();
     }

@@ -8,6 +8,7 @@
     using TrainsOnline.Application.Handlers.RouteHandlers.Commands.CreateRoute;
     using TrainsOnline.Application.Handlers.RouteHandlers.Commands.DeleteRoute;
     using TrainsOnline.Application.Handlers.RouteHandlers.Commands.UpdateRoute;
+    using TrainsOnline.Application.Handlers.RouteHandlers.Queries.GetFilteredRoutesList;
     using TrainsOnline.Application.Handlers.RouteHandlers.Queries.GetRouteDetails;
     using TrainsOnline.Application.Handlers.RouteHandlers.Queries.GetRoutesList;
 
@@ -39,6 +40,11 @@
         public async Task<Unit> DeleteRoute(IdRequest id)
         {
             return await Mediator.Send(new DeleteRouteCommand(id));
+        }
+
+        public async Task<GetRoutesListResponse> GetFilteredRoutesList()
+        {
+            return await Mediator.Send(new GetFilteredRoutesListQuery());
         }
 
         public async Task<GetRoutesListResponse> GetRoutesList()

@@ -31,6 +31,9 @@
         Task<Unit> DeleteRoute(IdRequest id);
 
         [OperationContract]
+        Task<GetRoutesListResponse> GetFilteredRoutesList();
+
+        [OperationContract]
         Task<GetRoutesListResponse> GetRoutesList();
     }
 }

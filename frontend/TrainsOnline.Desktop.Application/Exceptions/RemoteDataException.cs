@@ -13,7 +13,14 @@
 
         public ExceptionResponse GetResponse()
         {
-            return Message.ToObject<ExceptionResponse>();
+            try
+            {
+                return Message.ToObject<ExceptionResponse>();
+            }
+            catch (Exception)
+            {
+                return new ExceptionResponse(System.Net.HttpStatusCode.InternalServerError, "Fatal error", null);
+            }
         }
     }
 }

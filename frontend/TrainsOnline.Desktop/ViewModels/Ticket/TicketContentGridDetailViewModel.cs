@@ -30,6 +30,13 @@
             set => Set(ref _pdfRendering, value);
         }
 
+        private bool _downloadInProgress;
+        public bool DownloadInProgress
+        {
+            get => _downloadInProgress;
+            set => Set(ref _downloadInProgress, value);
+        }
+
         public TicketContentGridDetailsParameters Parameter { get; set; }
 
         public TicketContentGridDetailViewModel(IConnectedAnimationService connectedAnimationService,
@@ -55,6 +62,7 @@
 
         public async void PreviewTicketPDF()
         {
+            DownloadInProgress = true;
             GetTicketDocumentResponse documentData = await RemoteDataProvider.GetTicketDocument(Item.Id);
 
             PdfRendering = await PdfRenderingHelper.RenderBase64PdfToImage(documentData.Document);
@@ -64,14 +72,18 @@
             {
                 view.SetImage(PdfRendering);
             }
+            DownloadInProgress = false;
         }
 
         public async void DownloadTicketPDF()
         {
+            DownloadInProgress = true;
+
             GetTicketDocumentResponse documentData = await RemoteDataProvider.GetTicketDocument(Item.Id);
             byte[] data = await documentData.Document.DecodeBase64Async();
 
             await FileService.SaveToPdfFile(data, documentData.Id.ToShortGuid() + ".pdf");
+            DownloadInProgress = false;
         }
     }
 }
