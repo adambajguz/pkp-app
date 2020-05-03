@@ -66,7 +66,7 @@
             Description = "Gets ticket document validation result")]
         [SwaggerResponse(StatusCodes.Status200OK, null, typeof(bool))]
         [SwaggerResponse(StatusCodes.Status400BadRequest, null, typeof(ExceptionResponse))]
-        public async Task<IActionResult> GetValidateDocument([FromRoute]Guid tid, [FromRoute]Guid uid, [FromRoute]Guid rid)
+        public async Task<IActionResult> GetValidateDocument([FromQuery]Guid tid, [FromQuery]Guid uid, [FromQuery]Guid rid)
         {
             return Ok(await Mediator.Send(new ValidateDocumentQuery(tid, uid, rid)));
         }
