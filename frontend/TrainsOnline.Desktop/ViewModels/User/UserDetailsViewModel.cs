@@ -1,4 +1,4 @@
-﻿ namespace TrainsOnline.Desktop.ViewModels.User
+﻿namespace TrainsOnline.Desktop.ViewModels.User
 {
     using System.Threading.Tasks;
     using Caliburn.Micro;
@@ -81,7 +81,7 @@
             {
                 Item = await RemoteDataProvider.GetCurrentUser();
             }
-            catch (RemoteDataException ex)
+            catch (RemoteDataException)
             {
 
             }
@@ -116,12 +116,12 @@
             try
             {
                 await RemoteDataProvider.ChangePassword(CurrentPassword, NewPassword);
+                PasswordChangeErrors = "";
             }
             catch (RemoteDataException ex)
             {
                 PasswordChangeErrors = ex.GetResponse().Message;
             }
-
             PasswordChangeInProgress = false;
         }
     }

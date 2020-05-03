@@ -32,7 +32,7 @@
 
         public void SetImage(ImageSource imageSource)
         {
-            this.PdfRenderingImage.Source = imageSource;
+            PdfRenderingImage.Source = imageSource;
         }
     }
 }

@@ -3,14 +3,12 @@
     using System.Threading.Tasks;
     using Caliburn.Micro;
     using TrainsOnline.Desktop.Application.Interfaces.RemoteDataProvider;
+    using TrainsOnline.Desktop.Common.Extensions;
     using TrainsOnline.Desktop.Domain.DTO.Ticket;
     using TrainsOnline.Desktop.Domain.Models.Ticket;
-    using TrainsOnline.Desktop.Views.Ticket;
-    using TrainsOnline.Desktop.Common.Extensions;
-    using Windows.UI.Xaml.Media.Imaging;
-    using Windows.UI.Xaml.Controls;
     using TrainsOnline.Desktop.Interfaces;
-    using TrainsOnline.Desktop.Views.User;
+    using TrainsOnline.Desktop.Views.Ticket;
+    using Windows.UI.Xaml.Media.Imaging;
 
     public class TicketContentGridDetailViewModel : Screen, ITicketContentGridDetailViewEvents
     {
@@ -62,7 +60,7 @@
             PdfRendering = await PdfRenderingHelper.RenderBase64PdfToImage(documentData.Document);
             Refresh();
 
-            if (this.GetView() is ITicketContentGridDetailView view)
+            if (GetView() is ITicketContentGridDetailView view)
             {
                 view.SetImage(PdfRendering);
             }

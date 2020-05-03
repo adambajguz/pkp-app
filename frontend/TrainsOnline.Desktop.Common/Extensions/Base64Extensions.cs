@@ -17,8 +17,8 @@
             }).ConfigureAwait(false);
 
             return decodedData;
-        }      
-        
+        }
+
         public static async Task<byte[]> DecodeBase64Async(this string base64Data)
         {
             if (string.IsNullOrWhiteSpace(base64Data))

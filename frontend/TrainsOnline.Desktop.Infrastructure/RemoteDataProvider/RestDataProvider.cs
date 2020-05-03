@@ -209,7 +209,8 @@
             }
 
             RestRequest request = new RestRequest("user/change-password", DataFormat.Json);
-            request.AddBearerAuthentication(Token);
+            request.AddJsonBody(data)
+                   .AddBearerAuthentication(Token);
 
             IRestResponse response = await Client.ExecuteAsync(request, Method.PATCH);
             CheckResponseErrors(response);

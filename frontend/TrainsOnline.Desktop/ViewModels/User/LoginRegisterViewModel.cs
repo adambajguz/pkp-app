@@ -115,10 +115,11 @@
 
         public async void Login()
         {
+            LoginInProgress = true;
             try
             {
-                LoginInProgress = true;
                 await RemoteDataProvider.Login(LoginEmail, LoginPassword);
+                LoginErrors = "";
 
                 NavigationService.GoBack();
             }
@@ -132,10 +133,9 @@
 
         public async void Register()
         {
+            RegisterInProgress = true;
             try
             {
-                RegisterInProgress = true;
-
                 await RemoteDataProvider.Register(new Domain.DTO.User.CreateUserRequest
                 {
                     Email = RegisterEmail,
@@ -145,6 +145,7 @@
                     PhoneNumber = RegisterPhoneNumber,
                     Address = RegisterAddress
                 });
+                RegisterErrors = "";
 
                 PivotIndex = 0;
             }

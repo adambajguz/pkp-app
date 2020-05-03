@@ -55,8 +55,8 @@
 
                 return stringWriter.ToString();
             }
-        }    
-        
+        }
+
         public static async Task<string> JsonPrettifyAsync(this string json)
         {
             using (StringReader stringReader = new StringReader(json))

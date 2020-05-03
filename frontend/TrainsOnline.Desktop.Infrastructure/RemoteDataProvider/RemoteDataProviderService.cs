@@ -168,8 +168,8 @@
             await DataProvider.ChangePassword(new ChangePasswordRequest
             {
                 UserId = GetUserId(),
-                OldPassword = currentPassword,
-                NewPassword = newPassword
+                OldPassword = currentPassword ?? "",
+                NewPassword = newPassword ?? ""
             });
         }
         #endregion

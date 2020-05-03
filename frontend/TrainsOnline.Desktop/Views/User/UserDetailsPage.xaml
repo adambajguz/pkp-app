@@ -29,11 +29,12 @@
 
                 <TextBox
                     Margin="{StaticResource XSmallTopMargin}"
-                    Header="email"
+                    Header="e-mail:"
                     InputScope="EmailSmtpAddress"
                     Text="{Binding Item.Email, Mode=TwoWay}" />
                 <TextBox
                     Margin="{StaticResource XSmallTopMargin}"
+                    Header="name:"
                     InputScope="PersonalFullName"
                     Text="{Binding Item.Name, Mode=TwoWay}" />
 
@@ -44,14 +45,17 @@
 
                 <TextBox
                     Margin="{StaticResource XSmallTopMargin}"
+                    Header="surname:"
                     InputScope="PersonalFullName"
                     Text="{Binding Item.Surname, Mode=TwoWay}" />
                 <TextBox
                     Margin="{StaticResource XSmallTopMargin}"
+                    Header="phone number:"
                     InputScope="TelephoneNumber"
                     Text="{Binding Item.PhoneNumber, Mode=TwoWay}" />
                 <TextBox
                     Margin="{StaticResource XSmallTopMargin}"
+                    Header="address:"
                     InputScope="Default"
                     Text="{Binding Item.Address, Mode=TwoWay}" />
 
@@ -109,8 +113,6 @@
                     TextWrapping="Wrap" />
 
                 <StackPanel Margin="{StaticResource SmallTopMargin}">
-                    <TextBlock Style="{StaticResource DetailSubTitleStyle}" Text="PhoneNumber" />
-
                     <PasswordBox
                         Margin="{StaticResource XSmallTopMargin}"
                         Header="current password:"
@@ -122,10 +124,9 @@
                 </StackPanel>
 
                 <StackPanel Margin="{StaticResource SmallTopMargin}">
-                    <TextBlock Style="{StaticResource DetailSubTitleStyle}" Text="Address" />
                     <PasswordBox
                         Margin="{StaticResource XSmallTopMargin}"
-                        Header="current password:"
+                        Header="new password:"
                         InputScope="Password"
                         IsPasswordRevealButtonEnabled="False"
                         Password="{Binding Path=NewPassword, Mode=TwoWay}"
