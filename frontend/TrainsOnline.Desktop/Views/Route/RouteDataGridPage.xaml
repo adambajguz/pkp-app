@@ -179,7 +179,7 @@
                         Consider adding header properties to Resources.resw
                     -->
                     <!--<controls:DataGridTextColumn Binding="{Binding Id}" Header="RID" />-->
-                    <controls:DataGridTemplateColumn Header="Symbol">
+                    <controls:DataGridTemplateColumn Header="">
                         <controls:DataGridTemplateColumn.CellTemplate>
                             <DataTemplate x:DataType="model:GetRouteDetailsResponse">
                                 <FontIcon
