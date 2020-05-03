@@ -6,6 +6,7 @@
     using System.Threading;
     using System.Threading.Tasks;
     using AutoMapper;
+    using CSharpVitamins;
     using FluentValidation;
     using MediatR;
     using Microsoft.AspNetCore.Http;
@@ -68,7 +69,7 @@
             private byte[] BuildVerificationQRCode(Ticket entity)
             {
                 Uri baseUri = _context.HttpContext.GetAbsoluteUri();
-                Uri validationUri = new Uri(baseUri, $"/api/ticket/validate-document?tid={entity.Id}&uid={entity.UserId}&rid={entity.RouteId}");
+                Uri validationUri = new Uri(baseUri, $"/api/ticket/validate-document?tid={(ShortGuid)entity.Id}&uid={(ShortGuid)entity.UserId}&rid={(ShortGuid)entity.RouteId}");
 
                 return _qr.CreateWebCode(validationUri);
             }
@@ -100,20 +101,20 @@
                                      .AddNewLine(2)
 
                                      .AddRunLine("────────────────────────────────┤ TICKET ├─────────────────────────────────", bold: true, fontColor: color)
-                                     .AddRun("         TID  ", bold: true, fontColor: color).AddRunLine($"PKP Ticket {{{entity.Id}}}")
+                                     .AddRun("         TID  ", bold: true, fontColor: color).AddRunLine($"PKP Ticket {{{(ShortGuid)entity.Id}}}")
                                      .AddRun("   TIMESTAMP  ", bold: true, fontColor: color).AddRunLine(entity.LastSavedOn.ToString())
                                      .AddRun("       ROUTE  ", bold: true, fontColor: color).AddRunLine($"{entity.Route.From.Name} → {entity.Route.To.Name}")
                                      .AddRun("   DEPARTURE  ", bold: true, fontColor: color).AddRunLine(entity.Route.DepartureTime.ToString())
                                      .AddNewLine()
                                      .AddRunLine("───────────────────────────────┤ PASSENGER ├───────────────────────────────", bold: true, fontColor: color)
-                                     .AddRun("         UID  ", bold: true, fontColor: color).AddRunLine($"{{{entity.UserId}}}")
+                                     .AddRun("         UID  ", bold: true, fontColor: color).AddRunLine($"{{{(ShortGuid)entity.UserId}}}")
                                      .AddRun("        NAME  ", bold: true, fontColor: color).AddRunLine($"{entity.User.Name} {entity.User.Surname}")
                                      .AddRun("      E-MAIL  ", bold: true, fontColor: color).AddRunLine(entity.User.Email)
                                      .AddRun("     ADDRESS  ", bold: true, fontColor: color).AddRunLine(entity.User.Address)
                                      .AddRun("       PHONE  ", bold: true, fontColor: color).AddRunLine(entity.User.PhoneNumber)
                                      .AddNewLine()
                                      .AddRunLine("─────────────────────────────┤ ROUTE DETAILS ├─────────────────────────────", bold: true, fontColor: color)
-                                     .AddRun("         RID  ", bold: true, fontColor: color).AddRunLine($"{{{entity.RouteId}}}")
+                                     .AddRun("         RID  ", bold: true, fontColor: color).AddRunLine($"{{{(ShortGuid)entity.RouteId}}}")
                                      .AddRun("  CREATED ON  ", bold: true, fontColor: color).AddRunLine(entity.CreatedOn.ToString())
                                      .FinishParagraph()
 
