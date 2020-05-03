@@ -92,9 +92,9 @@
             using (MemoryStream memoryStream = new MemoryStream())
             {
                 bmp = new Bitmap(qrMemoryStream);
-                bmp.Save(memoryStream, ImageFormat.Gif);              
+                bmp.Save(memoryStream, ImageFormat.Jpeg);              
 
-                return bmp.ToByteArray(ImageFormat.Gif);
+                return bmp.ToByteArray(ImageFormat.Jpeg);
             }
         }
     }
