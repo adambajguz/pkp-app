@@ -1,7 +1,10 @@
 ﻿namespace TrainsOnline.Infrastructure.QRCode
 {
     using System;
+    using System.Drawing;
+    using System.Drawing.Imaging;
     using System.Globalization;
+    using System.IO;
     using QRCoder;
     using TrainsOnline.Application.Interfaces;
     using static QRCoder.PayloadGenerator;
@@ -18,17 +21,15 @@
         public byte[] CreateTextCode(string text, int pixelsPerModule = 8)
         {
             QRCodeData qrCodeData = QRGenerator.CreateQrCode(text, QRCodeGenerator.ECCLevel.Q);
-            PngByteQRCode qrCode = new PngByteQRCode(qrCodeData);
 
-            return qrCode.GetGraphic(pixelsPerModule);
+            return QRCodeToBitmap(pixelsPerModule, qrCodeData);
         }
 
         public byte[] CreateBinaryCode(byte[] data, int pixelsPerModule = 8)
         {
             QRCodeData qrCodeData = QRGenerator.CreateQrCode(data, QRCodeGenerator.ECCLevel.Q);
-            PngByteQRCode qrCode = new PngByteQRCode(qrCodeData);
 
-            return qrCode.GetGraphic(pixelsPerModule);
+            return QRCodeToBitmap(pixelsPerModule, qrCodeData);
         }
 
         public byte[] CreateWebCode(Uri uri, int pixelsPerModule = 8)
@@ -37,9 +38,8 @@
 
             string payload = generator.ToString();
             QRCodeData qrCodeData = QRGenerator.CreateQrCode(payload, QRCodeGenerator.ECCLevel.Q);
-            PngByteQRCode qrCode = new PngByteQRCode(qrCodeData);
 
-            return qrCode.GetGraphic(pixelsPerModule);
+            return QRCodeToBitmap(pixelsPerModule, qrCodeData);
         }
 
         public byte[] CreateCalendarCode(string subject,
@@ -78,9 +78,23 @@
                                                         allDayEvent);
             string payload = generator.ToString();
             QRCodeData qrCodeData = QRGenerator.CreateQrCode(payload, QRCodeGenerator.ECCLevel.Q);
-            PngByteQRCode qrCode = new PngByteQRCode(qrCodeData);
 
-            return qrCode.GetGraphic(pixelsPerModule);
+            return QRCodeToBitmap(pixelsPerModule, qrCodeData);
+        }
+
+        private static byte[] QRCodeToBitmap(int pixelsPerModule, QRCodeData qrCodeData)
+        {
+            BitmapByteQRCode qrCode = new BitmapByteQRCode(qrCodeData);
+            byte[] qrCodeAsBitmapByteArr = qrCode.GetGraphic(pixelsPerModule);
+
+            Bitmap bmp;
+            using (MemoryStream qrMemoryStream = new MemoryStream(qrCodeAsBitmapByteArr))
+            using (MemoryStream memoryStream = new MemoryStream())
+            {
+                bmp = new Bitmap(qrMemoryStream);
+                bmp.Save(memoryStream, ImageFormat.Gif);
+                return memoryStream.ToArray();
+            }
         }
     }
 }
