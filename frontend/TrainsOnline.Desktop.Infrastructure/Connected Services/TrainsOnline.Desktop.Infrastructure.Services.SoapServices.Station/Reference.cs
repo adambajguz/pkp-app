@@ -7,6 +7,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.Collections.Generic;
+
 namespace TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Station
 {
     
@@ -17,23 +19,23 @@ namespace TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Station
     public interface IStationSoapEndpointService
     {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IStationSoapEndpointService/CreateStation", ReplyAction="*")]
+        [System.ServiceModel.OperationContractAttribute(Action="https://tempuri.org/IStationSoapEndpointService/CreateStation", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         System.Threading.Tasks.Task<TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Station.CreateStationResponse> CreateStationAsync(TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Station.CreateStationRequest1 request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IStationSoapEndpointService/GetStationDetails", ReplyAction="*")]
+        [System.ServiceModel.OperationContractAttribute(Action="https://tempuri.org/IStationSoapEndpointService/GetStationDetails", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         System.Threading.Tasks.Task<TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Station.GetStationDetailsResponse1> GetStationDetailsAsync(TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Station.GetStationDetailsRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IStationSoapEndpointService/UpdateStation", ReplyAction="*")]
+        [System.ServiceModel.OperationContractAttribute(Action="https://tempuri.org/IStationSoapEndpointService/UpdateStation", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         System.Threading.Tasks.Task<TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Station.UpdateStationResponse> UpdateStationAsync(TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Station.UpdateStationRequest1 request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IStationSoapEndpointService/DeleteStation", ReplyAction="*")]
+        [System.ServiceModel.OperationContractAttribute(Action="https://tempuri.org/IStationSoapEndpointService/DeleteStation", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         System.Threading.Tasks.Task<TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Station.DeleteStationResponse> DeleteStationAsync(TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Station.DeleteStationRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IStationSoapEndpointService/GetStationsList", ReplyAction="*")]
+        [System.ServiceModel.OperationContractAttribute(Action="https://tempuri.org/IStationSoapEndpointService/GetStationsList", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         System.Threading.Tasks.Task<TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Station.GetStationsListResponse1> GetStationsListAsync(TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Station.GetStationsListRequest request);
     }
@@ -141,11 +143,11 @@ namespace TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Station
     public partial class GetStationsListResponse
     {
         
-        private StationLookupModel stationsField;
+        private List<StationLookupModel> stationsField;
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=0)]
-        public StationLookupModel Stations
+        public List<StationLookupModel> Stations
         {
             get
             {

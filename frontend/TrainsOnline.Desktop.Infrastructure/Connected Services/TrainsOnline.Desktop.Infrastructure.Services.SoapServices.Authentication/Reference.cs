@@ -17,15 +17,15 @@ namespace TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Authenticati
     public interface IAuthenticationSoapEndpointService
     {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuthenticationSoapEndpointService/Login", ReplyAction="*")]
+        [System.ServiceModel.OperationContractAttribute(Action="https://tempuri.org/IAuthenticationSoapEndpointService/Login", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         System.Threading.Tasks.Task<TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Authentication.LoginResponse> LoginAsync(TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Authentication.LoginRequest1 request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuthenticationSoapEndpointService/ResetPasswordStep1", ReplyAction="*")]
+        [System.ServiceModel.OperationContractAttribute(Action="https://tempuri.org/IAuthenticationSoapEndpointService/ResetPasswordStep1", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         System.Threading.Tasks.Task<TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Authentication.ResetPasswordStep1Response> ResetPasswordStep1Async(TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Authentication.ResetPasswordStep1Request request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuthenticationSoapEndpointService/ResetPasswordStep2", ReplyAction="*")]
+        [System.ServiceModel.OperationContractAttribute(Action="https://tempuri.org/IAuthenticationSoapEndpointService/ResetPasswordStep2", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         System.Threading.Tasks.Task<TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Authentication.ResetPasswordStep2Response> ResetPasswordStep2Async(TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Authentication.ResetPasswordStep2Request request);
     }
@@ -391,7 +391,7 @@ namespace TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Authenticati
         {
             if ((endpointConfiguration == EndpointConfiguration.BasicHttpsBinding))
             {
-                System.ServiceModel.BasicHttpBinding result = new System.ServiceModel.BasicHttpBinding();
+                System.ServiceModel.BasicHttpsBinding result = new System.ServiceModel.BasicHttpsBinding();
                 result.MaxBufferSize = int.MaxValue;
                 result.ReaderQuotas = System.Xml.XmlDictionaryReaderQuotas.Max;
                 result.MaxReceivedMessageSize = int.MaxValue;
@@ -405,7 +405,7 @@ namespace TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Authenticati
         {
             if ((endpointConfiguration == EndpointConfiguration.BasicHttpsBinding))
             {
-                return new System.ServiceModel.EndpointAddress("http://genericapi.francecentral.cloudapp.azure.com/soap-api/authentication");
+                return new System.ServiceModel.EndpointAddress("https://genericapi.francecentral.cloudapp.azure.com/soap-api/authentication");
             }
             throw new System.InvalidOperationException(string.Format("Could not find endpoint with name \'{0}\'.", endpointConfiguration));
         }

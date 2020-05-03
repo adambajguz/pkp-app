@@ -2,8 +2,13 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.IO;
     using System.Threading.Tasks;
+    using System.Xml.Linq;
+    using System.Xml.Serialization;
     using RestSharp;
+    using SoapHttpClient;
+    using SoapHttpClient.Enums;
     using TrainsOnline.Desktop.Application.Extensions;
     using TrainsOnline.Desktop.Domain.DTO;
     using TrainsOnline.Desktop.Domain.DTO.Authentication;
@@ -13,6 +18,7 @@
     using TrainsOnline.Desktop.Domain.DTO.User;
     using TrainsOnline.Desktop.Domain.Extensions;
     using TrainsOnline.Desktop.Domain.RemoteDataProvider.Interfaces;
+    using TrainsOnline.Desktop.Infrastructure.Helpers;
     using SOAPS = Infrastructure.Services.SoapServices;
 
     public class SoapDataProvider : IDataProvider
@@ -29,6 +35,7 @@
                 Client = new RestClient(UseLocalUrl ? ApiUrlLocal : ApiUrl);
             }
         }
+
         public bool IsAuthenticated => !string.IsNullOrWhiteSpace(Token);
         protected string Token { get; private set; }
 
@@ -100,25 +107,11 @@
         {
             try
             {
-                SOAPS.Station.IdRequest request = new SOAPS.Station.IdRequest();
-                request.Id = "73b98be1-c55f-4c9c-f248-08d7e626224a";
-                SOAPS.Station.StationSoapEndpointServiceClient client = new SOAPS.Station.StationSoapEndpointServiceClient();
-                SOAPS.Station.GetStationDetailsResponse1 data = await client.GetStationDetailsAsync(new SOAPS.Station.GetStationDetailsRequest(request));
-
-                string json = await data.ToJsonAsync();
-                var x = await json.ToObjectAsync<GetStationDetailsResponse>();
-            }
-            catch (Exception ex)
-            {
-
-            }
-
-            try
-            {
                 SOAPS.Station.StationSoapEndpointServiceClient client = new SOAPS.Station.StationSoapEndpointServiceClient();
                 SOAPS.Station.GetStationsListResponse1 data = await client.GetStationsListAsync(new SOAPS.Station.GetStationsListRequest());
 
-                return null;
+                string json = await data.GetStationsListResult.ToJsonAsync();
+                return await json.ToObjectAsync<GetStationsListResponse>();
             }
             catch (Exception ex)
             {
@@ -129,10 +122,20 @@
 
         public async Task<GetRouteDetailsResponse> GetRoute(Guid id)
         {
-            RestRequest request = new RestRequest("route/get/{id}", DataFormat.Json);
-            request.AddParameter("id", id, ParameterType.UrlSegment);
+            try
+            {
+                SOAPS.Route.IdRequest request = new SOAPS.Route.IdRequest();
+                request.Id = id.ToString();
+                SOAPS.Route.RouteSoapEndpointServiceClient client = new SOAPS.Route.RouteSoapEndpointServiceClient();
+                SOAPS.Route.GetRouteDetailsResponse1 data = await client.GetRouteDetailsAsync(new SOAPS.Route.GetRouteDetailsRequest(request));
 
-            return await Client.GetAsync<GetRouteDetailsResponse>(request);
+                string json = await data.ToJsonAsync();
+                return await json.ToObjectAsync<GetRouteDetailsResponse>();
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
         }
 
         public async Task<GetRoutesListResponse> GetFilteredRoutes(GetFilteredRoutesListRequest data)
@@ -147,9 +150,22 @@
 
         public async Task<GetRoutesListResponse> GetRoutes()
         {
-            RestRequest request = new RestRequest("route/get-all", DataFormat.Json);
+            try
+            {
+                SOAPS.Route.RouteSoapEndpointServiceClient client = new SOAPS.Route.RouteSoapEndpointServiceClient();
+                SOAPS.Route.GetRoutesListResponse1 data = await client.GetRoutesListAsync(new SOAPS.Route.GetRoutesListRequest());
 
-            return await Client.GetAsync<GetRoutesListResponse>(request);
+                string json = await data.GetRoutesListResult.ToJsonAsync();
+                var x = await json.ToObjectAsync<GetRoutesListResponse>();
+
+
+
+                return null;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
         }
 
         public async Task<IdResponse> CreateTicket(CreateTicketRequest data)

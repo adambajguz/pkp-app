@@ -6,11 +6,11 @@
 
     public static class JsonExtensions
     {
-        public static async Task<T> ToObjectAsync<T>(this string value)
+        public static async Task<T> ToObjectAsync<T>(this string value, JsonSerializerSettings jsonSerializerSettings = null)
         {
             return await Task.Run(() =>
             {
-                return JsonConvert.DeserializeObject<T>(value);
+                return JsonConvert.DeserializeObject<T>(value, jsonSerializerSettings);
             });
         }
 
