@@ -6,6 +6,7 @@
     xmlns:converters="using:TrainsOnline.Desktop.Converters"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:micro="using:Caliburn.Micro"
     Style="{StaticResource PageStyle}"
     mc:Ignorable="d">
 
@@ -25,23 +26,66 @@
 
                 <StackPanel Margin="{StaticResource SmallTopMargin}">
                     <TextBlock Style="{StaticResource DetailSubTitleStyle}" Text="From" />
-                    <TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}" Text="{x:Bind ViewModel.Item.Route.From.Name}" />
+                    <TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}" Text="{Binding Item.Route.From.Name}" />
                 </StackPanel>
 
                 <StackPanel Margin="{StaticResource SmallTopMargin}">
                     <TextBlock Style="{StaticResource DetailSubTitleStyle}" Text="To" />
-                    <TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}" Text="{x:Bind ViewModel.Item.Route.To.Name}" />
+                    <TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}" Text="{Binding Item.Route.To.Name}" />
                 </StackPanel>
 
                 <StackPanel Margin="{StaticResource SmallTopMargin}">
                     <TextBlock Style="{StaticResource DetailSubTitleStyle}" Text="TicketPrice" />
-                    <TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}" Text="{x:Bind ViewModel.Item.Route.TicketPrice, Converter={StaticResource CurrencyFormatterConverter}}" />
+                    <TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}" Text="{Binding Item.Route.TicketPrice, Converter={StaticResource CurrencyFormatterConverter}}" />
                 </StackPanel>
 
                 <StackPanel Margin="{StaticResource SmallTopMargin}">
                     <TextBlock Style="{StaticResource DetailSubTitleStyle}" Text="Distance" />
-                    <TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}" Text="{x:Bind ViewModel.Item.Route.Distance, Converter={StaticResource DistanceFormatterConverter}}" />
+                    <TextBlock Style="{StaticResource DetailBodyBaseMediumStyle}" Text="{Binding Item.Route.Distance, Converter={StaticResource DistanceFormatterConverter}}" />
                 </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <Button
+                        Margin="8,0,0,0"
+                        micro:Message.Attach="[Event Click]=[PreviewTicketPDF()]"
+                        ToolTipService.ToolTip="Preview PDF">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock
+                                Grid.Column="0"
+                                VerticalAlignment="Center"
+                                FontFamily="Segoe MDL2 Assets"
+                                Text="&#xE8A5;" />
+                            <TextBlock
+                                Grid.Column="1"
+                                Margin="10,0,0,0"
+                                VerticalAlignment="Center"
+                                Text="Preview PDF" />
+                        </StackPanel>
+                    </Button>
+
+                    <Button
+                        Margin="8,0,0,0"
+                        micro:Message.Attach="[Event Click]=[DownloadTicketPDF()]"
+                        ToolTipService.ToolTip="Download PDF">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock
+                                Grid.Column="0"
+                                VerticalAlignment="Center"
+                                FontFamily="Segoe MDL2 Assets"
+                                Text="&#xE896;" />
+                            <TextBlock
+                                Grid.Column="1"
+                                Margin="10,0,0,0"
+                                VerticalAlignment="Center"
+                                Text="Download PDF" />
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+
+                <Image
+                    x:Name="PdfRenderingImage"
+                    Margin="0,12,0,0"
+                    Source="{Binding PdfRendering}" />
             </StackPanel>
         </ScrollViewer>
     </Grid>

@@ -1,4 +1,4 @@
-﻿namespace TrainsOnline.Desktop.Services
+﻿namespace TrainsOnline.Desktop.Interfaces
 {
     public interface IConnectedAnimationService
     {

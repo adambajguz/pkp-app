@@ -6,7 +6,7 @@
     using TrainsOnline.Desktop.Application.Interfaces.RemoteDataProvider;
     using TrainsOnline.Desktop.Domain.DTO.Ticket;
     using TrainsOnline.Desktop.Domain.Models.Ticket;
-    using TrainsOnline.Desktop.Services;
+    using TrainsOnline.Desktop.Interfaces;
     using TrainsOnline.Desktop.ViewModels.User;
     using TrainsOnline.Desktop.Views.Ticket;
 

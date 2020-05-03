@@ -3,13 +3,17 @@
     using Caliburn.Micro;
     using TrainsOnline.Desktop.Application.Interfaces.RemoteDataProvider;
     using TrainsOnline.Desktop.Helpers;
+    using TrainsOnline.Desktop.Interfaces;
     using TrainsOnline.Desktop.Services;
     using Windows.ApplicationModel;
     using Windows.UI.Xaml;
 
     // TODO WTS: Add other settings as necessary. For help see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/pages/settings.md
-    public class SettingsViewModel : Screen
+    public class SettingsViewModel : Screen, ISettingsViewModel
     {
+        private const string ApiUseRestSettingKey = "ApiTypeSetting";
+        private const string ApiUseLocalSettingKey = "ApiUrlTypeSetting";
+
         private ElementTheme _elementTheme = ThemeSelectorService.Theme;
         public ElementTheme ElementTheme
         {
@@ -24,6 +28,20 @@
             set => Set(ref _webApiType, value);
         }
 
+        private bool _useRestApi;
+        public bool UseRestApi
+        {
+            get => _useRestApi;
+            set => Set(ref _useRestApi, value);
+        }
+
+        private bool _useLocalApi;
+        public bool UseLocalApi
+        {
+            get => _useLocalApi;
+            set => Set(ref _useLocalApi, value);
+        }
+
         private string _versionDescription;
         public string VersionDescription
         {
@@ -32,17 +50,35 @@
         }
 
         private IRemoteDataProviderService RemoteDataProvider { get; }
+        private ISettingsStorageService SettingsStorage { get; }
 
-        public SettingsViewModel(IRemoteDataProviderService remoteDataProvider)
+        public SettingsViewModel(ISettingsStorageService settingsStorage,
+                                 IRemoteDataProviderService remoteDataProvider)
         {
+            SettingsStorage = settingsStorage;
             RemoteDataProvider = remoteDataProvider;
         }
 
-        protected override void OnInitialize()
+        private bool DontFireEvents { get; set; } = true;
+
+        protected override async void OnInitialize()
         {
             base.OnInitialize();
 
             VersionDescription = GetVersionDescription();
+
+            string apiType = await SettingsStorage.LoadFromSettingsAsync(ApiUseRestSettingKey);
+            string apiUrltype = await SettingsStorage.LoadFromSettingsAsync(ApiUseLocalSettingKey);
+
+            bool.TryParse(apiType, out bool useRestApi);
+            bool.TryParse(apiUrltype, out bool useLocalApi);
+
+            _useRestApi = useRestApi;
+            _useLocalApi = useLocalApi;
+
+            Refresh();
+
+            DontFireEvents = false;
         }
 
         private string GetVersionDescription()
@@ -57,12 +93,38 @@
 
         public async void SwitchTheme(ElementTheme theme)
         {
+            if (DontFireEvents)
+                return;
+
             await ThemeSelectorService.SetThemeAsync(theme);
         }
 
-        public void SwitchApiVersionTheme(WebApiTypes apiType)
+        public void SwitchApiVersion(WebApiTypes apiType)
         {
+            if (DontFireEvents)
+                return;
+
             RemoteDataProvider.ApiType = apiType;
+        }
+
+        public async void SwitchApi()
+        {
+            if (DontFireEvents)
+                return;
+
+            bool value = UseRestApi;
+            RemoteDataProvider.ApiType = value ? WebApiTypes.REST : WebApiTypes.SOAP;
+            await SettingsStorage.SaveInSettingsAsync(ApiUseRestSettingKey, value.ToString());
+        }
+
+        public async void SwitchApiUrl()
+        {
+            if (DontFireEvents)
+                return;
+
+            bool value = UseLocalApi;
+            RemoteDataProvider.UseLocalUrl = value;
+            await SettingsStorage.SaveInSettingsAsync(ApiUseLocalSettingKey, value.ToString());
         }
     }
 }

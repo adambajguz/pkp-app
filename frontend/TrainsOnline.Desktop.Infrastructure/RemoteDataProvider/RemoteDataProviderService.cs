@@ -15,12 +15,33 @@
 
     public class RemoteDataProviderService : IRemoteDataProviderService
     {
+        private bool useLocalUrl;
+        private string token;
+
         private IMapper Mapper { get; set; }
 
         public WebApiTypes ApiType { get; set; }
+        public bool UseLocalUrl
+        {
+            get => useLocalUrl;
+            set
+            {
+                useLocalUrl = value;
+                SoapProvider.UseLocalUrl = value;
+                RestProvider.UseLocalUrl = value;
+            }
+        }
 
         public bool IsAuthenticated => !string.IsNullOrWhiteSpace(Token);
-        protected string Token { get; private set; }
+        protected string Token
+        {
+            get => token; private set
+            {
+                token = value;
+                SoapProvider.SetToken(value);
+                RestProvider.SetToken(value);
+            }
+        }
 
         private JwtTokenHelper JwtHelper { get; }
         private SoapDataProvider SoapProvider { get; }
@@ -57,8 +78,8 @@
         {
             JwtTokenModel jwtTokenModel = await DataProvider.Login(new LoginRequest
             {
-                Email = email,
-                Password = password
+                Email = email ?? string.Empty,
+                Password = password ?? string.Empty
             });
 
             Token = jwtTokenModel?.Token;
@@ -140,6 +161,16 @@
         public async Task<GetUserTicketsListResponse> GetCurrentUserTickets()
         {
             return await DataProvider.GetCurrentUserTickets();
+        }
+
+        public async Task ChangePassword(string currentPassword, string newPassword)
+        {
+            await DataProvider.ChangePassword(new ChangePasswordRequest
+            {
+                UserId = GetUserId(),
+                OldPassword = currentPassword,
+                NewPassword = newPassword
+            });
         }
         #endregion
     }

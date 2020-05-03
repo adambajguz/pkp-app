@@ -148,14 +148,14 @@
                                         Content="&#xF22C;"
                                         FontFamily="Segoe MDL2 Assets"
                                         ToolTipService.ToolTip="Show route on map" />
-                                    <Button
+                                    <!--<Button
                                         x:Name="DeleteButton"
                                         Margin="0,4,4,0"
                                         VerticalAlignment="Top"
                                         micro:Message.Attach="[Event Click]=[DeleteRoute($dataContext)]"
                                         Content="&#xE74D;"
                                         FontFamily="Segoe MDL2 Assets"
-                                        ToolTipService.ToolTip="Delete route" />
+                                        ToolTipService.ToolTip="Delete route" />-->
                                     <!--<Button
                                         x:Name="EditButton"
                                         Margin="0,4,4,4"

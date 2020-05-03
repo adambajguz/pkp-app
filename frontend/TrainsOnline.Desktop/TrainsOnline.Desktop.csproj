@@ -170,13 +170,19 @@
     <Compile Include="DependencyInjection.cs" />
     <Compile Include="Converters\EnumToBooleanConverter.cs" />
     <Compile Include="Helpers\NavHelper.cs" />
+    <Compile Include="Helpers\PdfRenderingHelper.cs" />
     <Compile Include="Helpers\SettingsStorageExtensions.cs" />
     <Compile Include="Services\ActivationService.cs" />
     <Compile Include="Activation\DefaultActivationHandler.cs" />
     <Compile Include="Services\ConnectedAnimationService.cs" />
+    <Compile Include="Services\File\FileSavingResults.cs" />
+    <Compile Include="Services\File\FileService.cs" />
     <Compile Include="Services\FirstRunDisplayService.cs" />
-    <Compile Include="Services\IConnectedAnimationService.cs" />
+    <Compile Include="Interfaces\IConnectedAnimationService.cs" />
+    <Compile Include="Interfaces\IFileService.cs" />
+    <Compile Include="Interfaces\ISettingsStorageService.cs" />
     <Compile Include="Services\LocationService.cs" />
+    <Compile Include="Services\SettingsStorageService.cs" />
     <Compile Include="Services\ThemeSelectorService.cs" />
     <Compile Include="ViewModels\Example\ExampleBlankViewModel.cs" />
     <Compile Include="ViewModels\Example\ExampleContentGridDetailViewModel.cs" />
@@ -188,6 +194,7 @@
     <Compile Include="ViewModels\General\GeneralMapViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="Helpers\GroupInfoCollection.cs" />
+    <Compile Include="Views\ISettingsViewModel.cs" />
     <Compile Include="ViewModels\Route\RouteDataGridViewModel.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
@@ -255,6 +262,9 @@
     <Compile Include="Views\Station\StationMasterDetailPage.xaml.cs">
       <DependentUpon>StationMasterDetailPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Ticket\ITicketContentGridDetailView.cs" />
+    <Compile Include="Views\Ticket\ITicketContentGridDetailViewEvents.cs" />
+    <Compile Include="Views\User\ITicketContentGridDetailViewEvents1.cs" />
     <Compile Include="Views\Ticket\ITicketContentGridViewEvents.cs" />
     <Compile Include="Views\Ticket\TicketContentGridDetailPage.xaml.cs">
       <DependentUpon>TicketContentGridDetailPage.xaml</DependentUpon>

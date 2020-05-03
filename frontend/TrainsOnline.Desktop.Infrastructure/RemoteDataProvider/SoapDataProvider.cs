@@ -15,15 +15,30 @@
     public class SoapDataProvider : IDataProvider
     {
         private const string ApiUrl = "https://genericapi.francecentral.cloudapp.azure.com/soap-api";
+        private const string ApiUrlLocal = "http://localhost:2137/soap-api";
 
+        private bool useLocalUrl;
+        public bool UseLocalUrl
+        {
+            get => useLocalUrl; set
+            {
+                useLocalUrl = value;
+                Client = new RestClient(UseLocalUrl ? ApiUrlLocal : ApiUrl);
+            }
+        }
         public bool IsAuthenticated => !string.IsNullOrWhiteSpace(Token);
         protected string Token { get; private set; }
 
-        private RestClient Client { get; }
+        protected RestClient Client { get; private set; }
 
         public SoapDataProvider()
         {
             Client = new RestClient(ApiUrl);
+        }
+
+        public void SetToken(string token)
+        {
+            Token = token;
         }
 
         public async Task<JwtTokenModel> Login(LoginRequest data)

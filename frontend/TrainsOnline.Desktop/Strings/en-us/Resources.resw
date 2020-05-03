@@ -255,4 +255,7 @@ Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Ma
   <data name="Settings_WebApiVersion_Soap.Content" xml:space="preserve">
     <value>SOAP API</value>
   </data>
+  <data name="Settings_ApiURL.Text" xml:space="preserve">
+    <value>API Url</value>
+  </data>
 </root>

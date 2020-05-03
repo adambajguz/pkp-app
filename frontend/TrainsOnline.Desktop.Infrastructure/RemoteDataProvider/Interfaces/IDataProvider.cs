@@ -11,7 +11,10 @@
 
     public interface IDataProvider
     {
+        bool UseLocalUrl { get; set; }
         bool IsAuthenticated { get; }
+
+        void SetToken(string token);
 
         Task<JwtTokenModel> Login(LoginRequest data);
         void Logout();
@@ -29,5 +32,7 @@
         Task<GetTicketDetailsResponse> GetTicket(Guid id);
         Task<GetTicketDocumentResponse> GetTicketDocument(Guid id);
         Task<GetUserTicketsListResponse> GetCurrentUserTickets();
+
+        Task ChangePassword(ChangePasswordRequest data);
     }
 }

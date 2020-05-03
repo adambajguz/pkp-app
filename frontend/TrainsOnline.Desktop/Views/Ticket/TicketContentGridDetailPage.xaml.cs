@@ -2,9 +2,10 @@
 {
     using TrainsOnline.Desktop.ViewModels.Ticket;
     using Windows.UI.Xaml.Controls;
+    using Windows.UI.Xaml.Media;
     using Windows.UI.Xaml.Navigation;
 
-    public sealed partial class TicketContentGridDetailPage : Page
+    public sealed partial class TicketContentGridDetailPage : Page, ITicketContentGridDetailView
     {
         public TicketContentGridDetailPage()
         {
@@ -27,6 +28,11 @@
             {
                 ViewModel.SetListDataItemForNextConnectedAnimation();
             }
+        }
+
+        public void SetImage(ImageSource imageSource)
+        {
+            this.PdfRenderingImage.Source = imageSource;
         }
     }
 }

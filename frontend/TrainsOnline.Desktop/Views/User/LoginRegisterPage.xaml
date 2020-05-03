@@ -28,11 +28,13 @@
                         <TextBox
                             Margin="{StaticResource XSmallTopMargin}"
                             Header="e-mail:"
+                            InputScope="EmailSmtpAddress"
                             PlaceholderText="e-mail"
                             Text="{Binding Path=LoginEmail, Mode=TwoWay}" />
                         <PasswordBox
                             Margin="{StaticResource XSmallTopMargin}"
                             Header="password:"
+                            InputScope="Password"
                             IsPasswordRevealButtonEnabled="False"
                             Password="{Binding Path=LoginPassword, Mode=TwoWay}"
                             PasswordRevealMode="Peek"
@@ -59,11 +61,13 @@
                         <TextBox
                             Margin="{StaticResource XSmallTopMargin}"
                             Header="e-mail:"
+                            InputScope="EmailSmtpAddress"
                             PlaceholderText="e-mail"
                             Text="{Binding Path=RegisterEmail, Mode=TwoWay}" />
                         <PasswordBox
                             Margin="{StaticResource XSmallTopMargin}"
                             Header="password:"
+                            InputScope="Password"
                             IsPasswordRevealButtonEnabled="False"
                             Password="{Binding Path=RegisterPassword, Mode=TwoWay}"
                             PasswordRevealMode="Peek"
@@ -71,21 +75,25 @@
                         <TextBox
                             Margin="{StaticResource XSmallTopMargin}"
                             Header="name:"
+                            InputScope="PersonalFullName"
                             PlaceholderText="Name"
                             Text="{Binding Path=RegisterName, Mode=TwoWay}" />
                         <TextBox
                             Margin="{StaticResource XSmallTopMargin}"
                             Header="surname:"
+                            InputScope="PersonalFullName"
                             PlaceholderText="Surname"
                             Text="{Binding Path=RegisterSurname, Mode=TwoWay}" />
                         <TextBox
                             Margin="{StaticResource XSmallTopMargin}"
                             Header="phone number:"
+                            InputScope="TelephoneNumber"
                             PlaceholderText="Phone number"
                             Text="{Binding Path=RegisterPhoneNumber, Mode=TwoWay}" />
                         <TextBox
                             Margin="{StaticResource XSmallTopMargin}"
                             Header="address:"
+                            InputScope="EmailNameOrAddress"
                             PlaceholderText="Address"
                             Text="{Binding Path=RegisterAddress, Mode=TwoWay}" />
 

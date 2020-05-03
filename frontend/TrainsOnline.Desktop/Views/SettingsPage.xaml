@@ -62,16 +62,23 @@
             <TextBlock x:Uid="Settings_Integrations" Style="{ThemeResource SubtitleTextBlockStyle}" />
 
             <StackPanel Margin="{StaticResource SmallTopBottomMargin}">
-                <TextBlock x:Uid="Settings_ApiVersion" />
+                <!--<TextBlock x:Uid="Settings_ApiVersion" />-->
 
-                <StackPanel Margin="{StaticResource XSmallTopMargin}">
+                <ToggleSwitch
+                    cm:Message.Attach="[Event Toggled]=[SwitchApi()]"
+                    Header="API version (SOAP or REST)"
+                    IsOn="{Binding UseRestApi, Mode=TwoWay}"
+                    OffContent="Use SOAP"
+                    OnContent="Use REST" />
+
+                <!--<StackPanel Margin="{StaticResource XSmallTopMargin}">
                     <RadioButton
                         x:Name="SoapApiVersionButton"
                         x:Uid="Settings_WebApiVersion_Soap"
                         cm:Message.Attach="SwitchApiVersionTheme(WebApiTypes.SOAP)"
                         FontSize="15"
                         GroupName="ApiVersion"
-                        IsChecked="{x:Bind ViewModel.WebApiType, Converter={StaticResource WebApiTypesToBooleanConverter}, ConverterParameter=SOAP, Mode=TwoWay}">
+                        IsChecked="{Binding WebApiType, Converter={StaticResource WebApiTypesToBooleanConverter}, ConverterParameter=SOAP, Mode=TwoWay}">
                         <RadioButton.Tag>
                             <appinterfaces:WebApiTypes>SOAP</appinterfaces:WebApiTypes>
                         </RadioButton.Tag>
@@ -82,12 +89,21 @@
                         cm:Message.Attach="SwitchApiVersionTheme(WebApiTypes.REST)"
                         FontSize="15"
                         GroupName="ApiVersion"
-                        IsChecked="{x:Bind ViewModel.WebApiType, Converter={StaticResource WebApiTypesToBooleanConverter}, ConverterParameter=REST, Mode=TwoWay}">
+                        IsChecked="{Binding WebApiType, Converter={StaticResource WebApiTypesToBooleanConverter}, ConverterParameter=REST, Mode=TwoWay}">
                         <RadioButton.Tag>
                             <appinterfaces:WebApiTypes>REST</appinterfaces:WebApiTypes>
                         </RadioButton.Tag>
                     </RadioButton>
-                </StackPanel>
+                </StackPanel>-->
+
+                <!--<TextBlock x:Uid="Settings_ApiURL" />-->
+
+                <ToggleSwitch
+                    cm:Message.Attach="[Event Toggled]=[SwitchApiUrl()]"
+                    Header="API version (Remote or Local)"
+                    IsOn="{Binding UseLocalApi, Mode=TwoWay}"
+                    OffContent="Use Remote - Azure"
+                    OnContent="Use Local at http://localhost:2137" />
             </StackPanel>
 
             <TextBlock x:Uid="Settings_About" Style="{ThemeResource SubtitleTextBlockStyle}" />

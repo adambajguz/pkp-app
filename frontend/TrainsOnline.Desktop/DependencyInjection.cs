@@ -1,6 +1,9 @@
 ﻿namespace TrainsOnline.Desktop
 {
     using Caliburn.Micro;
+    using TrainsOnline.Desktop.Interfaces;
+    using TrainsOnline.Desktop.Services;
+    using TrainsOnline.Desktop.Services.File;
     using VM = ViewModels;
 
     public static class DependencyInjection
@@ -31,6 +34,9 @@
 
             _container.PerRequest<VM.User.LoginRegisterViewModel>();
             _container.PerRequest<VM.User.UserDetailsViewModel>();
+
+            _container.Singleton<IFileService, FileService>();
+            _container.Singleton<ISettingsStorageService, SettingStorageService>();
         }
     }
 }

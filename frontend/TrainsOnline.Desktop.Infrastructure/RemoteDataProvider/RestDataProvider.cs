@@ -6,7 +6,6 @@
     using System.Threading.Tasks;
     using RestSharp;
     using TrainsOnline.Desktop.Application.Exceptions;
-    using TrainsOnline.Desktop.Application.Interfaces.RemoteDataProvider;
     using TrainsOnline.Desktop.Domain.DTO;
     using TrainsOnline.Desktop.Domain.DTO.Authentication;
     using TrainsOnline.Desktop.Domain.DTO.Route;
@@ -19,17 +18,31 @@
     public class RestDataProvider : IDataProvider
     {
         private const string ApiUrl = "https://genericapi.francecentral.cloudapp.azure.com/api/";
+        private const string ApiUrlLocal = "http://localhost:2137/api";
 
-        public WebApiTypes ApiType { get; set; }
+        private bool useLocalUrl;
+        public bool UseLocalUrl
+        {
+            get => useLocalUrl; set
+            {
+                useLocalUrl = value;
+                Client = new RestClient(UseLocalUrl ? ApiUrlLocal : ApiUrl);
+            }
+        }
 
         public bool IsAuthenticated => !string.IsNullOrWhiteSpace(Token);
         protected string Token { get; private set; }
 
-        private RestClient Client { get; }
+        protected RestClient Client { get; private set; }
 
         public RestDataProvider()
         {
-            Client = new RestClient(ApiUrl);
+            Client = new RestClient(UseLocalUrl ? ApiUrlLocal : ApiUrl);
+        }
+
+        public void SetToken(string token)
+        {
+            Token = token;
         }
 
         private static void CheckResponseErrors(IRestResponse response)
@@ -74,6 +87,7 @@
         public async Task<GetUserDetailsResponse> GetCurrentUser()
         {
             RestRequest request = new RestRequest("user/get-current", DataFormat.Json);
+            request.AddBearerAuthentication(Token);
 
             return await Client.GetAsync<GetUserDetailsResponse>(request);
         }
@@ -165,7 +179,6 @@
             request.AddParameter("id", id, ParameterType.UrlSegment)
                    .AddBearerAuthentication(Token);
 
-
             IRestResponse<GetTicketDocumentResponse> response = await Client.ExecuteGetAsync<GetTicketDocumentResponse>(request);
             CheckResponseErrors(response);
 
@@ -186,6 +199,22 @@
             CheckResponseErrors(response);
 
             return response.Data;
+        }
+
+        public async Task ChangePassword(ChangePasswordRequest data)
+        {
+            if (!IsAuthenticated)
+            {
+                return;
+            }
+
+            RestRequest request = new RestRequest("user/change-password", DataFormat.Json);
+            request.AddBearerAuthentication(Token);
+
+            IRestResponse response = await Client.ExecuteAsync(request, Method.PATCH);
+            CheckResponseErrors(response);
+
+            return;
         }
     }
 }
