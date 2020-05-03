@@ -2,7 +2,6 @@
 {
     using System;
     using System.Threading.Tasks;
-    using TrainsOnline.Desktop.Domain.DTO.Route;
     using TrainsOnline.Desktop.Domain.DTO.Station;
 
     public interface IStationData

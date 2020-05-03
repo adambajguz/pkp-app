@@ -161,7 +161,7 @@
                 MaximumTicketPrice = parsed ? (double?)max : null
             });
 
-            await LoadDataAsync();
+            await LoadDataAsync(data);
         }
 
         public async void ResetView()
