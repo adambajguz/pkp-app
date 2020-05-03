@@ -134,7 +134,7 @@
             return response.Data;
         }
 
-        public async Task<GetRoutesListResponse> GetFilteredStations(GetFilteredRoutesListRequest data)
+        public async Task<GetRoutesListResponse> GetFilteredRoutes(GetFilteredRoutesListRequest data)
         {
             RestRequest request = new RestRequest("route/get-filtered", DataFormat.Json);
             request.AddJsonBody(data);

@@ -26,7 +26,7 @@
         Task<GetStationsListResponse> GetStations();
 
         Task<GetRouteDetailsResponse> GetRoute(Guid id);
-        Task<GetStationsListResponse> GetFilteredStations(GetFilteredRoutesListRequest data);
+        Task<GetRoutesListResponse> GetFilteredRoutes(GetFilteredRoutesListRequest data);
         Task<GetRoutesListResponse> GetRoutes();
 
         Task<IdResponse> CreateTicket(CreateTicketRequest data);

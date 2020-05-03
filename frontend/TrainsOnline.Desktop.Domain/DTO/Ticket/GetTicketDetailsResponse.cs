@@ -29,6 +29,7 @@
 
             public DateTime DepartureTime { get; set; }
             public TimeSpan Duration { get; set; }
+            public DateTime ArrivalTime => DepartureTime.Add(Duration);
             public double Distance { get; set; }
             public double TicketPrice { get; set; }
 
