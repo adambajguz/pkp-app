@@ -109,21 +109,31 @@
                 </DataTemplate>
             </Grid.Resources>
 
-            <StackPanel
-                Margin="{StaticResource MediumBottomMargin}"
-                HorizontalAlignment="Stretch"
-                Orientation="Horizontal">
+            <Grid Grid.Row="0" Margin="{StaticResource MediumBottomMargin}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
                 <TextBox
+                    Grid.Column="0"
                     Margin="{StaticResource SmallLeftRightMargin}"
                     Header="Departure station:"
                     PlaceholderText="unspecified"
                     Text="{Binding Path=SearchFrom, Mode=TwoWay}" />
                 <TextBox
+                    Grid.Column="1"
                     Margin="{StaticResource SmallLeftRightMargin}"
                     Header="Arrival station:"
                     PlaceholderText="unspecified"
                     Text="{Binding Path=SearchTo, Mode=TwoWay}" />
                 <muxc:NumberBox
+                    Grid.Column="2"
                     Margin="{StaticResource SmallLeftRightMargin}"
                     Header="Maximum price:"
                     LargeChange="25"
@@ -132,8 +142,7 @@
                     SpinButtonPlacementMode="Compact"
                     Text="{Binding Path=SearchMaximumPrice, Mode=TwoWay}" />
 
-
-                <StackPanel Orientation="Horizontal">
+                <StackPanel Grid.Column="3" Orientation="Horizontal">
                     <Button
                         Margin="0,22,12,0"
                         micro:Message.Attach="[Event Click]=[Search()]"
@@ -149,7 +158,8 @@
                         ToolTipService.ToolTip="Reset search" />
                     <ProgressRing Margin="8,12,0,0" IsActive="{Binding Path=LoginInProgress, Mode=OneWay}" />
                 </StackPanel>
-            </StackPanel>
+            </Grid>
+
             <controls:DataGrid
                 Grid.Row="1"
                 micro:Message.Attach="[LoadingRowGroup] = [Action LoadingRowGroup($eventargs)];"

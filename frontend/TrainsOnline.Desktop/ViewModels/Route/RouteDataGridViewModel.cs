@@ -146,7 +146,7 @@
         public void LoadingRowGroup(DataGridRowGroupHeaderEventArgs e)
         {
             ICollectionViewGroup group = e.RowGroupHeader.CollectionViewGroup;
-            RouteDetailsValueObject item = group.GroupItems[0] as RouteDetailsValueObject;
+            GetRouteDetailsResponse item = group.GroupItems[0] as GetRouteDetailsResponse;
             e.RowGroupHeader.PropertyValue = item?.From?.Name;
         }
 
