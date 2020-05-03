@@ -17,7 +17,12 @@
     </Page.Resources>
 
     <Grid Margin="{StaticResource MediumLeftRightMargin}">
-        <ScrollViewer>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <ScrollViewer Grid.Row="0">
             <StackPanel>
                 <!--<StackPanel Margin="{StaticResource SmallTopMargin}">
                     <TextBlock Style="{StaticResource DetailSubTitleStyle}" Text="CreatedOn" />
@@ -81,15 +86,29 @@
                         </StackPanel>
                     </Button>
 
-
                     <ProgressRing Margin="8,12,0,0" IsActive="{Binding Path=DownloadInProgress, Mode=OneWay}" />
                 </StackPanel>
-
-                <Image
-                    x:Name="PdfRenderingImage"
-                    Margin="0,12,0,0"
-                    Source="{Binding PdfRendering}" />
             </StackPanel>
         </ScrollViewer>
+
+
+        <TextBlock
+            Grid.Row="1"
+            Margin="{StaticResource SmallTopMargin}"
+            Style="{StaticResource DetailSubTitleStyle}"
+            Text="PDF Preview" />
+
+        <ScrollViewer
+            Grid.Row="2"
+            Margin="{StaticResource XSmallTopMargin}"
+            Background="LightGray"
+            ZoomMode="Enabled">
+            <Image
+                x:Name="PdfRenderingImage"
+                Margin="0,12,0,0"
+                Source="{Binding PdfRenderingImage}"
+                Stretch="UniformToFill" />
+        </ScrollViewer>
+
     </Grid>
 </Page>

@@ -69,14 +69,14 @@
             return Ok(await Mediator.Send(new DeleteRouteCommand(new IdRequest(id))));
         }
 
-        [HttpGet("/api/route/get-filtered")]
+        [HttpPost("/api/route/get-filtered")]
         [SwaggerOperation(
             Summary = "Get filtered routes",
             Description = "Gets a filtered list of routes")]
         [SwaggerResponse(StatusCodes.Status200OK, null, typeof(GetRoutesListResponse))]
-        public async Task<IActionResult> GetFilteredRoutesList()
+        public async Task<IActionResult> GetFilteredRoutesList(GetFilteredRoutesListRequest data)
         {
-            return Ok(await Mediator.Send(new GetFilteredRoutesListQuery()));
+            return Ok(await Mediator.Send(new GetFilteredRoutesListQuery(data)));
         }
         
         [HttpGet("/api/route/get-all")]

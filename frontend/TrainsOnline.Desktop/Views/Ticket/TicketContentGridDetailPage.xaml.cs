@@ -2,7 +2,6 @@
 {
     using TrainsOnline.Desktop.ViewModels.Ticket;
     using Windows.UI.Xaml.Controls;
-    using Windows.UI.Xaml.Media;
     using Windows.UI.Xaml.Navigation;
 
     public sealed partial class TicketContentGridDetailPage : Page, ITicketContentGridDetailView
@@ -30,9 +29,9 @@
             }
         }
 
-        public void SetImage(ImageSource imageSource)
-        {
-            PdfRenderingImage.Source = imageSource;
-        }
+        //public void SetImage(ImageSource imageSource)
+        //{
+        //    PdfRenderingImage.Source = imageSource;
+        //}
     }
 }

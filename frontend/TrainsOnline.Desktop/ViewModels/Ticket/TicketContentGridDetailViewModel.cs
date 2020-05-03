@@ -23,11 +23,11 @@
             set => Set(ref _item, value);
         }
 
-        private BitmapImage _pdfRendering;
-        public BitmapImage PdfRendering
+        private BitmapImage _pdfRenderingImage;
+        public BitmapImage PdfRenderingImage
         {
-            get => _pdfRendering;
-            set => Set(ref _pdfRendering, value);
+            get => _pdfRenderingImage;
+            set => Set(ref _pdfRenderingImage, value);
         }
 
         private bool _downloadInProgress;
@@ -65,13 +65,12 @@
             DownloadInProgress = true;
             GetTicketDocumentResponse documentData = await RemoteDataProvider.GetTicketDocument(Item.Id);
 
-            PdfRendering = await PdfRenderingHelper.RenderBase64PdfToImage(documentData.Document);
-            Refresh();
-
-            if (GetView() is ITicketContentGridDetailView view)
-            {
-                view.SetImage(PdfRendering);
-            }
+            PdfRenderingImage = await PdfRenderingHelper.RenderPdfToImage(documentData.Document);
+            //Refresh();
+            //if (GetView() is ITicketContentGridDetailView view)
+            //{
+            //    view.SetImage(PdfRenderingImage);
+            //}
             DownloadInProgress = false;
         }
 

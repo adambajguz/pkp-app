@@ -42,9 +42,9 @@
             return await Mediator.Send(new DeleteRouteCommand(id));
         }
 
-        public async Task<GetRoutesListResponse> GetFilteredRoutesList()
+        public async Task<GetRoutesListResponse> GetFilteredRoutesList(GetFilteredRoutesListRequest data)
         {
-            return await Mediator.Send(new GetFilteredRoutesListQuery());
+            return await Mediator.Send(new GetFilteredRoutesListQuery(data));
         }
 
         public async Task<GetRoutesListResponse> GetRoutesList()

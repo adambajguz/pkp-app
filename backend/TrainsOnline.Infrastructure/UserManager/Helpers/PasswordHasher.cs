@@ -3,6 +3,7 @@
     using System.Runtime.CompilerServices;
     using System.Security.Cryptography;
 
+    //TODO Use System.Security.SecureString
     internal class PasswordHasher
     {
         private const int SALT_BYTE_SIZE = 64;

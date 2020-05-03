@@ -4,6 +4,6 @@
 
     public interface ITicketContentGridDetailView
     {
-        void SetImage(ImageSource imageSource);
+        //void SetImage(ImageSource imageSource);
     }
 }
