@@ -91,9 +91,22 @@
             using (MemoryStream qrMemoryStream = new MemoryStream(qrCodeAsBitmapByteArr))
             using (MemoryStream memoryStream = new MemoryStream())
             {
-                bmp = new Bitmap(qrMemoryStream)Wmf
-                bmp.Save(memoryStream, ImageFormat.Tiff);
-                return memoryStream.ToArray();
+                bmp = new Bitmap(qrMemoryStream);
+                bmp.Save(memoryStream, ImageFormat.Gif);              
+
+                return bmp.ToByteArray(ImageFormat.Gif);
+            }
+        }
+    }
+
+    public static class ImageExtensions
+    {
+        public static byte[] ToByteArray(this Image image, ImageFormat format)
+        {
+            using (MemoryStream ms = new MemoryStream())
+            {
+                image.Save(ms, format);
+                return ms.ToArray();
             }
         }
     }
