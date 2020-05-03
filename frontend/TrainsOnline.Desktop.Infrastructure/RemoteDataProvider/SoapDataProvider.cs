@@ -1,8 +1,10 @@
 ﻿namespace TrainsOnline.Desktop.Domain.RemoteDataProvider
 {
     using System;
+    using System.Collections.Generic;
     using System.Threading.Tasks;
     using RestSharp;
+    using TrainsOnline.Desktop.Application.Extensions;
     using TrainsOnline.Desktop.Domain.DTO;
     using TrainsOnline.Desktop.Domain.DTO.Authentication;
     using TrainsOnline.Desktop.Domain.DTO.Route;
@@ -11,6 +13,7 @@
     using TrainsOnline.Desktop.Domain.DTO.User;
     using TrainsOnline.Desktop.Domain.Extensions;
     using TrainsOnline.Desktop.Domain.RemoteDataProvider.Interfaces;
+    using SOAPS = Infrastructure.Services.SoapServices;
 
     public class SoapDataProvider : IDataProvider
     {
@@ -41,6 +44,7 @@
             Token = token;
         }
 
+        #region User
         public async Task<JwtTokenModel> Login(LoginRequest data)
         {
             RestRequest request = new RestRequest("user/login", DataFormat.Json);
@@ -71,21 +75,42 @@
 
             return await Client.GetAsync<GetUserDetailsResponse>(request);
         }
+        #endregion
 
+        #region Station
         public async Task<GetStationDetailsResponse> GetStation(Guid id)
         {
-            RestRequest request = new RestRequest("station/get/{id}", DataFormat.Json);
-            request.AddParameter("id", id, ParameterType.UrlSegment);
+            try
+            {
+                SOAPS.Station.IdRequest request = new SOAPS.Station.IdRequest();
+                request.Id = id.ToString();
+                SOAPS.Station.StationSoapEndpointServiceClient client = new SOAPS.Station.StationSoapEndpointServiceClient();
+                SOAPS.Station.GetStationDetailsResponse1 data = await client.GetStationDetailsAsync(new SOAPS.Station.GetStationDetailsRequest(request));
 
-            return await Client.GetAsync<GetStationDetailsResponse>(request);
+                string json = await data.ToJsonAsync();
+                return await json.ToObjectAsync<GetStationDetailsResponse>();
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
         }
 
         public async Task<GetStationsListResponse> GetStations()
         {
-            RestRequest request = new RestRequest("station/get-all", DataFormat.Json);
+            try
+            {
+                SOAPS.Station.StationSoapEndpointServiceClient client = new SOAPS.Station.StationSoapEndpointServiceClient();
+                SOAPS.Station.GetStationsListResponse1 data = await client.GetStationsListAsync(new SOAPS.Station.GetStationsListRequest());
 
-            return await Client.GetAsync<GetStationsListResponse>(request);
+                return null;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
         }
+        #endregion
 
         public async Task<GetRouteDetailsResponse> GetRoute(Guid id)
         {

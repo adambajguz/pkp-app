@@ -75,7 +75,7 @@
                 //    view.SetImage(PdfRenderingImage);
                 //}
             }
-            catch (RemoteDataException ex)
+            catch (RemoteDataException)
             {
 
             }
@@ -92,7 +92,7 @@
 
                 await FileService.SaveToPdfFile(data, documentData.Id.ToShortGuid() + ".pdf");
             }
-            catch (RemoteDataException ex)
+            catch (RemoteDataException)
             {
 
             }
