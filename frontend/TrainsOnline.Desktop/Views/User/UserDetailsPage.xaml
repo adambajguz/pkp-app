@@ -17,39 +17,48 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <StackPanel Grid.Column="0" Orientation="Vertical">
+            <StackPanel
+                Grid.Column="0"
+                Margin="{StaticResource MediumLeftTopRightBottomMargin}"
+                Orientation="Vertical">
                 <TextBlock
                     Margin="{StaticResource XSmallTopMargin}"
                     Foreground="OrangeRed"
-                    Text="{Binding Path=EditErrors, Mode=TwoWay}"
+                    Text="{Binding Path=EditErrors}"
                     TextWrapping="Wrap" />
 
-                <StackPanel Margin="{StaticResource SmallTopMargin}">
-                    <TextBlock Style="{StaticResource DetailSubTitleStyle}" Text="Email" />
-                    <TextBox InputScope="EmailSmtpAddress" Text="{Binding Item.Email, Mode=TwoWay}" />
-                </StackPanel>
+                <TextBox
+                    Margin="{StaticResource XSmallTopMargin}"
+                    Header="email"
+                    InputScope="EmailSmtpAddress"
+                    Text="{Binding Item.Email, Mode=TwoWay}" />
+                <TextBox
+                    Margin="{StaticResource XSmallTopMargin}"
+                    InputScope="PersonalFullName"
+                    Text="{Binding Item.Name, Mode=TwoWay}" />
 
-                <StackPanel Margin="{StaticResource SmallTopMargin}">
+                <!--<StackPanel Margin="{StaticResource SmallTopMargin}">
                     <TextBlock Style="{StaticResource DetailSubTitleStyle}" Text="Name" />
                     <TextBox InputScope="PersonalFullName" Text="{Binding Item.Name, Mode=TwoWay}" />
-                </StackPanel>
+                </StackPanel>-->
 
-                <StackPanel Margin="{StaticResource SmallTopMargin}">
-                    <TextBlock Style="{StaticResource DetailSubTitleStyle}" Text="Surname" />
-                    <TextBox InputScope="PersonalFullName" Text="{Binding Item.Surname, Mode=TwoWay}" />
-                </StackPanel>
+                <TextBox
+                    Margin="{StaticResource XSmallTopMargin}"
+                    InputScope="PersonalFullName"
+                    Text="{Binding Item.Surname, Mode=TwoWay}" />
+                <TextBox
+                    Margin="{StaticResource XSmallTopMargin}"
+                    InputScope="TelephoneNumber"
+                    Text="{Binding Item.PhoneNumber, Mode=TwoWay}" />
+                <TextBox
+                    Margin="{StaticResource XSmallTopMargin}"
+                    InputScope="Default"
+                    Text="{Binding Item.Address, Mode=TwoWay}" />
 
-                <StackPanel Margin="{StaticResource SmallTopMargin}">
-                    <TextBlock Style="{StaticResource DetailSubTitleStyle}" Text="PhoneNumber" />
-                    <TextBox InputScope="TelephoneNumber" Text="{Binding Item.PhoneNumber, Mode=TwoWay}" />
-                </StackPanel>
-
-                <StackPanel Margin="{StaticResource SmallTopMargin}">
-                    <TextBlock Style="{StaticResource DetailSubTitleStyle}" Text="Address" />
-                    <TextBox InputScope="Default" Text="{Binding Item.Address, Mode=TwoWay}" />
-                </StackPanel>
-
-                <StackPanel Orientation="Horizontal">
+                <StackPanel
+                    Margin="{StaticResource SmallTopMargin}"
+                    HorizontalAlignment="Center"
+                    Orientation="Horizontal">
                     <Button
                         Margin="8,0,0,0"
                         micro:Message.Attach="[Event Click]=[Update()]"
@@ -67,11 +76,11 @@
                                 Text="Save changes" />
                         </StackPanel>
                     </Button>
-                    <ProgressRing Margin="8,12,0,0" IsActive="{Binding Path=LoginInProgress, Mode=OneWay}" />
+                    <ProgressRing Margin="8,12,0,0" IsActive="{Binding Path=EditInProgress, Mode=OneWay}" />
                 </StackPanel>
 
                 <Button
-                    Margin="8,12,0,0"
+                    Margin="{StaticResource MediumTopMargin}"
                     micro:Message.Attach="[Event Click]=[Logout()]"
                     ToolTipService.ToolTip="Logout current user">
                     <StackPanel Orientation="Horizontal">
@@ -89,7 +98,10 @@
                 </Button>
             </StackPanel>
 
-            <StackPanel Grid.Column="1" Orientation="Vertical">
+            <StackPanel
+                Grid.Column="1"
+                Margin="{StaticResource MediumLeftTopRightBottomMargin}"
+                Orientation="Vertical">
                 <TextBlock
                     Margin="{StaticResource XSmallTopMargin}"
                     Foreground="OrangeRed"
@@ -121,7 +133,10 @@
                         PlaceholderText="new password" />
                 </StackPanel>
 
-                <StackPanel Orientation="Horizontal">
+                <StackPanel
+                    Margin="{StaticResource SmallTopMargin}"
+                    HorizontalAlignment="Center"
+                    Orientation="Horizontal">
                     <Button
                         Margin="8,0,0,0"
                         micro:Message.Attach="[Event Click]=[UpdatePassword()]"

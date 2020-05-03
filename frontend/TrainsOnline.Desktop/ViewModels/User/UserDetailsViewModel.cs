@@ -22,8 +22,8 @@
         private string _editErrors;
         public string EditErrors
         {
-            get => _passwordChangeErrors;
-            set => Set(ref _passwordChangeErrors, value);
+            get => _editErrors;
+            set => Set(ref _editErrors, value);
         }
 
         private bool _editInProgress;
@@ -121,6 +121,7 @@
             {
                 PasswordChangeErrors = ex.GetResponse().Message;
             }
+
             PasswordChangeInProgress = false;
         }
     }
