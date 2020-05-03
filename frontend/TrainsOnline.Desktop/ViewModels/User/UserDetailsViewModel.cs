@@ -19,6 +19,20 @@
             set => Set(ref _item, value);
         }
 
+        private string _editErrors;
+        public string EditErrors
+        {
+            get => _passwordChangeErrors;
+            set => Set(ref _passwordChangeErrors, value);
+        }
+
+        private bool _editInProgress;
+        public bool EditInProgress
+        {
+            get => _editInProgress;
+            set => Set(ref _editInProgress, value);
+        }
+
         private string _passwordChangeErrors;
         public string PasswordChangeErrors
         {
@@ -26,6 +40,12 @@
             set => Set(ref _passwordChangeErrors, value);
         }
 
+        private bool _passwordChangeInProgress;
+        public bool PasswordChangeInProgress
+        {
+            get => _passwordChangeInProgress;
+            set => Set(ref _passwordChangeInProgress, value);
+        }
 
         private string _currentPassword;
         public string CurrentPassword
@@ -69,7 +89,9 @@
 
         public void Update()
         {
+            EditInProgress = true;
 
+            EditInProgress = false;
         }
 
         public void Logout()
@@ -90,6 +112,7 @@
 
         public async void UpdatePassword()
         {
+            PasswordChangeInProgress = true;
             try
             {
                 await RemoteDataProvider.ChangePassword(CurrentPassword, NewPassword);
@@ -98,6 +121,7 @@
             {
                 PasswordChangeErrors = ex.GetResponse().Message;
             }
+            PasswordChangeInProgress = false;
         }
     }
 }

@@ -18,11 +18,16 @@
             </Grid.RowDefinitions>
 
             <StackPanel Grid.Column="0" Orientation="Vertical">
+                <TextBlock
+                    Margin="{StaticResource XSmallTopMargin}"
+                    Foreground="OrangeRed"
+                    Text="{Binding Path=EditErrors, Mode=TwoWay}"
+                    TextWrapping="Wrap" />
+
                 <StackPanel Margin="{StaticResource SmallTopMargin}">
                     <TextBlock Style="{StaticResource DetailSubTitleStyle}" Text="Email" />
                     <TextBox
                         InputScope="EmailSmtpAddress"
-                        Style="{StaticResource DetailBodyBaseMediumStyle}"
                         Text="{Binding Item.Email, Mode=TwoWay}" />
                 </StackPanel>
 
@@ -30,7 +35,6 @@
                     <TextBlock Style="{StaticResource DetailSubTitleStyle}" Text="Name" />
                     <TextBox
                         InputScope="PersonalFullName"
-                        Style="{StaticResource DetailBodyBaseMediumStyle}"
                         Text="{Binding Item.Name, Mode=TwoWay}" />
                 </StackPanel>
 
@@ -38,7 +42,6 @@
                     <TextBlock Style="{StaticResource DetailSubTitleStyle}" Text="Surname" />
                     <TextBox
                         InputScope="PersonalFullName"
-                        Style="{StaticResource DetailBodyBaseMediumStyle}"
                         Text="{Binding Item.Surname, Mode=TwoWay}" />
                 </StackPanel>
 
@@ -46,7 +49,6 @@
                     <TextBlock Style="{StaticResource DetailSubTitleStyle}" Text="PhoneNumber" />
                     <TextBox
                         InputScope="TelephoneNumber"
-                        Style="{StaticResource DetailBodyBaseMediumStyle}"
                         Text="{Binding Item.PhoneNumber, Mode=TwoWay}" />
                 </StackPanel>
 
@@ -54,27 +56,29 @@
                     <TextBlock Style="{StaticResource DetailSubTitleStyle}" Text="Address" />
                     <TextBox
                         InputScope="Default"
-                        Style="{StaticResource DetailBodyBaseMediumStyle}"
                         Text="{Binding Item.Address, Mode=TwoWay}" />
                 </StackPanel>
 
-                <Button
-                    Margin="8,0,0,0"
-                    micro:Message.Attach="[Event Click]=[Update()]"
-                    ToolTipService.ToolTip="Update current user">
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock
-                            Grid.Column="0"
-                            VerticalAlignment="Center"
-                            FontFamily="Segoe MDL2 Assets"
-                            Text="&#xE74E;" />
-                        <TextBlock
-                            Grid.Column="1"
-                            Margin="10,0,0,0"
-                            VerticalAlignment="Center"
-                            Text="Save changes" />
-                    </StackPanel>
-                </Button>
+                <StackPanel Orientation="Horizontal">
+                    <Button
+                        Margin="8,0,0,0"
+                        micro:Message.Attach="[Event Click]=[Update()]"
+                        ToolTipService.ToolTip="Update current user">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock
+                                Grid.Column="0"
+                                VerticalAlignment="Center"
+                                FontFamily="Segoe MDL2 Assets"
+                                Text="&#xE74E;" />
+                            <TextBlock
+                                Grid.Column="1"
+                                Margin="10,0,0,0"
+                                VerticalAlignment="Center"
+                                Text="Save changes" />
+                        </StackPanel>
+                    </Button>
+                    <ProgressRing Margin="8,12,0,0" IsActive="{Binding Path=LoginInProgress, Mode=OneWay}" />
+                </StackPanel>
 
                 <Button
                     Margin="8,12,0,0"
@@ -96,6 +100,12 @@
             </StackPanel>
 
             <StackPanel Grid.Column="1" Orientation="Vertical">
+                <TextBlock
+                    Margin="{StaticResource XSmallTopMargin}"
+                    Foreground="OrangeRed"
+                    Text="{Binding Path=PasswordChangeErrors, Mode=TwoWay}"
+                    TextWrapping="Wrap" />
+
                 <StackPanel Margin="{StaticResource SmallTopMargin}">
                     <TextBlock Style="{StaticResource DetailSubTitleStyle}" Text="PhoneNumber" />
 
@@ -121,23 +131,27 @@
                         PlaceholderText="password" />
                 </StackPanel>
 
-                <Button
-                    Margin="8,0,0,0"
-                    micro:Message.Attach="[Event Click]=[UpdatePassword()]"
-                    ToolTipService.ToolTip="Update current user password">
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock
-                            Grid.Column="0"
-                            VerticalAlignment="Center"
-                            FontFamily="Segoe MDL2 Assets"
-                            Text="&#xE74E;" />
-                        <TextBlock
-                            Grid.Column="1"
-                            Margin="10,0,0,0"
-                            VerticalAlignment="Center"
-                            Text="Update password" />
-                    </StackPanel>
-                </Button>
+                <StackPanel Orientation="Horizontal">
+                    <Button
+                        Margin="8,0,0,0"
+                        micro:Message.Attach="[Event Click]=[UpdatePassword()]"
+                        ToolTipService.ToolTip="Update current user password">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock
+                                Grid.Column="0"
+                                VerticalAlignment="Center"
+                                FontFamily="Segoe MDL2 Assets"
+                                Text="&#xE74E;" />
+                            <TextBlock
+                                Grid.Column="1"
+                                Margin="10,0,0,0"
+                                VerticalAlignment="Center"
+                                Text="Update password" />
+                        </StackPanel>
+                    </Button>
+                    <ProgressRing Margin="8,12,0,0" IsActive="{Binding Path=PasswordChangeInProgress, Mode=OneWay}" />
+                </StackPanel>
+
             </StackPanel>
         </Grid>
     </Grid>
