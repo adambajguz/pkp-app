@@ -134,7 +134,7 @@
                                                              .AddRunLine("This code allows you to add an event to calendar app on your device. The event will contain all crucial data from this ticket.", size: 8, italic: true),
 
                                                      (x) => x.AddRunLine("Verification QR Code:")
-                                                             .AddImage(qrCodeMemoryStream, DocumentImageFormats.Tiff, 55, 55)
+                                                             .AddImage(qrCodeMemoryStream, DocumentImageFormats.Wmf, 55, 55)
                                                              .AddNewLine()
                                                              .AddRunLine("The verification QR Code allows you to verify authenticity of the ticket using a dedicated online service.", size: 8, italic: true))
 

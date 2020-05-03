@@ -91,7 +91,7 @@
             using (MemoryStream qrMemoryStream = new MemoryStream(qrCodeAsBitmapByteArr))
             using (MemoryStream memoryStream = new MemoryStream())
             {
-                bmp = new Bitmap(qrMemoryStream);
+                bmp = new Bitmap(qrMemoryStream)Wmf
                 bmp.Save(memoryStream, ImageFormat.Tiff);
                 return memoryStream.ToArray();
             }
