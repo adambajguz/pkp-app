@@ -3,6 +3,7 @@
     using System;
     using System.Threading.Tasks;
     using TrainsOnline.Desktop.Domain.DTO.Route;
+    using TrainsOnline.Desktop.Domain.DTO.Station;
 
     public interface IRouteData
     {
@@ -10,6 +11,7 @@
         //Task<IList<RouteDetailsValueObject>> GetRoutes();
 
         Task<GetRouteDetailsResponse> GetRoute(Guid id);
+        Task<GetStationsListResponse> GetFilteredStations(GetFilteredRoutesListRequest data);
         Task<GetRoutesListResponse> GetRoutes();
     }
 }

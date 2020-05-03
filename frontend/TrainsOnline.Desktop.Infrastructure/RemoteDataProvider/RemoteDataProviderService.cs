@@ -123,6 +123,11 @@
             return await DataProvider.GetRoute(id);
         }
 
+        public async Task<GetStationsListResponse> GetFilteredStations(GetFilteredRoutesListRequest data)
+        {
+            return await DataProvider.GetFilteredStations(datas);
+        }
+
         public async Task<GetRoutesListResponse> GetRoutes()
         {
             return await DataProvider.GetRoutes();

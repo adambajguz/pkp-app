@@ -135,12 +135,12 @@
                     <Button
                         Margin="{StaticResource SmallTopMargin}"
                         micro:Message.Attach="[Event Click]=[Search()]"
-                        Content="Search" />
+                        Content="E721" />
 
                     <Button
                         Margin="{StaticResource SmallTopMargin}"
                         micro:Message.Attach="[Event Click]=[ResetView()]"
-                        Content="Login" />
+                        Content="Reset view" />
                     <ProgressRing Margin="8,12,0,0" IsActive="{Binding Path=LoginInProgress, Mode=OneWay}" />
                 </StackPanel>
             </StackPanel>

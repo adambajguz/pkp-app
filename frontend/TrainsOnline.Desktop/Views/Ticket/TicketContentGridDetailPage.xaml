@@ -56,12 +56,10 @@
                         ToolTipService.ToolTip="Preview PDF">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock
-                                Grid.Column="0"
                                 VerticalAlignment="Center"
                                 FontFamily="Segoe MDL2 Assets"
                                 Text="&#xE8A5;" />
                             <TextBlock
-                                Grid.Column="1"
                                 Margin="10,0,0,0"
                                 VerticalAlignment="Center"
                                 Text="Preview PDF" />

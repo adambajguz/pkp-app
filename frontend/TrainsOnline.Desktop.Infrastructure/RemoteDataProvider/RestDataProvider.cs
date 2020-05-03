@@ -134,6 +134,17 @@
             return response.Data;
         }
 
+        public async Task<GetRoutesListResponse> GetFilteredStations(GetFilteredRoutesListRequest data)
+        {
+            RestRequest request = new RestRequest("route/get-filtered", DataFormat.Json);
+            request.AddJsonBody(data);
+
+            IRestResponse<GetRoutesListResponse> response = await Client.ExecutePostAsync<GetRoutesListResponse>(request);
+            CheckResponseErrors(response);
+
+            return response.Data;
+        }
+
         public async Task<IdResponse> CreateTicket(CreateTicketRequest data)
         {
             if (!IsAuthenticated)

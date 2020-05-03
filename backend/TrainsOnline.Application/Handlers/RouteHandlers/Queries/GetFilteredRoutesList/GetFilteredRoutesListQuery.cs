@@ -45,10 +45,10 @@
                     routes.Routes.RemoveAll(x => x.TicketPrice > max);
 
                 if (data.FromPattern is string from)
-                    routes.Routes.RemoveAll(x => _strComparer.AreSimilar(x.From.Name, from));
+                    routes.Routes.RemoveAll(x => _strComparer.AreNotSimilar(x.From.Name, from));
 
                 if (data.ToPattern is string to)
-                    routes.Routes.RemoveAll(x => _strComparer.AreSimilar(x.To.Name, to));
+                    routes.Routes.RemoveAll(x => _strComparer.AreNotSimilar(x.To.Name, to));
 
                 return routes;
             }
