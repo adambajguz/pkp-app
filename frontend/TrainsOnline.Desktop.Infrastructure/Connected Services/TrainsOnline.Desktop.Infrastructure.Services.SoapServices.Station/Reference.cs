@@ -439,7 +439,7 @@ namespace TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Station
         
         private double longitudeField;
         
-        private RouteDeparturesLookupModel departuresField;
+        private RouteDeparturesLookupModel[] departuresField;
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=0)]
@@ -554,8 +554,8 @@ namespace TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Station
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=8)]
-        public RouteDeparturesLookupModel Departures
+        [System.Xml.Serialization.XmlArray(IsNullable=true, Order =8)]
+        public RouteDeparturesLookupModel[] Departures
         {
             get
             {

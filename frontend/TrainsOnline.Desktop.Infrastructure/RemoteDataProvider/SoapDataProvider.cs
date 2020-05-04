@@ -3,6 +3,9 @@
     using System;
     using System.Collections.Generic;
     using System.IO;
+    using System.Net;
+    using System.ServiceModel;
+    using System.ServiceModel.Channels;
     using System.Threading.Tasks;
     using System.Xml.Linq;
     using System.Xml.Serialization;
@@ -112,9 +115,25 @@
             try
             {
                 SOAPS.User.UserSoapEndpointServiceClient client = new SOAPS.User.UserSoapEndpointServiceClient();
-                SOAPS.User.GetCurrentUserDetailsResponse data = await client.GetCurrentUserDetailsAsync(new SOAPS.User.GetCurrentUserDetailsRequest());
 
-                return await DeserializeCustom<GetUserDetailsResponse>(data.GetCurrentUserDetailsResult);
+                var httpRequestProperty = new HttpRequestMessageProperty();
+                httpRequestProperty.Headers[HttpRequestHeader.Authorization] = "Bearer " + Token;
+
+                var context = new OperationContext(client.InnerChannel);
+                using (new OperationContextScope(context))
+                {
+                    context.OutgoingMessageProperties[HttpRequestMessageProperty.Name] = httpRequestProperty;
+                    SOAPS.User.GetCurrentUserDetailsResponse data = await client.GetCurrentUserDetailsAsync(new SOAPS.User.GetCurrentUserDetailsRequest());
+
+                    return await DeserializeCustom<GetUserDetailsResponse>(data.GetCurrentUserDetailsResult);
+                }
+
+                //using (new OperationContextScope(client.InnerChannel))
+                //{
+                //    // Add a SOAP Header to an outgoing request
+                //    MessageHeader<string> aMessageHeader = MessageHeader.CreateHeader("UserInfo", "http://tempuri.org", "");
+                //    OperationContext.Current.OutgoingMessageHeaders.Add(aMessageHeader);
+                //}
             }
             catch (Exception ex)
             {
@@ -226,9 +245,18 @@
                     UserId = data.UserId.ToString()
                 };
                 SOAPS.Ticket.TicketSoapEndpointServiceClient client = new SOAPS.Ticket.TicketSoapEndpointServiceClient();
-                SOAPS.Ticket.CreateTicketResponse r = await client.CreateTicketAsync(new SOAPS.Ticket.CreateTicketRequest1(request));
 
-                return await DeserializeCustom<IdResponse>(r.CreateTicketResult);
+                var httpRequestProperty = new HttpRequestMessageProperty();
+                httpRequestProperty.Headers[HttpRequestHeader.Authorization] = "Bearer " + Token;
+
+                var context = new OperationContext(client.InnerChannel);
+                using (new OperationContextScope(context))
+                {
+                    context.OutgoingMessageProperties[HttpRequestMessageProperty.Name] = httpRequestProperty;
+                    SOAPS.Ticket.CreateTicketResponse r = await client.CreateTicketAsync(new SOAPS.Ticket.CreateTicketRequest1(request));
+
+                    return await DeserializeCustom<IdResponse>(r.CreateTicketResult);
+                }
             }
             catch (Exception ex)
             {
@@ -250,9 +278,18 @@
                     Id = id.ToString()
                 };
                 SOAPS.Ticket.TicketSoapEndpointServiceClient client = new SOAPS.Ticket.TicketSoapEndpointServiceClient();
-                SOAPS.Ticket.GetTicketDetailsResponse1 r = await client.GetTicketDetailsAsync(new SOAPS.Ticket.GetTicketDetailsRequest(request));
 
-                return await DeserializeCustom<GetTicketDetailsResponse>(r.GetTicketDetailsResult);
+                var httpRequestProperty = new HttpRequestMessageProperty();
+                httpRequestProperty.Headers[HttpRequestHeader.Authorization] = "Bearer " + Token;
+
+                var context = new OperationContext(client.InnerChannel);
+                using (new OperationContextScope(context))
+                {
+                    context.OutgoingMessageProperties[HttpRequestMessageProperty.Name] = httpRequestProperty;
+                    SOAPS.Ticket.GetTicketDetailsResponse1 r = await client.GetTicketDetailsAsync(new SOAPS.Ticket.GetTicketDetailsRequest(request));
+
+                    return await DeserializeCustom<GetTicketDetailsResponse>(r.GetTicketDetailsResult);
+                }
             }
             catch (Exception ex)
             {
@@ -274,9 +311,18 @@
                     Id = id.ToString()
                 };
                 SOAPS.Ticket.TicketSoapEndpointServiceClient client = new SOAPS.Ticket.TicketSoapEndpointServiceClient();
-                SOAPS.Ticket.GetTicketDocumentResponse1 r = await client.GetTicketDocumentAsync(new SOAPS.Ticket.GetTicketDocumentRequest(request));
 
-                return await DeserializeCustom<GetTicketDocumentResponse>(r.GetTicketDocumentResult);
+                var httpRequestProperty = new HttpRequestMessageProperty();
+                httpRequestProperty.Headers[HttpRequestHeader.Authorization] = "Bearer " + Token;
+
+                var context = new OperationContext(client.InnerChannel);
+                using (new OperationContextScope(context))
+                {
+                    context.OutgoingMessageProperties[HttpRequestMessageProperty.Name] = httpRequestProperty;
+                    SOAPS.Ticket.GetTicketDocumentResponse1 r = await client.GetTicketDocumentAsync(new SOAPS.Ticket.GetTicketDocumentRequest(request));
+
+                    return await DeserializeCustom<GetTicketDocumentResponse>(r.GetTicketDocumentResult);
+                }
             }
             catch (Exception ex)
             {
@@ -293,10 +339,19 @@
 
             try
             {
-                SOAPS.Ticket.TicketSoapEndpointServiceClient client = new SOAPS.Ticket.TicketSoapEndpointServiceClient();
-                SOAPS.Ticket.GetCurrentUserTicketsListResponse r = await client.GetCurrentUserTicketsListAsync(new SOAPS.Ticket.GetCurrentUserTicketsListRequest());
+                var httpRequestProperty = new HttpRequestMessageProperty();
+                httpRequestProperty.Headers[HttpRequestHeader.Authorization] = "Bearer " + Token;
 
-                return await DeserializeCustom<GetUserTicketsListResponse>(r.GetCurrentUserTicketsListResult);
+                SOAPS.Ticket.TicketSoapEndpointServiceClient client = new SOAPS.Ticket.TicketSoapEndpointServiceClient();
+
+                var context = new OperationContext(client.InnerChannel);
+                using (new OperationContextScope(context))
+                {
+                    context.OutgoingMessageProperties[HttpRequestMessageProperty.Name] = httpRequestProperty;
+                    SOAPS.Ticket.GetCurrentUserTicketsListResponse r = await client.GetCurrentUserTicketsListAsync(new SOAPS.Ticket.GetCurrentUserTicketsListRequest());
+
+                    return await DeserializeCustom<GetUserTicketsListResponse>(r.GetCurrentUserTicketsListResult);
+                }
             }
             catch (Exception ex)
             {
@@ -324,8 +379,16 @@
                     Surname = data.Surname
                 };
                 SOAPS.User.UserSoapEndpointServiceClient client = new SOAPS.User.UserSoapEndpointServiceClient();
-                SOAPS.User.UpdateUserResponse r = await client.UpdateUserAsync(new SOAPS.User.UpdateUserRequest1(request));
 
+                var httpRequestProperty = new HttpRequestMessageProperty();
+                httpRequestProperty.Headers[HttpRequestHeader.Authorization] = "Bearer " + Token;
+
+                var context = new OperationContext(client.InnerChannel);
+                using (new OperationContextScope(context))
+                {
+                    context.OutgoingMessageProperties[HttpRequestMessageProperty.Name] = httpRequestProperty;
+                    SOAPS.User.UpdateUserResponse r = await client.UpdateUserAsync(new SOAPS.User.UpdateUserRequest1(request));
+                }
             }
             catch (Exception ex)
             {
@@ -342,6 +405,9 @@
 
             try
             {
+                var httpRequestProperty = new HttpRequestMessageProperty();
+                httpRequestProperty.Headers[HttpRequestHeader.Authorization] = "Bearer " + Token;
+
                 SOAPS.User.ChangePasswordRequest request = new SOAPS.User.ChangePasswordRequest
                 {
                     UserId = data.UserId.ToString(),
@@ -349,8 +415,13 @@
                     OldPassword = data.OldPassword
                 };
                 SOAPS.User.UserSoapEndpointServiceClient client = new SOAPS.User.UserSoapEndpointServiceClient();
-                SOAPS.User.ChangePasswordResponse r = await client.ChangePasswordAsync(new SOAPS.User.ChangePasswordRequest1(request));
 
+                var context = new OperationContext(client.InnerChannel);
+                using (new OperationContextScope(context))
+                {
+                    context.OutgoingMessageProperties[HttpRequestMessageProperty.Name] = httpRequestProperty;
+                    SOAPS.User.ChangePasswordResponse r = await client.ChangePasswordAsync(new SOAPS.User.ChangePasswordRequest1(request));
+                }
             }
             catch (Exception ex)
             {
