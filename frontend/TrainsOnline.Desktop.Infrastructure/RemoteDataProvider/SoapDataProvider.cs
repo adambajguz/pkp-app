@@ -196,14 +196,14 @@
                 SOAPS.Route.GetFilteredRoutesListRequest request = new SOAPS.Route.GetFilteredRoutesListRequest
                 {
                     FromPattern = data.FromPattern,
-                    ToPattern = data.FromPattern,
+                    ToPattern = data.ToPattern,
                     MaximumTicketPrice = data.MaximumTicketPrice
                 };
 
                 SOAPS.Route.RouteSoapEndpointServiceClient client = new SOAPS.Route.RouteSoapEndpointServiceClient();
                 SOAPS.Route.GetFilteredRoutesListResponse r = await client.GetFilteredRoutesListAsync(new SOAPS.Route.GetFilteredRoutesListRequest1(request));
 
-                return await DeserializeCustom<GetRoutesListResponse>(r);
+                return await DeserializeCustom<GetRoutesListResponse>(r.GetFilteredRoutesListResult);
             }
             catch (Exception)
             {

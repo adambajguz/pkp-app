@@ -17,35 +17,35 @@ namespace TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket
     public interface ITicketSoapEndpointService
     {
 
-        [System.ServiceModel.OperationContractAttribute(Action = "https://tempuri.org/ITicketSoapEndpointService/CreateTicket", ReplyAction = "*")]
+        [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/ITicketSoapEndpointService/CreateTicket", ReplyAction = "*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
         System.Threading.Tasks.Task<TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket.CreateTicketResponse> CreateTicketAsync(TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket.CreateTicketRequest1 request);
 
-        [System.ServiceModel.OperationContractAttribute(Action = "https://tempuri.org/ITicketSoapEndpointService/GetTicketDetails", ReplyAction = "*")]
+        [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/ITicketSoapEndpointService/GetTicketDetails", ReplyAction = "*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
         System.Threading.Tasks.Task<TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket.GetTicketDetailsResponse1> GetTicketDetailsAsync(TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket.GetTicketDetailsRequest request);
 
-        [System.ServiceModel.OperationContractAttribute(Action = "https://tempuri.org/ITicketSoapEndpointService/GetTicketDocument", ReplyAction = "*")]
+        [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/ITicketSoapEndpointService/GetTicketDocument", ReplyAction = "*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
         System.Threading.Tasks.Task<TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket.GetTicketDocumentResponse1> GetTicketDocumentAsync(TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket.GetTicketDocumentRequest request);
 
-        [System.ServiceModel.OperationContractAttribute(Action = "https://tempuri.org/ITicketSoapEndpointService/UpdateTicket", ReplyAction = "*")]
+        [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/ITicketSoapEndpointService/UpdateTicket", ReplyAction = "*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
         System.Threading.Tasks.Task<TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket.UpdateTicketResponse> UpdateTicketAsync(TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket.UpdateTicketRequest1 request);
 
-        [System.ServiceModel.OperationContractAttribute(Action = "https://tempuri.org/ITicketSoapEndpointService/DeleteTicket", ReplyAction = "*")]
+        [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/ITicketSoapEndpointService/DeleteTicket", ReplyAction = "*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
         System.Threading.Tasks.Task<TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket.DeleteTicketResponse> DeleteTicketAsync(TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket.DeleteTicketRequest request);
 
-        [System.ServiceModel.OperationContractAttribute(Action = "https://tempuri.org/ITicketSoapEndpointService/GetCurrentUserTicketsList", ReplyAction = "*")]
+        [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/ITicketSoapEndpointService/GetCurrentUserTicketsList", ReplyAction = "*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
         System.Threading.Tasks.Task<TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket.GetCurrentUserTicketsListResponse> GetCurrentUserTicketsListAsync(TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket.GetCurrentUserTicketsListRequest request);
 
-        [System.ServiceModel.OperationContractAttribute(Action = "https://tempuri.org/ITicketSoapEndpointService/GetUserTicketsList", ReplyAction = "*")]
+        [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/ITicketSoapEndpointService/GetUserTicketsList", ReplyAction = "*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
         System.Threading.Tasks.Task<TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket.GetUserTicketsListResponse1> GetUserTicketsListAsync(TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket.GetUserTicketsListRequest request);
 
-        [System.ServiceModel.OperationContractAttribute(Action = "https://tempuri.org/ITicketSoapEndpointService/GetTicketsList", ReplyAction = "*")]
+        [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/ITicketSoapEndpointService/GetTicketsList", ReplyAction = "*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
         System.Threading.Tasks.Task<TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket.GetTicketsListResponse1> GetTicketsListAsync(TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Ticket.GetTicketsListRequest request);
     }

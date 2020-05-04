@@ -17,27 +17,27 @@ namespace TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Route
     public interface IRouteSoapEndpointService
     {
 
-        [System.ServiceModel.OperationContractAttribute(Action = "https://tempuri.org/IRouteSoapEndpointService/CreateRoute", ReplyAction = "*")]
+        [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IRouteSoapEndpointService/CreateRoute", ReplyAction = "*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
         System.Threading.Tasks.Task<TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Route.CreateRouteResponse> CreateRouteAsync(TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Route.CreateRouteRequest1 request);
 
-        [System.ServiceModel.OperationContractAttribute(Action = "https://tempuri.org/IRouteSoapEndpointService/GetRouteDetails", ReplyAction = "*")]
+        [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IRouteSoapEndpointService/GetRouteDetails", ReplyAction = "*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
         System.Threading.Tasks.Task<TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Route.GetRouteDetailsResponse1> GetRouteDetailsAsync(TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Route.GetRouteDetailsRequest request);
 
-        [System.ServiceModel.OperationContractAttribute(Action = "https://tempuri.org/IRouteSoapEndpointService/UpdateRoute", ReplyAction = "*")]
+        [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IRouteSoapEndpointService/UpdateRoute", ReplyAction = "*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
         System.Threading.Tasks.Task<TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Route.UpdateRouteResponse> UpdateRouteAsync(TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Route.UpdateRouteRequest1 request);
 
-        [System.ServiceModel.OperationContractAttribute(Action = "https://tempuri.org/IRouteSoapEndpointService/DeleteRoute", ReplyAction = "*")]
+        [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IRouteSoapEndpointService/DeleteRoute", ReplyAction = "*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
         System.Threading.Tasks.Task<TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Route.DeleteRouteResponse> DeleteRouteAsync(TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Route.DeleteRouteRequest request);
 
-        [System.ServiceModel.OperationContractAttribute(Action = "https://tempuri.org/IRouteSoapEndpointService/GetFilteredRoutesList", ReplyAction = "*")]
+        [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IRouteSoapEndpointService/GetFilteredRoutesList", ReplyAction = "*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
         System.Threading.Tasks.Task<TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Route.GetFilteredRoutesListResponse> GetFilteredRoutesListAsync(TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Route.GetFilteredRoutesListRequest1 request);
 
-        [System.ServiceModel.OperationContractAttribute(Action = "https://tempuri.org/IRouteSoapEndpointService/GetRoutesList", ReplyAction = "*")]
+        [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IRouteSoapEndpointService/GetRoutesList", ReplyAction = "*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
         System.Threading.Tasks.Task<TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Route.GetRoutesListResponse1> GetRoutesListAsync(TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Route.GetRoutesListRequest request);
     }

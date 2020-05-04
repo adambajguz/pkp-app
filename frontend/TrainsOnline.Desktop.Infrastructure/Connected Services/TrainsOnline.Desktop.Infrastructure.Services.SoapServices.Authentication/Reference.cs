@@ -17,15 +17,15 @@ namespace TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Authenticati
     public interface IAuthenticationSoapEndpointService
     {
 
-        [System.ServiceModel.OperationContractAttribute(Action = "https://tempuri.org/IAuthenticationSoapEndpointService/Login", ReplyAction = "*")]
+        [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IAuthenticationSoapEndpointService/Login", ReplyAction = "*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
         System.Threading.Tasks.Task<TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Authentication.LoginResponse> LoginAsync(TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Authentication.LoginRequest1 request);
 
-        [System.ServiceModel.OperationContractAttribute(Action = "https://tempuri.org/IAuthenticationSoapEndpointService/ResetPasswordStep1", ReplyAction = "*")]
+        [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IAuthenticationSoapEndpointService/ResetPasswordStep1", ReplyAction = "*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
         System.Threading.Tasks.Task<TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Authentication.ResetPasswordStep1Response> ResetPasswordStep1Async(TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Authentication.ResetPasswordStep1Request request);
 
-        [System.ServiceModel.OperationContractAttribute(Action = "https://tempuri.org/IAuthenticationSoapEndpointService/ResetPasswordStep2", ReplyAction = "*")]
+        [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IAuthenticationSoapEndpointService/ResetPasswordStep2", ReplyAction = "*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults = true)]
         System.Threading.Tasks.Task<TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Authentication.ResetPasswordStep2Response> ResetPasswordStep2Async(TrainsOnline.Desktop.Infrastructure.Services.SoapServices.Authentication.ResetPasswordStep2Request request);
     }
