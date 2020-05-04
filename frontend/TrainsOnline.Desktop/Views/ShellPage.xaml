@@ -38,7 +38,7 @@
                 Icon="Home" />
             <winui:NavigationViewItemSeparator />
 
-            <winui:NavigationViewItem x:Uid="Shell_ExampleBlank" helpers:NavHelper.NavigateTo="viewsexample:ExampleBlankPage">
+            <!--<winui:NavigationViewItem x:Uid="Shell_ExampleBlank" helpers:NavHelper.NavigateTo="viewsexample:ExampleBlankPage">
                 <winui:NavigationViewItem.Icon>
                     <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xE7C3;" />
                 </winui:NavigationViewItem.Icon>
@@ -67,7 +67,7 @@
                     <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xE826;" />
                 </winui:NavigationViewItem.Icon>
             </winui:NavigationViewItem>
-            <winui:NavigationViewItemSeparator />
+            <winui:NavigationViewItemSeparator />-->
 
             <winui:NavigationViewItem x:Uid="Shell_StationMasterDetail" helpers:NavHelper.NavigateTo="viewsstation:StationMasterDetailPage">
                 <winui:NavigationViewItem.Icon>
