@@ -67,6 +67,11 @@
 
         private async Task LoadDataAsync(GetRoutesListResponse data)
         {
+            if (data is null)
+            {
+                return;
+            }
+
             Source.Clear();
 
             var query = from item in data.Routes
@@ -156,7 +161,7 @@
             GetRoutesListResponse data = await RemoteDataProvider.GetFilteredRoutes(new GetFilteredRoutesListRequest
             {
                 FromPattern = string.IsNullOrWhiteSpace(SearchFrom) ? null : SearchFrom,
-                ToPattern = string.IsNullOrWhiteSpace(SearchTo) ? null : SearchFrom,
+                ToPattern = string.IsNullOrWhiteSpace(SearchTo) ? null : SearchTo,
                 MaximumTicketPrice = parsed ? (double?)max : null
             });
 
