@@ -161,7 +161,7 @@
             GetRoutesListResponse data = await RemoteDataProvider.GetFilteredRoutes(new GetFilteredRoutesListRequest
             {
                 FromPattern = string.IsNullOrWhiteSpace(SearchFrom) ? null : SearchFrom,
-                ToPattern = string.IsNullOrWhiteSpace(SearchTo) ? null : SearchFrom,
+                ToPattern = string.IsNullOrWhiteSpace(SearchTo) ? null : SearchTo,
                 MaximumTicketPrice = parsed ? (double?)max : null
             });
 
