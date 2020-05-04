@@ -5,6 +5,7 @@
     using Microsoft.AspNetCore.Routing;
     using Microsoft.Extensions.DependencyInjection;
     using SoapCore;
+    using SoapCore.Extensibility;
     using TrainsOnline.Api.CustomMiddlewares.Soap;
     using TrainsOnline.Application.Interfaces;
     using TrainsOnline.Common.Extensions;
@@ -15,7 +16,9 @@
 
         public static IServiceCollection AddSoapApiServices(this IServiceCollection services)
         {
-            services.AddSoapCore()
+            //services.AddSoapCore();
+            services.AddSingleton<IFaultExceptionTransformer, DefaultFaultExceptionTransformer<CustomMessage>>()
+                    .AddSingleton<IOperationInvoker, SoapCoreSafeOperationInvoker>()
                     .AddSoapServiceOperationTuner(new SoapJwtMiddleware(services.BuildServiceProvider()
                                                                                 .GetService<IJwtService>()));
 
