@@ -67,6 +67,11 @@
 
         private async Task LoadDataAsync(GetRoutesListResponse data)
         {
+            if (data is null)
+            {
+                return;
+            }
+
             Source.Clear();
 
             var query = from item in data.Routes

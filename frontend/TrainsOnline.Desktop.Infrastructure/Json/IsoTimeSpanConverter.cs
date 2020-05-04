@@ -28,16 +28,16 @@
                 return;
             }
 
-            var isValueTimeSpan = value is TimeSpan;
+            bool isValueTimeSpan = value is TimeSpan;
 
             if (!isValueTimeSpan)
             {
                 throw new JsonSerializationException("Expected TimeSpan object value.");
             }
 
-            var timeSpan = (TimeSpan)value;
+            TimeSpan timeSpan = (TimeSpan)value;
 
-            var text = string.Format("PT{0}H{1}M{2}S", timeSpan.Hours, timeSpan.Minutes, timeSpan.Seconds);
+            string text = string.Format("PT{0}H{1}M{2}S", timeSpan.Hours, timeSpan.Minutes, timeSpan.Seconds);
             writer.WriteValue(text);
         }
 
@@ -73,7 +73,7 @@
 
             if (reader.TokenType == JsonToken.String)
             {
-                var timeSpanText = reader.Value.ToString();
+                string timeSpanText = reader.Value.ToString();
 
                 if (!timeSpanText.StartsWith("PT"))
                 {
@@ -93,18 +93,18 @@
                 //    throw new JsonSerializationException("TimeSpan text should contain S");
                 //}
 
-                var indexOfH = timeSpanText.IndexOf("H");
+                int indexOfH = timeSpanText.IndexOf("H");
                 if (indexOfH < 0)
                     indexOfH = 1;
 
-                var indexOfM = timeSpanText.IndexOf("M");
+                int indexOfM = timeSpanText.IndexOf("M");
 
-                var indexOfS = timeSpanText.IndexOf("S");
+                int indexOfS = timeSpanText.IndexOf("S");
 
-                int hours=0;
+                int hours = 0;
                 if (timeSpanText.Contains("H"))
                 {
-                    if (!Int32.TryParse(timeSpanText.Substring(2, indexOfH - 2), out hours))
+                    if (!int.TryParse(timeSpanText.Substring(2, indexOfH - 2), out hours))
                     {
                         throw new JsonSerializationException("H could not be converted to Int32");
                     }
@@ -114,7 +114,7 @@
                 if (timeSpanText.Contains("M"))
                 {
 
-                    if (!Int32.TryParse(timeSpanText.Substring(indexOfH + 1, indexOfM - indexOfH - 1), out minutes))
+                    if (!int.TryParse(timeSpanText.Substring(indexOfH + 1, indexOfM - indexOfH - 1), out minutes))
                     {
                         throw new JsonSerializationException("M could not be converted to Int32");
                     }
@@ -123,7 +123,7 @@
                 int seconds = 0;
                 if (timeSpanText.Contains("S"))
                 {
-                    if (!Int32.TryParse(timeSpanText.Substring(indexOfM + 1, indexOfS - indexOfM - 1), out seconds))
+                    if (!int.TryParse(timeSpanText.Substring(indexOfM + 1, indexOfS - indexOfM - 1), out seconds))
                     {
                         throw new JsonSerializationException("S could not be converted to Int32");
                     }
