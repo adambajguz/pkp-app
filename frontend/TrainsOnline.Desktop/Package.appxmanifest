@@ -10,7 +10,7 @@
   <Identity
     Name="TrainsOnline-040FD34F-3DBF-4876-9410-7B9FC085EE97"
     Publisher="CN=Admin"
-    Version="1.0.0.0" />
+    Version="1.0.7.0" />
 
   <mp:PhoneIdentity PhoneProductId="040FD34F-3DBF-4876-9410-7B9FC085EE97" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
@@ -34,14 +34,14 @@
       EntryPoint="TrainsOnline.Desktop.App">
       <uap:VisualElements
         DisplayName="ms-resource:AppDisplayName"
-        Square150x150Logo="Assets\Logo\Square150x150Logo.png"
         Square44x44Logo="Assets\Logo\Square44x44Logo.png"
         Description="ms-resource:AppDescription"
-        BackgroundColor="#414440">
-        <uap:DefaultTile Wide310x150Logo="Assets\Logo\Wide310x150Logo.png" ShortName="ms-resource:AppDisplayName" Square71x71Logo="Assets\Logo\SmallTile.png" Square310x310Logo="Assets\Logo\LargeTile.png">
+        BackgroundColor="#414440" Square150x150Logo="Assets\Logo\Square150x150Logo.png">
+        <uap:DefaultTile ShortName="ms-resource:AppDisplayName" Square310x310Logo="Assets\Logo\LargeTile.png" Square71x71Logo="Assets\Logo\SmallTile.png" Wide310x150Logo="Assets\Logo\Wide310x150Logo.png">
           <uap:ShowNameOnTiles>
             <uap:ShowOn Tile="square150x150Logo"/>
             <uap:ShowOn Tile="wide310x150Logo"/>
+            <uap:ShowOn Tile="square310x310Logo"/>
           </uap:ShowNameOnTiles>
         </uap:DefaultTile >
         <uap:SplashScreen Image="Assets\Logo\SplashScreen.png"  BackgroundColor="#414440"/>
