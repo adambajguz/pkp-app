@@ -32,6 +32,8 @@
                     //})
                     .SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
 
+            services.AddCustomHateoas();
+
             services.AddResponseCompression(options =>
             {
                 options.EnableForHttps = true;

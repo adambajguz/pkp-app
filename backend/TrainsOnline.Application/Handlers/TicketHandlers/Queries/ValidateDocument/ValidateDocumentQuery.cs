@@ -34,7 +34,7 @@
                 Guid ticketId = request.TId;
                 Ticket ticket = await _uow.TicketsRepository.GetByIdWithRelatedAsync(ticketId, x => x.Route, x => x.Route.From, x => x.Route.To);
 
-                bool isTicketValid = ticket != null && 
+                bool isTicketValid = ticket != null &&
                                      ticket.Id == ticketId &&
                                      ticket.UserId == request.UId &&
                                      ticket.RouteId == request.RId;

@@ -46,7 +46,7 @@
         }
 
         [Authorize(Roles = Roles.User)]
-        [HttpGet("/api/user/get/{id}")]
+        [HttpGet("/api/user/get/{id:guid}")]
         [SwaggerOperation(
             Summary = "Get user details [" + Roles.User + "]",
             Description = "Gets user details")]
@@ -72,7 +72,7 @@
         }
 
         [Authorize(Roles = Roles.User)]
-        [HttpGet("/api/user/delete/{id}")]
+        [HttpGet("/api/user/delete/{id:guid}")]
         [SwaggerOperation(
             Summary = "Delete user [" + Roles.User + "]",
             Description = "Deletes user")]

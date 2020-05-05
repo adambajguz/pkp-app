@@ -36,7 +36,7 @@
         }
 
         [Authorize(Roles = Roles.User)]
-        [HttpGet("/api/ticket/get/{id}")]
+        [HttpGet("/api/ticket/get/{id:guid}")]
         [SwaggerOperation(
             Summary = "Get ticket details [User]",
             Description = "Gets ticket details")]
@@ -49,7 +49,7 @@
         }
 
         [Authorize(Roles = Roles.User)]
-        [HttpGet("/api/ticket/get-document/{id}")]
+        [HttpGet("/api/ticket/get-document/{id:guid}")]
         [SwaggerOperation(
             Summary = "Get ticket document [User]",
             Description = "Gets ticket document")]
@@ -90,7 +90,7 @@
         }
 
         [Authorize(Roles = Roles.Admin)]
-        [HttpDelete("/api/ticket/delete/{id}")]
+        [HttpDelete("/api/ticket/delete/{id:guid}")]
         [SwaggerOperation(
             Summary = "Delete ticket [" + Roles.Admin + "]",
             Description = "Deletes ticket")]
@@ -117,7 +117,7 @@
         }
 
         [Authorize(Roles = Roles.User)]
-        [HttpGet("/api/ticket/get-all-user/{id}")]
+        [HttpGet("/api/ticket/get-all-user/{id:guid}")]
         [SwaggerOperation(
             Summary = "Get all user tickets [" + Roles.User + "]",
             Description = "Gets a list of all user tickets")]
