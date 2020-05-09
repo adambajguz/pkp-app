@@ -50,7 +50,7 @@
         [SwaggerResponse(StatusCodes.Status400BadRequest, null, typeof(ExceptionResponse))]
         public async Task<IActionResult> GetStationDetails([FromRoute]Guid id)
         {
-            return base.Ok(await Mediator.Send(new GetStationDetailsQuery(new IdRequest(id))));
+            return Ok(await Mediator.Send(new GetStationDetailsQuery(new IdRequest(id))));
         }
 
         [Authorize(Roles = Roles.Admin)]

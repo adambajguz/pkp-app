@@ -75,7 +75,11 @@
                     }
                 });
             });
-            services.AddSwaggerGenNewtonsoftSupport();
+
+            if (SerializerSettings.UseNewtonsoftJson)
+                services.AddSwaggerGenNewtonsoftSupport();
+            else
+                services.AddSwaggerGen();
         }
     }
 }
