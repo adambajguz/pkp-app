@@ -1,12 +1,14 @@
 ﻿namespace TrainsOnline.Api
 {
     using System.IO.Compression;
+    using System.Text.Json;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.ResponseCompression;
     using Microsoft.Extensions.DependencyInjection;
     using Serilog;
     using TrainsOnline.Api.Configuration;
+    using TrainsOnline.Api.Converterts;
 
     public static class DependencyInjection
     {
@@ -23,14 +25,31 @@
             });
 
             //Mvc
-            services.AddControllers()
-                    .AddNewtonsoftJson()
-                    //.AddJsonOptions(options =>
-                    //{
-                    //    //JSON serializer convedrters
-                    //    options.JsonSerializerOptions.Converters.Add(new TimeSpanConverter());
-                    //})
-                    .SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
+            IMvcBuilder mvcBuilder = services.AddControllers()
+                                             .SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
+
+            if (FeaturesSettings.UseNewtonsoftJson)
+            {
+                mvcBuilder.AddNewtonsoftJson();
+            }
+            else
+            {
+                mvcBuilder.AddJsonOptions(options =>
+                {
+                    //JSON serializer convedrters
+                    options.JsonSerializerOptions.Converters.Add(new JsonTimeSpanConverter());
+                });
+            }
+
+            if (FeaturesSettings.UseHateoas)
+            {
+                //Hateoas patch
+                JsonSerializerOptions jsonSettings = new JsonSerializerOptions();
+                jsonSettings.Converters.Add(new JsonTimeSpanConverter());
+                services.AddSingleton(jsonSettings);
+
+                services.AddCustomHateoas();
+            }
 
             services.AddResponseCompression(options =>
             {

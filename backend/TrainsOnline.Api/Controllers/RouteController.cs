@@ -19,6 +19,13 @@
     [SwaggerTag("Create, update, and get route")]
     public class RouteController : BaseController
     {
+        public const string Create = nameof(CreateRoute);
+        public const string GetDetails = nameof(GetRouteDetails);
+        public const string Update = nameof(UpdateRoute);
+        public const string Delete = nameof(DeleteRoute);
+        public const string GetFiltered = nameof(GetFilteredRoutesList);
+        public const string GetAll = nameof(GetRoutesList);
+
         [Authorize(Roles = Roles.Admin)]
         [HttpPost("/api/route/create")]
         [SwaggerOperation(
@@ -32,7 +39,7 @@
             return Ok(await Mediator.Send(new CreateRouteCommand(route)));
         }
 
-        [HttpGet("/api/route/get/{id}")]
+        [HttpGet("/api/route/get/{id:guid}")]
         [SwaggerOperation(
             Summary = "Get route details",
             Description = "Gets route details")]
@@ -57,7 +64,7 @@
         }
 
         [Authorize(Roles = Roles.Admin)]
-        [HttpDelete("/api/route/delete/{id}")]
+        [HttpDelete("/api/route/delete/{id:guid}")]
         [SwaggerOperation(
             Summary = "Delete route [" + Roles.Admin + "]",
             Description = "Deletes route")]
@@ -78,7 +85,7 @@
         {
             return Ok(await Mediator.Send(new GetFilteredRoutesListQuery(data)));
         }
-        
+
         [HttpGet("/api/route/get-all")]
         [SwaggerOperation(
             Summary = "Get all routes",

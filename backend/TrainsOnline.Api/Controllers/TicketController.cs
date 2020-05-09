@@ -22,6 +22,16 @@
     [SwaggerTag("Create, update, and get ticket")]
     public class TicketController : BaseController
     {
+        public const string Create = nameof(CreateTicket);
+        public const string GetDetails = nameof(GetTicketDetails);
+        public const string GetDocument = nameof(GetTicketDocument);
+        public const string ValidateDocument = nameof(GetValidateDocument);
+        public const string Update = nameof(UpdateStation);
+        public const string Delete = nameof(DeleteTicket);
+        public const string GetCurrentUser = nameof(GetCurrentUserTicketsList);
+        public const string GetUser = nameof(GetUserTicketsList);
+        public const string GetAll = nameof(GetTicketsList);
+
         [Authorize(Roles = Roles.User)]
         [HttpPost("/api/ticket/create")]
         [SwaggerOperation(
@@ -36,7 +46,7 @@
         }
 
         [Authorize(Roles = Roles.User)]
-        [HttpGet("/api/ticket/get/{id}")]
+        [HttpGet("/api/ticket/get/{id:guid}")]
         [SwaggerOperation(
             Summary = "Get ticket details [User]",
             Description = "Gets ticket details")]
@@ -49,7 +59,7 @@
         }
 
         [Authorize(Roles = Roles.User)]
-        [HttpGet("/api/ticket/get-document/{id}")]
+        [HttpGet("/api/ticket/get-document/{id:guid}")]
         [SwaggerOperation(
             Summary = "Get ticket document [User]",
             Description = "Gets ticket document")]
@@ -90,7 +100,7 @@
         }
 
         [Authorize(Roles = Roles.Admin)]
-        [HttpDelete("/api/ticket/delete/{id}")]
+        [HttpDelete("/api/ticket/delete/{id:guid}")]
         [SwaggerOperation(
             Summary = "Delete ticket [" + Roles.Admin + "]",
             Description = "Deletes ticket")]
@@ -117,7 +127,7 @@
         }
 
         [Authorize(Roles = Roles.User)]
-        [HttpGet("/api/ticket/get-all-user/{id}")]
+        [HttpGet("/api/ticket/get-all-user/{id:guid}")]
         [SwaggerOperation(
             Summary = "Get all user tickets [" + Roles.User + "]",
             Description = "Gets a list of all user tickets")]

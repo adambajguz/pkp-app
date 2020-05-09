@@ -1,11 +1,7 @@
 ﻿namespace TrainsOnline.Infrastructure.QRCode
 {
     using System;
-    using System.Drawing;
-    using System.Drawing.Drawing2D;
-    using System.Drawing.Imaging;
     using System.Globalization;
-    using System.IO;
     using QRCoder;
     using TrainsOnline.Application.Interfaces;
     using static QRCoder.PayloadGenerator;
