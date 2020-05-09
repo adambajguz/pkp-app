@@ -8,7 +8,7 @@
 
     [ApiController]
     [Route("api/[controller]/[action]")]
-    public abstract class BaseController : Controller
+    public abstract class BaseController : ControllerBase
     {
         private readonly Lazy<IMediator> _mediator;
         private readonly Lazy<ICurrentUserService> _currentUser;
