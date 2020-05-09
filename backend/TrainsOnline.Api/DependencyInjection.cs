@@ -1,6 +1,7 @@
 ﻿namespace TrainsOnline.Api
 {
     using System.IO.Compression;
+    using System.Text.Json;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.ResponseCompression;
@@ -27,7 +28,7 @@
             IMvcBuilder mvcBuilder = services.AddControllers()
                                              .SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
 
-            if (SerializerSettings.UseNewtonsoftJson)
+            if (FeaturesSettings.UseNewtonsoftJson)
             {
                 mvcBuilder.AddNewtonsoftJson();
             }
@@ -40,7 +41,15 @@
                 });
             }
 
-            services.AddCustomHateoas();
+            if(FeaturesSettings.UseHateoas)
+            {
+                //Hateoas patch
+                JsonSerializerOptions jsonSettings = new JsonSerializerOptions();
+                jsonSettings.Converters.Add(new JsonTimeSpanConverter());
+                services.AddSingleton(jsonSettings);
+
+                services.AddCustomHateoas();
+            }
 
             services.AddResponseCompression(options =>
             {

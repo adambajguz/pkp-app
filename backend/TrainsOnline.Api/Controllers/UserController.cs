@@ -19,6 +19,14 @@
     [SwaggerTag("Create, update, and get user")]
     public class UserController : BaseController
     {
+        public const string Create = nameof(CreateUser);
+        public const string GetCurrentDetails = nameof(GetCurrentUserDetails);
+        public const string GetDetails = nameof(GetUserDetails);
+        public const string Update = nameof(UpdateUser);
+        public const string Delete = nameof(DeleteUser);
+        public const string ChangePassword = nameof(ChangeUserPassword);
+        public const string GetAll = nameof(GetUsersList);
+
         [HttpPost("/api/user/create")]
         [SwaggerOperation(
             Summary = "Create (register) a new user",
@@ -92,7 +100,7 @@
         [SwaggerResponse(StatusCodes.Status200OK, "Password changed")]
         [SwaggerResponse(StatusCodes.Status400BadRequest, null, typeof(ExceptionResponse))]
         [SwaggerResponse(StatusCodes.Status401Unauthorized, null, typeof(ExceptionResponse))]
-        public async Task<IActionResult> ChangePassword([FromBody]ChangePasswordRequest user)
+        public async Task<IActionResult> ChangeUserPassword([FromBody]ChangePasswordRequest user)
         {
             return Ok(await Mediator.Send(new ChangePasswordCommand(user)));
         }

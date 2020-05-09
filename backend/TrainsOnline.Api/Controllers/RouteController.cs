@@ -19,6 +19,13 @@
     [SwaggerTag("Create, update, and get route")]
     public class RouteController : BaseController
     {
+        public const string Create = nameof(CreateRoute);
+        public const string GetDetails = nameof(GetRouteDetails);
+        public const string Update = nameof(UpdateRoute);
+        public const string Delete = nameof(DeleteRoute);
+        public const string GetFiltered = nameof(GetFilteredRoutesList);
+        public const string GetAll = nameof(GetRoutesList);
+
         [Authorize(Roles = Roles.Admin)]
         [HttpPost("/api/route/create")]
         [SwaggerOperation(

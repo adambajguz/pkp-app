@@ -76,7 +76,7 @@
                 });
             });
 
-            if (SerializerSettings.UseNewtonsoftJson)
+            if (FeaturesSettings.UseNewtonsoftJson)
                 services.AddSwaggerGenNewtonsoftSupport();
             else
                 services.AddSwaggerGen();

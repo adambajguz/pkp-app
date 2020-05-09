@@ -22,6 +22,16 @@
     [SwaggerTag("Create, update, and get ticket")]
     public class TicketController : BaseController
     {
+        public const string Create = nameof(CreateTicket);
+        public const string GetDetails = nameof(GetTicketDetails);
+        public const string GetDocument = nameof(GetTicketDocument);
+        public const string ValidateDocument = nameof(GetValidateDocument);
+        public const string Update = nameof(UpdateStation);
+        public const string Delete = nameof(DeleteTicket);
+        public const string GetCurrentUser = nameof(GetCurrentUserTicketsList);
+        public const string GetUser = nameof(GetUserTicketsList);
+        public const string GetAll = nameof(GetTicketsList);
+
         [Authorize(Roles = Roles.User)]
         [HttpPost("/api/ticket/create")]
         [SwaggerOperation(
