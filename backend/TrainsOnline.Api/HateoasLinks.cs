@@ -3,7 +3,6 @@
     using Microsoft.AspNetCore.Http;
     using Microsoft.Extensions.DependencyInjection;
     using Sciensoft.Hateoas.Extensions;
-    using Sentry.Protocol;
     using TrainsOnline.Api.Controllers;
     using TrainsOnline.Application.DTO;
     using TrainsOnline.Application.Handlers.RouteHandlers.Queries.GetRouteDetails;
@@ -45,20 +44,20 @@
                          .AddCustomPath(m => "/api/ticket/get-all-current-user", TicketController.GetCurrentUser, HttpMethods.Get)
                          .AddCustomPath(m => $"/api/ticket/get-all-user/{m.Id}", TicketController.GetUser, HttpMethods.Get)
                          .AddCustomPath(m => "/api/ticket/get-all", TicketController.GetAll, HttpMethods.Get);
-                }); 
-                
+                });
+
                 c.AddPolicy<IdResponse>(model =>
                 {
-                    model                        
+                    model
                          .AddCustomPath(m => $"/api/route/get/{m.Id}", RouteController.GetDetails, HttpMethods.Get)
-                         .AddCustomPath(m => $"/api/route/delete/{m.Id}", RouteController.Delete, HttpMethods.Delete)                
-                         
+                         .AddCustomPath(m => $"/api/route/delete/{m.Id}", RouteController.Delete, HttpMethods.Delete)
+
                          .AddCustomPath(m => $"/api/ticket/get/{m.Id}", TicketController.GetDetails, HttpMethods.Get)
-                         .AddCustomPath(m => $"/api/ticket/delete/{m.Id}", TicketController.Delete, HttpMethods.Delete)      
-                         
+                         .AddCustomPath(m => $"/api/ticket/delete/{m.Id}", TicketController.Delete, HttpMethods.Delete)
+
                          .AddCustomPath(m => $"/api/station/get/{m.Id}", StationController.GetDetails, HttpMethods.Get)
-                         .AddCustomPath(m => $"/api/station/delete/{m.Id}", StationController.Delete, HttpMethods.Delete)                
-                         
+                         .AddCustomPath(m => $"/api/station/delete/{m.Id}", StationController.Delete, HttpMethods.Delete)
+
                          .AddCustomPath(m => $"/api/user/get/{m.Id}", UserController.GetDetails, HttpMethods.Get)
                          .AddCustomPath(m => $"/api/user/delete/{m.Id}", UserController.Delete, HttpMethods.Delete);
                 });

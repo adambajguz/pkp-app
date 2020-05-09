@@ -41,7 +41,7 @@
                 });
             }
 
-            if(FeaturesSettings.UseHateoas)
+            if (FeaturesSettings.UseHateoas)
             {
                 //Hateoas patch
                 JsonSerializerOptions jsonSettings = new JsonSerializerOptions();
